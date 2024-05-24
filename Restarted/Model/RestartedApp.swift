@@ -2,7 +2,7 @@
 //  RestartedApp.swift
 //  Restarted
 //
-//  Created by metalWillHelpYou on 24.05.2024.
+//  Created by metalWillHelpYou on 21.05.2024.
 //
 
 import SwiftUI
