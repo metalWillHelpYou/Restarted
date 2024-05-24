@@ -11,7 +11,13 @@ struct ProfileView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                Text("ProfileView")
+                CirclesView()
+                
+                SettingsView()
+
+                AdditionalSettingsView()
+                
+                Spacer()
             }
             .navigationTitle("Profile")
             .themedModifiers()
