@@ -48,7 +48,7 @@ struct ContentView: View {
                     }
                     
                     NavigationView{
-                        ProfileView()
+                        ProfileMainScreenView()
                     }
                     .tabItem {
                         Image(systemName: "person")

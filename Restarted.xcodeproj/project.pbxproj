@@ -25,13 +25,14 @@
 		9B2AFD7C2C009A0D00E908F5 /* GameCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD6F2C009A0D00E908F5 /* GameCardView.swift */; };
 		9B2AFD7D2C009A0D00E908F5 /* GamesMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD702C009A0D00E908F5 /* GamesMainScreenView.swift */; };
 		9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD722C009A0D00E908F5 /* HomeView.swift */; };
-		9B2AFD7F2C009A0D00E908F5 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileView.swift */; };
+		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
 		9B2AFD832C009A3100E908F5 /* ColorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD812C009A3100E908F5 /* ColorModifier.swift */; };
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
 		9BA12C272C009C7600375D40 /* SetGameTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA12C262C009C7600375D40 /* SetGameTimerView.swift */; };
+		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,13 +56,14 @@
 		9B2AFD6F2C009A0D00E908F5 /* GameCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCardView.swift; sourceTree = "<group>"; };
 		9B2AFD702C009A0D00E908F5 /* GamesMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GamesMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD722C009A0D00E908F5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		9B2AFD742C009A0D00E908F5 /* ProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B2AFD812C009A3100E908F5 /* ColorModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorModifier.swift; sourceTree = "<group>"; };
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
 		9BA12C262C009C7600375D40 /* SetGameTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTimerView.swift; sourceTree = "<group>"; };
+		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,10 +185,11 @@
 		9B2AFD752C009A0D00E908F5 /* ProfileViews */ = {
 			isa = PBXGroup;
 			children = (
-				9B2AFD742C009A0D00E908F5 /* ProfileView.swift */,
+				9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */,
 				9B568F862C00B22500B6D645 /* CirclesView.swift */,
 				9B568F882C00B29C00B6D645 /* SettingsView.swift */,
 				9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */,
+				9BE96A102C05251300CE3EBB /* StatisticView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -293,11 +296,12 @@
 				9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */,
 				9B2AFD832C009A3100E908F5 /* ColorModifier.swift in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
+				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9B2AFD672C0099F100E908F5 /* Extensions.swift in Sources */,
 				9B2AFD7C2C009A0D00E908F5 /* GameCardView.swift in Sources */,
 				9BA12C272C009C7600375D40 /* SetGameTimerView.swift in Sources */,
-				9B2AFD7F2C009A0D00E908F5 /* ProfileView.swift in Sources */,
+				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
 				9B2AFD662C0099F100E908F5 /* Enums.swift in Sources */,

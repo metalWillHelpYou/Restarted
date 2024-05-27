@@ -1,5 +1,5 @@
 //
-//  ProfileView.swift
+//  ProfileMainScreenView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 21.05.2024.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct ProfileView: View {
+struct ProfileMainScreenView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                CirclesView()
+                StatisticView()
                 
                 SettingsView()
 
@@ -26,5 +26,5 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
+    ProfileMainScreenView()
 }

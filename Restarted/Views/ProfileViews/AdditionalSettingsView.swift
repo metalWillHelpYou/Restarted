@@ -9,13 +9,20 @@ import SwiftUI
 
 struct AdditionalSettingsView: View {
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        VStack(alignment: .leading, spacing: 16) {
+            Text("Restarted FAQ")
+            
+            Text("Restarted Features")
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(
             RoundedRectangle(cornerRadius: 15)
                 .stroke(ThemeColors.light.tabBarColor, lineWidth: 2)
-                .frame(height: 78)
-                .padding(.top, 40)
-                .padding(.horizontal)
-        }
+        )
+        .padding(.horizontal)
+        .padding(.top, 40)
+
     }
 }
 
