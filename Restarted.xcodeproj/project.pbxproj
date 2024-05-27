@@ -146,14 +146,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		9B2AFD6C2C009A0D00E908F5 /* ArticleMainScreenViews */ = {
+		9B2AFD6C2C009A0D00E908F5 /* ArticleViews */ = {
 			isa = PBXGroup;
 			children = (
 				9B2AFD6A2C009A0D00E908F5 /* ArticleMainScreenView.swift */,
 				9B2AFD692C009A0D00E908F5 /* ArticleCardView.swift */,
 				9B2AFD6B2C009A0D00E908F5 /* ArticleView.swift */,
 			);
-			path = ArticleMainScreenViews;
+			path = ArticleViews;
 			sourceTree = "<group>";
 		};
 		9B2AFD6E2C009A0D00E908F5 /* DiaryViews */ = {
@@ -164,14 +164,14 @@
 			path = DiaryViews;
 			sourceTree = "<group>";
 		};
-		9B2AFD712C009A0D00E908F5 /* GamesMainScreenViews */ = {
+		9B2AFD712C009A0D00E908F5 /* GamesViews */ = {
 			isa = PBXGroup;
 			children = (
 				9B2AFD702C009A0D00E908F5 /* GamesMainScreenView.swift */,
 				9B2AFD6F2C009A0D00E908F5 /* GameCardView.swift */,
 				9BA12C262C009C7600375D40 /* SetGameTimerView.swift */,
 			);
-			path = GamesMainScreenViews;
+			path = GamesViews;
 			sourceTree = "<group>";
 		};
 		9B2AFD732C009A0D00E908F5 /* HomeViews */ = {
@@ -198,8 +198,8 @@
 			isa = PBXGroup;
 			children = (
 				9B2AFD732C009A0D00E908F5 /* HomeViews */,
-				9B2AFD6C2C009A0D00E908F5 /* ArticleMainScreenViews */,
-				9B2AFD712C009A0D00E908F5 /* GamesMainScreenViews */,
+				9B2AFD6C2C009A0D00E908F5 /* ArticleViews */,
+				9B2AFD712C009A0D00E908F5 /* GamesViews */,
 				9B2AFD6E2C009A0D00E908F5 /* DiaryViews */,
 				9B2AFD752C009A0D00E908F5 /* ProfileViews */,
 				9B2AFD762C009A0D00E908F5 /* ContentView.swift */,
