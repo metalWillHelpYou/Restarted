@@ -36,9 +36,9 @@ struct ArticleMainScreenView: View {
                 }
                 .padding(.horizontal, 20)
             }
-            .navigationTitle("Read something new")
+            .customNavigationTitle(title: "Read something new")
+            .themedModifiers()
         }
-        .themedModifiers()
     }
 }
 

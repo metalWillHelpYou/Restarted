@@ -13,7 +13,7 @@ struct HomeView: View {
             VStack {
                 Text("Welcome!")
             }
-            .navigationTitle("Your productivity")
+            .customNavigationTitle(title: "Your productivity")
             .themedModifiers()
         }
     }

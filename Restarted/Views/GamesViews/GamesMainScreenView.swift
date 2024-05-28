@@ -36,8 +36,7 @@ struct GamesMainScreenView: View {
                     
                 })
                 .padding(.horizontal)
-                .navigationTitle("It's time to play")
-    
+                .customNavigationTitle(title: "It's time to play")
             }
             .themedModifiers()
         }

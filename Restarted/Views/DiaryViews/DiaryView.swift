@@ -14,14 +14,14 @@ struct DiaryView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .padding()
                     .foregroundStyle(Color("DiaryPaper"))
-
+                
                 
                 Text("Write about it...")
                     .font(.body)
                     .fontWeight(.bold)
                     .padding([.top, .leading], 40)
             }
-            .navigationTitle("How do you feel?")
+            .customNavigationTitle(title: "How do you feel?")
             .themedModifiers()
         }
     }

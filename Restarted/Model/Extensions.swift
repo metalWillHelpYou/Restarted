@@ -26,4 +26,8 @@ extension View {
     func themedStroke() -> some View {
         self.modifier(StrokeModifier())
     }
+    
+    func customNavigationTitle(title: String) -> some View {
+        self.modifier(CustomNavigationTitle(title: title))
+    }
 }

@@ -48,3 +48,20 @@ struct PrimaryColorModifier {
     }
 }
 
+struct CustomNavigationTitle: ViewModifier {
+    var title: String
+    
+    func body(content: Content) -> some View {
+        content
+            .padding(.top, 52)
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                        Text(title)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .padding(.top, 92)
+                            .themedText()
+                }
+            }
+    }
+}

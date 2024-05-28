@@ -14,12 +14,12 @@ struct ProfileMainScreenView: View {
                 StatisticView()
                 
                 SettingsView()
-
+                
                 AdditionalSettingsView()
                 
                 Spacer()
             }
-            .navigationTitle("Profile")
+            .customNavigationTitle(title: "Profile")
             .themedModifiers()
         }
     }
