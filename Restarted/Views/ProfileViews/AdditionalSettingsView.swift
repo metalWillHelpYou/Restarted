@@ -18,7 +18,8 @@ struct AdditionalSettingsView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .stroke(ThemeColors.light.tabBarColor, lineWidth: 2)
+                .fill(Color.clear)
+                .themedStroke()
         )
         .padding(.horizontal)
         .padding(.top, 40)

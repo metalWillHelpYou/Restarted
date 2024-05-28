@@ -12,7 +12,7 @@ struct TextModifier: ViewModifier {
     
     func body(content: Content) -> some View {
         let themeColors = selectedTheme == .light ? ThemeColors.light : ThemeColors.dark
-        return content.foregroundColor(themeColors.TextColor)
+        return content.foregroundColor(themeColors.textColor)
     }
 }
 
@@ -25,13 +25,25 @@ struct BackgroundColorModifier: ViewModifier {
     }
 }
 
-struct TabBarColorModifier {
-    static func tabBackgroundColor(for theme: Theme) -> Color {
+struct StrokeModifier: ViewModifier {
+    @AppStorage("selectedTheme") var selectedTheme: Theme = .light
+    
+    func body(content: Content) -> some View {
+        let themeColors = selectedTheme == .light ? ThemeColors.light : ThemeColors.dark
+        return content.overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(themeColors.primaryColor, lineWidth: 2)
+        )
+    }
+}
+
+struct PrimaryColorModifier {
+    static func primaryColor(for theme: Theme) -> Color {
         switch theme {
         case .light:
-            return ThemeColors.light.tabBarColor
+            return ThemeColors.light.primaryColor
         case .dark:
-            return ThemeColors.dark.tabBarColor
+            return ThemeColors.dark.primaryColor
         }
     }
 }

@@ -22,4 +22,8 @@ extension View {
             .themedText()
             .themedBackground()
     }
+    
+    func themedStroke() -> some View {
+        self.modifier(StrokeModifier())
+    }
 }

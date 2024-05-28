@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct CirclesView: View {
-    let strokeColor = ThemeColors.light.tabBarColor
+    @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
+    
+    var strokeColor: Color {
+        if selectedTheme == .light {
+            ThemeColors.light.primaryColor.opacity(0.7)
+        } else {
+            ThemeColors.dark.primaryColor.opacity(0.7)
+        }
+    }
+    
     var body: some View {
         ZStack {
             Circle()
@@ -16,7 +25,7 @@ struct CirclesView: View {
                 .frame(width: 150, height: 150)
             
             Circle()
-                .fill(Color.red)
+                .fill(Color.clear)
                 .frame(width: 148, height: 148)
             
             Circle()
@@ -24,7 +33,7 @@ struct CirclesView: View {
                 .frame(width: 112, height: 112)
             
             Circle()
-                .fill(Color.orange)
+                .fill(Color.clear)
                 .frame(width: 110, height: 110)
             
             Circle()
@@ -32,15 +41,16 @@ struct CirclesView: View {
                 .frame(width: 75, height: 75)
             
             Circle()
-                .fill(Color.green)
+                .fill(Color.clear)
                 .frame(width: 73, height: 73)
             
             Circle()
                 .stroke(strokeColor, lineWidth: 2)
                 .frame(width: 38, height: 38)
             
+            
             Circle()
-                .fill(Color.white)
+                .fill(Color.clear)
                 .frame(width: 36, height: 36)
         }
     }
