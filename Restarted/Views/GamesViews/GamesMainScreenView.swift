@@ -8,12 +8,13 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
+    @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
     @StateObject private var loadFromJSON = DataLoaderFromJSON<Game>(filename: "games")
     @State private var isSetTimePresented = false
     
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack {
                     ForEach(loadFromJSON.items) { game in
                         Button(action: {
@@ -29,15 +30,24 @@ struct GamesMainScreenView: View {
                     
                     Spacer()
                 }
+                .padding()
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                            Text("What are you playing today?")
+                                .font(.title2)
+                                .bold()
+                                .themedText()
+                    }
+                }
                 .sheet(isPresented: $isSetTimePresented, content: {
                     SetGameTimerView()
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
                     
                 })
-                .padding(.horizontal)
-                .customNavigationTitle(title: "It's time to play")
             }
+            .toolbarBackground(.visible, for: .navigationBar)
+            .toolbarBackground(NavBarColorModifier.primaryColor(for: selectedTheme), for: .navigationBar)
             .themedModifiers()
         }
     }
@@ -46,5 +56,3 @@ struct GamesMainScreenView: View {
 #Preview {
     GamesMainScreenView()
 }
-
-//FIXME: какая то хуйня с кнопками

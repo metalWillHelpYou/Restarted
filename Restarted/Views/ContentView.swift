@@ -56,7 +56,7 @@ struct ContentView: View {
                     }
                 }
                 .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(PrimaryColorModifier.primaryColor(for: selectedTheme), for: .tabBar)
+                .toolbarBackground(TabBarColorModifier.primaryColor(for: selectedTheme), for: .tabBar)
                 .toolbarColorScheme(selectedTheme == .light ? .dark : .light, for: .tabBar)
             }
         }

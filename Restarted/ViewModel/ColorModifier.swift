@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TextModifier: ViewModifier {
+struct TextColorModifier: ViewModifier {
     @AppStorage("selectedTheme") var selectedTheme: Theme = .light
     
     func body(content: Content) -> some View {
@@ -25,7 +25,7 @@ struct BackgroundColorModifier: ViewModifier {
     }
 }
 
-struct StrokeModifier: ViewModifier {
+struct StrokeColorModifier: ViewModifier {
     @AppStorage("selectedTheme") var selectedTheme: Theme = .light
     
     func body(content: Content) -> some View {
@@ -37,13 +37,24 @@ struct StrokeModifier: ViewModifier {
     }
 }
 
-struct PrimaryColorModifier {
+struct TabBarColorModifier {
     static func primaryColor(for theme: Theme) -> Color {
         switch theme {
         case .light:
             return ThemeColors.light.primaryColor
         case .dark:
             return ThemeColors.dark.primaryColor
+        }
+    }
+}
+
+struct NavBarColorModifier {
+    static func primaryColor(for theme: Theme) -> Color {
+        switch theme {
+        case .light:
+            return ThemeColors.light.backgroundColor
+        case .dark:
+            return ThemeColors.dark.backgroundColor
         }
     }
 }
