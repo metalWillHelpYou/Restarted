@@ -13,13 +13,17 @@ struct HabitList: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                ForEach(loadFromJSON.items) { habit in
-                    HabitView(habit: habit)
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    ForEach(loadFromJSON.items) { habit in
+                        HabitView(habit: habit)
+                    }
+                    .padding(.horizontal)
                 }
-                .padding(.horizontal)
             }
+            .navigationTitle("Choose new habit")
             .preferredColorScheme(userTheme.colorTheme)
+            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
     }
 }

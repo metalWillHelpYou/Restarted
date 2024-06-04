@@ -20,7 +20,7 @@ struct ProfileMainScreenView: View {
                 
                 Spacer()
             }
-            .navigationTitle("Profie")
+            .navigationTitle("Profile")
             .background(Color.background)
         }
         .preferredColorScheme(userTheme.colorTheme)

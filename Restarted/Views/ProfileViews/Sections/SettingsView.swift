@@ -21,11 +21,13 @@ struct SettingsView: View {
             
             Text("Language")
             
-            Button("Change Theme") {
+            Button(action: {
                 changeTheme.toggle()
+            }) {
+                Text("Appearance")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(Color.primary)
             }
-            .foregroundStyle(.primary)
-//TODO: кнопку пошире
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct CirclesView: View {
     @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
-    
     var strokeColor = Color.highlight
     
     var body: some View {
@@ -41,7 +40,6 @@ struct CirclesView: View {
             Circle()
                 .stroke(strokeColor, lineWidth: 2)
                 .frame(width: 38, height: 38)
-            
             
             Circle()
                 .fill(Color.clear)

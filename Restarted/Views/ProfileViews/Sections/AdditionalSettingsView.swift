@@ -11,8 +11,6 @@ struct AdditionalSettingsView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Restarted FAQ")
-            
-            Text("Restarted Features")
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
@@ -22,7 +20,6 @@ struct AdditionalSettingsView: View {
         )
         .padding(.horizontal)
         .padding(.top, 40)
-
     }
 }
 

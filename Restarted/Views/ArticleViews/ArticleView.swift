@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ArticleView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    
     let article: Article
     
     var body: some View {

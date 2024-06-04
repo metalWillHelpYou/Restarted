@@ -30,24 +30,16 @@ struct GamesMainScreenView: View {
                     
                     Spacer()
                 }
-                .padding()
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                            Text("What are you playing today?")
-                                .font(.title2)
-                                .bold()
-                    }
-                }
+                .padding(.horizontal)
                 .sheet(isPresented: $isSetTimePresented, content: {
                     SetGameTimerView()
                         .presentationDetents([.medium])
                         .presentationDragIndicator(.visible)
-                    
                 })
             }
+            .navigationTitle("Games")
             .background(Color.background)
-            .toolbarBackground(.visible, for: .navigationBar)
-            //.toolbarBackground(NavBarColorModifier.primaryColor(for: selectedTheme), for: .navigationBar)
+            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
         .preferredColorScheme(userTheme.colorTheme)
     }

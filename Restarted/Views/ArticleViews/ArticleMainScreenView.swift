@@ -13,31 +13,33 @@ struct ArticleMainScreenView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                VStack(spacing: 2) {
-                    Text("Beginner:")
-                        .font(.title)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
+            ScrollView(showsIndicators: false) {
+                VStack {
+                    VStack(spacing: 2) {
+                        Text("Beginner:")
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         
-                    ForEach(loadFromJSON.items) { article in
-                        NavigationLink(destination: ArticleView(article: article)) {
-                            ArticleCardView(article: article)
+                        ForEach(loadFromJSON.items) { article in
+                            NavigationLink(destination: ArticleView(article: article)) {
+                                ArticleCardView(article: article)
+                            }
                         }
                     }
-                }
-                
-                VStack(spacing: 2) {
-                    Text("Intermediate:")
-                        .font(.title)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    Spacer()
+                    VStack(spacing: 2) {
+                        Text("Intermediate:")
+                            .font(.title)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                        Spacer()
+                    }
                 }
             }
-            .padding(.horizontal, 20)
+            .padding(.horizontal, 18)
             .navigationTitle("Articles")
             .background(Color.background)
+            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
         .preferredColorScheme(userTheme.colorTheme)
     }

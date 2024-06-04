@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SetGameTimerView: View {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @State private var selectedHours = 0
     @State private var selectedMinutes = 0
     
@@ -19,8 +20,7 @@ struct SetGameTimerView: View {
             
             ZStack{
                 RoundedRectangle(cornerRadius: 15)
-                    //.stroke(ThemeColors.light.primaryColor, lineWidth: 2) // Контур синего цвета
-                    .background(RoundedRectangle(cornerRadius: 15).fill(Color.gray.opacity(0.6)))
+                    .stroke(Color.highlight, lineWidth: 2)
                     .padding()
                     .padding(.horizontal, 4)
                 
@@ -56,17 +56,16 @@ struct SetGameTimerView: View {
             }) {
                 Text("Save")
                     .font(.title2)
-                    .fontWeight(.bold)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    //.background(ThemeColors.light.primaryColor)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                    .background(Color.highlight)
+                    .foregroundColor(userTheme == .light ? .white : .black)
+                    .cornerRadius(15)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 40)
         }
-        //.background(ThemeColors.light.backgroundColor)
+        .background(Color.background)
     }
 }
 

@@ -14,12 +14,11 @@ struct DiaryView: View {
             ZStack(alignment: .topLeading) {
                 RoundedRectangle(cornerRadius: 15)
                     .padding()
-                    .foregroundStyle(Color("DiaryPaper"))
-                
+                    .foregroundStyle(Color.diaryPaper)
                 
                 Text("How do you feel?")
+                    .foregroundColor(Color.primary)
                     .font(.body)
-                    .fontWeight(.bold)
                     .padding([.top, .leading], 40)
             }
             .navigationTitle("Diary")

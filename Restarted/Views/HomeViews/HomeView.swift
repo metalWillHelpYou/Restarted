@@ -14,9 +14,11 @@ struct HomeView: View {
         NavigationStack{
             VStack {
                 Circle()
-                    .padding(48)
+                    .stroke(Color.highlight, lineWidth: 4)
+                    .padding(40)
                 
                 RoundedRectangle(cornerRadius: 90)
+                    .fill(Color.highlight)
                     .frame(height: 4)
                     .padding(.horizontal)
                 
@@ -24,21 +26,20 @@ struct HomeView: View {
                     Text("Habits:")
                         .font(.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal)
                     
                     NavigationLink(destination: HabitList()) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.green, lineWidth: 2)
-                                .frame(width: 50, height: 50)
+                                .stroke(Color.highlight, lineWidth: 2)
+                                .frame(width: 30, height: 30)
                             
                             Image(systemName: "plus")
-                                .foregroundColor(Color.green)
-                                .font(.system(size: 24, weight: .bold))
+                                .foregroundColor(Color.highlight)
+                                .font(.system(size: 24))
                         }
                     }
-                    .padding(.horizontal)
                 }
+                .padding()
                 
                 Spacer()
             }
