@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     
     var body: some View {
         NavigationStack {
@@ -56,8 +56,8 @@ struct ContentView: View {
                     }
                 }
                 .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(TabBarColorModifier.primaryColor(for: selectedTheme), for: .tabBar)
-                .toolbarColorScheme(selectedTheme == .light ? .dark : .light, for: .tabBar)
+                .toolbarBackground(Color.highlight, for: .tabBar)
+                .toolbarColorScheme(userTheme == .light ? .dark : .light, for: .tabBar)
             }
         }
     }

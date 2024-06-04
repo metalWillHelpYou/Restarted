@@ -19,7 +19,7 @@ struct SetGameTimerView: View {
             
             ZStack{
                 RoundedRectangle(cornerRadius: 15)
-                    .stroke(ThemeColors.light.primaryColor, lineWidth: 2) // Контур синего цвета
+                    //.stroke(ThemeColors.light.primaryColor, lineWidth: 2) // Контур синего цвета
                     .background(RoundedRectangle(cornerRadius: 15).fill(Color.gray.opacity(0.6)))
                     .padding()
                     .padding(.horizontal, 4)
@@ -59,14 +59,14 @@ struct SetGameTimerView: View {
                     .fontWeight(.bold)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(ThemeColors.light.primaryColor)
+                    //.background(ThemeColors.light.primaryColor)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
             .padding(.horizontal, 20)
             .padding(.bottom, 40)
         }
-        .background(ThemeColors.light.backgroundColor)
+        //.background(ThemeColors.light.backgroundColor)
     }
 }
 

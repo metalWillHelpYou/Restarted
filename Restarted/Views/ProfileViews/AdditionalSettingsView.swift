@@ -18,8 +18,7 @@ struct AdditionalSettingsView: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.clear)
-                .themedStroke()
+                .stroke(Color.highlight, lineWidth: 2)
         )
         .padding(.horizontal)
         .padding(.top, 40)

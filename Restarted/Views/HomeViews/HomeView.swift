@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    
     var body: some View {
         NavigationStack{
             VStack {
@@ -40,9 +42,10 @@ struct HomeView: View {
                 
                 Spacer()
             }
-            .customNavigationTitle(title: "Home")
-            .themedModifiers()
+            .navigationTitle("Home")
+            .background(Color.background)
         }
+        .preferredColorScheme(userTheme.colorTheme)
     }
 }
 

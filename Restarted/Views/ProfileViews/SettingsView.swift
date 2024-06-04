@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
-    
-    var isDarkModeEnabled: Bool {
-        get { selectedTheme == .dark }
-        set { selectedTheme = newValue ? .dark : .light }
-    }
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    @State private var changeTheme = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -25,21 +21,25 @@ struct SettingsView: View {
             
             Text("Language")
             
-            Toggle("Dark Mode", isOn: Binding(
-                get: { selectedTheme == .dark },
-                set: { selectedTheme = $0 ? .dark : .light }
-            ))
-            .toggleStyle(SwitchToggleStyle(tint: .green))
+            Button("Change Theme") {
+                changeTheme.toggle()
+            }
+            .foregroundStyle(.primary)
+//TODO: кнопку пошире
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 15)
-                .fill(Color.clear)
-                .themedStroke()
+                .stroke(Color.highlight, lineWidth: 2)
         )
         .padding(.horizontal)
         .padding(.top, 40)
+        .sheet(isPresented: $changeTheme, content: {
+            ThemeChanger()
+                .presentationDetents([.height(410)])
+                .presentationBackground(.clear)
+        })
     }
 }
 

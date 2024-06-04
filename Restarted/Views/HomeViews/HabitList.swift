@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct HabitList: View {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @StateObject private var loadFromJSON = DataLoaderFromJSON<Habit>(filename: "habits")
     
     var body: some View {
@@ -18,7 +19,7 @@ struct HabitList: View {
                 }
                 .padding(.horizontal)
             }
-            .themedModifiers()
+            .preferredColorScheme(userTheme.colorTheme)
         }
     }
 }

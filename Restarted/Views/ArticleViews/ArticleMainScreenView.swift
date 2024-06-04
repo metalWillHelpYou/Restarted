@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ArticleMainScreenView: View {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @StateObject private var loadFromJSON = DataLoaderFromJSON<Article>(filename: "articles")
 
     var body: some View {
@@ -35,9 +36,10 @@ struct ArticleMainScreenView: View {
                 }
             }
             .padding(.horizontal, 20)
-            .customNavigationTitle(title: "Articles")
-            .themedModifiers()
+            .navigationTitle("Articles")
+            .background(Color.background)
         }
+        .preferredColorScheme(userTheme.colorTheme)
     }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @StateObject private var loadFromJSON = DataLoaderFromJSON<Game>(filename: "games")
     @State private var isSetTimePresented = false
     
@@ -36,7 +36,6 @@ struct GamesMainScreenView: View {
                             Text("What are you playing today?")
                                 .font(.title2)
                                 .bold()
-                                .themedText()
                     }
                 }
                 .sheet(isPresented: $isSetTimePresented, content: {
@@ -46,10 +45,11 @@ struct GamesMainScreenView: View {
                     
                 })
             }
+            .background(Color.background)
             .toolbarBackground(.visible, for: .navigationBar)
-            .toolbarBackground(NavBarColorModifier.primaryColor(for: selectedTheme), for: .navigationBar)
-            .themedModifiers()
+            //.toolbarBackground(NavBarColorModifier.primaryColor(for: selectedTheme), for: .navigationBar)
         }
+        .preferredColorScheme(userTheme.colorTheme)
     }
 }
 

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct DiaryView: View {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     var body: some View {
         NavigationStack {
             ZStack(alignment: .topLeading) {
@@ -21,9 +22,10 @@ struct DiaryView: View {
                     .fontWeight(.bold)
                     .padding([.top, .leading], 40)
             }
-            .customNavigationTitle(title: "Diary")
-            .themedModifiers()
+            .navigationTitle("Diary")
+            .background(Color.background)
         }
+        .preferredColorScheme(userTheme.colorTheme)
     }
 }
 

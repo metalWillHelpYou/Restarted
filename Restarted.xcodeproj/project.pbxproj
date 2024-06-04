@@ -16,7 +16,6 @@
 		9B2AFD632C0099F100E908F5 /* games.json in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD582C0099F100E908F5 /* games.json */; };
 		9B2AFD642C0099F100E908F5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD5A2C0099F100E908F5 /* Colors.swift */; };
 		9B2AFD652C0099F100E908F5 /* DataLoaderFromJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD5B2C0099F100E908F5 /* DataLoaderFromJSON.swift */; };
-		9B2AFD662C0099F100E908F5 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD5C2C0099F100E908F5 /* Enums.swift */; };
 		9B2AFD672C0099F100E908F5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD5D2C0099F100E908F5 /* Extensions.swift */; };
 		9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD5E2C0099F100E908F5 /* RestartedApp.swift */; };
 		9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD692C009A0D00E908F5 /* ArticleCardView.swift */; };
@@ -29,6 +28,7 @@
 		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
 		9B2AFD832C009A3100E908F5 /* ColorModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD812C009A3100E908F5 /* ColorModifier.swift */; };
+		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
@@ -50,7 +50,6 @@
 		9B2AFD582C0099F100E908F5 /* games.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = games.json; sourceTree = "<group>"; };
 		9B2AFD5A2C0099F100E908F5 /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		9B2AFD5B2C0099F100E908F5 /* DataLoaderFromJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataLoaderFromJSON.swift; sourceTree = "<group>"; };
-		9B2AFD5C2C0099F100E908F5 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		9B2AFD5D2C0099F100E908F5 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		9B2AFD5E2C0099F100E908F5 /* RestartedApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestartedApp.swift; sourceTree = "<group>"; };
 		9B2AFD692C009A0D00E908F5 /* ArticleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCardView.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B2AFD812C009A3100E908F5 /* ColorModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorModifier.swift; sourceTree = "<group>"; };
+		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
@@ -146,10 +146,7 @@
 				9BDE50432C0A004500910F23 /* Habits Model */,
 				9B2AFD562C0099F100E908F5 /* Articles Model */,
 				9B2AFD592C0099F100E908F5 /* Games Model */,
-				9B2AFD5A2C0099F100E908F5 /* Colors.swift */,
-				9B2AFD5B2C0099F100E908F5 /* DataLoaderFromJSON.swift */,
-				9B2AFD5C2C0099F100E908F5 /* Enums.swift */,
-				9B2AFD5D2C0099F100E908F5 /* Extensions.swift */,
+				9B3AD9062C0F60AF00230004 /* Helpers */,
 				9B2AFD5E2C0099F100E908F5 /* RestartedApp.swift */,
 			);
 			path = Model;
@@ -224,6 +221,17 @@
 				9B2AFD812C009A3100E908F5 /* ColorModifier.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9B3AD9062C0F60AF00230004 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				9B2AFD5A2C0099F100E908F5 /* Colors.swift */,
+				9B2AFD5D2C0099F100E908F5 /* Extensions.swift */,
+				9B2AFD5B2C0099F100E908F5 /* DataLoaderFromJSON.swift */,
+				9B3AD9072C0F60F000230004 /* ThemeChanger.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		9BDE50432C0A004500910F23 /* Habits Model */ = {
@@ -328,8 +336,8 @@
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
-				9B2AFD662C0099F100E908F5 /* Enums.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
+				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9B2AFD652C0099F100E908F5 /* DataLoaderFromJSON.swift in Sources */,
 				9B2AFD622C0099F100E908F5 /* Game.swift in Sources */,

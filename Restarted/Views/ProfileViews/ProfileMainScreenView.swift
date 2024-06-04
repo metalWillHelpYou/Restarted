@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ProfileMainScreenView: View {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     var body: some View {
         NavigationStack {
             VStack {
@@ -19,9 +20,10 @@ struct ProfileMainScreenView: View {
                 
                 Spacer()
             }
-            .customNavigationTitle(title: "Profile")
-            .themedModifiers()
+            .navigationTitle("Profie")
+            .background(Color.background)
         }
+        .preferredColorScheme(userTheme.colorTheme)
     }
 }
 
