@@ -16,12 +16,12 @@ struct DiaryView: View {
                     .foregroundStyle(Color("DiaryPaper"))
                 
                 
-                Text("Write about it...")
+                Text("How do you feel?")
                     .font(.body)
                     .fontWeight(.bold)
                     .padding([.top, .leading], 40)
             }
-            .customNavigationTitle(title: "How do you feel?")
+            .customNavigationTitle(title: "Diary")
             .themedModifiers()
         }
     }

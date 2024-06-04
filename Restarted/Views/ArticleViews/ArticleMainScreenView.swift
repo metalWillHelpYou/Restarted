@@ -25,7 +25,6 @@ struct ArticleMainScreenView: View {
                         }
                     }
                 }
-                .padding(.horizontal, 20)
                 
                 VStack(spacing: 2) {
                     Text("Intermediate:")
@@ -34,9 +33,9 @@ struct ArticleMainScreenView: View {
                     
                     Spacer()
                 }
-                .padding(.horizontal, 20)
             }
-            .customNavigationTitle(title: "Read something new")
+            .padding(.horizontal, 20)
+            .customNavigationTitle(title: "Articles")
             .themedModifiers()
         }
     }
