@@ -41,7 +41,7 @@ struct ArticleMainScreenView: View {
             .background(Color.background)
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
-        .preferredColorScheme(userTheme.colorTheme)
+        .preferredColorScheme(userTheme.setTheme)
     }
 }
 

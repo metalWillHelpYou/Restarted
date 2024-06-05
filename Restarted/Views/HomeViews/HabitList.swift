@@ -22,7 +22,8 @@ struct HabitList: View {
                 }
             }
             .navigationTitle("Choose new habit")
-            .preferredColorScheme(userTheme.colorTheme)
+            .background(Color.background)
+            .preferredColorScheme(userTheme.setTheme)
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
     }

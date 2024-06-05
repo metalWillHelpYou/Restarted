@@ -46,7 +46,7 @@ struct HomeView: View {
             .navigationTitle("Home")
             .background(Color.background)
         }
-        .preferredColorScheme(userTheme.colorTheme)
+        .preferredColorScheme(userTheme.setTheme)
     }
 }
 

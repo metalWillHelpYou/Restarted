@@ -38,7 +38,8 @@ struct SettingsView: View {
         .padding(.horizontal)
         .padding(.top, 40)
         .sheet(isPresented: $changeTheme, content: {
-            ThemeChanger()
+            ColorPickerView()
+                .clipShape(RoundedRectangle(cornerRadius: 15))
                 .presentationDetents([.height(410)])
                 .presentationBackground(.clear)
         })

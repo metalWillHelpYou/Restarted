@@ -23,7 +23,7 @@ struct ProfileMainScreenView: View {
             .navigationTitle("Profile")
             .background(Color.background)
         }
-        .preferredColorScheme(userTheme.colorTheme)
+        .preferredColorScheme(userTheme.setTheme)
     }
 }
 

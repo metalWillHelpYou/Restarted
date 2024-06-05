@@ -24,7 +24,7 @@ struct DiaryView: View {
             .navigationTitle("Diary")
             .background(Color.background)
         }
-        .preferredColorScheme(userTheme.colorTheme)
+        .preferredColorScheme(userTheme.setTheme)
     }
 }
 

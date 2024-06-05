@@ -28,8 +28,9 @@ struct ArticleView: View {
             
             Spacer()
         }
-        .preferredColorScheme(userTheme.colorTheme)
         .padding()
+        .background(Color.background)
+        .preferredColorScheme(userTheme.setTheme)
     }
 }
 

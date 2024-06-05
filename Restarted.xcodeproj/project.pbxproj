@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B06E0DE2C0F3099004A8369 /* habits.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE50462C0A00C500910F23 /* habits.json */; };
+		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
 		9B2AFD4A2C00996200E908F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD492C00996200E908F5 /* Assets.xcassets */; };
 		9B2AFD4E2C00996200E908F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD4D2C00996200E908F5 /* Preview Assets.xcassets */; };
 		9B2AFD602C0099F100E908F5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD542C0099F100E908F5 /* Article.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		9B2AFD422C00996100E908F5 /* Restarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2AFD492C00996200E908F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B2AFD4B2C00996200E908F5 /* Restarted.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Restarted.entitlements; sourceTree = "<group>"; };
@@ -82,12 +84,37 @@
 		9B0C46092C0FAD0E0032523F /* Sections */ = {
 			isa = PBXGroup;
 			children = (
-				9BE96A102C05251300CE3EBB /* StatisticView.swift */,
-				9B568F862C00B22500B6D645 /* CirclesView.swift */,
-				9B568F882C00B29C00B6D645 /* SettingsView.swift */,
-				9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */,
+				9B0EA5612C106ED500E8291C /* Stats */,
+				9B0EA5622C106EE400E8291C /* Settings */,
+				9B0EA5652C106FAF00E8291C /* Additional Settings */,
 			);
 			path = Sections;
+			sourceTree = "<group>";
+		};
+		9B0EA5612C106ED500E8291C /* Stats */ = {
+			isa = PBXGroup;
+			children = (
+				9B568F862C00B22500B6D645 /* CirclesView.swift */,
+				9BE96A102C05251300CE3EBB /* StatisticView.swift */,
+			);
+			path = Stats;
+			sourceTree = "<group>";
+		};
+		9B0EA5622C106EE400E8291C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9B568F882C00B29C00B6D645 /* SettingsView.swift */,
+				9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9B0EA5652C106FAF00E8291C /* Additional Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */,
+			);
+			path = "Additional Settings";
 			sourceTree = "<group>";
 		};
 		9B2AFD392C00996100E908F5 = {
@@ -328,6 +355,7 @@
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9B2AFD7C2C009A0D00E908F5 /* GameCardView.swift in Sources */,
+				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
 				9BA12C272C009C7600375D40 /* SetGameTimerView.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
