@@ -1,5 +1,5 @@
 //
-//  HabitList.swift
+//  HabitListView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 31.05.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HabitList: View {
+struct HabitListView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @StateObject private var loadFromJSON = DataLoaderFromJSON<Habit>(filename: "habits")
     
@@ -16,7 +16,9 @@ struct HabitList: View {
             ScrollView(showsIndicators: false) {
                 VStack {
                     ForEach(loadFromJSON.items) { habit in
-                        HabitView(habit: habit)
+                        NavigationLink(destination: SetHabitView()) {
+                            HabitView(habit: habit)
+                        }
                     }
                     .padding(.horizontal)
                 }
@@ -30,5 +32,5 @@ struct HabitList: View {
 }
 
 #Preview {
-    HabitList()
+    HabitListView()
 }

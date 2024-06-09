@@ -50,3 +50,12 @@ struct Habit: Identifiable, Codable {
     }
 }
 
+enum UnitOfMeasure: String, CaseIterable, Identifiable {
+    case m = "m"
+    case km = "km"
+    case sec = "sec"
+    case min = "min"
+    case hr = "hr"
+    
+    var id: String { self.rawValue }
+}

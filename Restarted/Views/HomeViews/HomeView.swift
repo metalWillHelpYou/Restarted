@@ -27,7 +27,7 @@ struct HomeView: View {
                         .font(.title)
                         .frame(maxWidth: .infinity, alignment: .leading)
                     
-                    NavigationLink(destination: HabitList()) {
+                    NavigationLink(destination: HabitListView()) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 8)
                                 .stroke(Color.highlight, lineWidth: 2)
