@@ -14,10 +14,7 @@ struct AdditionalSettingsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.highlight, lineWidth: 2)
-        )
+        .strokeBacground()
         .padding(.horizontal)
         .padding(.top, 40)
     }

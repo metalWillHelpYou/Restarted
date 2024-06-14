@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B06E0DE2C0F3099004A8369 /* habits.json in Resources */ = {isa = PBXBuildFile; fileRef = 9BDE50462C0A00C500910F23 /* habits.json */; };
+		9B0718952C18D26D000B9BF1 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0718942C18D26D000B9BF1 /* TimerView.swift */; };
 		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
 		9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* SetHabitView.swift */; };
 		9B2AFD4A2C00996200E908F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD492C00996200E908F5 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
+		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
@@ -43,6 +45,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B0718942C18D26D000B9BF1 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		9B0EA5662C10C89C00E8291C /* SetHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHabitView.swift; sourceTree = "<group>"; };
 		9B2AFD422C00996100E908F5 /* Restarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -65,6 +68,7 @@
 		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
+		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
@@ -91,6 +95,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9B0718932C18D24D000B9BF1 /* TimerViews */ = {
+			isa = PBXGroup;
+			children = (
+				9BA12C262C009C7600375D40 /* SetGameTimerView.swift */,
+				9B0718942C18D26D000B9BF1 /* TimerView.swift */,
+			);
+			path = TimerViews;
+			sourceTree = "<group>";
+		};
 		9B0C46092C0FAD0E0032523F /* Sections */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +128,7 @@
 			children = (
 				9B568F882C00B29C00B6D645 /* SettingsView.swift */,
 				9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */,
+				9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -215,9 +229,9 @@
 		9B2AFD712C009A0D00E908F5 /* GamesViews */ = {
 			isa = PBXGroup;
 			children = (
+				9B0718932C18D24D000B9BF1 /* TimerViews */,
 				9B2AFD702C009A0D00E908F5 /* GamesMainScreenView.swift */,
 				9B2AFD6F2C009A0D00E908F5 /* GameCardView.swift */,
-				9BA12C262C009C7600375D40 /* SetGameTimerView.swift */,
 			);
 			path = GamesViews;
 			sourceTree = "<group>";
@@ -379,6 +393,7 @@
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9BF9DB752C162CC0005FE02C /* RemindersSetupView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
+				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9B2AFD7C2C009A0D00E908F5 /* GameCardView.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
@@ -389,6 +404,7 @@
 				9B6294E42C121FE900CDFBC5 /* GoalAndPeriodView.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */,
+				9B0718952C18D26D000B9BF1 /* TimerView.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9B2AFD652C0099F100E908F5 /* DataLoaderFromJSON.swift in Sources */,

@@ -31,15 +31,13 @@ struct GamesMainScreenView: View {
                     Spacer()
                 }
                 .padding(.horizontal)
-                .sheet(isPresented: $isSetTimePresented, content: {
-                    SetGameTimerView()
-                        .presentationDetents([.medium])
-                        .presentationDragIndicator(.visible)
-                })
             }
             .navigationTitle("Games")
             .background(Color.background)
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
+            .navigationDestination(isPresented: $isSetTimePresented, destination: {
+                SetGameTimerView()
+            })
         }
         .preferredColorScheme(userTheme.setTheme)
     }

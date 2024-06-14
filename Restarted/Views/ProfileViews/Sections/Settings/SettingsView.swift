@@ -9,7 +9,9 @@ import SwiftUI
 
 struct SettingsView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @State private var changeTheme = false
+    @AppStorage("isNotificationsOn") private var isNotificationsOn: Bool = false
+    @State private var showApperance = false
+    @State private var showLanguage = false
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -19,10 +21,19 @@ struct SettingsView: View {
             
             Text("Export diary")
             
-            Text("Language")
+            Toggle(isOn: $isNotificationsOn, label: {
+                Text("Notifications")
+            })
+            .toggleStyle(SwitchToggleStyle(tint: Color.highlight))
+            
+            NavigationLink(destination: LanguageView()) {
+                Text("Language")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(Color.primary)
+            }
             
             Button(action: {
-                changeTheme.toggle()
+                showApperance.toggle()
             }) {
                 Text("Appearance")
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -31,17 +42,13 @@ struct SettingsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .background(
-            RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.highlight, lineWidth: 2)
-        )
+        .strokeBacground()
         .padding(.horizontal)
         .padding(.top, 40)
-        .sheet(isPresented: $changeTheme, content: {
+        .sheet(isPresented: $showApperance, content: {
             ColorPickerView()
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .presentationDetents([.height(410)])
-                .presentationBackground(.clear)
+                .presentationDetents([.height(400)])
+                .presentationDragIndicator(.visible)
         })
     }
 }

@@ -26,10 +26,7 @@ struct ColorPickerView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(userTheme.setBackgroundColor(with: scheme))
-        .frame(height: 410)
         .background(.pickerBG)
-        .clipShape(.rect(cornerRadius: 30))
-        .padding(.horizontal)
         .environment(\.colorScheme, scheme)
     }
 }
@@ -62,7 +59,7 @@ struct CustomPickerView: View {
         }
         .padding(3)
         .background(Color.gray.opacity(0.18), in: .capsule)
-        .padding(.top, 20)
+        .padding(.top)
     }
 }
 

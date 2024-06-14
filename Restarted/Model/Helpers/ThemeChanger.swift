@@ -22,9 +22,9 @@ enum Theme: String, CaseIterable {
     
     func setIconColor(with scheme: ColorScheme) -> Color {
         switch self {
-        case .systemDefault: return Color(.systemTeal)
+        case .systemDefault: return Color(.systemBlue)
         case .light: return .lightIcon
-        case .dark: return .gray
+        case .dark: return .darkIcon
         }
     }
     
@@ -37,9 +37,9 @@ enum Theme: String, CaseIterable {
     
     func setBackgroundColor(with scheme: ColorScheme) -> Color {
         switch self {
-        case .systemDefault: return Color(.systemFill)
-        case .light: return .white
-        case .dark: return .black
+        case .systemDefault: return Color(.systemBackground)
+        case .light: return .themeCardBGlight
+        case .dark: return .themeCardBGDark
         }
     }
 }
