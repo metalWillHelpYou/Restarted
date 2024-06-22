@@ -9,55 +9,43 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    @State private var activeTab: Tab = .home
+    @State private var allTabs: [AnimatedTab] = Tab.allCases.compactMap { tab ->
+        AnimatedTab? in
+        return .init(tab: tab)
+    }
     
     var body: some View {
         NavigationStack {
-            TabView {
-                Group {
+            ZStack(alignment: .bottom) {
+                TabView(selection: $activeTab) {
                     NavigationView {
                         HomeView()
                     }
-                    .tabItem {
-                        Image(systemName: "list.bullet")
-                            .foregroundStyle(.blue)
-                        Text("Home")
-                    }
+                    .setupTab(.home)
                     
-                    NavigationView{
+                    NavigationView {
                         ArticleMainScreenView()
                     }
-                    .tabItem {
-                        Image(systemName: "doc.plaintext")
-                        Text("Articles")
-                    }
+                    .setupTab(.articles)
                     
-                    NavigationView{
+                    NavigationView {
                         GamesMainScreenView()
                     }
-                    .tabItem {
-                        Image(systemName: "gamecontroller")
-                        Text("Games")
-                    }
+                    .setupTab(.games)
                     
-                    NavigationView{
+                    NavigationView {
                         DiaryView()
                     }
-                    .tabItem {
-                        Image(systemName: "book")
-                        Text("Diary")
-                    }
+                    .setupTab(.diary)
                     
-                    NavigationView{
+                    NavigationView {
                         ProfileMainScreenView()
                     }
-                    .tabItem {
-                        Image(systemName: "person")
-                        Text("Profile")
-                    }
+                    .setupTab(.profile)
                 }
-                .toolbarBackground(.visible, for: .tabBar)
-                .toolbarBackground(Color.highlight, for: .tabBar)
-                .toolbarColorScheme(userTheme == .light ? .dark : .light, for: .tabBar)
+                
+                CustomTabBar(activeTab: $activeTab, allTabs: $allTabs)
             }
         }
     }

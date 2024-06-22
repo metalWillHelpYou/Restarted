@@ -11,16 +11,18 @@ struct DiaryView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .topLeading) {
+            ZStack(alignment: .topLeading){
                 RoundedRectangle(cornerRadius: 15)
+                    .fill(Color.diaryPaper)
                     .padding()
-                    .foregroundStyle(Color.diaryPaper)
+                    .padding(.bottom)
                 
                 Text("How do you feel?")
                     .foregroundColor(Color.primary)
                     .font(.body)
                     .padding([.top, .leading], 40)
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .navigationTitle("Diary")
             .background(Color.background)
         }

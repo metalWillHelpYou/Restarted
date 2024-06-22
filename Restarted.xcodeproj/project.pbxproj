@@ -33,8 +33,8 @@
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
-		9B6294E42C121FE900CDFBC5 /* GoalAndPeriodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E32C121FE900CDFBC5 /* GoalAndPeriodView.swift */; };
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
+		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9BA12C272C009C7600375D40 /* SetGameTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA12C262C009C7600375D40 /* SetGameTimerView.swift */; };
 		9BDE50452C0A005A00910F23 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50442C0A005A00910F23 /* Habit.swift */; };
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
@@ -72,8 +72,8 @@
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
-		9B6294E32C121FE900CDFBC5 /* GoalAndPeriodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalAndPeriodView.swift; sourceTree = "<group>"; };
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9BA12C262C009C7600375D40 /* SetGameTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTimerView.swift; sourceTree = "<group>"; };
 		9BDE50442C0A005A00910F23 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		9BDE50462C0A00C500910F23 /* habits.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = habits.json; sourceTree = "<group>"; };
@@ -282,6 +282,7 @@
 				9B2AFD5B2C0099F100E908F5 /* DataLoaderFromJSON.swift */,
 				9B3AD9072C0F60F000230004 /* ThemeChanger.swift */,
 				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
+				9B7528B52C2753D000657E8A /* CustomTabBar.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -290,7 +291,6 @@
 			isa = PBXGroup;
 			children = (
 				9B0EA5662C10C89C00E8291C /* SetHabitView.swift */,
-				9B6294E32C121FE900CDFBC5 /* GoalAndPeriodView.swift */,
 				9BF9DB722C162C8A005FE02C /* TimeRangeView.swift */,
 				9BF9DB742C162CC0005FE02C /* RemindersSetupView.swift */,
 			);
@@ -398,10 +398,10 @@
 				9B2AFD7C2C009A0D00E908F5 /* GameCardView.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
 				9BA12C272C009C7600375D40 /* SetGameTimerView.swift in Sources */,
+				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
-				9B6294E42C121FE900CDFBC5 /* GoalAndPeriodView.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */,
 				9B0718952C18D26D000B9BF1 /* TimerView.swift in Sources */,
@@ -552,7 +552,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;
@@ -591,7 +591,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.4;

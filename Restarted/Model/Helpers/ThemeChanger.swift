@@ -37,7 +37,7 @@ enum Theme: String, CaseIterable {
     
     func setBackgroundColor(with scheme: ColorScheme) -> Color {
         switch self {
-        case .systemDefault: return Color(.systemBackground)
+        case .systemDefault: return Color(.systemFill)
         case .light: return .themeCardBGlight
         case .dark: return .themeCardBGDark
         }
