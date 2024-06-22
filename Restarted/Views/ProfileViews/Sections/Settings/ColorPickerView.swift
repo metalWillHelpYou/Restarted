@@ -17,16 +17,19 @@ struct ColorPickerView: View {
                 .resizable()
                 .frame(width: 100, height: 160)
                 .foregroundStyle(userTheme.setIconColor(with: scheme).gradient)
-            
+
             Text("Choose a Style")
                 .font(.title)
                 .foregroundStyle(userTheme.setTextColor(with: scheme))
-            
+
             CustomPickerView()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(userTheme.setBackgroundColor(with: scheme))
         .background(.pickerBG)
+        .frame(height: 410)
+        .clipShape(.rect(cornerRadius: 15))
+        .padding(.horizontal)
         .environment(\.colorScheme, scheme)
     }
 }

@@ -13,7 +13,7 @@ struct SetHabitView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
-                GoalAndPeriodView()
+                //GoalAndPeriodView()
                 
                 TimeRangeView()
                 

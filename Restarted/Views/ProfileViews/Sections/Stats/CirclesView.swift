@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CirclesView: View {
     @AppStorage("selectedTheme") private var selectedTheme: Theme = .light
-    var strokeColor = Color.highlight
+    var strokeColor = Color.primary
     
     var body: some View {
         ZStack {

@@ -47,8 +47,9 @@ struct SettingsView: View {
         .padding(.top, 40)
         .sheet(isPresented: $showApperance, content: {
             ColorPickerView()
-                .presentationDetents([.height(400)])
+                .presentationDetents([.height(410)])
                 .presentationDragIndicator(.visible)
+                .presentationBackground(.clear)
         })
     }
 }

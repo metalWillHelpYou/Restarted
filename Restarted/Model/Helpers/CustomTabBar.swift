@@ -62,7 +62,7 @@ enum Tab: String, CaseIterable {
     case home = "list.bullet"
     case articles = "doc.plaintext"
     case games = "gamecontroller"
-    case diary = "book"
+    case diary = "book.pages"
     case profile = "person"
     
     var title: String {
