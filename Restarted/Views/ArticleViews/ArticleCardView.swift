@@ -36,5 +36,5 @@ struct ArticleCardView: View {
 }
 
 #Preview {
-    ArticleCardView(article: Article(title: "Title", content: "Content", imageName: "1st"))
+    ArticleCardView(article: Article(title: "Title", content: "Content", imageName: "1st", level: .beginner))
 }

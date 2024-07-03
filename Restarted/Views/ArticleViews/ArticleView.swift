@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ArticleView: View {
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     let article: Article
     
     var body: some View {
@@ -30,13 +29,11 @@ struct ArticleView: View {
         }
         .padding()
         .background(Color.background)
-        .preferredColorScheme(userTheme.setTheme)
     }
 }
 
 #Preview {
-    ArticleView(article: Article(title: "What is video game addiction?", content:"Video game addiction is a behavioral disorder characterized by excessive and com", imageName: "1st"))
+    ArticleView(article: Article(title: "What is video game addiction?", content:"Video game addiction is a behavioral disorder characterized by excessive and com", imageName: "Beginer1st", level: .beginner))
 }
 
 //TODO: показать сколько времени потребуется для прочтения
-//FIXME: починить рамку картинки и всего View в целом
