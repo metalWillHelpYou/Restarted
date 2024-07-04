@@ -8,19 +8,42 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
+    @State private var games: [Game] = UserDefaults.standard.loadGames()
     @State private var isSetTimePresented = false
     
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) {
-                
+            ScrollView {
+                ForEach(games) { game in
+                    NavigationLink(destination: SetGameTimerView()) {
+                        GameCardView(game: game)
+                    }
+                }
+                .padding()
             }
             .navigationTitle("Games")
+            .frame(maxWidth: .infinity)
             .background(Color.background)
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-            .navigationDestination(isPresented: $isSetTimePresented, destination: {
-                SetGameTimerView()
-            })
+            .toolbar {
+                addButton
+            }
+        }
+        .onChange(of: games) { oldGames, newGames in
+            UserDefaults.standard.saveGames(newGames)
+        }
+    }
+    var addButton: some View {
+        NavigationLink(destination: AddGameView(games: $games)) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.highlight, lineWidth: 2)
+                    .frame(width: 30, height: 30)
+                
+                Image(systemName: "plus")
+                    .foregroundColor(Color.highlight)
+                    .font(.system(size: 20))
+            }
         }
     }
 }

@@ -21,19 +21,10 @@ struct SetHabitView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                }) {
-                    Text("Save habit")
-                        .font(.title2)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 56)
-                        .background(Color.highlight)
-                        .foregroundColor(userTheme == .light ? .white : .black)
-                        .cornerRadius(15)
-                }
+                saveButton
             }
-            .padding()
             .navigationTitle("Setup Habit")
+            .padding()
             .background(Color.background)
             .onTapGesture {
                 self.hideKeyboard()
@@ -73,6 +64,19 @@ struct SetHabitView: View {
             }
         }
         .padding(.vertical)
+    }
+    
+    var saveButton: some View {
+        Button(action: {
+        }) {
+            Text("Save habit")
+                .font(.title2)
+                .frame(maxWidth: .infinity)
+                .frame(height: 56)
+                .background(Color.highlight)
+                .foregroundColor(userTheme == .light ? .white : .black)
+                .cornerRadius(15)
+        }
     }
 }
 

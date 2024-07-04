@@ -7,20 +7,44 @@
 
 import Foundation
 
-class Game {
+struct Game: Identifiable, Codable, Equatable {
     var title: String
-//    var genre: String
+    var genre: Genre
     
-    init(title: String) {
-        self.title = title
-//        self.genre = genre
+    var id: String {
+        title
     }
 }
 
-enum Genre: String, CaseIterable {
+enum Genre: String, CaseIterable, Identifiable, Codable {
     case action = "Action"
     case adventure = "Adventure"
     case rpg = "RPG"
     case simulator = "Simulator"
     case strategy = "Strategy"
+    
+    var id: String { self.rawValue }
+}
+
+extension UserDefaults {
+    private enum Keys {
+        static let games = "games"
+    }
+    
+    func saveGames(_ games: [Game]) {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(games) {
+            set(encoded, forKey: Keys.games)
+        }
+    }
+    
+    func loadGames() -> [Game] {
+        if let savedGames = data(forKey: Keys.games) {
+            let decoder = JSONDecoder()
+            if let loadedGames = try? decoder.decode([Game].self, from: savedGames) {
+                return loadedGames
+            }
+        }
+        return []
+    }
 }

@@ -20,9 +20,9 @@ struct ArticleMainScreenView: View {
                                    articles: ArticleData.articles.filter { $0.level == .intermediate })
                 }
             }
+            .navigationTitle("Articles")
             .padding(.horizontal, 16)
             .padding(.bottom, 24)
-            .navigationTitle("Articles")
             .background(Color.background)
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }

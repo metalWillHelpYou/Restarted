@@ -48,8 +48,8 @@ struct HomeView: View {
                         .frame(width: 30, height: 30)
                     
                     Image(systemName: "plus")
-                        .foregroundColor(Color.highlight)
                         .font(.system(size: 24))
+                        .foregroundColor(Color.highlight)
                 }
             }
         }
