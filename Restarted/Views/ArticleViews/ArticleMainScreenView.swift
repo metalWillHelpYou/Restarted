@@ -12,8 +12,13 @@ struct ArticleMainScreenView: View {
     var body: some View {
         NavigationStack {
             ScrollView(showsIndicators: false) {
-                beginnerSection
-                intermediateSection
+                VStack(spacing: 2){
+                    articleSection(title: "Beginner",
+                                   articles: ArticleData.articles.filter { $0.level == .beginner })
+                    
+                    articleSection(title: "Intermediate",
+                                   articles: ArticleData.articles.filter { $0.level == .intermediate })
+                }
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 24)
@@ -23,30 +28,15 @@ struct ArticleMainScreenView: View {
         }
     }
     
-    var beginnerSection: some View {
-        VStack(spacing: 2) {
-            Text("Beginner:")
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ForEach(ArticleData.beginnerArticles) { article in
-                NavigationLink(destination: ArticleView(article: article)) {
-                    ArticleCardView(article: article)
-                }
-            }
-        }
-    }
-    
-    var intermediateSection: some View {
-        VStack(spacing: 2) {
-            Text("Intermediate:")
-                .font(.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-            
-            ForEach(ArticleData.intermediateArticles) { article in
-                NavigationLink(destination: ArticleView(article: article)) {
-                    ArticleCardView(article: article)
-                }
+    @ViewBuilder
+    private func articleSection(title: String, articles: [Article]) -> some View {
+        Text(title)
+            .font(.title)
+            .frame(maxWidth: .infinity, alignment: .leading)
+        
+        ForEach(articles) { article in
+            NavigationLink(destination: ArticleView(article: article)) {
+                ArticleCardView(article: article)
             }
         }
     }

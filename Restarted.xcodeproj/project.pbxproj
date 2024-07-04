@@ -39,8 +39,6 @@
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BDE504A2C0A03B100910F23 /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50492C0A03B100910F23 /* HabitView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
-		9BF9DB732C162C8A005FE02C /* TimeRangeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9DB722C162C8A005FE02C /* TimeRangeView.swift */; };
-		9BF9DB752C162CC0005FE02C /* RemindersSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF9DB742C162CC0005FE02C /* RemindersSetupView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,8 +76,6 @@
 		9BDE50472C0A02F400910F23 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		9BDE50492C0A03B100910F23 /* HabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitView.swift; sourceTree = "<group>"; };
 		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
-		9BF9DB722C162C8A005FE02C /* TimeRangeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRangeView.swift; sourceTree = "<group>"; };
-		9BF9DB742C162CC0005FE02C /* RemindersSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersSetupView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,8 +176,9 @@
 		9B2AFD5F2C0099F100E908F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9B2AFD572C0099F100E908F5 /* Game.swift */,
+				9BDE50442C0A005A00910F23 /* Habit.swift */,
 				9B2AFD542C0099F100E908F5 /* Article.swift */,
+				9B2AFD572C0099F100E908F5 /* Game.swift */,
 				9BDE50432C0A004500910F23 /* Habits Model */,
 				9B3AD9062C0F60AF00230004 /* Helpers */,
 			);
@@ -220,10 +217,10 @@
 		9B2AFD732C009A0D00E908F5 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
-				9B6294E22C121FCA00CDFBC5 /* SetUpVIews */,
 				9B2AFD722C009A0D00E908F5 /* HomeView.swift */,
 				9BDE50472C0A02F400910F23 /* HabitListView.swift */,
 				9BDE50492C0A03B100910F23 /* HabitView.swift */,
+				9B0EA5662C10C89C00E8291C /* SetHabitView.swift */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -268,20 +265,9 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		9B6294E22C121FCA00CDFBC5 /* SetUpVIews */ = {
-			isa = PBXGroup;
-			children = (
-				9B0EA5662C10C89C00E8291C /* SetHabitView.swift */,
-				9BF9DB722C162C8A005FE02C /* TimeRangeView.swift */,
-				9BF9DB742C162CC0005FE02C /* RemindersSetupView.swift */,
-			);
-			path = SetUpVIews;
-			sourceTree = "<group>";
-		};
 		9BDE50432C0A004500910F23 /* Habits Model */ = {
 			isa = PBXGroup;
 			children = (
-				9BDE50442C0A005A00910F23 /* Habit.swift */,
 				9BDE50462C0A00C500910F23 /* habits.json */,
 			);
 			path = "Habits Model";
@@ -363,7 +349,6 @@
 				9B2AFD7D2C009A0D00E908F5 /* GamesMainScreenView.swift in Sources */,
 				9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */,
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
-				9BF9DB732C162C8A005FE02C /* TimeRangeView.swift in Sources */,
 				9BDE504A2C0A03B100910F23 /* HabitView.swift in Sources */,
 				9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */,
 				9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */,
@@ -371,7 +356,6 @@
 				9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */,
 				9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
-				9BF9DB752C162CC0005FE02C /* RemindersSetupView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,

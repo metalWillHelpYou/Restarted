@@ -24,7 +24,7 @@ enum Level {
 }
 
 struct ArticleData {
-    static let beginnerArticles: [Article] = [
+    static let articles: [Article] = [
         Article(
             title: "What is video game addiction?",
             content: "Basic concepts and definitions. This is a very long article content that goes on and on...",
@@ -52,9 +52,7 @@ struct ArticleData {
             imageName: "Beginer4th",
             level: .beginner
         ),
-    ]
-    
-    static let intermediateArticles: [Article] = [
+        
         Article(
             title: "The Consequences of Video Game Addiction",
             content: "Content for another article. This is another long article content that is also very informative...",

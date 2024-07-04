@@ -8,45 +8,52 @@
 import SwiftUI
 
 struct HomeView: View {
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     
     var body: some View {
         NavigationStack{
             VStack {
-                Circle()
-                    .stroke(Color.highlight, lineWidth: 4)
-                    .padding(40)
-                
-                RoundedRectangle(cornerRadius: 90)
-                    .fill(Color.highlight)
-                    .frame(height: 4)
-                    .padding(.horizontal)
-                
-                HStack {
-                    Text("Habits:")
-                        .font(.title)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                    
-                    NavigationLink(destination: HabitListView()) {
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.highlight, lineWidth: 2)
-                                .frame(width: 30, height: 30)
-                            
-                            Image(systemName: "plus")
-                                .foregroundColor(Color.highlight)
-                                .font(.system(size: 24))
-                        }
-                    }
-                }
-                .padding()
+                workSection
+                habitsSection
                 
                 Spacer()
             }
             .navigationTitle("Home")
             .background(Color.background)
         }
-        .preferredColorScheme(userTheme.setTheme)
+    }
+    
+    var workSection: some View {
+        VStack {
+            Circle()
+                .stroke(Color.highlight, lineWidth: 4)
+                .padding(40)
+            
+            RoundedRectangle(cornerRadius: 90)
+                .fill(Color.highlight)
+                .frame(height: 4)
+                .padding(.horizontal)
+        }
+    }
+    
+    var habitsSection: some View {
+        HStack {
+            Text("Habits:")
+                .font(.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            
+            NavigationLink(destination: HabitListView()) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.highlight, lineWidth: 2)
+                        .frame(width: 30, height: 30)
+                    
+                    Image(systemName: "plus")
+                        .foregroundColor(Color.highlight)
+                        .font(.system(size: 24))
+                }
+            }
+        }
+        .padding()
     }
 }
 

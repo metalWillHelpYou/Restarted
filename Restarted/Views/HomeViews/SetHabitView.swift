@@ -15,9 +15,9 @@ struct SetHabitView: View {
             VStack(alignment: .leading) {
                 //GoalAndPeriodView()
                 
-                TimeRangeView()
+                timeRange
                 
-                RemindersSetupView()
+                remindersSetup
                 
                 Spacer()
                 
@@ -39,6 +39,40 @@ struct SetHabitView: View {
                 self.hideKeyboard()
             }
         }
+    }
+    
+    var timeRange: some View {
+        VStack(alignment: .leading) {
+            Text("Time Range")
+                .font(.title2).bold()
+            
+            HStack(spacing: 12) {
+                ForEach(0..<3) { _ in
+                    RoundedRectangle(cornerRadius: 15)
+                        .frame(width: 100, height: 40)
+                        .foregroundStyle(Color.highlight)
+                }
+            }
+        }
+        .padding(.vertical)
+    }
+    
+    var remindersSetup: some View {
+        VStack(alignment: .leading) {
+            Text("Reminders")
+                .font(.title2).bold()
+            
+            HStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .frame(width: 100, height: 40)
+                    .foregroundStyle(Color.highlight)
+                
+                RoundedRectangle(cornerRadius: 15)
+                    .frame(width: 100, height: 40)
+                    .foregroundStyle(Color.highlight)
+            }
+        }
+        .padding(.vertical)
     }
 }
 
