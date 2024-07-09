@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @State private var games: [Game] = UserDefaults.standard.loadGames()
+    @State private var games: [GameUD] = UserDefaults.standard.loadGames()
     @State private var isSetTimePresented = false
     
     var body: some View {

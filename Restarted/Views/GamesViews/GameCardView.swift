@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameCardView: View {
-    let game: Game
+    let game: GameUD
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -34,5 +34,5 @@ struct GameCardView: View {
 }
 
 #Preview {
-    GameCardView(game: Game(title: "Title", genre: .action))
+    GameCardView(game: GameUD(title: "Title", genre: .action))
 }

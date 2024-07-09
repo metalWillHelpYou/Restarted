@@ -6,19 +6,20 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct AddGameView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @Binding var games: [Game]
+    @Binding var games: [GameUD]
     @State private var newGameTitle = ""
     @State private var selectedGenre: Genre = .action
     @Environment(\.dismiss) private var dismiss
-    
+
     var body: some View {
         NavigationStack {
             VStack {
                 gameInfo
-                
+
                 Spacer()
                 
                 addGameButton
@@ -65,26 +66,25 @@ struct AddGameView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
-    
+
     private func addGame() {
-        let newGame = Game(title: newGameTitle, genre: selectedGenre)
+        let newGame = GameUD(title: newGameTitle, genre: selectedGenre)
         games.append(newGame)
         UserDefaults.standard.saveGames(games)
         newGameTitle = ""
         selectedGenre = .action
     }
 }
-
 #Preview {
     struct PreviewContainer: View {
-        @State var games: [Game] = [
-            Game(title: "Sample Game 1", genre: .action),
+        @State var games: [GameUD] = [
+            GameUD(title: "Sample Game 1", genre: .action),
         ]
-        
+
         var body: some View {
             AddGameView(games: $games)
         }
     }
-    
+
     return PreviewContainer()
 }

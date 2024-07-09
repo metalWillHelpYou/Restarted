@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftData
 
-struct Game: Identifiable, Codable, Equatable {
+struct GameUD: Identifiable, Codable, Equatable {
     var title: String
     var genre: Genre
     
@@ -31,17 +32,17 @@ extension UserDefaults {
         static let games = "games"
     }
     
-    func saveGames(_ games: [Game]) {
+    func saveGames(_ games: [GameUD]) {
         let encoder = JSONEncoder()
         if let encoded = try? encoder.encode(games) {
             set(encoded, forKey: Keys.games)
         }
     }
     
-    func loadGames() -> [Game] {
+    func loadGames() -> [GameUD] {
         if let savedGames = data(forKey: Keys.games) {
             let decoder = JSONDecoder()
-            if let loadedGames = try? decoder.decode([Game].self, from: savedGames) {
+            if let loadedGames = try? decoder.decode([GameUD].self, from: savedGames) {
                 return loadedGames
             }
         }
