@@ -31,8 +31,14 @@ struct SetHabitView: View {
             }
         }
     }
-    
-    var timeRange: some View {
+}
+
+#Preview {
+    SetHabitView()
+}
+
+extension SetHabitView {
+    private var timeRange: some View {
         VStack(alignment: .leading) {
             Text("Time Range")
                 .font(.title2).bold()
@@ -48,7 +54,7 @@ struct SetHabitView: View {
         .padding(.vertical)
     }
     
-    var remindersSetup: some View {
+    private var remindersSetup: some View {
         VStack(alignment: .leading) {
             Text("Reminders")
                 .font(.title2).bold()
@@ -66,8 +72,9 @@ struct SetHabitView: View {
         .padding(.vertical)
     }
     
-    var saveButton: some View {
+    private var saveButton: some View {
         Button(action: {
+            
         }) {
             Text("Save habit")
                 .font(.title2)
@@ -79,9 +86,3 @@ struct SetHabitView: View {
         }
     }
 }
-
-#Preview {
-    SetHabitView()
-}
-
-

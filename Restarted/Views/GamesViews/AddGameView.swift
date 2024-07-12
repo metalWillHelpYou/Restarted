@@ -34,8 +34,25 @@ struct AddGameView: View {
             }
         }
     }
-    
-    var gameInfo: some View {
+
+}
+
+#Preview {
+    struct PreviewContainer: View {
+        @State var games: [GameUD] = [
+            GameUD(title: "Sample Game 1", genre: .action),
+        ]
+
+        var body: some View {
+            AddGameView(games: $games)
+        }
+    }
+
+    return PreviewContainer()
+}
+
+extension AddGameView {
+    private var gameInfo: some View {
         VStack {
             TextField("Title", text: $newGameTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -53,7 +70,7 @@ struct AddGameView: View {
         }
     }
     
-    var addGameButton: some View {
+    private var addGameButton: some View {
         Button(action: {
             addGame()
             dismiss()
@@ -66,7 +83,9 @@ struct AddGameView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
+}
 
+extension AddGameView {
     private func addGame() {
         let newGame = GameUD(title: newGameTitle, genre: selectedGenre)
         games.append(newGame)
@@ -74,17 +93,4 @@ struct AddGameView: View {
         newGameTitle = ""
         selectedGenre = .action
     }
-}
-#Preview {
-    struct PreviewContainer: View {
-        @State var games: [GameUD] = [
-            GameUD(title: "Sample Game 1", genre: .action),
-        ]
-
-        var body: some View {
-            AddGameView(games: $games)
-        }
-    }
-
-    return PreviewContainer()
 }

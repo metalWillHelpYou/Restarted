@@ -27,7 +27,15 @@ struct ArticleMainScreenView: View {
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
     }
-    
+}
+
+#Preview {
+    ArticleMainScreenView()
+}
+
+//TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
+
+extension ArticleMainScreenView {
     @ViewBuilder
     private func articleSection(title: String, articles: [Article]) -> some View {
         Text(title)
@@ -41,9 +49,3 @@ struct ArticleMainScreenView: View {
         }
     }
 }
-
-#Preview {
-    ArticleMainScreenView()
-}
-
-//TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)

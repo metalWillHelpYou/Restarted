@@ -36,12 +36,13 @@ struct ColorPickerView: View {
 
 struct CustomPickerView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    @Environment(\.colorScheme) private var scheme
     @Namespace private var animation
     var body: some View {
         HStack(spacing: 0) {
             ForEach(Theme.allCases, id: \.rawValue) { theme in
                 Text(theme.rawValue)
-                    .foregroundStyle(.gray).opacity(0.8)
+                    .foregroundStyle(userTheme.setTextColor(with: scheme))
                     .padding(.vertical, 10)
                     .frame(width: 100)
                     .background {

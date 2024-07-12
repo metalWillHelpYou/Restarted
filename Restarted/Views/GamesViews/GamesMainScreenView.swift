@@ -14,12 +14,12 @@ struct GamesMainScreenView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                ForEach(games) { game in
-                    NavigationLink(destination: SetGameTimerView()) {
-                        GameCardView(game: game)
-                    }
-                }
-                .padding()
+//                ForEach(games) { game in
+//                    NavigationLink(destination: SetGameTimerView()) {
+//                        GameCardView(game: game)
+//                    }
+//                }
+//                .padding()
             }
             .navigationTitle("Games")
             .frame(maxWidth: .infinity)
@@ -29,11 +29,18 @@ struct GamesMainScreenView: View {
                 addButton
             }
         }
-        .onChange(of: games) { oldGames, newGames in
-            UserDefaults.standard.saveGames(newGames)
-        }
+//        .onChange(of: games) { oldGames, newGames in
+//            UserDefaults.standard.saveGames(newGames)
+//        }
     }
-    var addButton: some View {
+}
+
+#Preview {
+    GamesMainScreenView()
+}
+
+extension GamesMainScreenView {
+    private var addButton: some View {
         NavigationLink(destination: AddGameView(games: $games)) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
@@ -46,8 +53,4 @@ struct GamesMainScreenView: View {
             }
         }
     }
-}
-
-#Preview {
-    GamesMainScreenView()
 }

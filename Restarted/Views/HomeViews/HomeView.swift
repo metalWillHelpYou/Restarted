@@ -21,8 +21,14 @@ struct HomeView: View {
             .background(Color.background)
         }
     }
-    
-    var workSection: some View {
+}
+
+#Preview {
+    HomeView()
+}
+
+extension HomeView {
+    private var workSection: some View {
         VStack {
             Circle()
                 .stroke(Color.highlight, lineWidth: 4)
@@ -35,7 +41,7 @@ struct HomeView: View {
         }
     }
     
-    var habitsSection: some View {
+    private var habitsSection: some View {
         HStack {
             Text("Habits:")
                 .font(.title)
@@ -55,8 +61,4 @@ struct HomeView: View {
         }
         .padding()
     }
-}
-
-#Preview {
-    HomeView()
 }
