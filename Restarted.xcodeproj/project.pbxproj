@@ -31,6 +31,7 @@
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
 		9B5A52282C2DB7A500F654C9 /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A52272C2DB7A500F654C9 /* AddGameView.swift */; };
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
+		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9BA12C272C009C7600375D40 /* SetGameTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA12C262C009C7600375D40 /* SetGameTimerView.swift */; };
 		9BDE50452C0A005A00910F23 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50442C0A005A00910F23 /* Habit.swift */; };
@@ -66,6 +67,7 @@
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
 		9B5A52272C2DB7A500F654C9 /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
+		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9BA12C262C009C7600375D40 /* SetGameTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetGameTimerView.swift; sourceTree = "<group>"; };
 		9BDE50442C0A005A00910F23 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				9B3AD9072C0F60F000230004 /* ThemeChanger.swift */,
 				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
 				9B7528B52C2753D000657E8A /* CustomTabBar.swift */,
+				9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */,
+				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
 				9B0718952C18D26D000B9BF1 /* TimerView.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,

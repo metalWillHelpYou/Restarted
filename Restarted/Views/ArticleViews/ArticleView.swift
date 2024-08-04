@@ -30,45 +30,7 @@ struct ArticleView: View {
             
             Spacer()
             
-            ZStack {
-                Rectangle()
-                    .fill(isRead ? Color.green : .mint)
-                    .frame(maxWidth: isComplete ? .infinity : 0)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                
-                HStack {
-                    Image(systemName: isRead ? "checkmark.circle" : "circle")
-                    
-                    Text("I read this")
-                        .font(.title2)
-                        .frame(height: 56)
-                        .cornerRadius(15)
-                }
-            }
-            .font(.title3)
-            .frame(maxWidth: .infinity)
-            .onLongPressGesture(minimumDuration: 1, maximumDistance: 50) { (isPressing) in
-                if isPressing {
-                    withAnimation(.easeInOut(duration: 1)) {
-                        isComplete = true
-                    }
-                } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        if !isRead {
-                            withAnimation(.easeInOut) {
-                                isComplete = false
-                            }
-                        }
-                    }
-                }
-            } perform: {
-                withAnimation(.easeInOut) {
-                    isRead.toggle()
-                }
-            }
+            iReadThisButton
         }
         .padding()
         .background(Color.background)
@@ -80,3 +42,53 @@ struct ArticleView: View {
 }
 
 //TODO: показать сколько времени потребуется для прочтения
+
+extension ArticleView {
+    private var iReadThisButton: some View {
+        ZStack {
+            Rectangle()
+                .fill(isRead ? Color.green : .mint)
+                .frame(maxWidth: isComplete ? .infinity : 0)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(.gray)
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+            
+            HStack {
+                Image(systemName: isRead ? "checkmark.circle" : "circle")
+                
+                Text("I read this")
+                    .font(.title2)
+                    .frame(height: 56)
+                    .cornerRadius(15)
+            }
+        }
+        .font(.title3)
+        .frame(maxWidth: .infinity)
+        .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 50) { (isPressing) in
+            if isPressing {
+                withAnimation(.easeInOut(duration: 1)) {
+                    isComplete = true
+                }
+                
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    if !isRead {
+                        withAnimation(.easeInOut) {
+                            isComplete = false
+                        }
+                    }
+                }
+            }
+        } perform: {
+            withAnimation(.easeInOut) {
+                isRead.toggle()
+                if isRead {
+                    HapticManager.instance.notification(type: .success)
+                } else {
+                    HapticManager.instance.notification(type: .warning)
+                }
+            }
+        }
+    }
+}
