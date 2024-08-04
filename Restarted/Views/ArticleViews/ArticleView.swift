@@ -10,6 +10,9 @@ import SwiftUI
 struct ArticleView: View {
     let article: Article
     
+    @State private var isComplete = false
+    @State private var isRead = false
+    
     var body: some View {
         VStack(alignment: .leading) {
             Text(article.title)
@@ -26,6 +29,46 @@ struct ArticleView: View {
             Text(article.content)
             
             Spacer()
+            
+            ZStack {
+                Rectangle()
+                    .fill(isRead ? Color.green : .mint)
+                    .frame(maxWidth: isComplete ? .infinity : 0)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .background(.gray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                
+                HStack {
+                    Image(systemName: isRead ? "checkmark.circle" : "circle")
+                    
+                    Text("I read this")
+                        .font(.title2)
+                        .frame(height: 56)
+                        .cornerRadius(15)
+                }
+            }
+            .font(.title3)
+            .frame(maxWidth: .infinity)
+            .onLongPressGesture(minimumDuration: 1, maximumDistance: 50) { (isPressing) in
+                if isPressing {
+                    withAnimation(.easeInOut(duration: 1)) {
+                        isComplete = true
+                    }
+                } else {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        if !isRead {
+                            withAnimation(.easeInOut) {
+                                isComplete = false
+                            }
+                        }
+                    }
+                }
+            } perform: {
+                withAnimation(.easeInOut) {
+                    isRead.toggle()
+                }
+            }
         }
         .padding()
         .background(Color.background)

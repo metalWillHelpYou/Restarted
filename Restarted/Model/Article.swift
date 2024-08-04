@@ -8,14 +8,11 @@
 import Foundation
 
 struct Article: Identifiable {
+    let id = UUID().uuidString
     let title: String
     let content: String
     let imageName: String
     let level: Level
-    
-    var id: String {
-        title + imageName
-    }
 }
 
 enum Level {
