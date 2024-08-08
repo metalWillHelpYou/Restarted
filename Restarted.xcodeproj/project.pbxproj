@@ -26,7 +26,6 @@
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
-		9B5A52282C2DB7A500F654C9 /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A52272C2DB7A500F654C9 /* AddGameView.swift */; };
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
@@ -35,6 +34,7 @@
 		9BDE50452C0A005A00910F23 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50442C0A005A00910F23 /* Habit.swift */; };
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BDE504A2C0A03B100910F23 /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50492C0A03B100910F23 /* HabitView.swift */; };
+		9BE560FB2C652E7400CEFCD7 /* AddGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE560FA2C652E7400CEFCD7 /* AddGameView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +60,6 @@
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
-		9B5A52272C2DB7A500F654C9 /* AddGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		9BDE50442C0A005A00910F23 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		9BDE50472C0A02F400910F23 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		9BDE50492C0A03B100910F23 /* HabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitView.swift; sourceTree = "<group>"; };
+		9BE560FA2C652E7400CEFCD7 /* AddGameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGameView.swift; sourceTree = "<group>"; };
 		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -191,7 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				9B2AFD702C009A0D00E908F5 /* GamesMainScreenView.swift */,
-				9B5A52272C2DB7A500F654C9 /* AddGameView.swift */,
+				9BE560FA2C652E7400CEFCD7 /* AddGameView.swift */,
 			);
 			path = GamesViews;
 			sourceTree = "<group>";
@@ -319,11 +319,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				9BDE50452C0A005A00910F23 /* Habit.swift in Sources */,
-				9B5A52282C2DB7A500F654C9 /* AddGameView.swift in Sources */,
 				9B2AFD7D2C009A0D00E908F5 /* GamesMainScreenView.swift in Sources */,
 				9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */,
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
 				9BDE504A2C0A03B100910F23 /* HabitView.swift in Sources */,
+				9BE560FB2C652E7400CEFCD7 /* AddGameView.swift in Sources */,
 				9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */,
 				9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */,
 				9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */,

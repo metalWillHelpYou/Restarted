@@ -14,50 +14,53 @@ struct AddGameView: View {
     @ObservedObject var vm: GameEntityViewModel
     
     @Binding var gameTitle: String
-
+    
     var body: some View {
         VStack {
-            TextField("Enter title...", text: $gameTitle)
-                .font(.headline)
-                .padding(.leading)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .background(Color(uiColor: .systemGray3))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
+            Spacer()
             
-            Button(action: {
-                guard !gameTitle.isEmpty else { return }
-                vm.addGame(gameTitle)
-                dismiss()
-                gameTitle = ""
-            }, label: {
-                Text("Add Game")
-                    .font(.headline)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(.white)
-                    .background(Color.highlight)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .padding(.horizontal)
-            })
+            gameData
+            
+            Spacer()
+            
+            addGameButton
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.background)
     }
+}
 
+#Preview {
+    AddGameView(vm: GameEntityViewModel(), gameTitle: .constant(""))
 }
 
 extension AddGameView {
+    private var gameData: some View {
+        TextField("Enter title...", text: $gameTitle)
+            .font(.headline)
+            .padding(.leading)
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color(uiColor: .systemGray3))
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .padding(.horizontal)
+    }
     
     private var addGameButton: some View {
         Button(action: {
+            guard !gameTitle.isEmpty else { return }
+            vm.addGame(gameTitle)
             dismiss()
-        }) {
+            gameTitle = ""
+        }, label: {
             Text("Add Game")
+                .font(.headline)
+                .frame(height: 55)
                 .frame(maxWidth: .infinity)
-                .padding()
+                .foregroundStyle(.white)
                 .background(Color.highlight)
-                .foregroundColor(userTheme == .light ? .white : .black)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-        }
+                .padding()
+        })
     }
 }
