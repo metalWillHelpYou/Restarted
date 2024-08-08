@@ -6,3 +6,61 @@
 //
 
 import Foundation
+import CoreData
+
+class GameEntityViewModel: ObservableObject {
+    let container: NSPersistentContainer
+    @Published var savedEntities: [Game] = []
+    
+    init() {
+        container = NSPersistentContainer(name: "GameModel")
+        container.loadPersistentStores { (description, error) in
+            if let error = error {
+                print("Error: \(error)")
+            }
+        }
+        fetchGames()
+    }
+    
+    func fetchGames() {
+        let request = NSFetchRequest<Game>(entityName: "Game")
+        do {
+            savedEntities = try container.viewContext.fetch(request)
+        } catch let error {
+            print("Error: \(error)")
+        }
+    }
+    
+    func addGame(_ game: String) {
+        let newGame = Game(context: container.viewContext)
+        newGame.title = game
+        
+        saveData()
+    }
+    
+    func updateGAme(entity: Game) {
+        let currentName = entity.title ?? ""
+        let newTitle = currentName + "!"
+        entity.title = newTitle
+        
+        saveData()
+    }
+    
+    func deleteGame(indexSet: IndexSet) {
+        guard let index = indexSet.first else { return }
+        let entity = savedEntities[index]
+        container.viewContext.delete(entity)
+        
+        saveData()
+    }
+
+    
+    func saveData() {
+        do {
+            try container.viewContext.save()
+            fetchGames()
+        } catch let error {
+            print("Error: \(error)")
+        }
+    }
+}

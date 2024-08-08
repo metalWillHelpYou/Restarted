@@ -8,18 +8,24 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @State private var games: [GameUD] = UserDefaults.standard.loadGames()
-    @State private var isSetTimePresented = false
+    @StateObject var vm = GameEntityViewModel()
+    @State private var gameTitle: String = ""
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-//                ForEach(games) { game in
-//                    NavigationLink(destination: SetGameTimerView()) {
-//                        GameCardView(game: game)
-//                    }
-//                }
-//                .padding()
+            VStack {
+                if !vm.savedEntities.isEmpty {
+                    List {
+                        ForEach(vm.savedEntities) { game in
+                            Text(game.title ?? "")
+                        }
+                        .onDelete(perform: vm.deleteGame)
+                    }
+                    .listStyle(PlainListStyle())
+                } else {
+                    Text("Click Plus button")
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
             }
             .navigationTitle("Games")
             .frame(maxWidth: .infinity)
@@ -29,9 +35,6 @@ struct GamesMainScreenView: View {
                 addButton
             }
         }
-//        .onChange(of: games) { oldGames, newGames in
-//            UserDefaults.standard.saveGames(newGames)
-//        }
     }
 }
 
@@ -41,7 +44,7 @@ struct GamesMainScreenView: View {
 
 extension GamesMainScreenView {
     private var addButton: some View {
-        NavigationLink(destination: AddGameView(games: $games)) {
+        NavigationLink(destination: AddGameView(vm: vm, gameTitle: $gameTitle)) {
             ZStack {
                 RoundedRectangle(cornerRadius: 8)
                     .stroke(Color.highlight, lineWidth: 2)

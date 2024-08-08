@@ -10,69 +10,46 @@ import SwiftData
 
 struct AddGameView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @Binding var games: [GameUD]
-    @State private var newGameTitle = ""
-    @State private var selectedGenre: Genre = .action
     @Environment(\.dismiss) private var dismiss
+    @ObservedObject var vm: GameEntityViewModel
+    
+    @Binding var gameTitle: String
 
     var body: some View {
-        NavigationStack {
-            VStack {
-                gameInfo
-
-                Spacer()
-                
-                addGameButton
-            }
-            .navigationTitle("Add new game")
-            .navigationBarTitleDisplayMode(.inline)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .padding(.horizontal)
-            .background(Color.background)
-            .onTapGesture {
-                self.hideKeyboard()
-            }
+        VStack {
+            TextField("Enter title...", text: $gameTitle)
+                .font(.headline)
+                .padding(.leading)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .background(Color(uiColor: .systemGray3))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .padding(.horizontal)
+            
+            Button(action: {
+                guard !gameTitle.isEmpty else { return }
+                vm.addGame(gameTitle)
+                dismiss()
+                gameTitle = ""
+            }, label: {
+                Text("Add Game")
+                    .font(.headline)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(.white)
+                    .background(Color.highlight)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.horizontal)
+            })
         }
     }
 
-}
-
-#Preview {
-    struct PreviewContainer: View {
-        @State var games: [GameUD] = [
-            GameUD(title: "Sample Game 1", genre: .action),
-        ]
-
-        var body: some View {
-            AddGameView(games: $games)
-        }
-    }
-
-    return PreviewContainer()
 }
 
 extension AddGameView {
-    private var gameInfo: some View {
-        VStack {
-            TextField("Title", text: $newGameTitle)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding(.top)
-            
-            HStack {
-                Text("Genre:")
-                
-                Picker("Genre", selection: $selectedGenre) {
-                    ForEach(Genre.allCases) { genre in
-                        Text(genre.rawValue).tag(genre)
-                    }
-                }
-            }
-        }
-    }
     
     private var addGameButton: some View {
         Button(action: {
-            addGame()
             dismiss()
         }) {
             Text("Add Game")
@@ -82,15 +59,5 @@ extension AddGameView {
                 .foregroundColor(userTheme == .light ? .white : .black)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
-    }
-}
-
-extension AddGameView {
-    private func addGame() {
-        let newGame = GameUD(title: newGameTitle, genre: selectedGenre)
-        games.append(newGame)
-        UserDefaults.standard.saveGames(games)
-        newGameTitle = ""
-        selectedGenre = .action
     }
 }
