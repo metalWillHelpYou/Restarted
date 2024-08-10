@@ -1,5 +1,5 @@
 //
-//  AddGameView.swift
+//  GameSheetView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 27.06.2024.
@@ -8,12 +8,12 @@
 import SwiftUI
 import SwiftData
 
-struct AddGameView: View {
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @Environment(\.dismiss) private var dismiss
+struct GameSheetView: View {
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var vm: GameEntityViewModel
-    
     @Binding var gameTitle: String
+    
+    @Binding var sheetModel: GameSheetModel
     
     var body: some View {
         VStack {
@@ -23,7 +23,7 @@ struct AddGameView: View {
             
             Spacer()
             
-            addGameButton
+            mainButton
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
@@ -31,12 +31,12 @@ struct AddGameView: View {
 }
 
 #Preview {
-    AddGameView(vm: GameEntityViewModel(), gameTitle: .constant(""))
+    GameSheetView(vm: GameEntityViewModel(), gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "Enter title...", buttonLabel: "Add Game", buttonType: .add)))
 }
 
-extension AddGameView {
+extension GameSheetView {
     private var gameData: some View {
-        TextField("Enter title...", text: $gameTitle)
+        TextField(sheetModel.textFieldText, text: $gameTitle)
             .font(.headline)
             .padding(.leading)
             .frame(height: 55)
@@ -46,14 +46,20 @@ extension AddGameView {
             .padding(.horizontal)
     }
     
-    private var addGameButton: some View {
+    private var mainButton: some View {
         Button(action: {
-            guard !gameTitle.isEmpty else { return }
-            vm.addGame(gameTitle)
+            switch sheetModel.buttonType {
+            case .add:
+                guard !gameTitle.isEmpty else { return }
+                vm.addGame(gameTitle)
+                gameTitle = ""
+            case .edit:
+                guard !gameTitle.isEmpty else { return } //
+            }
+            
             dismiss()
-            gameTitle = ""
         }, label: {
-            Text("Add Game")
+            Text(sheetModel.buttonLabel)
                 .font(.headline)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity)

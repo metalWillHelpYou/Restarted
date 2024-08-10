@@ -38,9 +38,7 @@ class GameEntityViewModel: ObservableObject {
         saveData()
     }
     
-    func updateGAme(entity: Game) {
-        let currentName = entity.title ?? ""
-        let newTitle = currentName + "!"
+    func editGame(entity: Game, newTitle: String) {
         entity.title = newTitle
         
         saveData()

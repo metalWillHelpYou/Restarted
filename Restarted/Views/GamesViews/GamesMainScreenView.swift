@@ -10,7 +10,10 @@ import SwiftUI
 struct GamesMainScreenView: View {
     @StateObject var vm = GameEntityViewModel()
     @State private var gameTitle: String = ""
-    @State private var showAddGameView: Bool = false
+    
+    @State private var selectedModel = GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)
+    @State private var showGameSheet: Bool = false
+    @State private var buttonType = ""
     
     var body: some View {
         NavigationStack {
@@ -22,13 +25,16 @@ struct GamesMainScreenView: View {
                         List {
                             ForEach(vm.savedEntities) { game in
                                 Text(game.title ?? "")
+                                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                        editGameButton
+                                    }
                             }
                             .onDelete(perform: vm.deleteGame)
                         }
                         .listStyle(PlainListStyle())
                     } else {
                         Button(action: {
-                            showAddGameView.toggle()
+                            showGameSheet.toggle()
                         }, label: {
                             HStack {
                                 Text("Add your first game ->")
@@ -48,9 +54,8 @@ struct GamesMainScreenView: View {
                     addGameButton
                 }
             }
-            .popover(isPresented: $showAddGameView, content: {
-                AddGameView(vm: vm, gameTitle: $gameTitle)
-                    .presentationCompactAdaptation(.sheet)
+            .sheet(isPresented: $showGameSheet, content: {
+                GameSheetView(vm: vm, gameTitle: $gameTitle, sheetModel: $selectedModel)
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             })
@@ -65,7 +70,12 @@ struct GamesMainScreenView: View {
 extension GamesMainScreenView {
     private var addGameButton: some View {
         Button(action: {
-            showAddGameView.toggle()
+            selectedModel = GameSheetModel(
+                textFieldText: GameSheetTitle.addButtonLabel.rawValue,
+                buttonLabel: GameSheetTitle.addButtonLabel.rawValue,
+                buttonType: .add)
+            
+            showGameSheet.toggle()
         }, label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
@@ -77,5 +87,17 @@ extension GamesMainScreenView {
                     .font(.system(size: 20))
             }
         })
+    }
+    
+    private var editGameButton: some View {
+        Button("Edit") {
+            selectedModel = GameSheetModel(
+                textFieldText: GameSheetTitle.editTextFieldText.rawValue,
+                buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
+                buttonType: .edit)
+            
+            showGameSheet.toggle()
+        }
+        .tint(.orange)
     }
 }
