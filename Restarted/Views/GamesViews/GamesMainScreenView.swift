@@ -8,12 +8,11 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @StateObject var vm = GameEntityViewModel()
+    @StateObject var gameEntityVm = GameEntityViewModel()
     @State private var gameTitle: String = ""
     
     @State private var selectedModel = GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)
     @State private var showGameSheet: Bool = false
-    @State private var buttonType = ""
     
     var body: some View {
         NavigationStack {
@@ -21,37 +20,19 @@ struct GamesMainScreenView: View {
                 Color.background.ignoresSafeArea()
                 
                 VStack {
-                    if !vm.savedEntities.isEmpty {
+                    if !gameEntityVm.savedEntities.isEmpty {
                         List {
-                            ForEach(vm.savedEntities) { game in
+                            ForEach(gameEntityVm.savedEntities) { game in
                                 Text(game.title ?? "")
                                     .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                        Button("Edit") {
-                                            selectedModel = GameSheetModel(
-                                                game: game,
-                                                textFieldText: GameSheetTitle.editTextFieldText.rawValue,
-                                                buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
-                                                buttonType: .edit)
-                                            
-                                            showGameSheet.toggle()
-                                        }
-                                        .tint(.orange)
+                                        editGameButton(game)
                                     }
                             }
-                            .onDelete(perform: vm.deleteGame)
+                            .onDelete(perform: gameEntityVm.deleteGame)
                         }
                         .listStyle(PlainListStyle())
                     } else {
-                        Button(action: {
-                            showGameSheet.toggle()
-                        }, label: {
-                            HStack {
-                                Text("Add your first game ->")
-                                    .padding(.horizontal, 2)
-                                
-                                addGameButton
-                            }
-                        })
+                        addFirstGameButton
                     }
                 }
             }
@@ -59,12 +40,12 @@ struct GamesMainScreenView: View {
             .frame(maxWidth: .infinity)
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .toolbar {
-                if !vm.savedEntities.isEmpty {
+                if !gameEntityVm.savedEntities.isEmpty {
                     addGameButton
                 }
             }
             .sheet(isPresented: $showGameSheet, content: {
-                GameSheetView(vm: vm, gameTitle: $gameTitle, sheetModel: $selectedModel)
+                GameSheetView(gameEntityVm: gameEntityVm, gameTitle: $gameTitle, sheetModel: $selectedModel)
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             })
@@ -94,6 +75,32 @@ extension GamesMainScreenView {
                 Image(systemName: "plus")
                     .foregroundColor(Color.highlight)
                     .font(.system(size: 20))
+            }
+        })
+    }
+    
+    private func editGameButton(_ game: Game) -> some View {
+        Button("Edit") {
+            selectedModel = GameSheetModel(
+                game: game,
+                textFieldText: GameSheetTitle.editTextFieldText.rawValue,
+                buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
+                buttonType: .edit
+            )
+            showGameSheet.toggle()
+        }
+        .tint(.orange)
+    }
+    
+    private var addFirstGameButton: some View {
+        Button(action: {
+            showGameSheet.toggle()
+        }, label: {
+            HStack {
+                Text("Add your first game ->")
+                    .padding(.horizontal, 2)
+                
+                addGameButton
             }
         })
     }

@@ -27,6 +27,7 @@
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
 		9B5834502C6792DE007FAB6C /* GameSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */; };
+		9B5834522C67D62E007FAB6C /* GameSheetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5834512C67D62E007FAB6C /* GameSheetViewModel.swift */; };
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
@@ -62,6 +63,7 @@
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
 		9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSheetModel.swift; sourceTree = "<group>"; };
+		9B5834512C67D62E007FAB6C /* GameSheetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSheetViewModel.swift; sourceTree = "<group>"; };
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -235,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */,
+				9B5834512C67D62E007FAB6C /* GameSheetViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */,
 				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
+				9B5834522C67D62E007FAB6C /* GameSheetViewModel.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 			);
