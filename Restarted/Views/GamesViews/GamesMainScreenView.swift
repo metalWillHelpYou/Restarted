@@ -26,7 +26,16 @@ struct GamesMainScreenView: View {
                             ForEach(vm.savedEntities) { game in
                                 Text(game.title ?? "")
                                     .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                        editGameButton
+                                        Button("Edit") {
+                                            selectedModel = GameSheetModel(
+                                                game: game,
+                                                textFieldText: GameSheetTitle.editTextFieldText.rawValue,
+                                                buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
+                                                buttonType: .edit)
+                                            
+                                            showGameSheet.toggle()
+                                        }
+                                        .tint(.orange)
                                     }
                             }
                             .onDelete(perform: vm.deleteGame)
@@ -87,17 +96,5 @@ extension GamesMainScreenView {
                     .font(.system(size: 20))
             }
         })
-    }
-    
-    private var editGameButton: some View {
-        Button("Edit") {
-            selectedModel = GameSheetModel(
-                textFieldText: GameSheetTitle.editTextFieldText.rawValue,
-                buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
-                buttonType: .edit)
-            
-            showGameSheet.toggle()
-        }
-        .tint(.orange)
     }
 }

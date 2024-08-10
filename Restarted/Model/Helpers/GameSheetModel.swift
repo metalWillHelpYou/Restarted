@@ -9,6 +9,7 @@ import Foundation
 
 struct GameSheetModel: Identifiable {
     let id = UUID().uuidString
+    var game: Game?
     
     let textFieldText: String
     let buttonLabel: String

@@ -27,6 +27,11 @@ struct GameSheetView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
+        .onAppear {
+            if sheetModel.buttonType == .edit, let game = sheetModel.game {
+                gameTitle = game.title ?? ""
+            }
+        }
     }
 }
 
@@ -54,7 +59,8 @@ extension GameSheetView {
                 vm.addGame(gameTitle)
                 gameTitle = ""
             case .edit:
-                guard !gameTitle.isEmpty else { return } //
+                guard let game = sheetModel.game, !gameTitle.isEmpty else { return }
+                vm.editGame(entity: game, newTitle: gameTitle)
             }
             
             dismiss()
