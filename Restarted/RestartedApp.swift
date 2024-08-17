@@ -10,9 +10,12 @@ import SwiftData
 
 @main
 struct RestartedApp: App {
+    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .preferredColorScheme(userTheme.setTheme)
         }
     }
 }

@@ -28,11 +28,6 @@ struct GameSheetView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
-        .onAppear {
-            if sheetModel.buttonType == .edit, let game = sheetModel.game {
-                gameTitle = game.title ?? ""
-            }
-        }
         .alert(isPresented: $showAlert) {
             gameSheetVm.getAlert()
         }
