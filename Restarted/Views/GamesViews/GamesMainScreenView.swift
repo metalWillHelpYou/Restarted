@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @StateObject var gameEntityVm = GameEntityViewModel()
+    @EnvironmentObject var gameEntityVm: GameEntityViewModel
+    @EnvironmentObject var gameSheetVm: GameSheetViewModel
     @State private var gameTitle: String = ""
     
     @State private var selectedModel = GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)
@@ -45,7 +46,7 @@ struct GamesMainScreenView: View {
                 }
             }
             .sheet(isPresented: $showGameSheet, content: {
-                GameSheetView(gameEntityVm: gameEntityVm, gameTitle: $gameTitle, sheetModel: $selectedModel)
+                GameSheetView(gameEntityVm: _gameEntityVm, gameTitle: $gameTitle, sheetModel: $selectedModel)
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             })
@@ -55,6 +56,8 @@ struct GamesMainScreenView: View {
 
 #Preview {
     GamesMainScreenView()
+        .environmentObject(GameEntityViewModel())
+        .environmentObject(GameSheetViewModel())
 }
 
 extension GamesMainScreenView {

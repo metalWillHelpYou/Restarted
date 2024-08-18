@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct GameSheetView: View {
-    @StateObject var gameSheetVm = GameSheetViewModel()
-    @ObservedObject var gameEntityVm: GameEntityViewModel
+    @EnvironmentObject var gameEntityVm: GameEntityViewModel
+    @EnvironmentObject var gameSheetVm: GameSheetViewModel
     @Binding var gameTitle: String
     @Binding var sheetModel: GameSheetModel
     @State private var showAlert: Bool = false
@@ -35,7 +35,9 @@ struct GameSheetView: View {
 }
 
 #Preview {
-    GameSheetView(gameEntityVm: GameEntityViewModel(), gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "Enter title...", buttonLabel: "Add Game", buttonType: .add)))
+    GameSheetView(gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)))
+        .environmentObject(GameEntityViewModel())
+        .environmentObject(GameSheetViewModel())
 }
 
 extension GameSheetView {
