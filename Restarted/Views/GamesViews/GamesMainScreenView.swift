@@ -10,10 +10,10 @@ import SwiftUI
 struct GamesMainScreenView: View {
     @EnvironmentObject var gameEntityVm: GameEntityViewModel
     @EnvironmentObject var gameSheetVm: GameSheetViewModel
+    
     @State private var gameTitle: String = ""
     @State private var showDeleteDialog: Bool = false
     @State private var selectedGame: Game? = nil
-    
     @State private var selectedModel = GameSheetModel(
         textFieldText: "",
         buttonLabel: "",
@@ -26,102 +26,100 @@ struct GamesMainScreenView: View {
             ZStack {
                 Color.background.ignoresSafeArea()
                 
-                VStack {
-                    if !gameEntityVm.savedEntities.isEmpty {
-                        List {
-                            ForEach(gameEntityVm.savedEntities) { game in
-                                Text(game.title ?? "")
-                                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                                        editGameButton(game)
-                                    }
-                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                        deleteGameButton(game: game)
-                                    }
-                            }
-                        }
-                        .listStyle(PlainListStyle())
-                    } else {
-                        addFirstGameButton
+                content
+                    .navigationTitle("Games")
+                    .frame(maxWidth: .infinity)
+                    .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
+                    .toolbar { addGameToolbarButton }
+                    .sheet(isPresented: $showGameSheet) {
+                        GameSheetView(
+                            gameEntityVm: _gameEntityVm,
+                            gameTitle: $gameTitle,
+                            sheetModel: $selectedModel
+                        )
+                        .presentationDetents([.fraction(0.3)])
+                        .presentationDragIndicator(.visible)
                     }
-                }
-            }
-            .navigationTitle("Games")
-            .frame(maxWidth: .infinity)
-            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-            .toolbar {
-                if !gameEntityVm.savedEntities.isEmpty {
-                    addGameButton
-                }
-            }
-            .sheet(isPresented: $showGameSheet, content: {
-                GameSheetView(gameEntityVm: _gameEntityVm, gameTitle: $gameTitle, sheetModel: $selectedModel)
-                    .presentationDetents([.medium])
-                    .presentationDragIndicator(.visible)
-            })
-            .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
-                Button("Delete", role: .destructive) {
-                    if let gameToDelete = selectedGame {
-                        gameEntityVm.deleteGame(gameToDelete)
+                    .confirmationDialog(
+                        "Are you sure?",
+                        isPresented: $showDeleteDialog,
+                        titleVisibility: .visible
+                    ) {
+                        deleteConfirmationButtons
                     }
-                }
-                Button("Cancel", role: .cancel) { }
             }
         }
     }
-}
-
-#Preview {
-    GamesMainScreenView()
-        .environmentObject(GameEntityViewModel())
-        .environmentObject(GameSheetViewModel())
-}
-
-extension GamesMainScreenView {
-    private var addGameButton: some View {
-        Button(action: {
-            selectedModel = GameSheetModel(
-                textFieldText: GameSheetTitle.addButtonLabel.rawValue,
-                buttonLabel: GameSheetTitle.addButtonLabel.rawValue,
-                buttonType: .add)
-            
-            showGameSheet.toggle()
-        }, label: {
-            ZStack {
-                RoundedRectangle(cornerRadius: 10)
-                    .stroke(Color.highlight, lineWidth: 2)
-                    .frame(width: 30, height: 30)
-                
-                Image(systemName: "plus")
-                    .foregroundColor(Color.highlight)
-                    .font(.system(size: 20))
+    
+    private var content: some View {
+        VStack {
+            if !gameEntityVm.savedEntities.isEmpty {
+                gameList
+            } else {
+                addFirstGameButton
             }
-        })
+        }
+    }
+    
+    private var gameList: some View {
+        List {
+            ForEach(gameEntityVm.savedEntities) { game in
+                Text(game.title ?? "")
+                    .listRowBackground(Color.background)
+                    .padding(.vertical, 8)
+                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                        editGameButton(game)
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        deleteGameButton(game: game)
+                    }
+            }
+            .listRowSeparatorTint(Color.highlight)
+        }
+        .listStyle(PlainListStyle())
+    }
+    
+    private var addGameToolbarButton: some View {
+        gameEntityVm.savedEntities.isEmpty
+        ? AnyView(EmptyView())
+        : AnyView(
+            Button(action: {
+                prepareForAddingGame()
+                showGameSheet.toggle()
+            }, label: {
+                PlusButton()
+            })
+        )
     }
     
     private var addFirstGameButton: some View {
         Button(action: {
+            prepareForAddingGame()
             showGameSheet.toggle()
         }, label: {
             HStack {
                 Text("Add your first game ->")
                     .padding(.horizontal, 2)
-                
-                addGameButton
+                PlusButton()
             }
             .foregroundStyle(Color.text)
         })
     }
-}
-
-extension GamesMainScreenView {
+    
+    private var deleteConfirmationButtons: some View {
+        Group {
+            Button("Delete", role: .destructive) {
+                if let gameToDelete = selectedGame {
+                    gameEntityVm.deleteGame(gameToDelete)
+                }
+            }
+            Button("Cancel", role: .cancel) { }
+        }
+    }
+    
     private func editGameButton(_ game: Game) -> some View {
         Button("Edit") {
-            selectedModel = GameSheetModel(
-                game: game,
-                textFieldText: GameSheetTitle.editTextFieldText.rawValue,
-                buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
-                buttonType: .edit
-            )
+            prepareForEditingGame(game)
             showGameSheet.toggle()
         }
         .tint(.orange)
@@ -134,4 +132,27 @@ extension GamesMainScreenView {
         }
         .tint(.red)
     }
+    
+    private func prepareForAddingGame() {
+        selectedModel = GameSheetModel(
+            textFieldText: GameSheetTitle.addButtonLabel.rawValue,
+            buttonLabel: GameSheetTitle.addButtonLabel.rawValue,
+            buttonType: .add
+        )
+    }
+    
+    private func prepareForEditingGame(_ game: Game) {
+        selectedModel = GameSheetModel(
+            game: game,
+            textFieldText: GameSheetTitle.editTextFieldText.rawValue,
+            buttonLabel: GameSheetTitle.editButtonLabel.rawValue,
+            buttonType: .edit
+        )
+    }
+}
+
+#Preview {
+    GamesMainScreenView()
+        .environmentObject(GameEntityViewModel())
+        .environmentObject(GameSheetViewModel())
 }

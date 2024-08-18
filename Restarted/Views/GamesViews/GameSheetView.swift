@@ -19,11 +19,8 @@ struct GameSheetView: View {
     var body: some View {
         VStack {
             Spacer()
-            
             gameData
-            
             Spacer()
-            
             mainButton
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -32,12 +29,6 @@ struct GameSheetView: View {
             gameSheetVm.getAlert()
         }
     }
-}
-
-#Preview {
-    GameSheetView(gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)))
-        .environmentObject(GameEntityViewModel())
-        .environmentObject(GameSheetViewModel())
 }
 
 extension GameSheetView {
@@ -53,25 +44,7 @@ extension GameSheetView {
     }
     
     private var mainButton: some View {
-        Button(action: {
-            switch sheetModel.buttonType {
-            case .add:
-                guard !gameTitle.isEmpty else {
-                    showAlert.toggle()
-                    return
-                }
-                gameEntityVm.addGame(gameTitle)
-                gameTitle = ""
-            case .edit:
-                guard let game = sheetModel.game, !gameTitle.isEmpty else {
-                    showAlert.toggle()
-                    return
-                }
-                gameEntityVm.editGame(entity: game, newTitle: gameTitle)
-            }
-            
-            dismiss()
-        }, label: {
+        Button(action: handleButtonAction, label: {
             Text(sheetModel.buttonLabel)
                 .font(.headline)
                 .frame(height: 55)
@@ -82,4 +55,30 @@ extension GameSheetView {
                 .padding()
         })
     }
+    
+    private func handleButtonAction() {
+        switch sheetModel.buttonType {
+        case .add:
+            if gameTitle.isEmpty {
+                showAlert.toggle()
+            } else {
+                gameEntityVm.addGame(gameTitle)
+                gameTitle = ""
+                dismiss()
+            }
+        case .edit:
+            if let game = sheetModel.game, !gameTitle.isEmpty {
+                gameEntityVm.editGame(entity: game, newTitle: gameTitle)
+                dismiss()
+            } else {
+                showAlert.toggle()
+            }
+        }
+    }
+}
+
+#Preview {
+    GameSheetView(gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)))
+        .environmentObject(GameEntityViewModel())
+        .environmentObject(GameSheetViewModel())
 }
