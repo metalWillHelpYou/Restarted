@@ -44,14 +44,10 @@ class GameEntityViewModel: ObservableObject {
         saveData()
     }
     
-    func deleteGame(indexSet: IndexSet) {
-        guard let index = indexSet.first else { return }
-        let entity = savedEntities[index]
-        container.viewContext.delete(entity)
-        
+    func deleteGame(_ game: Game) {
+        container.viewContext.delete(game)
         saveData()
     }
-
     
     func saveData() {
         do {

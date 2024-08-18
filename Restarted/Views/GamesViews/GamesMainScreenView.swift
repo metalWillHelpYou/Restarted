@@ -11,8 +11,14 @@ struct GamesMainScreenView: View {
     @EnvironmentObject var gameEntityVm: GameEntityViewModel
     @EnvironmentObject var gameSheetVm: GameSheetViewModel
     @State private var gameTitle: String = ""
+    @State private var showDeleteDialog: Bool = false
+    @State private var selectedGame: Game? = nil
     
-    @State private var selectedModel = GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)
+    @State private var selectedModel = GameSheetModel(
+        textFieldText: "",
+        buttonLabel: "",
+        buttonType: .add
+    )
     @State private var showGameSheet: Bool = false
     
     var body: some View {
@@ -28,8 +34,10 @@ struct GamesMainScreenView: View {
                                     .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                         editGameButton(game)
                                     }
+                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                        deleteGameButton(game: game)
+                                    }
                             }
-                            .onDelete(perform: gameEntityVm.deleteGame)
                         }
                         .listStyle(PlainListStyle())
                     } else {
@@ -50,6 +58,14 @@ struct GamesMainScreenView: View {
                     .presentationDetents([.medium])
                     .presentationDragIndicator(.visible)
             })
+            .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
+                Button("Delete", role: .destructive) {
+                    if let gameToDelete = selectedGame {
+                        gameEntityVm.deleteGame(gameToDelete)
+                    }
+                }
+                Button("Cancel", role: .cancel) { }
+            }
         }
     }
 }
@@ -82,6 +98,22 @@ extension GamesMainScreenView {
         })
     }
     
+    private var addFirstGameButton: some View {
+        Button(action: {
+            showGameSheet.toggle()
+        }, label: {
+            HStack {
+                Text("Add your first game ->")
+                    .padding(.horizontal, 2)
+                
+                addGameButton
+            }
+            .foregroundStyle(Color.text)
+        })
+    }
+}
+
+extension GamesMainScreenView {
     private func editGameButton(_ game: Game) -> some View {
         Button("Edit") {
             selectedModel = GameSheetModel(
@@ -95,16 +127,11 @@ extension GamesMainScreenView {
         .tint(.orange)
     }
     
-    private var addFirstGameButton: some View {
-        Button(action: {
-            showGameSheet.toggle()
-        }, label: {
-            HStack {
-                Text("Add your first game ->")
-                    .padding(.horizontal, 2)
-                
-                addGameButton
-            }
-        })
+    private func deleteGameButton(game: Game?) -> some View {
+        Button("Delete") {
+            selectedGame = game
+            showDeleteDialog.toggle()
+        }
+        .tint(.red)
     }
 }
