@@ -49,6 +49,13 @@ class GameEntityViewModel: ObservableObject {
         saveData()
     }
     
+    func updateGameTime(game: Game, hours: Int16, minutes: Int16) {
+        game.hours = hours
+        game.minutes = minutes
+        
+        saveData()
+    }
+    
     func saveData() {
         do {
             try container.viewContext.save()
@@ -56,5 +63,10 @@ class GameEntityViewModel: ObservableObject {
         } catch let error {
             print("Error: \(error)")
         }
+    }
+    
+    func saveTime(game: Game?, hours: Int, minutes: Int) {
+        guard let game = game else { return }
+        updateGameTime(game: game, hours: Int16(hours), minutes: Int16(minutes))
     }
 }

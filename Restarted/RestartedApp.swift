@@ -12,7 +12,7 @@ import SwiftData
 struct RestartedApp: App {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @StateObject var gameEntityVm = GameEntityViewModel()
-    @StateObject var gameSheetVm = GameSheetViewModel()
+    @StateObject var gameSheetVm = AlertsManager()
     
     var body: some Scene {
         WindowGroup {

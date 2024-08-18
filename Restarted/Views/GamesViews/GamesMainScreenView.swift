@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GamesMainScreenView: View {
     @EnvironmentObject var gameEntityVm: GameEntityViewModel
-    @EnvironmentObject var gameSheetVm: GameSheetViewModel
+    @EnvironmentObject var gameSheetVm: AlertsManager
     
     @State private var gameTitle: String = ""
     @State private var showDeleteDialog: Bool = false
@@ -37,7 +37,7 @@ struct GamesMainScreenView: View {
                             gameTitle: $gameTitle,
                             sheetModel: $selectedModel
                         )
-                        .presentationDetents([.fraction(0.3)])
+                        .presentationDetents([.fraction(0.2)])
                         .presentationDragIndicator(.visible)
                     }
                     .confirmationDialog(
@@ -64,15 +64,19 @@ struct GamesMainScreenView: View {
     private var gameList: some View {
         List {
             ForEach(gameEntityVm.savedEntities) { game in
-                Text(game.title ?? "")
-                    .listRowBackground(Color.background)
-                    .padding(.vertical, 8)
-                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                        editGameButton(game)
-                    }
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        deleteGameButton(game: game)
-                    }
+                HStack {
+                    Text(game.title ?? "")
+                    Spacer()
+                    NavigationLink(destination: SetUpTimerView(game: game)) { }
+                }
+                .listRowBackground(Color.background)
+                .padding(.vertical, 8)
+                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                    editGameButton(game)
+                }
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                    deleteGameButton(game: game)
+                }
             }
             .listRowSeparatorTint(Color.highlight)
         }
@@ -154,5 +158,5 @@ struct GamesMainScreenView: View {
 #Preview {
     GamesMainScreenView()
         .environmentObject(GameEntityViewModel())
-        .environmentObject(GameSheetViewModel())
+        .environmentObject(AlertsManager())
 }

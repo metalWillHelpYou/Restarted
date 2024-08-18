@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GameSheetView: View {
     @EnvironmentObject var gameEntityVm: GameEntityViewModel
-    @EnvironmentObject var gameSheetVm: GameSheetViewModel
+    @EnvironmentObject var alerts: AlertsManager
     @Binding var gameTitle: String
     @Binding var sheetModel: GameSheetModel
     @State private var showAlert: Bool = false
@@ -26,7 +26,7 @@ struct GameSheetView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
         .alert(isPresented: $showAlert) {
-            gameSheetVm.getAlert()
+            alerts.getNoTitleAlert()
         }
     }
 }
@@ -52,7 +52,7 @@ extension GameSheetView {
                 .foregroundStyle(.white)
                 .background(Color.highlight)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding()
+                .padding(.horizontal)
         })
     }
     
@@ -80,5 +80,5 @@ extension GameSheetView {
 #Preview {
     GameSheetView(gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)))
         .environmentObject(GameEntityViewModel())
-        .environmentObject(GameSheetViewModel())
+        .environmentObject(AlertsManager())
 }
