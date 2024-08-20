@@ -72,8 +72,7 @@ extension SetUpTimerView {
     }
     
     private var startButton: some View {
-        Button(action: {
-        }, label: {
+        NavigationLink(destination: TimerView(game: game, hours: hours, minutes: minutes)) {
             Text("Start")
                 .font(.headline)
                 .frame(height: 55)
@@ -82,9 +81,9 @@ extension SetUpTimerView {
                 .background(Color.highlight)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .padding(.horizontal)
-        })
+        }
     }
-    
+    // переместить
     private func initializeTime() {
         hours = Int(game?.hours ?? 0)
         minutes = Int(game?.minutes ?? 0)
@@ -103,7 +102,6 @@ extension SetUpTimerView {
         })
     }
 }
-
 
 #Preview {
     SetUpTimerView()
