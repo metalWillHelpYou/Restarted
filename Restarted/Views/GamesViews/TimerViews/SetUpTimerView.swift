@@ -10,6 +10,7 @@ import SwiftUI
 struct SetUpTimerView: View {
     @EnvironmentObject var gameEntityVm: GameEntityViewModel
     @EnvironmentObject var alerts: AlertsManager
+    @EnvironmentObject var timerVm: TimerViewModel
     var game: Game? // <- Если в этом файле будут проблемы, скорее всего причина тут
     
     @State private var hours: Int = 0
@@ -33,16 +34,10 @@ struct SetUpTimerView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    saveTimeButton
-                }
+                ToolbarItem(placement: .topBarTrailing) { saveTimeButton }
             }
-            .alert(isPresented: $showAlert) {
-                alerts.getSuccsesSaving()
-            }
-            .onAppear {
-                initializeTime()
-            }
+            .alert(isPresented: $showAlert) { alerts.getSuccsesSaving() }
+            .onAppear { timerVm.initializeTime(for: game) }
         }
     }
 }
@@ -83,11 +78,6 @@ extension SetUpTimerView {
                 .padding(.horizontal)
         }
     }
-    // переместить
-    private func initializeTime() {
-        hours = Int(game?.hours ?? 0)
-        minutes = Int(game?.minutes ?? 0)
-    }
     
     private var saveTimeButton: some View {
         Button(action: {
@@ -106,4 +96,5 @@ extension SetUpTimerView {
 #Preview {
     SetUpTimerView()
         .environmentObject(GameEntityViewModel())
+        .environmentObject(TimerViewModel())
 }

@@ -6,14 +6,10 @@
 //
 
 import SwiftUI
-import CoreData
-import Combine
 
 struct TimerView: View {
     @Environment(\.dismiss) var dismiss
-    @State private var timerSubscription: AnyCancellable?
-    @State private var timeRemaining: Int = 0
-    @State private var isTimerRunning: Bool = false
+    @EnvironmentObject var timerVM: TimerViewModel
     
     var game: Game?
     var hours: Int
@@ -25,18 +21,16 @@ struct TimerView: View {
             ZStack {
                 Circle()
                     .stroke(.white, lineWidth: 2)
+                    .padding()
                 
                 VStack {
                     if let game = game {
                         Text("Game: \(game.title ?? "Unknown")")
-                        Text("\(timeString(time: timeRemaining))")
+                        Text(timerVM.timeString())
                             .font(.largeTitle)
                             .padding()
                     } else {
-                        Text("Now you're playng: Dota")
-                        Text("10:32:22")
-                            .font(.largeTitle)
-                            .padding()
+                        Text("Can't detect any game")
                     }
                 }
             }
@@ -49,46 +43,23 @@ struct TimerView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .padding()
         .background(.black)
         .foregroundStyle(.white)
         .navigationBarBackButtonHidden(true)
-        .onAppear { startTimer() }
-    }
-    // переместить
-    private func startTimer() {
-        timeRemaining = (hours * 3600) + (minutes * 60)
-        
-        timerSubscription = Timer.publish(every: 1.0, on: .main, in: .common)
-            .autoconnect()
-            .sink { _ in
-                if timeRemaining > 0 {
-                    timeRemaining -= 1
-                } else {
-                    timerSubscription?.cancel()
-                }
-            }
-    }
-    // переместить
-    private func timeString(time: Int) -> String {
-        let hours = time / 3600
-        let minutes = (time % 3600) / 60
-        let seconds = time % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+        .onAppear { timerVM.startTimer(hours: hours, minutes: minutes) }
     }
 }
-
-#Preview {
-    TimerView(game: nil, hours: 1, minutes: 30)
-}
-
 
 extension TimerView {
     private var pauseButton: some View {
         Button(action: {
-            isTimerRunning.toggle()
+            if timerVM.isTimerRunning {
+                timerVM.pauseTimer()
+            } else {
+                timerVM.resumeTimer()
+            }
         }, label: {
-            Text(isTimerRunning ? "Pause" : "Start")
+            Text(timerVM.isTimerRunning ? "Pause" : "Start")
                 .frame(maxWidth: .infinity)
                 .padding()
                 .padding(.horizontal)
@@ -101,7 +72,7 @@ extension TimerView {
     
     private var stopButton: some View {
         Button(action: {
-            timerSubscription?.cancel()
+            timerVM.stopTimer()
             dismiss()
         }, label: {
             Text("Stop")
@@ -113,4 +84,9 @@ extension TimerView {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         })
     }
+}
+
+#Preview {
+    TimerView(game: nil, hours: 1, minutes: 30)
+        .environmentObject(TimerViewModel())
 }

@@ -36,6 +36,7 @@
 		9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8129F2C720C27005A6085 /* PlusButton.swift */; };
 		9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A22C721067005A6085 /* SetUpTimerView.swift */; };
 		9BD812A52C74F044005A6085 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A42C74F044005A6085 /* TimerView.swift */; };
+		9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A62C7519F9005A6085 /* TimerViewModel.swift */; };
 		9BDE50452C0A005A00910F23 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50442C0A005A00910F23 /* Habit.swift */; };
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BDE504A2C0A03B100910F23 /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50492C0A03B100910F23 /* HabitView.swift */; };
@@ -75,6 +76,7 @@
 		9BD8129F2C720C27005A6085 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		9BD812A22C721067005A6085 /* SetUpTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpTimerView.swift; sourceTree = "<group>"; };
 		9BD812A42C74F044005A6085 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
+		9BD812A62C7519F9005A6085 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		9BDE50442C0A005A00910F23 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 		9BDE50472C0A02F400910F23 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		9BDE50492C0A03B100910F23 /* HabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitView.swift; sourceTree = "<group>"; };
@@ -245,6 +247,7 @@
 			isa = PBXGroup;
 			children = (
 				9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */,
+				9BD812A62C7519F9005A6085 /* TimerViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
+				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
 				9B9DE10F2C63FEA400422443 /* GameModel.xcdatamodeld in Sources */,
