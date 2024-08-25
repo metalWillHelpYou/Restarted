@@ -7,11 +7,13 @@
 
 import SwiftUI
 
+import SwiftUI
+
 struct SetUpTimerView: View {
     @EnvironmentObject var gameEntityVm: GameEntityViewModel
     @EnvironmentObject var alerts: AlertsManager
     @EnvironmentObject var timerVm: TimerViewModel
-    var game: Game? // <- Если в этом файле будут проблемы, скорее всего причина тут
+    var game: Game?
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
@@ -24,6 +26,7 @@ struct SetUpTimerView: View {
                 
                 Text("Set Time for \(gameTitle)")
                     .font(.title)
+                    .padding(.bottom)
                 
                 timePickers
                 
@@ -37,14 +40,14 @@ struct SetUpTimerView: View {
                 ToolbarItem(placement: .topBarTrailing) { saveTimeButton }
             }
             .alert(isPresented: $showAlert) { alerts.getSuccsesSaving() }
-            .onAppear { timerVm.initializeTime(for: game) }
+            .onAppear { initializeTime() }
         }
     }
 }
 
 extension SetUpTimerView {
     private var gameTitle: String {
-        game?.title ?? "Game"
+        game?.title ?? "Unknown Game"
     }
     
     private var timePickers: some View {
@@ -67,31 +70,40 @@ extension SetUpTimerView {
     }
     
     private var startButton: some View {
-        NavigationLink(destination: TimerView(game: game, hours: hours, minutes: minutes)) {
-            Text("Start")
-                .font(.headline)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .foregroundStyle(.white)
-                .background(Color.highlight)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .padding(.horizontal)
-        }
+        NavigationLink(
+            destination: TimerView(game: game, hours: hours, minutes: minutes),
+            label: {
+                Text("Start")
+                    .font(.headline)
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(.white)
+                    .background(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .padding(.horizontal)
+                    .animation(.easeInOut(duration: 0.3), value: hours + minutes)
+            }
+        )
+        .disabled(hours == 0 && minutes == 0)
     }
     
     private var saveTimeButton: some View {
         Button(action: {
-            gameEntityVm.saveTime(
-                game: game,
-                hours: hours,
-                minutes: minutes
-            )
+            guard let game = game else { return }
+            gameEntityVm.saveTime(game: game, hours: hours, minutes: minutes)
             showAlert.toggle()
         }, label: {
             Text("Save time")
         })
     }
+    
+    private func initializeTime() {
+        guard let game = game else { return }
+        hours = Int(game.hours)
+        minutes = Int(game.minutes)
+    }
 }
+
 
 #Preview {
     SetUpTimerView()

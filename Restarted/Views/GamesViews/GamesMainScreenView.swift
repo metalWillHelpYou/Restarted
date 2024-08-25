@@ -40,11 +40,7 @@ struct GamesMainScreenView: View {
                         .presentationDetents([.fraction(0.2)])
                         .presentationDragIndicator(.visible)
                     }
-                    .confirmationDialog(
-                        "Are you sure?",
-                        isPresented: $showDeleteDialog,
-                        titleVisibility: .visible
-                    ) {
+                    .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
                         deleteConfirmationButtons
                     }
             }
