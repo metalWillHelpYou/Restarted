@@ -8,44 +8,49 @@
 import SwiftUI
 
 struct ArticleMainScreenView: View {
+    @StateObject private var viewModel = ArticleEntityViewModel()
     
     var body: some View {
-        NavigationStack {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 2){
-                    articleSection(title: "Beginner",
-                                   articles: ArticleData.articles.filter { $0.level == .beginner })
-                    
-                    articleSection(title: "Intermediate",
-                                   articles: ArticleData.articles.filter { $0.level == .intermediate })
+        NavigationView {
+            List(viewModel.savedArticles) { article in
+                VStack(alignment: .leading) {
+                    Text(article.title ?? "Untitled")
+                        .font(.headline)
+                    Text(article.content ?? "No content")
+                        .font(.subheadline)
+                    if article.isRead {
+                        Text("Read")
+                            .foregroundColor(.gray)
+                            .italic()
+                    }
+                }
+                .onTapGesture {
+                    viewModel.markArticleAsRead(article)
                 }
             }
             .navigationTitle("Articles")
-            .padding(.horizontal, 16)
-            .padding(.bottom, 24)
-            .background(Color.background)
-            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
         }
     }
 }
 
 #Preview {
     ArticleMainScreenView()
+        .environmentObject(ArticleEntityViewModel())
 }
 
 //TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
 
-extension ArticleMainScreenView {
-    @ViewBuilder
-    private func articleSection(title: String, articles: [Article]) -> some View {
-        Text(title)
-            .font(.title)
-            .frame(maxWidth: .infinity, alignment: .leading)
-        
-        ForEach(articles) { article in
-            NavigationLink(destination: ArticleView(article: article)) {
-                ArticleCardView(article: article)
-            }
-        }
-    }
-}
+//extension ArticleMainScreenView {
+//    @ViewBuilder
+//    private func articleSection(title: String, articles: [Article]) -> some View {
+//        Text(title)
+//            .font(.title)
+//            .frame(maxWidth: .infinity, alignment: .leading)
+//
+//        ForEach(articles) { article in
+//            NavigationLink(destination: ArticleView(article: article)) {
+//                ArticleCardView(article: article)
+//            }
+//        }
+//    }
+//}

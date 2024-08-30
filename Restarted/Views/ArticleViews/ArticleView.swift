@@ -8,27 +8,28 @@
 import SwiftUI
 
 struct ArticleView: View {
-    let article: Article
+    @EnvironmentObject var vm: ArticleEntityViewModel
+    //let article: Article
     
     @State private var isComplete = false
     @State private var isRead = false
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(article.title)
-                .multilineTextAlignment(.leading)
-                .bold()
-                .font(.title)
-            
-            Image(article.imageName)
-                .resizable()
-                .frame(height: 228)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .shadow(color: .black.opacity(0.4), radius: 4, y: 4)
-            
-            Text(article.content)
-            
-            Spacer()
+//            Text(article.title)
+//                .multilineTextAlignment(.leading)
+//                .bold()
+//                .font(.title)
+//            
+//            Image(article.imageName)
+//                .resizable()
+//                .frame(height: 228)
+//                .clipShape(RoundedRectangle(cornerRadius: 15))
+//                .shadow(color: .black.opacity(0.4), radius: 4, y: 4)
+//            
+//            Text(article.content)
+//            
+//            Spacer()
             
             iReadThisButton
         }
@@ -37,12 +38,7 @@ struct ArticleView: View {
     }
 }
 
-#Preview {
-    ArticleView(article: Article(title: "What is video game addiction?", content:"Video game addiction is a behavioral disorder characterized by excessive and com", imageName: "Beginer1st", level: .beginner))
-}
-
 //TODO: показать сколько времени потребуется для прочтения
-
 extension ArticleView {
     private var iReadThisButton: some View {
         ZStack {
@@ -91,4 +87,9 @@ extension ArticleView {
             }
         }
     }
+}
+
+#Preview {
+    ArticleView()
+        .environmentObject(ArticleEntityViewModel())
 }

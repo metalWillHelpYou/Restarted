@@ -11,6 +11,9 @@ import SwiftData
 @main
 struct RestartedApp: App {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    
+    @StateObject var articleEntityVm = ArticleEntityViewModel()
+    
     @StateObject var gameEntityVm = GameEntityViewModel()
     @StateObject var gameSheetVm = AlertsManager()
     @StateObject var timerVm = TimerViewModel()
@@ -18,6 +21,7 @@ struct RestartedApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(articleEntityVm)
                 .environmentObject(gameEntityVm)
                 .environmentObject(gameSheetVm)
                 .environmentObject(timerVm)
