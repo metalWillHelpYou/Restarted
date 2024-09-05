@@ -8,28 +8,29 @@
 import SwiftUI
 
 struct ArticleView: View {
-    @EnvironmentObject var vm: ArticleEntityViewModel
-    //let article: Article
+    @EnvironmentObject var articleVm: ArticleEntityViewModel
+    var article: Article?
     
     @State private var isComplete = false
     @State private var isRead = false
     
     var body: some View {
         VStack(alignment: .leading) {
-//            Text(article.title)
-//                .multilineTextAlignment(.leading)
-//                .bold()
-//                .font(.title)
-//            
+            Spacer()
+            Text(article?.title ?? "Unknown")
+                .multilineTextAlignment(.leading)
+                .bold()
+                .font(.title)
+            
 //            Image(article.imageName)
 //                .resizable()
 //                .frame(height: 228)
 //                .clipShape(RoundedRectangle(cornerRadius: 15))
 //                .shadow(color: .black.opacity(0.4), radius: 4, y: 4)
-//            
-//            Text(article.content)
-//            
-//            Spacer()
+            
+            Text(article?.content ?? "Unknown")
+            
+            Spacer()
             
             iReadThisButton
         }
@@ -43,11 +44,9 @@ extension ArticleView {
     private var iReadThisButton: some View {
         ZStack {
             Rectangle()
-                .fill(isRead ? Color.green : .mint)
-                .frame(maxWidth: isComplete ? .infinity : 0)
+                .fill(Color.highlight)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(.gray)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
             HStack {
@@ -60,36 +59,27 @@ extension ArticleView {
             }
         }
         .font(.title3)
-        .frame(maxWidth: .infinity)
-        .onLongPressGesture(minimumDuration: 0.5, maximumDistance: 50) { (isPressing) in
-            if isPressing {
-                withAnimation(.easeInOut(duration: 1)) {
-                    isComplete = true
-                }
-                
-            } else {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    if !isRead {
-                        withAnimation(.easeInOut) {
-                            isComplete = false
-                        }
-                    }
-                }
-            }
-        } perform: {
-            withAnimation(.easeInOut) {
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        .onTapGesture {
+            //withAnimation(.spring()) {
                 isRead.toggle()
                 if isRead {
                     HapticManager.instance.notification(type: .success)
                 } else {
                     HapticManager.instance.notification(type: .warning)
                 }
-            }
+                if let article = article {
+                    articleVm.updateReadStatus(for: article, isRead: isRead)
+                }
+           // }
+        }
+        .onAppear {
+            isRead = ((article?.isRead) != nil)
         }
     }
 }
 
 #Preview {
-    ArticleView()
+    ArticleView(article: nil)
         .environmentObject(ArticleEntityViewModel())
 }

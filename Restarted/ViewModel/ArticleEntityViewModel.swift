@@ -86,8 +86,8 @@ class ArticleEntityViewModel: ObservableObject {
         }
     }
 
-    func markArticleAsRead(_ article: Article) {
-        article.isRead = true
+    func updateReadStatus(for article: Article, isRead: Bool) {
+        article.isRead = isRead
         saveData()
     }
     

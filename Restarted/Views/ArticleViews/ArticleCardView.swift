@@ -8,25 +8,35 @@
 import SwiftUI
 
 struct ArticleCardView: View {
-    //let article: Article
+    var article: Article?
     
     var body: some View {
         ZStack(alignment: .leading) {
-//            RoundedRectangle(cornerRadius: 15)
-//                .fill(.clear)
-//                .frame(height: 72)
-//                .strokeBacground()
-//            
-//            Text(article.title)
-//                .foregroundColor(Color.text)
-//                .font(.body)
-//                .multilineTextAlignment(.leading)
-//                .padding(.horizontal, 16)
+            RoundedRectangle(cornerRadius: 15)
+                .fill(.clear)
+                .frame(height: 72)
+                .strokeBacground()
+            
+            HStack {
+                if let isRead = article?.isRead, isRead {
+                    Image(systemName: "checkmark.circle.fill")
+                        .foregroundColor(.green)
+                        .padding(.leading, 16)
+                }
+                
+                Text(article?.title ?? "Unknown")
+                    .foregroundColor(article?.isRead == true ? .gray : Color.text)
+                    .font(.body)
+                    .multilineTextAlignment(.leading)
+                    .padding(.horizontal, 16)
+            }
         }
         .clipShape(RoundedRectangle(cornerRadius: 15))
-        .padding(.vertical, 8)
+        .padding(.horizontal)
+        .padding(.vertical, 4)
     }
 }
+
 
 #Preview {
     ArticleCardView()

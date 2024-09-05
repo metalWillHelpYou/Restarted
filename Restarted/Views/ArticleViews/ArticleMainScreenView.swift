@@ -8,49 +8,29 @@
 import SwiftUI
 
 struct ArticleMainScreenView: View {
-    @StateObject private var viewModel = ArticleEntityViewModel()
+    @StateObject private var articleVm = ArticleEntityViewModel()
     
     var body: some View {
-        NavigationView {
-            List(viewModel.savedArticles) { article in
-                VStack(alignment: .leading) {
-                    Text(article.title ?? "Untitled")
-                        .font(.headline)
-                    Text(article.content ?? "No content")
-                        .font(.subheadline)
-                    if article.isRead {
-                        Text("Read")
-                            .foregroundColor(.gray)
-                            .italic()
-                    }
-                }
-                .onTapGesture {
-                    viewModel.markArticleAsRead(article)
+        NavigationStack {
+            ScrollView {
+                VStack {
+                    ForEach(articleVm.savedArticles) { article in
+                         NavigationLink(destination: ArticleView(article: article)) {
+                             ArticleCardView(article: article)
+                         }
+                     }
                 }
             }
             .navigationTitle("Articles")
+            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
+            .background(Color.background)
         }
     }
 }
+
+//TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
 
 #Preview {
     ArticleMainScreenView()
         .environmentObject(ArticleEntityViewModel())
 }
-
-//TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
-
-//extension ArticleMainScreenView {
-//    @ViewBuilder
-//    private func articleSection(title: String, articles: [Article]) -> some View {
-//        Text(title)
-//            .font(.title)
-//            .frame(maxWidth: .infinity, alignment: .leading)
-//
-//        ForEach(articles) { article in
-//            NavigationLink(destination: ArticleView(article: article)) {
-//                ArticleCardView(article: article)
-//            }
-//        }
-//    }
-//}
