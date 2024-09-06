@@ -8,27 +8,38 @@
 import SwiftUI
 
 struct ArticleCardView: View {
-    var article: Article?
+    @EnvironmentObject var articleVm: ArticleEntityViewModel
+    @AppStorage("background") var background: String?
+    var article: Article
+    
+    @State private var isRead: Bool = false
     
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(.clear)
+                .fill(article.isRead ? .highlight: .clear)
                 .frame(height: 72)
                 .strokeBacground()
             
             HStack {
-                if let isRead = article?.isRead, isRead {
-                    Image(systemName: "checkmark.circle.fill")
-                        .foregroundColor(.green)
-                        .padding(.leading, 16)
-                }
-                
-                Text(article?.title ?? "Unknown")
-                    .foregroundColor(article?.isRead == true ? .gray : Color.text)
+                Text(article.title ?? "Unknown")
+                    .foregroundColor(article.isRead ? .gray : Color.text)
                     .font(.body)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal, 16)
+                
+                Spacer()
+                Text(article.isRead.description)
+                
+                Button(action: {
+                    isRead.toggle()
+                    article.isRead = isRead
+                    //articleVm.saveData()
+                }, label: {
+                    Image(systemName: "checkmark.circle")
+                        .foregroundColor(.highlight)
+                        .padding()
+                })
             }
         }
         .clipShape(RoundedRectangle(cornerRadius: 15))
@@ -39,6 +50,11 @@ struct ArticleCardView: View {
 
 
 #Preview {
-    ArticleCardView()
+    let testArticle = Article(context: ArticleEntityViewModel().container.viewContext)
+    testArticle.title = "Test Article"
+    testArticle.content = "This is a test article for preview purposes."
+    testArticle.isRead = false
+    
+    return ArticleCardView(article: testArticle)
         .environmentObject(ArticleEntityViewModel())
 }

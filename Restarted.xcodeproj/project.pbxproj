@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
 		9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* SetHabitView.swift */; };
+		9B1388E62C8A24BC00D598E6 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B1388E42C8A24BC00D598E6 /* ArticleModel.xcdatamodeld */; };
 		9B2AFD4A2C00996200E908F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD492C00996200E908F5 /* Assets.xcassets */; };
 		9B2AFD4E2C00996200E908F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD4D2C00996200E908F5 /* Preview Assets.xcassets */; };
 		9B2AFD602C0099F100E908F5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD542C0099F100E908F5 /* Article.swift */; };
@@ -23,6 +24,7 @@
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
+		9B42AE3B2C8A50F800343433 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */; };
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
@@ -31,9 +33,9 @@
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
-		9B9DE10F2C63FEA400422443 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE10D2C63FEA400422443 /* GameModel.xcdatamodeld */; };
 		9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */; };
 		9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */; };
+		9BCF7F372C8A244500C10C54 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF7F352C8A244500C10C54 /* GameModel.xcdatamodeld */; };
 		9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8129F2C720C27005A6085 /* PlusButton.swift */; };
 		9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A22C721067005A6085 /* SetUpTimerView.swift */; };
 		9BD812A52C74F044005A6085 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A42C74F044005A6085 /* TimerView.swift */; };
@@ -41,7 +43,6 @@
 		9BDE50452C0A005A00910F23 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50442C0A005A00910F23 /* Habit.swift */; };
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BDE504A2C0A03B100910F23 /* HabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50492C0A03B100910F23 /* HabitView.swift */; };
-		9BE00D122C81CD3A007B03A2 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA52C81CBCA006E2ECD /* ArticleModel.xcdatamodeld */; };
 		9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +50,7 @@
 /* Begin PBXFileReference section */
 		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		9B0EA5662C10C89C00E8291C /* SetHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHabitView.swift; sourceTree = "<group>"; };
+		9B1388E52C8A24BC00D598E6 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9B2AFD422C00996100E908F5 /* Restarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2AFD492C00996200E908F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B2AFD4B2C00996200E908F5 /* Restarted.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Restarted.entitlements; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
+		9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
@@ -73,10 +76,9 @@
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		9B9DE10E2C63FEA400422443 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntityViewModel.swift; sourceTree = "<group>"; };
-		9BB29BA62C81CBCA006E2ECD /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleEntityViewModel.swift; sourceTree = "<group>"; };
+		9BCF7F362C8A244500C10C54 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9BD8129F2C720C27005A6085 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		9BD812A22C721067005A6085 /* SetUpTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpTimerView.swift; sourceTree = "<group>"; };
 		9BD812A42C74F044005A6085 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				9B2AFD822C009A3100E908F5 /* ViewModel */,
 				9B2AFD772C009A0D00E908F5 /* Views */,
 				9B2AFD492C00996200E908F5 /* Assets.xcassets */,
+				9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */,
 				9B2AFD4B2C00996200E908F5 /* Restarted.entitlements */,
 				9B2AFD4C2C00996200E908F5 /* Preview Content */,
 			);
@@ -179,8 +182,8 @@
 			children = (
 				9BDE50442C0A005A00910F23 /* Habit.swift */,
 				9B2AFD542C0099F100E908F5 /* Article.swift */,
-				9BB29BA52C81CBCA006E2ECD /* ArticleModel.xcdatamodeld */,
-				9B9DE10D2C63FEA400422443 /* GameModel.xcdatamodeld */,
+				9B1388E42C8A24BC00D598E6 /* ArticleModel.xcdatamodeld */,
+				9BCF7F352C8A244500C10C54 /* GameModel.xcdatamodeld */,
 				9B3AD9062C0F60AF00230004 /* Helpers */,
 			);
 			path = Model;
@@ -346,6 +349,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B42AE3B2C8A50F800343433 /* Launch Screen.storyboard in Resources */,
 				9B2AFD4E2C00996200E908F5 /* Preview Assets.xcassets in Resources */,
 				9B2AFD4A2C00996200E908F5 /* Assets.xcassets in Resources */,
 			);
@@ -374,14 +378,13 @@
 				9B5834502C6792DE007FAB6C /* GameSheetModel.swift in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
-				9BE00D122C81CD3A007B03A2 /* ArticleModel.xcdatamodeld in Sources */,
+				9B1388E62C8A24BC00D598E6 /* ArticleModel.xcdatamodeld in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
-				9B9DE10F2C63FEA400422443 /* GameModel.xcdatamodeld in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
@@ -393,6 +396,7 @@
 				9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
+				9BCF7F372C8A244500C10C54 /* GameModel.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,6 +536,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -571,6 +576,7 @@
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = "Launch Screen.storyboard";
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -615,25 +621,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9B9DE10D2C63FEA400422443 /* GameModel.xcdatamodeld */ = {
+		9B1388E42C8A24BC00D598E6 /* ArticleModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9B9DE10E2C63FEA400422443 /* GameModel.xcdatamodel */,
+				9B1388E52C8A24BC00D598E6 /* ArticleModel.xcdatamodel */,
 			);
-			currentVersion = 9B9DE10E2C63FEA400422443 /* GameModel.xcdatamodel */;
-			name = GameModel.xcdatamodeld;
-			path = "/Users/metalwillhelpyou/Swift/projects/UI/In Progress/Restarted/Restarted/Model/GameModel.xcdatamodeld";
+			currentVersion = 9B1388E52C8A24BC00D598E6 /* ArticleModel.xcdatamodel */;
+			name = ArticleModel.xcdatamodeld;
+			path = /Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/Model/ArticleModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		9BB29BA52C81CBCA006E2ECD /* ArticleModel.xcdatamodeld */ = {
+		9BCF7F352C8A244500C10C54 /* GameModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9BB29BA62C81CBCA006E2ECD /* ArticleModel.xcdatamodel */,
+				9BCF7F362C8A244500C10C54 /* GameModel.xcdatamodel */,
 			);
-			currentVersion = 9BB29BA62C81CBCA006E2ECD /* ArticleModel.xcdatamodel */;
-			name = ArticleModel.xcdatamodeld;
-			path = "/Users/metalwillhelpyou/Swift/projects/UI/In Progress/Restarted/Restarted/Model/ArticleModel.xcdatamodeld";
+			currentVersion = 9BCF7F362C8A244500C10C54 /* GameModel.xcdatamodel */;
+			name = GameModel.xcdatamodeld;
+			path = "/Users/metalwillhelpyou/.Trash/Restarted 19.37.21/Restarted/Model/GameModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
