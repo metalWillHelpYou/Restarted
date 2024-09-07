@@ -9,34 +9,32 @@ import SwiftUI
 
 struct ArticleCardView: View {
     @EnvironmentObject var articleVm: ArticleEntityViewModel
-    @AppStorage("background") var background: String?
     var article: Article
-    
-    @State private var isRead: Bool = false
-    
+
+    @AppStorage("isRead_\(UUID().uuidString)") var isRead: Bool = false
+
     var body: some View {
         ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 15)
-                .fill(article.isRead ? .highlight: .clear)
+                .fill(isRead ? Color.green.opacity(0.3) : Color.clear)
                 .frame(height: 72)
                 .strokeBacground()
             
             HStack {
                 Text(article.title ?? "Unknown")
-                    .foregroundColor(article.isRead ? .gray : Color.text)
+                    .foregroundColor(isRead ? .gray : Color.text)
                     .font(.body)
                     .multilineTextAlignment(.leading)
                     .padding(.horizontal, 16)
                 
                 Spacer()
+                
                 Text(article.isRead.description)
                 
                 Button(action: {
-                    isRead.toggle()
-                    article.isRead = isRead
-                    //articleVm.saveData()
+                    toggleReadStatus()
                 }, label: {
-                    Image(systemName: "checkmark.circle")
+                    Image(systemName: isRead ? "checkmark.circle.fill" : "checkmark.circle")
                         .foregroundColor(.highlight)
                         .padding()
                 })
@@ -45,9 +43,21 @@ struct ArticleCardView: View {
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .padding(.horizontal)
         .padding(.vertical, 4)
+        .onDisappear() {
+            articleVm.saveData()
+        }
+        .onAppear {
+            self.isRead = article.isRead
+        }
+    }
+
+    private func toggleReadStatus() {
+        let newStatus = !isRead
+        print("Changing isRead status from \(isRead) to \(newStatus) for article: \(article.title ?? "Unknown")")
+        isRead = newStatus
+        articleVm.updateReadStatus(for: article, isRead: newStatus)
     }
 }
-
 
 #Preview {
     let testArticle = Article(context: ArticleEntityViewModel().container.viewContext)
@@ -58,3 +68,4 @@ struct ArticleCardView: View {
     return ArticleCardView(article: testArticle)
         .environmentObject(ArticleEntityViewModel())
 }
+

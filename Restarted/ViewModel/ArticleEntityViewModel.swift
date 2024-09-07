@@ -19,17 +19,18 @@ class ArticleEntityViewModel: ObservableObject {
                 print("Error: \(error)")
             }
         }
-        
+
         let hasPreloaded = UserDefaults.standard.bool(forKey: "hasPreloadedData")
-        
+
         if !hasPreloaded {
+            print("Preloading articles for the first time")
             preloadData()
             UserDefaults.standard.set(true, forKey: "hasPreloadedData")
         }
-        
+
         fetchArticles()
     }
-    
+
     func fetchArticles() {
         let request = NSFetchRequest<Article>(entityName: "Article")
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Article.title, ascending: true)]
@@ -41,62 +42,53 @@ class ArticleEntityViewModel: ObservableObject {
         }
     }
     
-    private func isDatabaseEmpty() -> Bool {
-        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
-        do {
-            let count = try container.viewContext.count(for: fetchRequest)
-            return count == 0
-        } catch {
-            return true
-        }
-    }
-    
-    private func preloadData() {
-        clearExistingData()
-        
+    func preloadData() {
         let context = container.viewContext
         
-        let articles = [
-            (title: "Article 1", content: "Content for article 1", isRead: false),
-            (title: "Article 2", content: "Content for article 2", isRead: false)
-        ]
-        
-        for articleData in articles {
-            let article = Article(context: context)
-            article.title = articleData.title
-            article.content = articleData.content
-            article.isRead = articleData.isRead
-        }
+        let fetchRequest: NSFetchRequest<Article> = Article.fetchRequest()
         
         do {
-            try context.save()
-        } catch let error {
-            print("Error saving preloaded data: \(error)")
+            let count = try context.count(for: fetchRequest)
+            if count == 0 {
+                print("Database is empty, preloading articles")
+                let articles = [
+                    (title: "Article 1", content: "Content for article 1", isRead: false),
+                    (title: "Article 2", content: "Content for article 2", isRead: false)
+                ]
+                
+                for articleData in articles {
+                    let article = Article(context: context)
+                    article.title = articleData.title
+                    article.content = articleData.content
+                    article.isRead = articleData.isRead
+                }
+                
+                try context.save()
+                print("Preloaded articles saved successfully")
+            } else {
+                print("Articles already exist in database, skipping preload")
+            }
+        } catch {
+            print("Error checking if database is empty: \(error)")
         }
     }
 
-    private func clearExistingData() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = Article.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-        
-        do {
-            try container.viewContext.execute(deleteRequest)
-        } catch let error {
-            print("Error deleting existing data: \(error)")
-        }
-    }
 
     func updateReadStatus(for article: Article, isRead: Bool) {
         article.isRead = isRead
         saveData()
+        print("Updated read status for \(article.title ?? "Unknown") to \(isRead)")
     }
-    
-    private func saveData() {
-        do {
-            try container.viewContext.save()
-            fetchArticles()
-        } catch let error {
-            print("Error saving data: \(error)")
+
+    func saveData() {
+        let context = container.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+                fetchArticles()
+            } catch let error {
+                print("Error saving data: \(error)")
+            }
         }
     }
 }

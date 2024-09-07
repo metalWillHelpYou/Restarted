@@ -16,7 +16,6 @@ struct ArticleView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            Spacer()
             Text(article?.title ?? "Unknown")
                 .multilineTextAlignment(.leading)
                 .bold()
@@ -31,53 +30,14 @@ struct ArticleView: View {
             Text(article?.content ?? "Unknown")
             
             Spacer()
-            
-            iReadThisButton
         }
-        .padding()
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(32)
         .background(Color.background)
     }
 }
 
 //TODO: показать сколько времени потребуется для прочтения
-extension ArticleView {
-    private var iReadThisButton: some View {
-        ZStack {
-            Rectangle()
-                .fill(Color.highlight)
-                .frame(height: 55)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-            
-            HStack {
-                Image(systemName: isRead ? "checkmark.circle" : "circle")
-                
-                Text("I read this")
-                    .font(.title2)
-                    .frame(height: 56)
-                    .cornerRadius(15)
-            }
-        }
-        .font(.title3)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-        .onTapGesture {
-            //withAnimation(.spring()) {
-                isRead.toggle()
-                if isRead {
-                    HapticManager.instance.notification(type: .success)
-                } else {
-                    HapticManager.instance.notification(type: .warning)
-                }
-                if let article = article {
-                    articleVm.updateReadStatus(for: article, isRead: isRead)
-                }
-           // }
-        }
-        .onAppear {
-            isRead = ((article?.isRead) != nil)
-        }
-    }
-}
 
 #Preview {
     ArticleView(article: nil)
