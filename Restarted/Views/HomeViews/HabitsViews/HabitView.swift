@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HabitView: View {
-    let habit: Habit
+    let habit: FakeHabit
     
     var body: some View {
         ZStack(alignment: .leading) {
@@ -36,5 +36,6 @@ struct HabitView: View {
 }
 
 #Preview {
-    HabitView(habit: Habit(title: "Title", imageName: "Breathing"))
+    HabitView(habit: FakeHabit(title: "Title", imageName: "Breathing"))
+        .environmentObject(HabitEntityViewModel())
 }

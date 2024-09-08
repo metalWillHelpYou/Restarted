@@ -8,12 +8,20 @@
 import SwiftUI
 
 struct SetHabitView: View {
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    @EnvironmentObject var habitVm: HabitEntityViewModel
+    @Environment(\.dismiss) var dismiss
+    
+    @State private var titleString: String = ""
+    @State private var goalText: String = ""
+    
+    var habit: Habit?
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                //GoalAndPeriodView()
+            VStack(alignment: .leading, spacing: 24) {
+                title
+                
+                goalAndPeriod
                 
                 timeRange
                 
@@ -33,11 +41,42 @@ struct SetHabitView: View {
     }
 }
 
-#Preview {
-    SetHabitView()
-}
-
 extension SetHabitView {
+    private var title: some View {
+        VStack {
+            TextField("Enter habit title...", text: $titleString)
+                .padding(.leading, 8)
+                .frame(width: 200, height: 40)
+                .foregroundStyle(.blue)
+                .background(Color.highlight.opacity(0.4))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+        }
+    }
+    
+    private var goalAndPeriod: some View {
+        HStack {
+            VStack(alignment: .leading) {
+                Text("Time goal")
+                    .font(.title2).bold()
+                
+                TextField("Type here your goal", text: $goalText)
+                    .padding(.leading, 8)
+                    .frame(height: 40)
+                    .foregroundStyle(.blue)
+                    .background(Color.highlight.opacity(0.4))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+            }
+            
+            Spacer()
+            
+            VStack(alignment: .leading) {
+                Text("Period")
+                    .font(.title2).bold()
+            }
+        }
+    }
+    
+    
     private var timeRange: some View {
         VStack(alignment: .leading) {
             Text("Time Range")
@@ -74,15 +113,21 @@ extension SetHabitView {
     
     private var saveButton: some View {
         Button(action: {
-            
+            //habitVm.addHabit(titleString, goal: Int32(goalText) ?? 0)
+            dismiss()
         }) {
             Text("Save habit")
                 .font(.title2)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
                 .background(Color.highlight)
-                .foregroundColor(userTheme == .light ? .white : .black)
+                .foregroundStyle(Color.text)
                 .cornerRadius(15)
         }
     }
+}
+
+#Preview {
+    SetHabitView(habit: nil)
+        .environmentObject(HabitEntityViewModel())
 }

@@ -23,10 +23,6 @@ struct HomeView: View {
     }
 }
 
-#Preview {
-    HomeView()
-}
-
 extension HomeView {
     private var workSection: some View {
         VStack {
@@ -61,4 +57,9 @@ extension HomeView {
         }
         .padding()
     }
+}
+
+#Preview {
+    HomeView()
+        .environmentObject(HabitEntityViewModel())
 }

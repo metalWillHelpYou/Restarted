@@ -12,6 +12,8 @@ import SwiftData
 struct RestartedApp: App {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     
+    @StateObject var habitEntityVm = HabitEntityViewModel()
+    
     @StateObject var articleEntityVm = ArticleEntityViewModel()
     
     @StateObject var gameEntityVm = GameEntityViewModel()
@@ -21,6 +23,7 @@ struct RestartedApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(habitEntityVm)
                 .environmentObject(articleEntityVm)
                 .environmentObject(gameEntityVm)
                 .environmentObject(gameSheetVm)
