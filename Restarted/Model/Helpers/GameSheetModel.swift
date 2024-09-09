@@ -13,7 +13,7 @@ struct GameSheetModel: Identifiable {
     
     let textFieldText: String
     let buttonLabel: String
-    let buttonType: GameSheetButtonType
+    let buttonType: SheetButtonType
 }
 
 enum GameSheetTitle: String {
@@ -24,7 +24,7 @@ enum GameSheetTitle: String {
     case editButtonLabel = "Edit game"
 }
 
-enum GameSheetButtonType {
+enum SheetButtonType {
     case add
     case edit
 }

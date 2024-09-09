@@ -8,36 +8,34 @@
 import SwiftUI
 
 struct SetHabitView: View {
-    @EnvironmentObject var habitVm: HabitEntityViewModel  // ViewModel для управления привычками
-    @Environment(\.dismiss) var dismiss  // Для закрытия представления
-
-    @State private var titleString: String = ""  // Название привычки
-    @State private var goalText: String = ""  // Цель (число)
-
+    @EnvironmentObject var habitVm: HabitEntityViewModel
+    @Environment(\.dismiss) var dismiss
+    @State private var titleString: String = ""
+    @State private var goalText: String = ""
+    @Binding var sheetModel: HabitSheetModel
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 24) {
-                titleSection  // Секция с полем ввода названия привычки
+                titleSection
                 
-                goalAndPeriodSection  // Секция для цели и периода
+                goalAndPeriodSection
                 
                 Spacer()
                 
-                saveButton  // Кнопка сохранения привычки
+                saveButton
             }
             .padding()
             .padding(.top)
             .background(Color.background)
             .onTapGesture {
-                self.hideKeyboard()  // Скрыть клавиатуру при касании вне текстовых полей
+                self.hideKeyboard()
             }
         }
     }
 }
 
-// MARK: - Components
 extension SetHabitView {
-    // Секция для ввода названия привычки
     private var titleSection: some View {
         VStack {
             TextField("Enter habit title...", text: $titleString)
@@ -49,7 +47,6 @@ extension SetHabitView {
         }
     }
     
-    // Секция для ввода цели и периода
     private var goalAndPeriodSection: some View {
         VStack {
             HStack {
@@ -71,31 +68,24 @@ extension SetHabitView {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .keyboardType(.numberPad)
                     .onChange(of: goalText) { oldValue, newValue in
-                        goalText = newValue.filter { $0.isNumber }  // Очищаем нечисловые символы
+                        goalText = newValue.filter { $0.isNumber }
                     }
                 
                 Spacer()
                 
                 Menu("Select period") {
                     Button("Day") {
-                        // Логика для выбора дня
                     }
                     
                     Button("Week") {
-                        // Логика для выбора недели
                     }
                 }
             }
         }
     }
     
-    // Кнопка сохранения привычки
     private var saveButton: some View {
-        Button(action: {
-            // Добавляем привычку в ViewModel
-            habitVm.addHabit(titleString, goal: Int32(goalText) ?? 0)
-            dismiss()  // Закрываем представление после сохранения
-        }) {
+        Button(action: handleButtonAction, label: {
             Text("Save habit")
                 .font(.title2)
                 .frame(maxWidth: .infinity)
@@ -103,12 +93,28 @@ extension SetHabitView {
                 .background(Color.highlight)
                 .foregroundStyle(Color.text)
                 .cornerRadius(15)
+        })
+    }
+}
+
+extension SetHabitView {
+    private func handleButtonAction() {
+        switch sheetModel.buttonType {
+        case .add:
+            habitVm.addHabit(titleString, goal: Int32(goalText) ?? 0)
+            titleString = ""
+            goalText = ""
+            dismiss()
+        case .edit:
+            if let habit = sheetModel.habit {
+                habitVm.editHabit(entity: habit, newTitle: titleString, newGoal: Int32(goalText) ?? 0)
+            dismiss()
+            }
         }
     }
 }
 
-// Превью экрана SetHabitView
 #Preview {
-    SetHabitView()
-        .environmentObject(HabitEntityViewModel())  // Подключаем ViewModel
+    SetHabitView(sheetModel: .constant(HabitSheetModel(titleText: "", goalText: "", buttonLabel: "", buttonType: .add)))
+        .environmentObject(HabitEntityViewModel())
 }
