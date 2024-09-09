@@ -8,113 +8,93 @@
 import SwiftUI
 
 struct SetHabitView: View {
-    @EnvironmentObject var habitVm: HabitEntityViewModel
-    @Environment(\.dismiss) var dismiss
-    
-    @State private var titleString: String = ""
-    @State private var goalText: String = ""
-    
-    var habit: Habit?
-    
+    @EnvironmentObject var habitVm: HabitEntityViewModel  // ViewModel для управления привычками
+    @Environment(\.dismiss) var dismiss  // Для закрытия представления
+
+    @State private var titleString: String = ""  // Название привычки
+    @State private var goalText: String = ""  // Цель (число)
+
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading, spacing: 24) {
-                title
+                titleSection  // Секция с полем ввода названия привычки
                 
-                goalAndPeriod
-                
-                timeRange
-                
-                remindersSetup
+                goalAndPeriodSection  // Секция для цели и периода
                 
                 Spacer()
                 
-                saveButton
+                saveButton  // Кнопка сохранения привычки
             }
-            .navigationTitle("Setup Habit")
             .padding()
+            .padding(.top)
             .background(Color.background)
             .onTapGesture {
-                self.hideKeyboard()
+                self.hideKeyboard()  // Скрыть клавиатуру при касании вне текстовых полей
             }
         }
     }
 }
 
+// MARK: - Components
 extension SetHabitView {
-    private var title: some View {
+    // Секция для ввода названия привычки
+    private var titleSection: some View {
         VStack {
             TextField("Enter habit title...", text: $titleString)
                 .padding(.leading, 8)
-                .frame(width: 200, height: 40)
-                .foregroundStyle(.blue)
+                .frame(height: 40)
+                .foregroundStyle(.black)
                 .background(Color.highlight.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }
     
-    private var goalAndPeriod: some View {
-        HStack {
-            VStack(alignment: .leading) {
+    // Секция для ввода цели и периода
+    private var goalAndPeriodSection: some View {
+        VStack {
+            HStack {
                 Text("Time goal")
                     .font(.title2).bold()
                 
-                TextField("Type here your goal", text: $goalText)
-                    .padding(.leading, 8)
-                    .frame(height: 40)
-                    .foregroundStyle(.blue)
-                    .background(Color.highlight.opacity(0.4))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .leading) {
+                Spacer()
+                
                 Text("Period")
                     .font(.title2).bold()
             }
-        }
-    }
-    
-    
-    private var timeRange: some View {
-        VStack(alignment: .leading) {
-            Text("Time Range")
-                .font(.title2).bold()
             
-            HStack(spacing: 12) {
-                ForEach(0..<3) { _ in
-                    RoundedRectangle(cornerRadius: 15)
-                        .frame(width: 100, height: 40)
-                        .foregroundStyle(Color.highlight)
+            HStack {
+                TextField("Type here your goal", text: $goalText)
+                    .padding(.leading, 8)
+                    .frame(width: 180, height: 40)
+                    .foregroundStyle(.black)
+                    .background(Color.highlight.opacity(0.4))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .keyboardType(.numberPad)
+                    .onChange(of: goalText) { oldValue, newValue in
+                        goalText = newValue.filter { $0.isNumber }  // Очищаем нечисловые символы
+                    }
+                
+                Spacer()
+                
+                Menu("Select period") {
+                    Button("Day") {
+                        // Логика для выбора дня
+                    }
+                    
+                    Button("Week") {
+                        // Логика для выбора недели
+                    }
                 }
             }
         }
-        .padding(.vertical)
     }
     
-    private var remindersSetup: some View {
-        VStack(alignment: .leading) {
-            Text("Reminders")
-                .font(.title2).bold()
-            
-            HStack {
-                RoundedRectangle(cornerRadius: 15)
-                    .frame(width: 100, height: 40)
-                    .foregroundStyle(Color.highlight)
-                
-                RoundedRectangle(cornerRadius: 15)
-                    .frame(width: 100, height: 40)
-                    .foregroundStyle(Color.highlight)
-            }
-        }
-        .padding(.vertical)
-    }
-    
+    // Кнопка сохранения привычки
     private var saveButton: some View {
         Button(action: {
-            //habitVm.addHabit(titleString, goal: Int32(goalText) ?? 0)
-            dismiss()
+            // Добавляем привычку в ViewModel
+            habitVm.addHabit(titleString, goal: Int32(goalText) ?? 0)
+            dismiss()  // Закрываем представление после сохранения
         }) {
             Text("Save habit")
                 .font(.title2)
@@ -127,7 +107,8 @@ extension SetHabitView {
     }
 }
 
+// Превью экрана SetHabitView
 #Preview {
-    SetHabitView(habit: nil)
-        .environmentObject(HabitEntityViewModel())
+    SetHabitView()
+        .environmentObject(HabitEntityViewModel())  // Подключаем ViewModel
 }

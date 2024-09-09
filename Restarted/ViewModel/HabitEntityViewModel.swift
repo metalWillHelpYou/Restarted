@@ -11,6 +11,7 @@ import CoreData
 class HabitEntityViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedHabits: [Habit] = []
+    @Published var activeHabits: [Habit] = []
     
     init() {
         container = NSPersistentContainer(name: "HabitModel")
@@ -21,6 +22,7 @@ class HabitEntityViewModel: ObservableObject {
         }
         
         fetchHabits()
+        fetchActiveHabits()
     }
     
     func fetchHabits() {
@@ -29,8 +31,30 @@ class HabitEntityViewModel: ObservableObject {
         do {
             savedHabits = try container.viewContext.fetch(request)
         } catch let error {
-            print("Error fetching articles: \(error)")
+            print("Error fetching habits: \(error)")
         }
+    }
+    
+    func fetchActiveHabits() {
+        let request = NSFetchRequest<Habit>(entityName: "Habit")
+        request.predicate = NSPredicate(format: "isActive == YES")
+        do {
+            activeHabits = try container.viewContext.fetch(request)
+        } catch let error {
+            print("Error fetching active habits: \(error)")
+        }
+    }
+    
+    func addHabitToActive(_ habit: Habit) {
+        habit.isActive = true
+        saveData()
+        fetchActiveHabits()
+    }
+    
+    func removeHabitFromActive(_ habit: Habit) {
+        habit.isActive = false
+        saveData()
+        fetchActiveHabits()
     }
     
     func addHabit(_ habit: String, goal: Int32) {
@@ -41,9 +65,9 @@ class HabitEntityViewModel: ObservableObject {
         saveData()
     }
     
-    func editHabit(entity: Habit, newTitle: String) {
+    func editHabit(entity: Habit, newTitle: String, newGoal: Int32) {
         entity.title = newTitle
-        //newHabit.goal = goal
+        entity.goal = newGoal
         
         saveData()
     }

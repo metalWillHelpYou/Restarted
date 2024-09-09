@@ -8,40 +8,49 @@
 import SwiftUI
 
 struct HabitListView: View {
-    @State private var addHabit: Bool = false
+    @EnvironmentObject var habitVm: HabitEntityViewModel
+    @State private var showSetHabitView: Bool = false
     
     var body: some View {
         NavigationStack {
-            ScrollView(showsIndicators: false) {
-                ForEach(HabitData.habits) { habit in
-                    HabitView(habit: habit)
-                }
+            ZStack {
+                Color.background.ignoresSafeArea()
                 
-                Button(action: {
-                    addHabit.toggle()
-                }, label: {
-                    ZStack(alignment: .center) {
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.highlight)
-                            .frame(height: 72)
-                            .background(.black)
-                        
-                        Image(systemName: "plus")
-                            .foregroundStyle(.black)
-                            .font(.largeTitle)
-                            .padding(.horizontal, 16)
+                List {
+                    ForEach(habitVm.savedHabits) { habit in
+                        HStack {
+                            Text(habit.title ?? "")
+                            Spacer()
+                            if habitVm.activeHabits.contains(habit) {
+                                Text("Active")
+                                    .foregroundColor(.green)
+                            } else {
+                                Button(action: {
+                                    habitVm.addHabitToActive(habit)
+                                }) {
+                                    Text("Add to Active")
+                                }
+                            }
+                        }
+                        .listRowBackground(Color.background)
+                        .padding(.vertical, 8)
                     }
-                    .clipShape(RoundedRectangle(cornerRadius: 15))
-                    .padding(.vertical, 4)
-                })
+                    .listRowSeparatorTint(Color.highlight)
+                }
+                .navigationTitle("Available Habits")
+                .navigationBarTitleDisplayMode(.inline)
+                .listStyle(PlainListStyle())
+                .toolbar {
+                    Button(action: {
+                        showSetHabitView.toggle()
+                    }) {
+                        PlusButton()
+                    }
+                }
+                .sheet(isPresented: $showSetHabitView) {
+                    SetHabitView()
+                }
             }
-            .navigationTitle("Choose new habit")
-            .padding(.horizontal)
-            .background(Color.background)
-            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-            .popover(isPresented: $addHabit, content: {
-                SetHabitView()
-            })
         }
     }
 }

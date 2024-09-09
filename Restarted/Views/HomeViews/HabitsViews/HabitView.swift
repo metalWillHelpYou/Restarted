@@ -2,40 +2,35 @@
 //  HabitView.swift
 //  Restarted
 //
-//  Created by metalWillHelpYou on 31.05.2024.
+//  Created by metalWillHelpYou on 08.09.2024.
 //
 
 import SwiftUI
 
 struct HabitView: View {
-    let habit: FakeHabit
+    @EnvironmentObject var habitVm: HabitEntityViewModel
+    
+    @State private var habitTitle: String = ""
+    @State private var showDeleteDialog: Bool = false
+    @State private var selectedhabit: Habit? = nil
     
     var body: some View {
-        ZStack(alignment: .leading) {
-            RoundedRectangle(cornerRadius: 15)
-                .fill(Color.black.opacity(0.6))
-                .frame(height: 72)
-                .background(.black)
-            
-            Image(habit.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: 72)
-                .clipShape(RoundedRectangle(cornerRadius: 15))
-                .opacity(0.4)
-            
-            Text(habit.title)
-                .foregroundColor(.white)
-                .font(.body)
-                .multilineTextAlignment(.leading)
-                .padding(.horizontal, 16)
+        List {
+            ForEach(habitVm.savedHabits) { habit in
+                HStack {
+                    Text(habit.title ?? "Unknown")
+                    
+                }
+                .listRowBackground(Color.background)
+                .padding(.vertical, 8)
+            }
+            .listRowSeparatorTint(Color.highlight)
         }
-        .clipShape(RoundedRectangle(cornerRadius: 15))
-        .padding(.vertical, 4)
+        .listStyle(PlainListStyle())
     }
 }
 
 #Preview {
-    HabitView(habit: FakeHabit(title: "Title", imageName: "Breathing"))
+    HabitView()
         .environmentObject(HabitEntityViewModel())
 }

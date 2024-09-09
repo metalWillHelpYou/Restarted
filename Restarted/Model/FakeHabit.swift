@@ -31,9 +31,9 @@ struct HabitData {
         FakeHabit(title: "Breathing", imageName: "Breathing"),
         FakeHabit(title: "Contact a friend", imageName: "Contact a friend"),
         FakeHabit(title: "Cycling", imageName: "Cycling"),
-        FakeHabit(title: "Meditation", imageName: "Meditation"),
-        FakeHabit(title: "Reading", imageName: "Reading"),
-        FakeHabit(title: "Swimming", imageName: "Swimming"),
-        FakeHabit(title: "Walking", imageName: "Walking"),
+//        FakeHabit(title: "Meditation", imageName: "Meditation"),
+//        FakeHabit(title: "Reading", imageName: "Reading"),
+//        FakeHabit(title: "Swimming", imageName: "Swimming"),
+//        FakeHabit(title: "Walking", imageName: "Walking"),
     ]
 }

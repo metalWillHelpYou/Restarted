@@ -20,7 +20,7 @@ struct ContentView: View {
             ZStack(alignment: .bottom) {
                 TabView(selection: $activeTab) {
                     NavigationView {
-                        HomeView()
+                        HabitsMainScreenView()
                     }
                     .setupTab(.home)
                     
