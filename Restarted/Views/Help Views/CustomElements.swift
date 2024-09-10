@@ -23,7 +23,6 @@ struct CustomTextField: View {
 
 struct CustomButton: View {
     var title: String
-    var activationMark: String?
     var action: () -> Void
 
     var body: some View {
@@ -32,7 +31,8 @@ struct CustomButton: View {
                 .font(.headline)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity)
-                .foregroundStyle(.white)
+                .foregroundStyle(.black)
+                .background(Color.highlight)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
     }

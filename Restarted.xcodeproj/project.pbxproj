@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
-		9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* SetHabitView.swift */; };
-		9B1388E62C8A24BC00D598E6 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B1388E42C8A24BC00D598E6 /* ArticleModel.xcdatamodeld */; };
+		9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */; };
 		9B2AFD4A2C00996200E908F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD492C00996200E908F5 /* Assets.xcassets */; };
 		9B2AFD4E2C00996200E908F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD4D2C00996200E908F5 /* Preview Assets.xcassets */; };
 		9B2AFD602C0099F100E908F5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD542C0099F100E908F5 /* Article.swift */; };
@@ -22,7 +21,6 @@
 		9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD722C009A0D00E908F5 /* HomeView.swift */; };
 		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
-		9B3872A32C8CE44000C76784 /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A12C8CE44000C76784 /* HabitModel.xcdatamodeld */; };
 		9B3872A52C8CE48E00C76784 /* HabitEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A42C8CE48E00C76784 /* HabitEntityViewModel.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
@@ -37,6 +35,8 @@
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
 		9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */; };
+		9BA146CB2C9089A20046A388 /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BA146C92C9089A20046A388 /* HabitModel.xcdatamodeld */; };
+		9BA146CE2C9089A90046A388 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */; };
 		9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */; };
 		9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */; };
 		9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */; };
@@ -54,8 +54,7 @@
 
 /* Begin PBXFileReference section */
 		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
-		9B0EA5662C10C89C00E8291C /* SetHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetHabitView.swift; sourceTree = "<group>"; };
-		9B1388E52C8A24BC00D598E6 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
+		9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetView.swift; sourceTree = "<group>"; };
 		9B2AFD422C00996100E908F5 /* Restarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B2AFD492C00996200E908F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9B2AFD4B2C00996200E908F5 /* Restarted.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Restarted.entitlements; sourceTree = "<group>"; };
@@ -70,7 +69,6 @@
 		9B2AFD722C009A0D00E908F5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9B3872A22C8CE44000C76784 /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
 		9B3872A42C8CE48E00C76784 /* HabitEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitEntityViewModel.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
@@ -85,6 +83,8 @@
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntityViewModel.swift; sourceTree = "<group>"; };
+		9BA146CA2C9089A20046A388 /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
+		9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsMainScreenView.swift; sourceTree = "<group>"; };
 		9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetModel.swift; sourceTree = "<group>"; };
 		9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleEntityViewModel.swift; sourceTree = "<group>"; };
@@ -192,8 +192,8 @@
 			children = (
 				9BDE50442C0A005A00910F23 /* FakeHabit.swift */,
 				9B2AFD542C0099F100E908F5 /* Article.swift */,
-				9B1388E42C8A24BC00D598E6 /* ArticleModel.xcdatamodeld */,
-				9B3872A12C8CE44000C76784 /* HabitModel.xcdatamodeld */,
+				9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */,
+				9BA146C92C9089A20046A388 /* HabitModel.xcdatamodeld */,
 				9BCF7F352C8A244500C10C54 /* GameModel.xcdatamodeld */,
 				9B3AD9062C0F60AF00230004 /* Helpers */,
 			);
@@ -277,7 +277,7 @@
 			children = (
 				9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */,
 				9BDE50472C0A02F400910F23 /* HabitListView.swift */,
-				9B0EA5662C10C89C00E8291C /* SetHabitView.swift */,
+				9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */,
 			);
 			path = HabitsViews;
 			sourceTree = "<group>";
@@ -391,6 +391,7 @@
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,
 				9BDE504A2C0A03B100910F23 /* FakeHabitView.swift in Sources */,
+				9BA146CE2C9089A90046A388 /* ArticleModel.xcdatamodeld in Sources */,
 				9BD812A52C74F044005A6085 /* TimerView.swift in Sources */,
 				9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */,
 				9B3872A52C8CE48E00C76784 /* HabitEntityViewModel.swift in Sources */,
@@ -399,11 +400,11 @@
 				9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */,
 				9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */,
 				9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */,
+				9BA146CB2C9089A20046A388 /* HabitModel.xcdatamodeld in Sources */,
 				9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */,
 				9B5834502C6792DE007FAB6C /* GameSheetModel.swift in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
-				9B1388E62C8A24BC00D598E6 /* ArticleModel.xcdatamodeld in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
@@ -415,12 +416,11 @@
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
-				9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */,
+				9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */,
 				9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */,
 				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
 				9B5834522C67D62E007FAB6C /* AlertsManager.swift in Sources */,
 				9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */,
-				9B3872A32C8CE44000C76784 /* HabitModel.xcdatamodeld in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */,
@@ -649,25 +649,25 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		9B1388E42C8A24BC00D598E6 /* ArticleModel.xcdatamodeld */ = {
+		9BA146C92C9089A20046A388 /* HabitModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9B1388E52C8A24BC00D598E6 /* ArticleModel.xcdatamodel */,
+				9BA146CA2C9089A20046A388 /* HabitModel.xcdatamodel */,
 			);
-			currentVersion = 9B1388E52C8A24BC00D598E6 /* ArticleModel.xcdatamodel */;
-			name = ArticleModel.xcdatamodeld;
-			path = /Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/Model/ArticleModel.xcdatamodeld;
+			currentVersion = 9BA146CA2C9089A20046A388 /* HabitModel.xcdatamodel */;
+			name = HabitModel.xcdatamodeld;
+			path = "/Users/metalwillhelpyou/.Trash/Restarted 16.03.27/Restarted/Model/HabitModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		9B3872A12C8CE44000C76784 /* HabitModel.xcdatamodeld */ = {
+		9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9B3872A22C8CE44000C76784 /* HabitModel.xcdatamodel */,
+				9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */,
 			);
-			currentVersion = 9B3872A22C8CE44000C76784 /* HabitModel.xcdatamodel */;
-			name = HabitModel.xcdatamodeld;
-			path = /Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/Model/HabitModel.xcdatamodeld;
+			currentVersion = 9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */;
+			name = ArticleModel.xcdatamodeld;
+			path = "/Users/metalwillhelpyou/.Trash/Restarted 16.03.27/Restarted/Model/ArticleModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

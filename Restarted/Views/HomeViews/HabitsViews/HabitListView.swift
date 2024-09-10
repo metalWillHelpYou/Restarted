@@ -27,28 +27,7 @@ struct HabitListView: View {
                 
                 List {
                     ForEach(habitVm.savedHabits) { habit in
-                        HStack {
-                            Text(habit.title ?? "")
-                            Spacer()
-                            if habitVm.activeHabits.contains(habit) {
-                                Text("Active")
-                                    .foregroundColor(.green)
-                            } else {
-                                Button(action: {
-                                    habitVm.addHabitToActive(habit)
-                                }) {
-                                    Text("Add to Active")
-                                }
-                            }
-                        }
-                        .listRowBackground(Color.background)
-                        .padding(.vertical, 8)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            deteleHabitFromSavings(habit)
-                        }
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            editHabit(habit)
-                        }
+                        habitRow(for: habit)
                     }
                     .listRowSeparatorTint(Color.highlight)
                 }
@@ -56,17 +35,8 @@ struct HabitListView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .listStyle(PlainListStyle())
                 .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-                .toolbar {
-                    Button(action: {
-                        prepareForAddingHabit()
-                        showHabitSheet.toggle()
-                    }) {
-                        PlusButton()
-                    }
-                }
-                .sheet(isPresented: $showHabitSheet) {
-                    SetHabitView(sheetModel: $sheetModel)
-                }
+                .toolbar { addButton }
+                .sheet(isPresented: $showHabitSheet) { HabitSheetView(sheetModel: $sheetModel) }
                 .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
                     deleteConfirmationButtons
                 }
@@ -76,19 +46,60 @@ struct HabitListView: View {
 }
 
 extension HabitListView {
+    private func habitRow(for habit: Habit) -> some View {
+        HStack {
+            Text(habit.title ?? "")
+            Spacer()
+            habitStatus(for: habit)
+        }
+        .listRowBackground(Color.background)
+        .padding(.vertical, 8)
+        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+            deteleHabitFromSavings(habit)
+        }
+        .swipeActions(edge: .leading, allowsFullSwipe: true) {
+            editHabit(habit)
+        }
+    }
+    
+    private func habitStatus(for habit: Habit) -> some View {
+        if habitVm.activeHabits.contains(habit) {
+            return AnyView(
+                Text("Active")
+                    .foregroundColor(Color.highlight)
+            )
+        } else {
+            return AnyView(
+                Button(action: {
+                    habitVm.addHabitToActive(habit)
+                }) {
+                    Text("Add to Active")
+                }
+            )
+        }
+    }
+    
+    private var addButton: some View {
+        Button(action: {
+            prepareForAddingHabit()
+            showHabitSheet.toggle()
+        }) {
+            PlusButton()
+        }
+    }
+    
     private var deleteConfirmationButtons: some View {
         Group {
             Button("Delete", role: .destructive) {
                 if let habitToDelete = selectedHabit {
                     habitVm.deleteHabit(habitToDelete)
+                    habitVm.removeHabitFromActive(habitToDelete)
                 }
             }
             Button("Cancel", role: .cancel) { }
         }
     }
-}
-
-extension HabitListView {
+    
     private func deteleHabitFromSavings(_ habit: Habit?) -> some View {
         Button("Delete") {
             selectedHabit = habit
@@ -110,7 +121,8 @@ extension HabitListView {
             titleText: HabitSheetTitle.addButtonLabel.rawValue,
             goalText: HabitSheetTitle.addGoalLabel.rawValue,
             buttonLabel: HabitSheetTitle.addButtonLabel.rawValue,
-            buttonType: .add)
+            buttonType: .add
+        )
     }
     
     private func prepareForEditingHabit(_ habit: Habit) {
@@ -119,7 +131,8 @@ extension HabitListView {
             titleText: HabitSheetTitle.editTextFieldText.rawValue,
             goalText: HabitSheetTitle.editGoalLabel.rawValue,
             buttonLabel: HabitSheetTitle.editButtonLabel.rawValue,
-            buttonType: .edit)
+            buttonType: .edit
+        )
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  SetHabitView.swift
+//  HabitSheetView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 05.06.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SetHabitView: View {
+struct HabitSheetView: View {
     @EnvironmentObject var habitVm: HabitEntityViewModel
     @Environment(\.dismiss) var dismiss
     @State private var titleText: String = ""
@@ -51,23 +51,36 @@ struct SetHabitView: View {
         .onTapGesture {
             self.hideKeyboard()
         }
-    }
-    
-    private func handleButtonAction() {
-        switch sheetModel.buttonType {
-        case .add:
-            habitVm.addHabit(sheetModel.titleText, goal: Int32(sheetModel.goalText) ?? 0)
-            dismiss()
-        case .edit:
-            if let habit = sheetModel.habit {
-                habitVm.editHabit(entity: habit, newTitle: sheetModel.titleText, newGoal: Int32(sheetModel.goalText) ?? 0)
-                dismiss()
-            }
+        .onAppear {
+            initializeFields()
         }
     }
 }
 
+extension HabitSheetView {
+    private func handleButtonAction() {
+        switch sheetModel.buttonType {
+        case .add:
+            if !titleText.isEmpty, let goal = Int32(goalText) {
+                habitVm.addHabit(titleText, goal: goal)
+                dismiss()
+            }
+        case .edit:
+            if let habit = sheetModel.habit, !titleText.isEmpty, let goal = Int32(goalText) {
+                habitVm.editHabit(entity: habit, newTitle: titleText, newGoal: goal)
+                dismiss()
+            }
+        }
+    }
+    
+    private func initializeFields() {
+        titleText = sheetModel.habit?.title ?? ""
+        goalText = sheetModel.habit != nil ? String(sheetModel.habit?.goal ?? 0) : ""
+    }
+}
+
+
 #Preview {
-    SetHabitView(sheetModel: .constant(HabitSheetModel(titleText: "", goalText: "", buttonLabel: "", buttonType: .add)))
+    HabitSheetView(sheetModel: .constant(HabitSheetModel(titleText: "", goalText: "", buttonLabel: "", buttonType: .add)))
         .environmentObject(HabitEntityViewModel())
 }
