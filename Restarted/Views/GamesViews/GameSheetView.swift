@@ -19,7 +19,9 @@ struct GameSheetView: View {
     var body: some View {
         VStack {
             Spacer()
-            gameData
+            
+            CustomTextField(placeholder: sheetModel.textFieldText, text: $gameTitle)
+            
             Spacer()
             mainButton
         }

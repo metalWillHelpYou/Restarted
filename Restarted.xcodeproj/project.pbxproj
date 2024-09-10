@@ -35,6 +35,7 @@
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
+		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
 		9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */; };
 		9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */; };
 		9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */; };
@@ -82,6 +83,7 @@
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntityViewModel.swift; sourceTree = "<group>"; };
 		9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsMainScreenView.swift; sourceTree = "<group>"; };
 		9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetModel.swift; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				9BD8129F2C720C27005A6085 /* PlusButton.swift */,
+				9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */,
 			);
 			path = "Help Views";
 			sourceTree = "<group>";
@@ -413,6 +416,7 @@
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* SetHabitView.swift in Sources */,
+				9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */,
 				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
 				9B5834522C67D62E007FAB6C /* AlertsManager.swift in Sources */,
 				9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */,

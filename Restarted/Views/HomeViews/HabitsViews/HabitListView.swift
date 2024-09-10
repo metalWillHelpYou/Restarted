@@ -115,6 +115,7 @@ extension HabitListView {
     
     private func prepareForEditingHabit(_ habit: Habit) {
         sheetModel = HabitSheetModel(
+            habit: habit,
             titleText: HabitSheetTitle.editTextFieldText.rawValue,
             goalText: HabitSheetTitle.editGoalLabel.rawValue,
             buttonLabel: HabitSheetTitle.editButtonLabel.rawValue,
