@@ -33,6 +33,7 @@
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
+		9B7819E22C91A66300AE9DD0 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7819E12C91A66300AE9DD0 /* HabitViewModel.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
 		9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */; };
 		9BA146CB2C9089A20046A388 /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BA146C92C9089A20046A388 /* HabitModel.xcdatamodeld */; };
@@ -81,6 +82,7 @@
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		9B7819E12C91A66300AE9DD0 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntityViewModel.swift; sourceTree = "<group>"; };
 		9BA146CA2C9089A20046A388 /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 			isa = PBXGroup;
 			children = (
 				9B3872A42C8CE48E00C76784 /* HabitEntityViewModel.swift */,
+				9B7819E12C91A66300AE9DD0 /* HabitViewModel.swift */,
 				9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */,
 				9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */,
 				9BD812A62C7519F9005A6085 /* TimerViewModel.swift */,
@@ -413,6 +416,7 @@
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
+				9B7819E22C91A66300AE9DD0 /* HabitViewModel.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,

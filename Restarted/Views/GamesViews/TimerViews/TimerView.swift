@@ -67,22 +67,10 @@ extension TimerView {
     }
     
     private var pauseButton: some View {
-        Button(action: {
-            if timerVM.isTimerRunning {
-                timerVM.pauseTimer()
-            } else {
-                timerVM.resumeTimer()
-            }
-        }, label: {
-            Text(timerVM.isTimerRunning ? "Pause" : "Resume")
-                .frame(maxWidth: .infinity)
-                .padding()
-                .padding(.horizontal)
-                .background(Color.highlight)
-                .foregroundColor(.text)
-                .font(.headline)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-        })
+        CustomButton(
+            title: timerVM.isTimerRunning ? "Pause" : "Resume",
+            action: timerVM.isTimerRunning ? timerVM.pauseTimer : timerVM.resumeTimer
+        )
     }
     
     private var stopButton: some View {
@@ -90,11 +78,12 @@ extension TimerView {
             showStopDialog.toggle()
         }, label: {
             Text("Stop")
+                .font(.headline)
                 .padding()
                 .padding(.horizontal)
-                .background(Color.red)
+                .frame(height: 55)
                 .foregroundStyle(.black)
-                .font(.headline)
+                .background(Color.red)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         })
     }

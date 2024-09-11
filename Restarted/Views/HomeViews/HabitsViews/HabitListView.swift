@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct HabitListView: View {
-    @EnvironmentObject var habitVm: HabitEntityViewModel
-    
+    @EnvironmentObject var habitEntityVm: HabitEntityViewModel
     @State private var showHabitSheet: Bool = false
     @State private var selectedHabit: Habit? = nil
     @State private var showDeleteDialog: Bool = false
@@ -26,7 +25,7 @@ struct HabitListView: View {
                 Color.background.ignoresSafeArea()
                 
                 List {
-                    ForEach(habitVm.savedHabits) { habit in
+                    ForEach(habitEntityVm.savedHabits) { habit in
                         habitRow(for: habit)
                     }
                     .listRowSeparatorTint(Color.highlight)
@@ -63,7 +62,7 @@ extension HabitListView {
     }
     
     private func habitStatus(for habit: Habit) -> some View {
-        if habitVm.activeHabits.contains(habit) {
+        if habitEntityVm.activeHabits.contains(habit) {
             return AnyView(
                 Text("Active")
                     .foregroundColor(Color.highlight)
@@ -71,7 +70,7 @@ extension HabitListView {
         } else {
             return AnyView(
                 Button(action: {
-                    habitVm.addHabitToActive(habit)
+                    habitEntityVm.addHabitToActive(habit)
                 }) {
                     Text("Add to Active")
                 }
@@ -92,8 +91,8 @@ extension HabitListView {
         Group {
             Button("Delete", role: .destructive) {
                 if let habitToDelete = selectedHabit {
-                    habitVm.deleteHabit(habitToDelete)
-                    habitVm.removeHabitFromActive(habitToDelete)
+                    habitEntityVm.deleteHabit(habitToDelete)
+                    habitEntityVm.removeHabitFromActive(habitToDelete)
                 }
             }
             Button("Cancel", role: .cancel) { }

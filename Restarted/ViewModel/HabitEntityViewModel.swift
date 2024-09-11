@@ -12,6 +12,8 @@ class HabitEntityViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedHabits: [Habit] = []
     @Published var activeHabits: [Habit] = []
+    @Published var selectedHabit: Habit? = nil
+    @Published var showDeleteDialog: Bool = false
     
     init() {
         container = NSPersistentContainer(name: "HabitModel")
@@ -24,7 +26,7 @@ class HabitEntityViewModel: ObservableObject {
         fetchHabits()
         fetchActiveHabits()
     }
-    
+
     func fetchHabits() {
         let request = NSFetchRequest<Habit>(entityName: "Habit")
         request.sortDescriptors = [NSSortDescriptor(keyPath: \Habit.title, ascending: true)]
@@ -77,7 +79,25 @@ class HabitEntityViewModel: ObservableObject {
         
         saveData()
     }
+
+    func performDelete() {
+        if let habitToDelete = selectedHabit {
+            deleteHabit(habitToDelete)
+            removeHabitFromActive(habitToDelete)
+        }
+        cancelDelete()
+    }
     
+    func confirmDelete(_ habit: Habit?) {
+        selectedHabit = habit
+        showDeleteDialog = true
+    }
+
+    func cancelDelete() {
+        selectedHabit = nil
+        showDeleteDialog = false
+    }
+
     func saveData() {
         do {
             try container.viewContext.save()
@@ -87,3 +107,4 @@ class HabitEntityViewModel: ObservableObject {
         }
     }
 }
+

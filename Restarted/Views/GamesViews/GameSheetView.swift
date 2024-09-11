@@ -34,19 +34,20 @@ struct GameSheetView: View {
 }
 
 extension GameSheetView {
-    private var gameData: some View {
-        TextField(sheetModel.textFieldText, text: $gameTitle)
-            .font(.headline)
-            .padding(.leading)
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .background(Color(uiColor: .systemGray3))
-            .clipShape(RoundedRectangle(cornerRadius: 10))
-            .padding(.horizontal)
-    }
-    
     private var mainButton: some View {
-        Button(action: handleButtonAction, label: {
+        Button(action: {
+            gameEntityVm.handleButtonAction(
+                sheetModel: sheetModel,
+                gameTitle: gameTitle,
+                dismiss: {
+                    gameTitle = ""
+                    dismiss()
+                },
+                showAlert: {
+                    showAlert.toggle()
+                }
+            )
+        }, label: {
             Text(sheetModel.buttonLabel)
                 .font(.headline)
                 .frame(height: 55)
@@ -57,27 +58,8 @@ extension GameSheetView {
                 .padding(.horizontal)
         })
     }
-    
-    private func handleButtonAction() {
-        switch sheetModel.buttonType {
-        case .add:
-            if gameTitle.isEmpty {
-                showAlert.toggle()
-            } else {
-                gameEntityVm.addGame(gameTitle)
-                gameTitle = ""
-                dismiss()
-            }
-        case .edit:
-            if let game = sheetModel.game, !gameTitle.isEmpty {
-                gameEntityVm.editGame(entity: game, newTitle: gameTitle)
-                dismiss()
-            } else {
-                showAlert.toggle()
-            }
-        }
-    }
 }
+
 
 #Preview {
     GameSheetView(gameTitle: .constant(""), sheetModel: .constant(GameSheetModel(textFieldText: "", buttonLabel: "", buttonType: .add)))

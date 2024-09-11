@@ -77,7 +77,7 @@ extension SetUpTimerView {
                     .font(.headline)
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(.white)
+                    .foregroundStyle(.black)
                     .background(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .padding(.horizontal)
