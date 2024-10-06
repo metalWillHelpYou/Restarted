@@ -61,5 +61,5 @@ extension HomeView {
 
 #Preview {
     HomeView()
-        .environmentObject(HabitEntityViewModel())
+        .environmentObject(HabitViewModel())
 }

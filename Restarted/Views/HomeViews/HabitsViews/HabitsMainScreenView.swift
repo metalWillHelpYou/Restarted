@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HabitsMainScreenView: View {
     @EnvironmentObject var habitVm: HabitViewModel
-    @EnvironmentObject var habitEntityVm: HabitEntityViewModel
     @State private var showHabitListView: Bool = false
     @State private var selectedHabit: Habit? = nil
     @State private var showDeleteDialog: Bool = false
@@ -57,15 +56,15 @@ extension HabitsMainScreenView {
     
     private var habitListSection: some View {
         VStack {
-            if habitEntityVm.activeHabits.isEmpty {
+            if habitVm.activeHabits.isEmpty {
                 Text("No active habits. Add new ones!")
                     .font(.headline)
                     .foregroundStyle(.gray)
                     .transition(.opacity)
-                    .animation(.easeInOut(duration: 0.3), value: $habitEntityVm.activeHabits.isEmpty)
+                    .animation(.easeInOut(duration: 0.3), value: $habitVm.activeHabits.isEmpty)
             } else {
                 List {
-                    ForEach(habitEntityVm.activeHabits) { habit in
+                    ForEach(habitVm.activeHabits) { habit in
                         HStack {
                             Text(habit.title ?? "")
                             Spacer()
@@ -81,7 +80,7 @@ extension HabitsMainScreenView {
                 }
                 .listStyle(PlainListStyle())
                 .transition(.opacity)
-                .animation(.easeInOut(duration: 0.3), value: habitEntityVm.activeHabits)
+                .animation(.easeInOut(duration: 0.3), value: habitVm.activeHabits)
             }
         }
     }
@@ -89,7 +88,7 @@ extension HabitsMainScreenView {
     private var deleteConfirmationButtons: some View {
         Group {
             Button("Delete", role: .destructive) {
-                habitVm.performDelete(habitVm: habitEntityVm)
+                habitVm.performDelete()
             }
             Button("Cancel", role: .cancel) {
                 habitVm.cancelDelete()
@@ -101,5 +100,4 @@ extension HabitsMainScreenView {
 #Preview {
     HabitsMainScreenView()
         .environmentObject(HabitViewModel())
-        .environmentObject(HabitEntityViewModel())
 }

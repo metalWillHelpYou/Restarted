@@ -37,5 +37,5 @@ struct FakeHabitView: View {
 
 #Preview {
     FakeHabitView(habit: FakeHabit(title: "Title", imageName: "Breathing"))
-        .environmentObject(HabitEntityViewModel())
+        .environmentObject(HabitViewModel())
 }

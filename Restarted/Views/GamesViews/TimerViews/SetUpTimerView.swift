@@ -60,7 +60,7 @@ extension SetUpTimerView {
             .pickerStyle(WheelPickerStyle())
             
             Picker("Minutes", selection: $minutes) {
-                ForEach(0..<61) { minute in
+                ForEach(0..<60) { minute in
                     Text("\(minute) m").tag(minute)
                 }
             }

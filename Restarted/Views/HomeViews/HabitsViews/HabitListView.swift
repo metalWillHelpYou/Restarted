@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HabitListView: View {
-    @EnvironmentObject var habitEntityVm: HabitEntityViewModel
+    @EnvironmentObject var habitEntityVm: HabitViewModel
     @State private var showHabitSheet: Bool = false
     @State private var selectedHabit: Habit? = nil
     @State private var showDeleteDialog: Bool = false
@@ -137,5 +137,5 @@ extension HabitListView {
 
 #Preview {
     HabitListView()
-        .environmentObject(HabitEntityViewModel())
+        .environmentObject(HabitViewModel())
 }

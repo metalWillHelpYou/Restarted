@@ -9,7 +9,6 @@ import SwiftUI
 
 struct HabitSheetView: View {
     @EnvironmentObject var habitVm: HabitViewModel
-    @EnvironmentObject var habitEntityVm: HabitEntityViewModel
     @Environment(\.dismiss) var dismiss
     @State private var titleText: String = ""
     @State private var goalText: String = ""
@@ -63,12 +62,12 @@ extension HabitSheetView {
         switch sheetModel.buttonType {
         case .add:
             if !titleText.isEmpty, let goal = Int32(goalText) {
-                habitEntityVm.addHabit(titleText, goal: goal)
+                habitVm.addHabit(titleText, goal: goal)
                 dismiss()
             }
         case .edit:
             if let habit = sheetModel.habit, !titleText.isEmpty, let goal = Int32(goalText) {
-                habitEntityVm.editHabit(entity: habit, newTitle: titleText, newGoal: goal)
+                habitVm.editHabit(entity: habit, newTitle: titleText, newGoal: goal)
                 dismiss()
             }
         }
@@ -83,6 +82,5 @@ extension HabitSheetView {
 
 #Preview {
     HabitSheetView(sheetModel: .constant(HabitSheetModel(titleText: "", goalText: "", buttonLabel: "", buttonType: .add)))
-        .environmentObject(HabitEntityViewModel())
         .environmentObject(HabitViewModel())
 }

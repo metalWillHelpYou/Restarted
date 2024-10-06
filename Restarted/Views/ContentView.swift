@@ -9,43 +9,47 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @State private var activeTab: Tab = .home
-    @State private var allTabs: [AnimatedTab] = Tab.allCases.compactMap { tab ->
-        AnimatedTab? in
-        return .init(tab: tab)
+    @AppStorage("activeTab") private var storedActiveTab: String = Tab.home.rawValue
+    @State private var allTabs: [AnimatedTab] = Tab.allCases.map { AnimatedTab(tab: $0) }
+
+    private var activeTab: Binding<Tab> {
+        Binding(
+            get: {Tab(rawValue: storedActiveTab) ?? .home },
+            set: { newTab in storedActiveTab = newTab.rawValue }
+        )
     }
-    
+
     var body: some View {
         NavigationStack {
             ZStack(alignment: .bottom) {
-                TabView(selection: $activeTab) {
+                TabView(selection: activeTab) {
                     NavigationView {
                         HabitsMainScreenView()
                     }
                     .setupTab(.home)
-                    
+
                     NavigationView {
                         ArticleMainScreenView()
                     }
                     .setupTab(.articles)
-                    
+
                     NavigationView {
                         GamesMainScreenView()
                     }
                     .setupTab(.games)
-                    
+
                     NavigationView {
                         DiaryView()
                     }
                     .setupTab(.diary)
-                    
+
                     NavigationView {
                         ProfileMainScreenView()
                     }
                     .setupTab(.profile)
                 }
-                
-                CustomTabBar(activeTab: $activeTab, allTabs: $allTabs)
+
+                CustomTabBar(activeTab: activeTab, allTabs: $allTabs)
             }
         }
     }
@@ -54,7 +58,6 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(HabitViewModel())
-        .environmentObject(HabitEntityViewModel())
         .environmentObject(ArticleEntityViewModel())
         .environmentObject(GameEntityViewModel())
         .environmentObject(AlertsManager())

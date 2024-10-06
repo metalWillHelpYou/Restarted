@@ -13,7 +13,6 @@ struct RestartedApp: App {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     
     @StateObject var habitVm = HabitViewModel()
-    @StateObject var habitEntityVm = HabitEntityViewModel()
     
     @StateObject var articleEntityVm = ArticleEntityViewModel()
     
@@ -25,7 +24,6 @@ struct RestartedApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(habitVm)
-                .environmentObject(habitEntityVm)
                 .environmentObject(articleEntityVm)
                 .environmentObject(gameEntityVm)
                 .environmentObject(gameSheetVm)
