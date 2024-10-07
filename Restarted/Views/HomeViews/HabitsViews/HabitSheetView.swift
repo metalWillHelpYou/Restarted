@@ -48,12 +48,8 @@ struct HabitSheetView: View {
         }
         .padding()
         .background(Color.background)
-        .onTapGesture {
-            self.hideKeyboard()
-        }
-        .onAppear {
-            initializeFields()
-        }
+        .onTapGesture { self.hideKeyboard() }
+        .onAppear { initializeFields() }
     }
 }
 
