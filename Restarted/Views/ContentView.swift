@@ -58,8 +58,8 @@ struct ContentView: View {
 #Preview {
     ContentView()
         .environmentObject(HabitViewModel())
-        .environmentObject(ArticleEntityViewModel())
-        .environmentObject(GameEntityViewModel())
+        .environmentObject(ArticleViewModel())
+        .environmentObject(GameViewModel())
         .environmentObject(AlertsManager())
         .environmentObject(TimerViewModel())
 }

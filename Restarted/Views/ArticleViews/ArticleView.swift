@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArticleView: View {
-    @EnvironmentObject var articleVm: ArticleEntityViewModel
+    @EnvironmentObject var articleVm: ArticleViewModel
     var article: Article?
     
     @State private var isComplete = false
@@ -41,5 +41,5 @@ struct ArticleView: View {
 
 #Preview {
     ArticleView(article: nil)
-        .environmentObject(ArticleEntityViewModel())
+        .environmentObject(ArticleViewModel())
 }

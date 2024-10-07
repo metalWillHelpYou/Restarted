@@ -9,8 +9,10 @@ import SwiftUI
 
 struct TimerView: View {
     @Environment(\.dismiss) var dismiss
+   
     @EnvironmentObject var timerVM: TimerViewModel
     @State private var showStopDialog: Bool = false
+    @Binding var navigationPath: NavigationPath
     
     var game: Game?
     var hours: Int
@@ -92,14 +94,15 @@ extension TimerView {
         Group {
             Button("Stop", role: .destructive) {
                 timerVM.stopTimer()
-                dismiss()
+                navigationPath.removeLast(1)
+                // Return two levels back
+                //z  $navigationPath.wrappedValue.removeLast(1)
             }
             Button("Cancel", role: .cancel) { }
         }
     }
 }
-
 #Preview {
-    TimerView(game: nil, hours: 1, minutes: 30)
+    TimerView(navigationPath: .constant(NavigationPath()), game: nil, hours: 1, minutes: 30)
         .environmentObject(TimerViewModel())
 }

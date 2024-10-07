@@ -10,10 +10,11 @@ import SwiftUI
 import SwiftUI
 
 struct SetUpTimerView: View {
-    @EnvironmentObject var gameEntityVm: GameEntityViewModel
+    @EnvironmentObject var gameEntityVm: GameViewModel
     @EnvironmentObject var alerts: AlertsManager
     @EnvironmentObject var timerVm: TimerViewModel
     var game: Game?
+    @Binding var navigationPath: NavigationPath
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
@@ -71,7 +72,7 @@ extension SetUpTimerView {
     
     private var startButton: some View {
         NavigationLink(
-            destination: TimerView(game: game, hours: hours, minutes: minutes),
+            destination: TimerView(navigationPath: $navigationPath, game: game, hours: hours , minutes: minutes),
             label: {
                 Text("Start")
                     .font(.headline)
@@ -106,7 +107,7 @@ extension SetUpTimerView {
 
 
 #Preview {
-    SetUpTimerView()
-        .environmentObject(GameEntityViewModel())
+    SetUpTimerView(navigationPath: .constant(NavigationPath()))
+        .environmentObject(GameViewModel())
         .environmentObject(TimerViewModel())
 }

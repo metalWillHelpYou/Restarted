@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @EnvironmentObject var gameEntityVm: GameEntityViewModel
+    @EnvironmentObject var gameVm: GameViewModel
     @EnvironmentObject var gameSheetVm: AlertsManager
+    @State private var navigationPath = NavigationPath()
     
     @State private var gameTitle: String = ""
     @State private var showDeleteDialog: Bool = false
@@ -33,7 +34,7 @@ struct GamesMainScreenView: View {
                     .toolbar { addGameToolbarButton }
                     .sheet(isPresented: $showGameSheet) {
                         GameSheetView(
-                            gameEntityVm: _gameEntityVm,
+                            gameVm: _gameVm,
                             gameTitle: $gameTitle,
                             sheetModel: $selectedModel
                         )
@@ -49,7 +50,7 @@ struct GamesMainScreenView: View {
     
     private var content: some View {
         VStack {
-            if !gameEntityVm.savedEntities.isEmpty {
+            if !gameVm.savedEntities.isEmpty {
                 gameList
             } else {
                 addFirstGameButton
@@ -59,11 +60,11 @@ struct GamesMainScreenView: View {
     
     private var gameList: some View {
         List {
-            ForEach(gameEntityVm.savedEntities) { game in
+            ForEach(gameVm.savedEntities) { game in
                 HStack {
                     Text(game.title ?? "")
                     Spacer()
-                    NavigationLink(destination: SetUpTimerView(game: game)) { }
+                    NavigationLink(destination: SetUpTimerView(game: game, navigationPath: $navigationPath)) { }
                 }
                 .listRowBackground(Color.background)
                 .padding(.vertical, 8)
@@ -80,7 +81,7 @@ struct GamesMainScreenView: View {
     }
     
     private var addGameToolbarButton: some View {
-        gameEntityVm.savedEntities.isEmpty
+        gameVm.savedEntities.isEmpty
         ? AnyView(EmptyView())
         : AnyView(
             Button(action: {
@@ -110,7 +111,7 @@ struct GamesMainScreenView: View {
         Group {
             Button("Delete", role: .destructive) {
                 if let gameToDelete = selectedGame {
-                    gameEntityVm.deleteGame(gameToDelete)
+                    gameVm.deleteGame(gameToDelete)
                 }
             }
             Button("Cancel", role: .cancel) { }
@@ -153,6 +154,6 @@ struct GamesMainScreenView: View {
 
 #Preview {
     GamesMainScreenView()
-        .environmentObject(GameEntityViewModel())
+        .environmentObject(GameViewModel())
         .environmentObject(AlertsManager())
 }

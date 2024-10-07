@@ -14,9 +14,9 @@ struct RestartedApp: App {
     
     @StateObject var habitVm = HabitViewModel()
     
-    @StateObject var articleEntityVm = ArticleEntityViewModel()
+    @StateObject var articleVm = ArticleViewModel()
     
-    @StateObject var gameEntityVm = GameEntityViewModel()
+    @StateObject var gameVm = GameViewModel()
     @StateObject var gameSheetVm = AlertsManager()
     @StateObject var timerVm = TimerViewModel()
     
@@ -24,8 +24,8 @@ struct RestartedApp: App {
         WindowGroup {
             ContentView()
                 .environmentObject(habitVm)
-                .environmentObject(articleEntityVm)
-                .environmentObject(gameEntityVm)
+                .environmentObject(articleVm)
+                .environmentObject(gameVm)
                 .environmentObject(gameSheetVm)
                 .environmentObject(timerVm)
                 .preferredColorScheme(userTheme.setTheme)

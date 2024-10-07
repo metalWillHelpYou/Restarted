@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArticleCardView: View {
-    @EnvironmentObject var articleVm: ArticleEntityViewModel
+    @EnvironmentObject var articleVm: ArticleViewModel
     var article: Article
 
     @AppStorage("isRead_\(UUID().uuidString)") var isRead: Bool = false
@@ -60,12 +60,12 @@ struct ArticleCardView: View {
 }
 
 #Preview {
-    let testArticle = Article(context: ArticleEntityViewModel().container.viewContext)
+    let testArticle = Article(context: ArticleViewModel().container.viewContext)
     testArticle.title = "Test Article"
     testArticle.content = "This is a test article for preview purposes."
     testArticle.isRead = false
     
     return ArticleCardView(article: testArticle)
-        .environmentObject(ArticleEntityViewModel())
+        .environmentObject(ArticleViewModel())
 }
 

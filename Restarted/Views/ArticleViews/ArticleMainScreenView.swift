@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArticleMainScreenView: View {
-    @StateObject private var articleVm = ArticleEntityViewModel()
+    @EnvironmentObject var articleVm: ArticleViewModel
     
     var body: some View {
         NavigationStack {
@@ -32,5 +32,5 @@ struct ArticleMainScreenView: View {
 
 #Preview {
     ArticleMainScreenView()
-        .environmentObject(ArticleEntityViewModel())
+        .environmentObject(ArticleViewModel())
 }

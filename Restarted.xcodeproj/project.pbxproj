@@ -35,11 +35,11 @@
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
-		9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */; };
+		9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameViewModel.swift */; };
 		9BA146CE2C9089A90046A388 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */; };
 		9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */; };
 		9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */; };
-		9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */; };
+		9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */; };
 		9BCF7F372C8A244500C10C54 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BCF7F352C8A244500C10C54 /* GameModel.xcdatamodeld */; };
 		9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8129F2C720C27005A6085 /* PlusButton.swift */; };
 		9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A22C721067005A6085 /* SetUpTimerView.swift */; };
@@ -83,11 +83,11 @@
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
-		9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEntityViewModel.swift; sourceTree = "<group>"; };
+		9B9DE1102C63FF1100422443 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsMainScreenView.swift; sourceTree = "<group>"; };
 		9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetModel.swift; sourceTree = "<group>"; };
-		9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleEntityViewModel.swift; sourceTree = "<group>"; };
+		9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		9BCF7F362C8A244500C10C54 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9BD8129F2C720C27005A6085 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		9BD812A22C721067005A6085 /* SetUpTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpTimerView.swift; sourceTree = "<group>"; };
@@ -265,8 +265,8 @@
 			isa = PBXGroup;
 			children = (
 				9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */,
-				9BB29BA82C81CCF2006E2ECD /* ArticleEntityViewModel.swift */,
-				9B9DE1102C63FF1100422443 /* GameEntityViewModel.swift */,
+				9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */,
+				9B9DE1102C63FF1100422443 /* GameViewModel.swift */,
 				9BD812A62C7519F9005A6085 /* TimerViewModel.swift */,
 			);
 			path = ViewModel;
@@ -406,7 +406,7 @@
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
-				9B9DE1112C63FF1100422443 /* GameEntityViewModel.swift in Sources */,
+				9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
@@ -420,7 +420,7 @@
 				9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */,
 				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
 				9B5834522C67D62E007FAB6C /* AlertsManager.swift in Sources */,
-				9BB29BA92C81CCF2006E2ECD /* ArticleEntityViewModel.swift in Sources */,
+				9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */,
