@@ -23,7 +23,7 @@ struct StatisticView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .strokeBacground()
+        .strokeBackground()
         .padding(.horizontal)
         .padding(.top)
     }

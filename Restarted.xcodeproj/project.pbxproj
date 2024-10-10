@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
 		9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */; };
+		9B140DB82CB67EFF0067F30B /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9B140DB72CB67EFF0067F30B /* MarkdownUI */; };
 		9B2AFD4A2C00996200E908F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD492C00996200E908F5 /* Assets.xcassets */; };
 		9B2AFD4E2C00996200E908F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B2AFD4D2C00996200E908F5 /* Preview Assets.xcassets */; };
 		9B2AFD602C0099F100E908F5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD542C0099F100E908F5 /* Article.swift */; };
@@ -31,6 +32,7 @@
 		9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */; };
 		9B5834502C6792DE007FAB6C /* GameSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */; };
 		9B5834522C67D62E007FAB6C /* AlertsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5834512C67D62E007FAB6C /* AlertsManager.swift */; };
+		9B5A41C22CB67FEF00617FEB /* QuickGuideView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5A41C12CB67FEF00617FEB /* QuickGuideView.swift */; };
 		9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6294E52C12216200CDFBC5 /* Extentions.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
@@ -50,6 +52,10 @@
 		9BDE504A2C0A03B100910F23 /* FakeHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50492C0A03B100910F23 /* FakeHabitView.swift */; };
 		9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
+		9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE38882CB7F36100325173 /* QGHabitsView.swift */; };
+		9BFE388B2CB7F3C300325173 /* QGArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */; };
+		9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388C2CB7F43600325173 /* QGTimerView.swift */; };
+		9BFE388F2CB7F4CA00325173 /* QGDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388E2CB7F4CA00325173 /* QGDiaryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +85,7 @@
 		9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdditionalSettingsView.swift; sourceTree = "<group>"; };
 		9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSheetModel.swift; sourceTree = "<group>"; };
 		9B5834512C67D62E007FAB6C /* AlertsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsManager.swift; sourceTree = "<group>"; };
+		9B5A41C12CB67FEF00617FEB /* QuickGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGuideView.swift; sourceTree = "<group>"; };
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -98,6 +105,10 @@
 		9BDE50492C0A03B100910F23 /* FakeHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeHabitView.swift; sourceTree = "<group>"; };
 		9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSheetView.swift; sourceTree = "<group>"; };
 		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		9BFE38882CB7F36100325173 /* QGHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGHabitsView.swift; sourceTree = "<group>"; };
+		9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGArticlesView.swift; sourceTree = "<group>"; };
+		9BFE388C2CB7F43600325173 /* QGTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGTimerView.swift; sourceTree = "<group>"; };
+		9BFE388E2CB7F4CA00325173 /* QGDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGDiaryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +116,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9B140DB82CB67EFF0067F30B /* MarkdownUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +155,9 @@
 		9B0EA5652C106FAF00E8291C /* Additional Settings */ = {
 			isa = PBXGroup;
 			children = (
+				9B5A41C32CB7F2F500617FEB /* QuickGuideViews */,
 				9B568F8A2C00B2CB00B6D645 /* AdditionalSettingsView.swift */,
+				9B5A41C12CB67FEF00617FEB /* QuickGuideView.swift */,
 			);
 			path = "Additional Settings";
 			sourceTree = "<group>";
@@ -296,6 +310,17 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		9B5A41C32CB7F2F500617FEB /* QuickGuideViews */ = {
+			isa = PBXGroup;
+			children = (
+				9BFE38882CB7F36100325173 /* QGHabitsView.swift */,
+				9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */,
+				9BFE388C2CB7F43600325173 /* QGTimerView.swift */,
+				9BFE388E2CB7F4CA00325173 /* QGDiaryView.swift */,
+			);
+			path = QuickGuideViews;
+			sourceTree = "<group>";
+		};
 		9BD8129E2C720BC8005A6085 /* Help Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -330,6 +355,9 @@
 			dependencies = (
 			);
 			name = Restarted;
+			packageProductDependencies = (
+				9B140DB72CB67EFF0067F30B /* MarkdownUI */,
+			);
 			productName = Restarted;
 			productReference = 9B2AFD422C00996100E908F5 /* Restarted.app */;
 			productType = "com.apple.product-type.application";
@@ -358,6 +386,9 @@
 				Base,
 			);
 			mainGroup = 9B2AFD392C00996100E908F5;
+			packageReferences = (
+				9B140DB62CB67EFF0067F30B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
+			);
 			productRefGroup = 9B2AFD432C00996100E908F5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -388,12 +419,14 @@
 				9BDE50452C0A005A00910F23 /* FakeHabit.swift in Sources */,
 				9B2AFD7D2C009A0D00E908F5 /* GamesMainScreenView.swift in Sources */,
 				9B377BD22CB2A8F600E4091E /* HabitModel.xcdatamodeld in Sources */,
+				9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */,
 				9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */,
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,
 				9BDE504A2C0A03B100910F23 /* FakeHabitView.swift in Sources */,
 				9BA146CE2C9089A90046A388 /* ArticleModel.xcdatamodeld in Sources */,
 				9BD812A52C74F044005A6085 /* TimerView.swift in Sources */,
+				9BFE388F2CB7F4CA00325173 /* QGDiaryView.swift in Sources */,
 				9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */,
 				9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */,
 				9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */,
@@ -415,6 +448,7 @@
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* DiaryView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
+				9B5A41C22CB67FEF00617FEB /* QuickGuideView.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */,
 				9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */,
@@ -423,8 +457,10 @@
 				9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
+				9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */,
 				9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */,
 				9BCF7F372C8A244500C10C54 /* GameModel.xcdatamodeld in Sources */,
+				9BFE388B2CB7F3C300325173 /* QGArticlesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -647,6 +683,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9B140DB62CB67EFF0067F30B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9B140DB72CB67EFF0067F30B /* MarkdownUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9B140DB62CB67EFF0067F30B /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
+			productName = MarkdownUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		9B377BD02CB2A8F600E4091E /* HabitModel.xcdatamodeld */ = {

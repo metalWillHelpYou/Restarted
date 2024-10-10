@@ -18,7 +18,7 @@ struct ArticleCardView: View {
             RoundedRectangle(cornerRadius: 15)
                 .fill(isRead ? Color.green.opacity(0.3) : Color.clear)
                 .frame(height: 72)
-                .strokeBacground()
+                .strokeBackground()
             
             HStack {
                 Text(article.title ?? "Unknown")

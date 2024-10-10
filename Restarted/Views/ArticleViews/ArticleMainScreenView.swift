@@ -14,13 +14,16 @@ struct ArticleMainScreenView: View {
         NavigationStack {
             ScrollView {
                 VStack {
-                    ForEach(articleVm.savedArticles) { article in
-                         NavigationLink(destination: ArticleView(article: article)) {
-                             ArticleCardView(article: article)
-                         }
-                     }
+//                    ForEach(articleVm.savedArticles) { article in
+//                         NavigationLink(destination: ArticleView(article: article)) {
+//                             ArticleCardView(article: article)
+//                         }
+//                     }
+                    Text("Work In progress")
+                        .font(.largeTitle)
                 }
             }
+            .frame(maxWidth: .infinity)
             .navigationTitle("Articles")
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .background(Color.background)

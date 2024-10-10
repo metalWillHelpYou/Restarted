@@ -42,7 +42,7 @@ struct SettingsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .strokeBacground()
+        .strokeBackground()
         .padding(.horizontal)
         .padding(.top, 40)
         .sheet(isPresented: $showApperance, content: {

@@ -18,6 +18,10 @@ class TimerViewModel: ObservableObject {
     @Published private var minutes: Int = 0
     var game: Game?
     
+    @Published var currentGame: String = "No game selected"
+    @Published var showEasterEgg: Bool = false              
+    let games = ["Dota 2", "Minecraft", "Genshin Impact", "War Thunder", "Baldur's Gate 3"]
+    
     func startTimer(hours: Int, minutes: Int) {
         timeRemaining = (hours * 3600) + (minutes * 60)
         resumeTimer()
@@ -40,6 +44,7 @@ class TimerViewModel: ObservableObject {
                 } else {
                     self.timerSubscription?.cancel()
                     self.isTimerRunning = false
+                    self.showEasterEgg = true
                 }
             }
         isTimerRunning = true
@@ -60,5 +65,9 @@ class TimerViewModel: ObservableObject {
     func initializeTime(for game: Game?) {
         self.hours = Int(game?.hours ?? 0)
         self.minutes = Int(game?.minutes ?? 0)
+    }
+    
+    func selectRandomGame() {
+        currentGame = games.randomElement() ?? "No game selected"
     }
 }
