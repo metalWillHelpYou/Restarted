@@ -22,7 +22,7 @@ struct QuickGuideView: View {
         .tabViewStyle(PageTabViewStyle())
         .onAppear {
             timerVM.selectRandomGame()
-            timerVM.startTimer(hours: 0, minutes: 10)
+            timerVM.startTimer(hours: 0, minutes: 1)
         }
         .onDisappear { timerVM.stopTimer() }
     }

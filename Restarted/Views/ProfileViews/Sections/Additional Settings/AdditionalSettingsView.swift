@@ -13,6 +13,7 @@ struct AdditionalSettingsView: View {
         VStack(alignment: .leading, spacing: 16) {
             NavigationLink(destination: QuickGuideView()) {
                 Text("Quick guide")
+                    .frame(maxWidth: .infinity, alignment: .leading)
             }
             Text("Restarted FAQ")
         }
