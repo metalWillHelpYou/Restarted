@@ -15,10 +15,10 @@ extension View {
 }
 
 extension View {
-    func strokeBackground() -> some View {
+    func strokeBackground(_ color: Color) -> some View {
         self.background(
             RoundedRectangle(cornerRadius: 15)
-                .stroke(Color.highlight, lineWidth: 2)
+                .stroke(color, lineWidth: 2)
         )
     }
 }

@@ -12,8 +12,7 @@ struct TimerView: View {
     
     @EnvironmentObject var timerVM: TimerViewModel
     @State private var showStopDialog: Bool = false
-    @StateObject var notificationManager = LocalNotificationManager() // Менеджер уведомлений
-    @Binding var navigationPath: NavigationPath
+    @StateObject var notificationManager = LocalNotificationManager()
     @Binding var isTimerRunning: Bool
     @State private var isStatusLineAppeared: Bool = false
     
@@ -94,10 +93,17 @@ extension TimerView {
     }
     
     private var pauseButton: some View {
-        CustomButton(
-            title: timerVM.isTimerRunning ? "Pause" : "Resume",
-            action: timerVM.isTimerRunning ? timerVM.pauseTimer : timerVM.resumeTimer
-        )
+        Button(action: {
+            timerVM.isTimerRunning ? timerVM.pauseTimer() : timerVM.resumeTimer()
+        }, label: {
+            Text(timerVM.isTimerRunning ? "Pause" : "Resume")
+                .foregroundStyle(Color.white)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .padding(.horizontal)
+                .frame(height: 55)
+                .strokeBackground(Color.white)
+        })
     }
     
     private var stopButton: some View {
@@ -105,13 +111,11 @@ extension TimerView {
             showStopDialog.toggle()
         }, label: {
             Text("Stop")
-                .font(.headline)
+                .foregroundStyle(Color.white)
                 .padding()
                 .padding(.horizontal)
                 .frame(height: 55)
-                .foregroundStyle(.black)
-                .background(Color.red)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .strokeBackground(Color.red)
         })
     }
     
@@ -121,7 +125,6 @@ extension TimerView {
                 timerVM.stopTimer()
                 isTimerRunning = false
                 
-                // Удаляем запланированное уведомление при остановке таймера
                 notificationManager.removeRequest(withIdentifier: "TimerEnded")
                 dismiss()
             }
@@ -132,6 +135,6 @@ extension TimerView {
 
 
 #Preview {
-    TimerView(navigationPath: .constant(NavigationPath()), isTimerRunning: .constant(true),game: nil, hours: 1, minutes: 30)
+    TimerView(isTimerRunning: .constant(true),game: nil, hours: 1, minutes: 30)
         .environmentObject(TimerViewModel())
 }

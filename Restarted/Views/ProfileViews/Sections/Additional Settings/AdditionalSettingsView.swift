@@ -19,7 +19,7 @@ struct AdditionalSettingsView: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
-        .strokeBackground()
+        .strokeBackground(Color.highlight)
         .foregroundStyle(Color.primary)
         .padding(.horizontal)
         .padding(.top, 40)

@@ -83,7 +83,7 @@ struct GamesMainScreenView: View {
                 HStack {
                     Text(game.title ?? "")
                     Spacer()
-                    NavigationLink(destination: SetUpTimerView(game: game, navigationPath: $navigationPath)) { }
+                    NavigationLink(destination: SetUpTimerView(game: game)) {}
                 }
                 .listRowBackground(Color.background)
                 .padding(.vertical, 8)
@@ -133,7 +133,7 @@ struct GamesMainScreenView: View {
             .foregroundStyle(Color.text)
             .frame(maxWidth: .infinity)
             .padding()
-            .strokeBackground()
+            .strokeBackground(Color.highlight)
             .padding(.horizontal)
     }
     

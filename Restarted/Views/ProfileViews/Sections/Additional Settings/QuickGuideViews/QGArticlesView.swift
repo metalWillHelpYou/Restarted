@@ -26,7 +26,7 @@ struct QGArticlesView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(isArticlechanged ? Color.green.opacity(0.3) : Color.clear)
                     .frame(height: 72)
-                    .strokeBackground()
+                    .strokeBackground(Color.highlight)
                 
                 HStack {
                     Text("The first steps to understanding the problem")
@@ -59,7 +59,7 @@ struct QGArticlesView: View {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(Color.clear)
                     .frame(height: 72)
-                    .strokeBackground()
+                    .strokeBackground(Color.highlight)
                 
                 HStack {
                     Text("How to recognize the signs of videogame addiction?")

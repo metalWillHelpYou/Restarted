@@ -11,19 +11,11 @@ struct DiaryView: View {
     
     var body: some View {
         NavigationStack {
-            ZStack(alignment: .topLeading){
-                RoundedRectangle(cornerRadius: 15)
-                    .fill(Color.diaryPaper)
-                    .padding()
-                    .padding(.bottom)
-                
-                Text("How do you feel?")
-                    .foregroundColor(Color.primary)
-                    .font(.body)
-                    .padding([.top, .leading], 40)
+            ZStack(alignment: .topLeading) {
+
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .navigationTitle("Diary")
+            .navigationTitle("Stats")
             .background(Color.background)
         }
     }

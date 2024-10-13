@@ -19,23 +19,22 @@ struct HabitsMainScreenView: View {
                 Color.background.ignoresSafeArea()
                 
                 VStack {
-                    timeSection   // Display time section with circle
+                    timeSection 
                     
                     Spacer()
                     
-                    habitListSection   // Display list of active habits
+                    habitListSection
                     
                     Spacer()
                 }
                 .navigationTitle("Active Habits")
                 .toolbar {
-                    // Show "plus" button to add new habit if there are active habits
                     if !habitVm.activeHabits.isEmpty {
                         NavigationLink(destination: HabitListView()) { PlusButton() }
                     }
                 }
                 .confirmationDialog("Are you sure?", isPresented: $habitVm.showDeleteDialog, titleVisibility: .visible) {
-                    deleteConfirmationButtons  // Delete confirmation dialog buttons
+                    deleteConfirmationButtons
                 }
             }
         }
@@ -44,8 +43,6 @@ struct HabitsMainScreenView: View {
 
 // MARK: - Additional UI components and logic
 extension HabitsMainScreenView {
-
-    // Display the section with a circle representing the current time
     private var timeSection: some View {
         VStack {
             Circle()
@@ -60,13 +57,11 @@ extension HabitsMainScreenView {
         }
     }
     
-    // Section showing either a list of active habits or a prompt to add a new one
     private var habitListSection: some View {
         VStack {
             if habitVm.activeHabits.isEmpty {
-                // If there are no active habits, display a message and an add button
                 HStack {
-                    Text("Add new active habits")
+                    Text("Your new life starts here")
                         .font(.headline)
                         .foregroundStyle(.gray)
                         .transition(.opacity)
@@ -74,7 +69,6 @@ extension HabitsMainScreenView {
                     NavigationLink(destination: HabitListView()) { PlusButton() }
                 }
             } else {
-                // Display the list of active habits
                 List {
                     ForEach(habitVm.activeHabits) { habit in
                         HStack {
@@ -83,7 +77,7 @@ extension HabitsMainScreenView {
                             Text("\(habit.goal)")
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            habitVm.deleteButton(for: habit)  // Swipe action to delete a habit
+                            habitVm.deleteButton(for: habit)
                         }
                         .listRowBackground(Color.background)
                         .padding(.vertical, 8)
@@ -97,7 +91,6 @@ extension HabitsMainScreenView {
         }
     }
     
-    // Buttons for the delete confirmation dialog
     private var deleteConfirmationButtons: some View {
         Group {
             Button("Delete", role: .destructive) {
@@ -107,19 +100,6 @@ extension HabitsMainScreenView {
                 habitVm.cancelDelete()
             }
         }
-    }
-    
-    // Button to add the first game if no habits are present
-    private var addFirstGameButton: some View {
-        Button(action: {
-        }, label: {
-            HStack {
-                Text("Add your first game ->")
-                    .padding(.horizontal, 2)
-                PlusButton()
-            }
-            .foregroundStyle(Color.text)
-        })
     }
 }
 

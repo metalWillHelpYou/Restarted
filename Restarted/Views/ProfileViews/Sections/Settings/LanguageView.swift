@@ -50,7 +50,7 @@ struct LanguageView: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding()
-            .strokeBackground()
+            .strokeBackground(Color.highlight)
             .padding()
             
             Spacer()

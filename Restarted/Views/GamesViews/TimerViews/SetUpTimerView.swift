@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct SetUpTimerView: View {
-    @EnvironmentObject var gameEntityVm: GameViewModel
+    @EnvironmentObject var gameVm: GameViewModel
     @EnvironmentObject var alerts: AlertsManager
     @EnvironmentObject var timerVm: TimerViewModel
     var game: Game?
-    @Binding var navigationPath: NavigationPath
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
@@ -22,15 +21,15 @@ struct SetUpTimerView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                    VStack {
-                        
-                        timePickers
-                        
-                        Spacer()
-                        
-                        startButton
-                    }
-                    .transition(.move(edge: .leading))
+                VStack {
+                    
+                    timePickers
+                    
+                    Spacer()
+                    
+                    startButton
+                }
+                .transition(.move(edge: .leading))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
@@ -73,18 +72,17 @@ extension SetUpTimerView {
     }
     
     private var startButton: some View {
-        NavigationLink(destination: TimerView(navigationPath: $navigationPath, isTimerRunning: .constant(true), game: game, hours: hours, minutes: minutes)
+        NavigationLink(destination: TimerView(isTimerRunning: .constant(true), game: game, hours: hours, minutes: minutes)
             .onAppear {
                 timerVm.startTimer(hours: hours, minutes: minutes)
             }
         ) {
             Text("Start")
-                .font(.headline)
                 .frame(height: 55)
                 .frame(maxWidth: .infinity)
-                .foregroundStyle(.black)
-                .background(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
+                .foregroundStyle(hours > 0 || minutes > 0 ? Color.text : Color.gray)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                .strokeBackground(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
                 .padding(.horizontal)
                 .animation(.easeInOut(duration: 0.3), value: hours + minutes)
         }
@@ -94,7 +92,7 @@ extension SetUpTimerView {
     private var saveTimeButton: some View {
         Button(action: {
             guard let game = game else { return }
-            gameEntityVm.saveTime(game: game, hours: hours, minutes: minutes)
+            gameVm.saveTime(game: game, hours: hours, minutes: minutes)
             showAlert.toggle()
         }, label: {
             Text("Save time")
@@ -110,8 +108,7 @@ extension SetUpTimerView {
 
 
 #Preview {
-    SetUpTimerView(navigationPath: .constant(NavigationPath()))
+    SetUpTimerView()
         .environmentObject(GameViewModel())
         .environmentObject(TimerViewModel())
-        .environmentObject(AlertsManager())
 }

@@ -41,7 +41,7 @@ struct ContentView: View {
                     NavigationView {
                         DiaryView()
                     }
-                    .setupTab(.diary)
+                    .setupTab(.stats)
 
                     NavigationView {
                         ProfileMainScreenView()
