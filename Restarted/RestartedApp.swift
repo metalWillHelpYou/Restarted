@@ -19,6 +19,7 @@ struct RestartedApp: App {
     @StateObject var gameVm = GameViewModel()
     @StateObject var gameSheetVm = AlertsManager()
     @StateObject var timerVm = TimerViewModel()
+    @StateObject var lnManager = LocalNotificationManager()
     
     var body: some Scene {
         WindowGroup {
@@ -28,6 +29,7 @@ struct RestartedApp: App {
                 .environmentObject(gameVm)
                 .environmentObject(gameSheetVm)
                 .environmentObject(timerVm)
+                .environmentObject(lnManager)
                 .preferredColorScheme(userTheme.setTheme)
         }
     }

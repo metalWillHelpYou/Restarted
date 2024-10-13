@@ -22,16 +22,7 @@ struct SetUpTimerView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                if isTimerRunning {
-                    TimerView(navigationPath: $navigationPath, isTimerRunning: $isTimerRunning, game: game, hours: hours, minutes: minutes)
-                        .transition(.move(edge: .trailing))
-                } else {
                     VStack {
-                        Spacer()
-                        
-                        Text("Set Time for \(gameTitle)")
-                            .font(.title)
-                            .padding(.bottom)
                         
                         timePickers
                         
@@ -40,7 +31,6 @@ struct SetUpTimerView: View {
                         startButton
                     }
                     .transition(.move(edge: .leading))
-                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
@@ -49,6 +39,8 @@ struct SetUpTimerView: View {
                     ToolbarItem(placement: .topBarTrailing) { saveTimeButton }
                 }
             }
+            .navigationTitle(gameTitle)
+            .navigationBarTitleDisplayMode(.inline)
             .alert(isPresented: $showAlert) { alerts.getSuccsesSaving() }
             .onAppear { initializeTime() }
             .animation(.easeInOut(duration: 0.35), value: isTimerRunning)
@@ -81,11 +73,11 @@ extension SetUpTimerView {
     }
     
     private var startButton: some View {
-        Button(action: {
-            if hours > 0 || minutes > 0 {
-                isTimerRunning = true
+        NavigationLink(destination: TimerView(navigationPath: $navigationPath, isTimerRunning: .constant(true), game: game, hours: hours, minutes: minutes)
+            .onAppear {
+                timerVm.startTimer(hours: hours, minutes: minutes)
             }
-        }) {
+        ) {
             Text("Start")
                 .font(.headline)
                 .frame(height: 55)

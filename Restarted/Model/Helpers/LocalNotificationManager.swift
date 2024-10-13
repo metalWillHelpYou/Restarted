@@ -1,5 +1,5 @@
 //
-//  NotificationManager.swift
+//  LocalNotificationManager.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 11.10.2024.
@@ -18,11 +18,6 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
     override init() {
         super.init()
         notificationCenter.delegate = self
-    }
-    
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification) async -> UNNotificationPresentationOptions {
-        await getPendingRequests()
-        return [.sound, .banner]
     }
     
     func requestAuthorization() async throws {
@@ -45,14 +40,14 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         }
     }
     
-    // Планирование уведомления для окончания таймера
     func scheduleTimerEndedNotification(duration: TimeInterval) async {
         let content = UNMutableNotificationContent()
-        content.title = "Время истекло!"
-        content.body = "Ваш таймер завершен."
+        content.title = "Restarted"
+        content.body = "Time is up"
         content.sound = .default
+        content.categoryIdentifier = "TIMER_EXPIRED"
+
         
-        // Используем TimeInterval для триггера уведомления
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: duration, repeats: false)
         let request = UNNotificationRequest(identifier: "TimerEnded", content: content, trigger: trigger)
         
@@ -60,7 +55,6 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         await getPendingRequests()
     }
     
-    // Получение списка запланированных уведомлений
     func getPendingRequests() async {
         pendingRequests = await notificationCenter.pendingNotificationRequests()
     }
@@ -72,19 +66,10 @@ class LocalNotificationManager: NSObject, ObservableObject, UNUserNotificationCe
         }
     }
     
-    func clearRequests() {
-        notificationCenter.removeAllPendingNotificationRequests()
-        pendingRequests.removeAll()
+    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.banner, .sound]) 
     }
-    
-    // Обработка нажатия на уведомление
-    nonisolated func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        if response.notification.request.identifier == "TimerEnded" {
-            DispatchQueue.main.async {
-                // Отправляем уведомление о необходимости открыть экран настройки таймера
-                NotificationCenter.default.post(name: NSNotification.Name("NavigateToSetUpTimer"), object: nil)
-            }
-        }
-        completionHandler()
-    }
+
 }

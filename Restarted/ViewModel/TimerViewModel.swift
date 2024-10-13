@@ -11,16 +11,14 @@ import Combine
 class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Int = 0
     @Published var isTimerRunning: Bool = false
-    
-    private var timerSubscription: AnyCancellable?
-    
-    @Published private var hours: Int = 0
-    @Published private var minutes: Int = 0
-    var game: Game?
-    
     @Published var currentGame: String = "No game selected"
-    @Published var showEasterEgg: Bool = false              
+    @Published var showEasterEgg: Bool = false
     let games = ["Dota 2", "Minecraft", "Genshin Impact", "War Thunder", "Baldur's Gate 3"]
+
+    private var timerSubscription: AnyCancellable?
+    private var hours: Int = 0
+    private var minutes: Int = 0
+    var onTimerEnded: (() -> Void)?
     
     func startTimer(hours: Int, minutes: Int) {
         timeRemaining = (hours * 3600) + (minutes * 60)
@@ -45,6 +43,7 @@ class TimerViewModel: ObservableObject {
                     self.timerSubscription?.cancel()
                     self.isTimerRunning = false
                     self.showEasterEgg = true
+                    self.onTimerEnded?()
                 }
             }
         isTimerRunning = true

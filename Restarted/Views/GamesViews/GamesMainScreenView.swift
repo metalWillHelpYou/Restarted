@@ -9,41 +9,55 @@ import SwiftUI
 
 struct GamesMainScreenView: View {
     @EnvironmentObject var gameVm: GameViewModel
-    @EnvironmentObject var gameSheetVm: AlertsManager
-    @State private var navigationPath = NavigationPath()
+    @EnvironmentObject var lnManager: LocalNotificationManager
+    @Environment(\.scenePhase) var scenePhase
     
+    @State private var navigationPath = NavigationPath()
     @State private var gameTitle: String = ""
     @State private var showDeleteDialog: Bool = false
+    @State private var showGameSheet: Bool = false
     @State private var selectedGame: Game? = nil
     @State private var selectedModel = GameSheetModel(
         textFieldText: "",
         buttonLabel: "",
         buttonType: .add
     )
-    @State private var showGameSheet: Bool = false
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color.background.ignoresSafeArea()
                 
-                content
-                    .navigationTitle("Games")
-                    .frame(maxWidth: .infinity)
-                    .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-                    .toolbar { addGameToolbarButton }
-                    .sheet(isPresented: $showGameSheet) {
-                        GameSheetView(
-                            gameVm: _gameVm,
-                            gameTitle: $gameTitle,
-                            sheetModel: $selectedModel
-                        )
-                        .presentationDetents([.fraction(0.2)])
-                        .presentationDragIndicator(.visible)
-                    }
-                    .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
-                        deleteConfirmationButtons
-                    }
+                if lnManager.isGranted {
+                    content
+                } else {
+                    enableNotifiationsButton
+                }
+            }
+            .navigationTitle("Games")
+            .frame(maxWidth: .infinity)
+            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
+            .toolbar { addGameToolbarButton }
+            .sheet(isPresented: $showGameSheet) {
+                GameSheetView(
+                    gameVm: _gameVm,
+                    gameTitle: $gameTitle,
+                    sheetModel: $selectedModel
+                )
+                .presentationDetents([.fraction(0.2)])
+                .presentationDragIndicator(.visible)
+            }
+            .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
+                deleteConfirmationButtons
+            }
+            .task {
+                try? await lnManager.requestAuthorization()
+                await lnManager.getCurrentSettings()
+            }
+            .onChange(of: scenePhase) { oldPhase, newPhase in
+                if newPhase == .active {
+                    Task { await lnManager.getCurrentSettings() }
+                }
             }
         }
     }
@@ -53,7 +67,12 @@ struct GamesMainScreenView: View {
             if !gameVm.savedEntities.isEmpty {
                 gameList
             } else {
-                addFirstGameButton
+                HStack {
+                    Text("Time is your most valuable resource")
+                        .font(.headline)
+                        .foregroundStyle(.gray)
+                    addFirstGameButton
+                }
             }
         }
     }
@@ -68,12 +87,8 @@ struct GamesMainScreenView: View {
                 }
                 .listRowBackground(Color.background)
                 .padding(.vertical, 8)
-                .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                    editGameButton(game)
-                }
-                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                    deleteGameButton(game: game)
-                }
+                .swipeActions(edge: .leading, allowsFullSwipe: true) { editGameButton(game) }
+                .swipeActions(edge: .trailing, allowsFullSwipe: true) { deleteGameButton(game: game) }
             }
             .listRowSeparatorTint(Color.highlight)
         }
@@ -98,12 +113,7 @@ struct GamesMainScreenView: View {
             prepareForAddingGame()
             showGameSheet.toggle()
         }, label: {
-            HStack {
-                Text("Add your first game ->")
-                    .padding(.horizontal, 2)
-                PlusButton()
-            }
-            .foregroundStyle(Color.text)
+            PlusButton()
         })
     }
     
@@ -116,6 +126,15 @@ struct GamesMainScreenView: View {
             }
             Button("Cancel", role: .cancel) { }
         }
+    }
+    
+    private var enableNotifiationsButton: some View {
+        Button("Enable Notifications") { lnManager.openSettings() }
+            .foregroundStyle(Color.text)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .strokeBackground()
+            .padding(.horizontal)
     }
     
     private func editGameButton(_ game: Game) -> some View {
@@ -155,5 +174,5 @@ struct GamesMainScreenView: View {
 #Preview {
     GamesMainScreenView()
         .environmentObject(GameViewModel())
-        .environmentObject(AlertsManager())
+        .environmentObject(LocalNotificationManager())
 }

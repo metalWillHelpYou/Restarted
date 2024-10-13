@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0139D52CB9730500365128 /* LocalNotificationManager.swift */; };
 		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
 		9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */; };
 		9B140DB82CB67EFF0067F30B /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9B140DB72CB67EFF0067F30B /* MarkdownUI */; };
@@ -59,6 +60,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9B0139D52CB9730500365128 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetView.swift; sourceTree = "<group>"; };
 		9B2AFD422C00996100E908F5 /* Restarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -306,6 +308,7 @@
 				9B7528B52C2753D000657E8A /* CustomTabBar.swift */,
 				9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */,
 				9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */,
+				9B0139D52CB9730500365128 /* LocalNotificationManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				9B5834502C6792DE007FAB6C /* GameSheetModel.swift in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
+				9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
@@ -689,7 +693,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/gonzalezreal/swift-markdown-ui";
 			requirement = {
-				kind = upToNextMajorVersion;
+				kind = upToNextMinorVersion;
 				minimumVersion = 2.4.0;
 			};
 		};
