@@ -8,22 +8,19 @@
 import SwiftUI
 
 struct SetUpTimerView: View {
-    @EnvironmentObject var gameVm: GameViewModel
-    @EnvironmentObject var alerts: AlertsManager
     @EnvironmentObject var timerVm: TimerViewModel
     var game: Game?
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
-    @State private var showAlert: Bool = false
-    @State private var isTimerRunning: Bool = false
     
     var body: some View {
         NavigationStack {
             ZStack {
                 VStack {
-                    
                     timePickers
+                    
+                    savedTimesList
                     
                     Spacer()
                     
@@ -33,16 +30,8 @@ struct SetUpTimerView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
-            .toolbar {
-                if !isTimerRunning {
-                    ToolbarItem(placement: .topBarTrailing) { saveTimeButton }
-                }
-            }
             .navigationTitle(gameTitle)
             .navigationBarTitleDisplayMode(.inline)
-            .alert(isPresented: $showAlert) { alerts.getSuccsesSaving() }
-            .onAppear { initializeTime() }
-            .animation(.easeInOut(duration: 0.35), value: isTimerRunning)
         }
     }
 }
@@ -70,45 +59,49 @@ extension SetUpTimerView {
         }
         .padding(.horizontal)
     }
+    private var savedTimesList: some View {
+        VStack(alignment: .leading) {
+            Text("Saved Times:")
+                .font(.headline)
+            
+            ForEach(timerVm.savedTimes, id: \.self) { seconds in
+                let time = timerVm.convertSecondsToTime(seconds)
+                Text(String(format: "%02d h %02d m %02d s", time.hours, time.minutes, time.seconds))
+                    .font(.body)
+                    .padding(.vertical, 2)
+            }
+        }
+        .padding(.horizontal)
+    }
     
     private var startButton: some View {
-        NavigationLink(destination: TimerView(isTimerRunning: .constant(true), game: game, hours: hours, minutes: minutes)
-            .onAppear {
-                timerVm.startTimer(hours: hours, minutes: minutes)
+        NavigationLink(
+            destination: {
+                let totalSeconds = (hours * 3600) + (minutes * 60)
+                TimerView(isTimerRunning: .constant(true), game: game, seconds: totalSeconds)
+            },
+            label: {
+                Text("Start")
+                    .frame(height: 55)
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(hours > 0 || minutes > 0 ? Color.text : Color.gray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .strokeBackground(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
+                    .padding(.horizontal)
+                    .animation(.easeInOut(duration: 0.3), value: hours + minutes)
             }
-        ) {
-            Text("Start")
-                .frame(height: 55)
-                .frame(maxWidth: .infinity)
-                .foregroundStyle(hours > 0 || minutes > 0 ? Color.text : Color.gray)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .strokeBackground(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
-                .padding(.horizontal)
-                .animation(.easeInOut(duration: 0.3), value: hours + minutes)
-        }
+        )
         .disabled(hours == 0 && minutes == 0)
-    }
-    
-    private var saveTimeButton: some View {
-        Button(action: {
-            guard let game = game else { return }
-            gameVm.saveTime(game: game, hours: hours, minutes: minutes)
-            showAlert.toggle()
-        }, label: {
-            Text("Save time")
+        .simultaneousGesture(TapGesture().onEnded {
+            if hours > 0 || minutes > 0 {
+                timerVm.saveTime(hours: hours, minutes: minutes)
+            }
         })
-    }
-    
-    private func initializeTime() {
-        guard let game = game else { return }
-        hours = Int(game.hours)
-        minutes = Int(game.minutes)
     }
 }
 
 
 #Preview {
     SetUpTimerView()
-        .environmentObject(GameViewModel())
         .environmentObject(TimerViewModel())
 }

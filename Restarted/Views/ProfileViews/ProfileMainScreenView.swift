@@ -12,7 +12,6 @@ struct ProfileMainScreenView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                StatisticView()
                 
                 SettingsView()
                 

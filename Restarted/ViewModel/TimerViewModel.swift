@@ -12,17 +12,30 @@ class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Int = 0
     @Published var isTimerRunning: Bool = false
     @Published var currentGame: String = "No game selected"
+    @Published var savedTimes: [Int] = []
+    
     @Published var showEasterEgg: Bool = false
     let games = ["Dota 2", "Minecraft", "Genshin Impact", "War Thunder", "Baldur's Gate 3"]
 
     private var timerSubscription: AnyCancellable?
-    private var hours: Int = 0
-    private var minutes: Int = 0
+    private var seconds: Int = 0
     var onTimerEnded: (() -> Void)?
     
-    func startTimer(hours: Int, minutes: Int) {
-        timeRemaining = (hours * 3600) + (minutes * 60)
+    func saveTime(hours: Int, minutes: Int) {
+        let seconds = (hours * 3600) + (minutes * 60)
+        savedTimes.insert(seconds, at: 0)
+    }
+    
+    func startTimer(seconds: Int) {
+        timeRemaining = seconds
         resumeTimer()
+    }
+    
+    func timeString() -> String {
+        let hours = timeRemaining / 3600
+        let minutes = (timeRemaining % 3600) / 60
+        let seconds = timeRemaining % 60
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
     func pauseTimer() {
@@ -53,20 +66,20 @@ class TimerViewModel: ObservableObject {
         timerSubscription?.cancel()
         isTimerRunning = false
     }
-    
-    func timeString() -> String {
-        let hours = timeRemaining / 3600
-        let minutes = (timeRemaining % 3600) / 60
-        let seconds = timeRemaining % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
-    }
+
     
     func initializeTime(for game: Game?) {
-        self.hours = Int(game?.hours ?? 0)
-        self.minutes = Int(game?.minutes ?? 0)
+        self.seconds = Int(game?.seconds ?? 0)
     }
     
     func selectRandomGame() {
         currentGame = games.randomElement() ?? "No game selected"
+    }
+    
+    func convertSecondsToTime(_ seconds: Int) -> (hours: Int, minutes: Int, seconds: Int) {
+        let hours = seconds / 3600
+        let minutes = (seconds % 3600) / 60
+        let remainingSeconds = seconds % 60
+        return (hours, minutes, remainingSeconds)
     }
 }

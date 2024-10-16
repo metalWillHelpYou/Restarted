@@ -49,9 +49,8 @@ class GameViewModel: ObservableObject {
         saveData()
     }
     
-    func updateGameTime(game: Game, hours: Int16, minutes: Int16) {
-        game.hours = hours
-        game.minutes = minutes
+    func updateGameTime(game: Game, seconds: Int16) {
+        game.seconds = seconds
         
         saveData()
     }
@@ -65,12 +64,6 @@ class GameViewModel: ObservableObject {
         }
     }
     
-    func saveTime(game: Game?, hours: Int, minutes: Int) {
-        guard let game = game else { return }
-        updateGameTime(game: game, hours: Int16(hours), minutes: Int16(minutes))
-    }
-    
-    // Новая функция handleButtonAction
     func handleButtonAction(sheetModel: GameSheetModel, gameTitle: String, dismiss: () -> Void) {
         switch sheetModel.buttonType {
         case .add:

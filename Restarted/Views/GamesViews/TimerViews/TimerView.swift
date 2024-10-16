@@ -17,8 +17,7 @@ struct TimerView: View {
     @State private var isStatusLineAppeared: Bool = false
     
     var game: Game?
-    var hours: Int
-    var minutes: Int
+    var seconds: Int
     
     var body: some View {
         VStack {
@@ -67,14 +66,14 @@ struct TimerView: View {
         .navigationBarBackButtonHidden(true)
         .onAppear {
             if game != nil {
-                timerVM.startTimer(hours: hours, minutes: minutes)
+                timerVM.startTimer(seconds: seconds)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 isStatusLineAppeared = true
             }
             
             Task {
-                await notificationManager.scheduleTimerEndedNotification(duration: TimeInterval(hours * 3600 + minutes * 60))
+                await notificationManager.scheduleTimerEndedNotification(duration: TimeInterval(seconds))
             }
             timerVM.onTimerEnded = {
                 dismiss()
@@ -88,8 +87,7 @@ struct TimerView: View {
 
 extension TimerView {
     private var circleProgress: CGFloat {
-        let totalTime = (hours * 3600) + (minutes * 60)
-        return totalTime > 0 ? CGFloat(timerVM.timeRemaining) / CGFloat(totalTime) : 0
+        return seconds > 0 ? CGFloat(timerVM.timeRemaining) / CGFloat(seconds) : 0
     }
     
     private var pauseButton: some View {
@@ -133,8 +131,7 @@ extension TimerView {
     }
 }
 
-
 #Preview {
-    TimerView(isTimerRunning: .constant(true),game: nil, hours: 1, minutes: 30)
+    TimerView(isTimerRunning: .constant(true), game: nil, seconds: 600)
         .environmentObject(TimerViewModel())
 }

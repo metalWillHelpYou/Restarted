@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct QuickGuideView: View {
-    @EnvironmentObject var timerVM: TimerViewModel
+    @EnvironmentObject var timerVm: TimerViewModel
     
     var body: some View {
         TabView {
@@ -21,10 +21,10 @@ struct QuickGuideView: View {
         .background(Color.background)
         .tabViewStyle(PageTabViewStyle())
         .onAppear {
-            timerVM.selectRandomGame()
-            timerVM.startTimer(hours: 0, minutes: 1)
+            let seconds = 10 * 60
+            timerVm.startTimer(seconds: seconds)
         }
-        .onDisappear { timerVM.stopTimer() }
+        .onDisappear { timerVm.stopTimer() }
     }
 }
 

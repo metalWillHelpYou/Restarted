@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GamesMainScreenView: View {
-    @EnvironmentObject var gameVm: GameViewModel
+    @EnvironmentObject var gameVm: GameViewModel // state object
     @EnvironmentObject var lnManager: LocalNotificationManager
     @Environment(\.scenePhase) var scenePhase
     
