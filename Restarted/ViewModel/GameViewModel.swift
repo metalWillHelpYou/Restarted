@@ -49,7 +49,7 @@ class GameViewModel: ObservableObject {
         saveData()
     }
     
-    func updateGameTime(game: Game, seconds: Int16) {
+    func updateGameTime(game: Game, seconds: Int32) {
         game.seconds = seconds
         
         saveData()

@@ -32,6 +32,11 @@ struct SetUpTimerView: View {
             .background(Color.background)
             .navigationTitle(gameTitle)
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                timerVm.fetchPresets()
+                hours = 0
+                minutes = 0
+            }
         }
     }
 }
@@ -59,19 +64,45 @@ extension SetUpTimerView {
         }
         .padding(.horizontal)
     }
+    
     private var savedTimesList: some View {
         VStack(alignment: .leading) {
-            Text("Saved Times:")
-                .font(.headline)
-            
-            ForEach(timerVm.savedTimes, id: \.self) { seconds in
-                let time = timerVm.convertSecondsToTime(seconds)
-                Text(String(format: "%02d h %02d m %02d s", time.hours, time.minutes, time.seconds))
-                    .font(.body)
-                    .padding(.vertical, 2)
+            if !timerVm.savedPresets.isEmpty {
+                Text("Recents")
+                    .font(.headline)
+                    .padding(.horizontal)
             }
+            
+            List {
+                ForEach(timerVm.savedPresets, id: \.self) { preset in
+                    HStack {
+                        let time = timerVm.convertSecondsToTime(Int(preset.seconds))
+                        
+                        VStack(alignment: .leading) {
+                            Text(timerVm.formatTimeDigits(hours: time.hours, minutes: time.minutes))
+                                .font(.title)
+                                .padding(.vertical, 2)
+                            
+                            Text(timerVm.formatTimeText(hours: time.hours, minutes: time.minutes))
+                                .font(.caption)
+                                .foregroundColor(.highlight.opacity(0.7))
+                        }
+                    }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button("Delete") {
+                            withAnimation(.easeInOut(duration: 0.5)){
+                                timerVm.deletePreset(preset)
+                            }
+                        }
+                        .tint(.red)
+                    }
+                    .listRowBackground(Color.background)
+                }
+                .listRowSeparatorTint(Color.highlight)
+            }
+            .listStyle(PlainListStyle())
+            .offset(y: -2)
         }
-        .padding(.horizontal)
     }
     
     private var startButton: some View {
@@ -94,12 +125,12 @@ extension SetUpTimerView {
         .disabled(hours == 0 && minutes == 0)
         .simultaneousGesture(TapGesture().onEnded {
             if hours > 0 || minutes > 0 {
-                timerVm.saveTime(hours: hours, minutes: minutes)
+                let totalSeconds = (hours * 3600) + (minutes * 60)
+                timerVm.saveTime(seconds: totalSeconds)
             }
         })
     }
 }
-
 
 #Preview {
     SetUpTimerView()

@@ -7,13 +7,13 @@
 
 import Foundation
 import Combine
+import CoreData
 
 class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Int = 0
     @Published var isTimerRunning: Bool = false
     @Published var currentGame: String = "No game selected"
-    @Published var savedTimes: [Int] = []
-    
+    @Published var savedPresets: [TimePreset] = []
     @Published var showEasterEgg: Bool = false
     let games = ["Dota 2", "Minecraft", "Genshin Impact", "War Thunder", "Baldur's Gate 3"]
 
@@ -21,21 +21,27 @@ class TimerViewModel: ObservableObject {
     private var seconds: Int = 0
     var onTimerEnded: (() -> Void)?
     
-    func saveTime(hours: Int, minutes: Int) {
-        let seconds = (hours * 3600) + (minutes * 60)
-        savedTimes.insert(seconds, at: 0)
+    let container: NSPersistentContainer
+    
+    init() {
+        container = NSPersistentContainer(name: "GameModel")
+        container.loadPersistentStores { (description, error) in
+            if let error = error {
+                print("Error loading Core Data: \(error)")
+            }
+        }
+        fetchPresets()
+    }
+    
+    // MARK: - Working with timer
+    
+    func saveTime(seconds: Int) {
+        addPreset(seconds: Int32(seconds))
     }
     
     func startTimer(seconds: Int) {
         timeRemaining = seconds
         resumeTimer()
-    }
-    
-    func timeString() -> String {
-        let hours = timeRemaining / 3600
-        let minutes = (timeRemaining % 3600) / 60
-        let seconds = timeRemaining % 60
-        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
     func pauseTimer() {
@@ -66,7 +72,6 @@ class TimerViewModel: ObservableObject {
         timerSubscription?.cancel()
         isTimerRunning = false
     }
-
     
     func initializeTime(for game: Game?) {
         self.seconds = Int(game?.seconds ?? 0)
@@ -75,11 +80,81 @@ class TimerViewModel: ObservableObject {
     func selectRandomGame() {
         currentGame = games.randomElement() ?? "No game selected"
     }
+
+    // MARK: - Time formatting
+    
+    func timeString() -> String {
+        let hours = timeRemaining / 3600
+        let minutes = (timeRemaining % 3600) / 60
+        let seconds = timeRemaining % 60
+        return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
     
     func convertSecondsToTime(_ seconds: Int) -> (hours: Int, minutes: Int, seconds: Int) {
         let hours = seconds / 3600
         let minutes = (seconds % 3600) / 60
         let remainingSeconds = seconds % 60
         return (hours, minutes, remainingSeconds)
+    }
+    
+    func formattedTime(from seconds: Int32) -> String {
+        let (hours, minutes, remainingSeconds) = convertSecondsToTime(Int(seconds))
+        return String(format: "%02d:%02d:%02d", hours, minutes, remainingSeconds)
+    }
+    
+    func formatTimeDigits(hours: Int, minutes: Int) -> String {
+        if hours > 0 {
+            return String(format: "%d:%02d", hours, minutes)
+        } else {
+            return String(format: "%02d", minutes)
+        }
+    }
+
+    func formatTimeText(hours: Int, minutes: Int) -> String {
+        var components: [String] = []
+        
+        if hours > 0 {
+            components.append("\(hours) hour\(hours > 1 ? "s" : "")")
+        }
+        
+        if minutes > 0 {
+            components.append("\(minutes) minute\(minutes > 1 ? "s" : "")")
+        }
+        
+        return components.joined(separator: " ")
+    }
+    
+    // MARK: - Working with Core Data
+    
+    func fetchPresets() {
+        let request = NSFetchRequest<TimePreset>(entityName: "TimePreset")
+        do {
+            savedPresets = try container.viewContext.fetch(request)
+        } catch let error {
+            print("Error fetching time presets: \(error)")
+        }
+    }
+    
+    func addPreset(seconds: Int32) {
+        guard !savedPresets.contains(where: { $0.seconds == seconds }) else { return }
+        
+        let newPreset = TimePreset(context: container.viewContext)
+        newPreset.seconds = seconds
+        
+        saveData()
+    }
+    
+    func deletePreset(_ preset: TimePreset) {
+        container.viewContext.delete(preset)
+        saveData()
+    }
+    
+    func saveData() {
+        do {
+            try container.viewContext.save()
+            fetchPresets()
+        } catch let error {
+            print("Error saving time presets: \(error)")
+        }
     }
 }
