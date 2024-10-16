@@ -15,17 +15,17 @@ class TimerViewModel: ObservableObject {
     @Published var currentGame: String = "No game selected"
     @Published var savedPresets: [TimePreset] = []
     @Published var showEasterEgg: Bool = false
-    let games = ["Dota 2", "Minecraft", "Genshin Impact", "War Thunder", "Baldur's Gate 3"]
-
+    
     private var timerSubscription: AnyCancellable?
     private var seconds: Int = 0
     var onTimerEnded: (() -> Void)?
     
+    let games = ["Dota 2", "Minecraft", "Genshin Impact", "War Thunder", "Baldur's Gate 3"]
     let container: NSPersistentContainer
     
     init() {
         container = NSPersistentContainer(name: "GameModel")
-        container.loadPersistentStores { (description, error) in
+        container.loadPersistentStores { (_, error) in
             if let error = error {
                 print("Error loading Core Data: \(error)")
             }
@@ -33,7 +33,7 @@ class TimerViewModel: ObservableObject {
         fetchPresets()
     }
     
-    // MARK: - Working with timer
+    // MARK: - Timer Logic
     
     func saveTime(seconds: Int) {
         addPreset(seconds: Int32(seconds))
@@ -55,15 +55,7 @@ class TimerViewModel: ObservableObject {
         timerSubscription = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
-                guard let self = self else { return }
-                if self.timeRemaining > 0 {
-                    self.timeRemaining -= 1
-                } else {
-                    self.timerSubscription?.cancel()
-                    self.isTimerRunning = false
-                    self.showEasterEgg = true
-                    self.onTimerEnded?()
-                }
+                self?.handleTimerTick()
             }
         isTimerRunning = true
     }
@@ -73,20 +65,30 @@ class TimerViewModel: ObservableObject {
         isTimerRunning = false
     }
     
+    private func handleTimerTick() {
+        guard timeRemaining > 0 else {
+            stopTimer()
+            showEasterEgg = true
+            onTimerEnded?()
+            return
+        }
+        timeRemaining -= 1
+    }
+    
+    // MARK: - Game Selection
+    
     func initializeTime(for game: Game?) {
-        self.seconds = Int(game?.seconds ?? 0)
+        seconds = Int(game?.seconds ?? 0)
     }
     
     func selectRandomGame() {
         currentGame = games.randomElement() ?? "No game selected"
     }
 
-    // MARK: - Time formatting
+    // MARK: - Time Formatting
     
     func timeString() -> String {
-        let hours = timeRemaining / 3600
-        let minutes = (timeRemaining % 3600) / 60
-        let seconds = timeRemaining % 60
+        let (hours, minutes, seconds) = convertSecondsToTime(timeRemaining)
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
     
@@ -103,11 +105,7 @@ class TimerViewModel: ObservableObject {
     }
     
     func formatTimeDigits(hours: Int, minutes: Int) -> String {
-        if hours > 0 {
-            return String(format: "%d:%02d", hours, minutes)
-        } else {
-            return String(format: "%02d", minutes)
-        }
+        hours > 0 ? String(format: "%d:%02d", hours, minutes) : String(format: "%2d", minutes)
     }
 
     func formatTimeText(hours: Int, minutes: Int) -> String {
@@ -123,14 +121,14 @@ class TimerViewModel: ObservableObject {
         
         return components.joined(separator: " ")
     }
-    
-    // MARK: - Working with Core Data
+
+    // MARK: - Core Data Logic
     
     func fetchPresets() {
         let request = NSFetchRequest<TimePreset>(entityName: "TimePreset")
         do {
             savedPresets = try container.viewContext.fetch(request)
-        } catch let error {
+        } catch {
             print("Error fetching time presets: \(error)")
         }
     }
@@ -149,11 +147,11 @@ class TimerViewModel: ObservableObject {
         saveData()
     }
     
-    func saveData() {
+    private func saveData() {
         do {
             try container.viewContext.save()
             fetchPresets()
-        } catch let error {
+        } catch {
             print("Error saving time presets: \(error)")
         }
     }

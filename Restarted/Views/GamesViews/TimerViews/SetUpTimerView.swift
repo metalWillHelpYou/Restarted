@@ -42,10 +42,14 @@ struct SetUpTimerView: View {
 }
 
 extension SetUpTimerView {
+    // MARK: - Computed Properties
+
     private var gameTitle: String {
         game?.title ?? "Unknown Game"
     }
     
+    // MARK: - Subviews
+
     private var timePickers: some View {
         HStack(spacing: 20) {
             Picker("Hours", selection: $hours) {
@@ -75,27 +79,21 @@ extension SetUpTimerView {
             
             List {
                 ForEach(timerVm.savedPresets, id: \.self) { preset in
-                    HStack {
-                        let time = timerVm.convertSecondsToTime(Int(preset.seconds))
-                        
-                        VStack(alignment: .leading) {
-                            Text(timerVm.formatTimeDigits(hours: time.hours, minutes: time.minutes))
-                                .font(.title)
-                                .padding(.vertical, 2)
-                            
-                            Text(timerVm.formatTimeText(hours: time.hours, minutes: time.minutes))
-                                .font(.caption)
-                                .foregroundColor(.highlight.opacity(0.7))
+                    let time = timerVm.convertSecondsToTime(Int(preset.seconds))
+                    
+                    NavigationLink(
+                        destination: {
+                            TimerView(
+                                isTimerRunning: .constant(true),
+                                game: game,
+                                seconds: Int(preset.seconds)
+                            )
+                        },
+                        label: {
+                            presetTimeView(time: time)
                         }
-                    }
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                        Button("Delete") {
-                            withAnimation(.easeInOut(duration: 0.5)){
-                                timerVm.deletePreset(preset)
-                            }
-                        }
-                        .tint(.red)
-                    }
+                    )
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) { deletePresetButton(preset) }
                     .listRowBackground(Color.background)
                 }
                 .listRowSeparatorTint(Color.highlight)
@@ -115,20 +113,52 @@ extension SetUpTimerView {
                 Text("Start")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(hours > 0 || minutes > 0 ? Color.text : Color.gray)
+                    .foregroundStyle(isTimeSelected ? Color.text : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(hours > 0 || minutes > 0 ? Color.highlight : Color.gray)
+                    .strokeBackground(isTimeSelected ? Color.highlight : Color.gray)
                     .padding(.horizontal)
                     .animation(.easeInOut(duration: 0.3), value: hours + minutes)
             }
         )
-        .disabled(hours == 0 && minutes == 0)
+        .disabled(!isTimeSelected)
         .simultaneousGesture(TapGesture().onEnded {
-            if hours > 0 || minutes > 0 {
-                let totalSeconds = (hours * 3600) + (minutes * 60)
-                timerVm.saveTime(seconds: totalSeconds)
+            if isTimeSelected {
+                timerVm.saveTime(seconds: calculateTotalSeconds(hours: hours, minutes: minutes))
             }
         })
+    }
+    
+    // MARK: - Helpers
+
+    private var isTimeSelected: Bool {
+        hours > 0 || minutes > 0
+    }
+    
+    private func calculateTotalSeconds(hours: Int, minutes: Int) -> Int {
+        (hours * 3600) + (minutes * 60)
+    }
+    
+    // MARK: - Subview Components
+
+    private func presetTimeView(time: (hours: Int, minutes: Int, seconds: Int)) -> some View {
+        VStack(alignment: .leading) {
+            Text(timerVm.formatTimeDigits(hours: time.hours, minutes: time.minutes))
+                .font(.title)
+                .padding(.vertical, 2)
+            
+            Text(timerVm.formatTimeText(hours: time.hours, minutes: time.minutes))
+                .font(.caption)
+                .foregroundColor(.highlight.opacity(0.7))
+        }
+    }
+
+    private func deletePresetButton(_ preset: TimePreset) -> some View {
+        Button("Delete") {
+            withAnimation(.easeInOut(duration: 0.5)) {
+                timerVm.deletePreset(preset)
+            }
+        }
+        .tint(.red)
     }
 }
 
