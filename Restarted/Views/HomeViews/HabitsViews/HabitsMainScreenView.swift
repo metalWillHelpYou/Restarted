@@ -12,6 +12,7 @@ struct HabitsMainScreenView: View {
     @State private var showHabitListView: Bool = false
     @State private var selectedHabit: Habit? = nil
     @State private var showDeleteDialog: Bool = false
+    @State private var isHabitComplete: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -72,9 +73,21 @@ extension HabitsMainScreenView {
                 List {
                     ForEach(habitVm.activeHabits) { habit in
                         HStack {
+                            Button(action: {
+                                
+                                
+                                withAnimation(.easeInOut) {
+                                    isHabitComplete.toggle()
+                                }
+                            }, label: {
+                                Image(systemName: isHabitComplete ? "checkmark.circle" : "circle")
+                            })
+                            
                             Text(habit.title ?? "")
+                                .strikethrough(isHabitComplete)
                             Spacer()
                             Text("\(habit.goal)")
+                                .strikethrough(isHabitComplete)
                         }
                         .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                             habitVm.deleteButton(for: habit)

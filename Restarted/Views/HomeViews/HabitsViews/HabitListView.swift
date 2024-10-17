@@ -36,7 +36,20 @@ struct HabitListView: View {
                 } else {
                     List {
                         ForEach(habitVm.savedHabits) { habit in
-                            habitRow(for: habit)
+                            HStack {
+                                Text(habit.title ?? "")
+                                Spacer()
+                                
+                                habitStatusToggle(for: habit)
+                            }
+                            .listRowBackground(Color.background)
+                            .padding(.vertical, 8)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                deteleHabitFromSavings(habit)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                editHabit(habit)
+                            }
                         }
                         .listRowSeparatorTint(Color.highlight)
                     }
@@ -46,50 +59,28 @@ struct HabitListView: View {
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(PlainListStyle())
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-            .toolbar { if !habitVm.savedHabits.isEmpty {addButton} }
-            .sheet(isPresented: $showHabitSheet) {
-                HabitSheetView(sheetModel: $sheetModel)
-            }
+            .toolbar { if !habitVm.savedHabits.isEmpty { addButton } }
+            .sheet(isPresented: $showHabitSheet) { HabitSheetView(sheetModel: $sheetModel) }
             .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
                 deleteConfirmationButtons
             }
-            
         }
     }
 }
 
 // MARK: - Additional UI components and logic
 extension HabitListView {
-    private func habitRow(for habit: Habit) -> some View {
-        HStack {
-            Text(habit.title ?? "")
-            Spacer()
-            habitStatus(for: habit)
-        }
-        .listRowBackground(Color.background)
-        .padding(.vertical, 8)
-        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-            deteleHabitFromSavings(habit)
-        }
-        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-            editHabit(habit)
-        }
-    }
-    
-    private func habitStatus(for habit: Habit) -> some View {
-        if habitVm.activeHabits.contains(habit) {
-            return AnyView(
-                Text("Active")
-                    .foregroundColor(Color.highlight)
-            )
-        } else {
-            return AnyView(
-                Button(action: {
-                    habitVm.addHabitToActive(habit)
-                }) {
-                    Text("Add to Active")
-                }
-            )
+    private func habitStatusToggle(for habit: Habit) -> some View {
+        Button(action: {
+            if habitVm.activeHabits.contains(habit) {
+                habitVm.removeHabitFromActive(habit)
+            } else {
+                habitVm.addHabitToActive(habit)
+            }
+        }) {
+            Image(systemName: habitVm.activeHabits.contains(habit) ? "minus.circle" : "plus.circle")
+                .foregroundColor(habitVm.activeHabits.contains(habit) ? .red : .highlight)
+                .imageScale(.large)
         }
     }
     
@@ -106,8 +97,10 @@ extension HabitListView {
         Group {
             Button("Delete", role: .destructive) {
                 if let habitToDelete = selectedHabit {
-                    habitVm.deleteHabit(habitToDelete)
-                    habitVm.removeHabitFromActive(habitToDelete)
+                    withAnimation(.easeInOut) {
+                        habitVm.deleteHabit(habitToDelete)
+                        habitVm.removeHabitFromActive(habitToDelete)
+                    }
                 }
             }
             Button("Cancel", role: .cancel) { }
