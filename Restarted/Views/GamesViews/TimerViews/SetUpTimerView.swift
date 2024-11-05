@@ -43,13 +43,13 @@ struct SetUpTimerView: View {
 
 extension SetUpTimerView {
     // MARK: - Computed Properties
-
+    
     private var gameTitle: String {
         game?.title ?? "Unknown Game"
     }
     
     // MARK: - Subviews
-
+    
     private var timePickers: some View {
         HStack(spacing: 20) {
             Picker("Hours", selection: $hours) {
@@ -90,10 +90,25 @@ extension SetUpTimerView {
                             )
                         },
                         label: {
-                            presetTimeView(time: time)
+                            VStack(alignment: .leading) {
+                                Text(timerVm.formatTimeDigits(hours: time.hours, minutes: time.minutes))
+                                    .font(.title)
+                                    .padding(.vertical, 2)
+                                
+                                Text(timerVm.formatTimeText(hours: time.hours, minutes: time.minutes))
+                                    .font(.caption)
+                                    .foregroundColor(.highlight.opacity(0.7))
+                            }
                         }
                     )
-                    .swipeActions(edge: .trailing, allowsFullSwipe: true) { deletePresetButton(preset) }
+                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                        Button("Delete") {
+                            withAnimation(.easeInOut(duration: 0.5)) {
+                                timerVm.deletePreset(preset)
+                            }
+                        }
+                        .tint(.red)
+                    }
                     .listRowBackground(Color.background)
                 }
                 .listRowSeparatorTint(Color.highlight)
@@ -123,42 +138,15 @@ extension SetUpTimerView {
         .disabled(!isTimeSelected)
         .simultaneousGesture(TapGesture().onEnded {
             if isTimeSelected {
-                timerVm.saveTime(seconds: calculateTotalSeconds(hours: hours, minutes: minutes))
+                timerVm.saveTime(seconds: (hours * 3600) + (minutes * 60))
             }
         })
     }
     
     // MARK: - Helpers
-
+    
     private var isTimeSelected: Bool {
         hours > 0 || minutes > 0
-    }
-    
-    private func calculateTotalSeconds(hours: Int, minutes: Int) -> Int {
-        (hours * 3600) + (minutes * 60)
-    }
-    
-    // MARK: - Subview Components
-
-    private func presetTimeView(time: (hours: Int, minutes: Int, seconds: Int)) -> some View {
-        VStack(alignment: .leading) {
-            Text(timerVm.formatTimeDigits(hours: time.hours, minutes: time.minutes))
-                .font(.title)
-                .padding(.vertical, 2)
-            
-            Text(timerVm.formatTimeText(hours: time.hours, minutes: time.minutes))
-                .font(.caption)
-                .foregroundColor(.highlight.opacity(0.7))
-        }
-    }
-
-    private func deletePresetButton(_ preset: TimePreset) -> some View {
-        Button("Delete") {
-            withAnimation(.easeInOut(duration: 0.5)) {
-                timerVm.deletePreset(preset)
-            }
-        }
-        .tint(.red)
     }
 }
 

@@ -74,10 +74,8 @@ extension HabitsMainScreenView {
                     ForEach(habitVm.activeHabits) { habit in
                         HStack {
                             Button(action: {
-                                
-                                
                                 withAnimation(.easeInOut) {
-                                    isHabitComplete.toggle()
+                                    //isHabitComplete.toggle()
                                 }
                             }, label: {
                                 Image(systemName: isHabitComplete ? "checkmark.circle" : "circle")

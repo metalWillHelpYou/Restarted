@@ -109,4 +109,19 @@ class HabitViewModel: ObservableObject {
         }
         .tint(.red)
     }
+    
+    func handleButtonAction(sheetModel: HabitSheetModel, habitTitle: String, goal: String, dismiss: () -> Void) {
+        switch sheetModel.buttonType {
+        case .add:
+            if !habitTitle.isEmpty {
+                addHabit(habitTitle, goal: Int32(goal) ?? 0)
+                dismiss()
+            }
+        case .edit:
+            if let habit = sheetModel.habit, !habitTitle.isEmpty {
+                editHabit(entity: habit, newTitle: habitTitle, newGoal: Int32(goal) ?? 0)
+                dismiss()
+            }
+        }
+    }
 }

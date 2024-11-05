@@ -23,7 +23,6 @@
 		9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD722C009A0D00E908F5 /* HomeView.swift */; };
 		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
-		9B377BD22CB2A8F600E4091E /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B377BD02CB2A8F600E4091E /* HabitModel.xcdatamodeld */; };
 		9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
@@ -39,11 +38,9 @@
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
 		9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameViewModel.swift */; };
-		9BA146CE2C9089A90046A388 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */; };
 		9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */; };
 		9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */; };
 		9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */; };
-		9BB56B822CBE82C4009F9CAF /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BB56B802CBE82C4009F9CAF /* GameModel.xcdatamodeld */; };
 		9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8129F2C720C27005A6085 /* PlusButton.swift */; };
 		9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A22C721067005A6085 /* SetUpTimerView.swift */; };
 		9BD812A52C74F044005A6085 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A42C74F044005A6085 /* TimerView.swift */; };
@@ -52,6 +49,9 @@
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
+		9BF77AF92CDA556200FDE543 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */; };
+		9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */; };
+		9BF77AFD2CDA55DF00FDE543 /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AFB2CDA55DF00FDE543 /* HabitModel.xcdatamodeld */; };
 		9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE38882CB7F36100325173 /* QGHabitsView.swift */; };
 		9BFE388B2CB7F3C300325173 /* QGArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */; };
 		9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388C2CB7F43600325173 /* QGTimerView.swift */; };
@@ -76,7 +76,6 @@
 		9B2AFD722C009A0D00E908F5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9B377BD12CB2A8F600E4091E /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
 		9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
@@ -92,11 +91,9 @@
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
-		9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsMainScreenView.swift; sourceTree = "<group>"; };
 		9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetModel.swift; sourceTree = "<group>"; };
 		9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
-		9BB56B812CBE82C4009F9CAF /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9BD8129F2C720C27005A6085 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		9BD812A22C721067005A6085 /* SetUpTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpTimerView.swift; sourceTree = "<group>"; };
 		9BD812A42C74F044005A6085 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -105,6 +102,9 @@
 		9BDE50472C0A02F400910F23 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSheetView.swift; sourceTree = "<group>"; };
 		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
+		9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
+		9BF77AF82CDA556200FDE543 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
+		9BF77AFC2CDA55DF00FDE543 /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
 		9BFE38882CB7F36100325173 /* QGHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGHabitsView.swift; sourceTree = "<group>"; };
 		9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGArticlesView.swift; sourceTree = "<group>"; };
 		9BFE388C2CB7F43600325173 /* QGTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGTimerView.swift; sourceTree = "<group>"; };
@@ -205,9 +205,9 @@
 			children = (
 				9BDE50442C0A005A00910F23 /* FakeHabit.swift */,
 				9B2AFD542C0099F100E908F5 /* Article.swift */,
-				9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */,
-				9B377BD02CB2A8F600E4091E /* HabitModel.xcdatamodeld */,
-				9BB56B802CBE82C4009F9CAF /* GameModel.xcdatamodeld */,
+				9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */,
+				9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */,
+				9BF77AFB2CDA55DF00FDE543 /* HabitModel.xcdatamodeld */,
 				9B3AD9062C0F60AF00230004 /* Helpers */,
 			);
 			path = Model;
@@ -418,12 +418,10 @@
 			files = (
 				9BDE50452C0A005A00910F23 /* FakeHabit.swift in Sources */,
 				9B2AFD7D2C009A0D00E908F5 /* GamesMainScreenView.swift in Sources */,
-				9B377BD22CB2A8F600E4091E /* HabitModel.xcdatamodeld in Sources */,
 				9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */,
 				9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */,
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,
-				9BA146CE2C9089A90046A388 /* ArticleModel.xcdatamodeld in Sources */,
 				9BD812A52C74F044005A6085 /* TimerView.swift in Sources */,
 				9BFE388F2CB7F4CA00325173 /* QGDiaryView.swift in Sources */,
 				9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */,
@@ -432,10 +430,11 @@
 				9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */,
 				9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */,
 				9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */,
+				9BF77AFD2CDA55DF00FDE543 /* HabitModel.xcdatamodeld in Sources */,
+				9BF77AF92CDA556200FDE543 /* ArticleModel.xcdatamodeld in Sources */,
 				9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */,
 				9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */,
 				9B5834502C6792DE007FAB6C /* GameSheetModel.swift in Sources */,
-				9BB56B822CBE82C4009F9CAF /* GameModel.xcdatamodeld in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
 				9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */,
@@ -447,6 +446,7 @@
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD602C0099F100E908F5 /* Article.swift in Sources */,
+				9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* StatsMainView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
 				9B5A41C22CB67FEF00617FEB /* QuickGuideView.swift in Sources */,
@@ -704,36 +704,36 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		9B377BD02CB2A8F600E4091E /* HabitModel.xcdatamodeld */ = {
+		9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9B377BD12CB2A8F600E4091E /* HabitModel.xcdatamodel */,
+				9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */,
 			);
-			currentVersion = 9B377BD12CB2A8F600E4091E /* HabitModel.xcdatamodel */;
-			name = HabitModel.xcdatamodeld;
-			path = "/Users/metalwillhelpyou/.Trash/Restarted 11.32.25/Restarted/Model/HabitModel.xcdatamodeld";
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		9BA146CC2C9089A90046A388 /* ArticleModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */,
-			);
-			currentVersion = 9BA146CD2C9089A90046A388 /* ArticleModel.xcdatamodel */;
+			currentVersion = 9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */;
 			name = ArticleModel.xcdatamodeld;
-			path = "/Users/metalwillhelpyou/.Trash/Restarted 16.03.27/Restarted/Model/ArticleModel.xcdatamodeld";
+			path = /Users/metalwillhelpyou/.Trash/Restarted/Restarted/Model/ArticleModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		9BB56B802CBE82C4009F9CAF /* GameModel.xcdatamodeld */ = {
+		9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9BB56B812CBE82C4009F9CAF /* GameModel.xcdatamodel */,
+				9BF77AF82CDA556200FDE543 /* GameModel.xcdatamodel */,
 			);
-			currentVersion = 9BB56B812CBE82C4009F9CAF /* GameModel.xcdatamodel */;
+			currentVersion = 9BF77AF82CDA556200FDE543 /* GameModel.xcdatamodel */;
 			name = GameModel.xcdatamodeld;
-			path = "/Users/metalwillhelpyou/.Trash/Restarted 19.37.21/Restarted/Model/GameModel.xcdatamodeld";
+			path = /Users/metalwillhelpyou/.Trash/Restarted/Restarted/Model/GameModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		9BF77AFB2CDA55DF00FDE543 /* HabitModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9BF77AFC2CDA55DF00FDE543 /* HabitModel.xcdatamodel */,
+			);
+			currentVersion = 9BF77AFC2CDA55DF00FDE543 /* HabitModel.xcdatamodel */;
+			name = HabitModel.xcdatamodeld;
+			path = "/Users/metalwillhelpyou/Library/Containers/me.damir.dropover-mac/Data/tmp/Promises/134217730/HabitModel.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

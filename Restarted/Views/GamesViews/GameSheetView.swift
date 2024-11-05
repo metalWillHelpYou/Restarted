@@ -27,7 +27,7 @@ struct GameSheetView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
-        .onAppear { initializeFields() }
+        .onAppear { gameTitle = sheetModel.game?.title ?? "" }
     }
 }
 
@@ -51,12 +51,6 @@ extension GameSheetView {
                 .padding(.horizontal)
         })
         .disabled(gameTitle.isEmpty)
-    }
-}
-
-extension GameSheetView {
-    private func initializeFields() {
-        gameTitle = sheetModel.game?.title ?? ""
     }
 }
 

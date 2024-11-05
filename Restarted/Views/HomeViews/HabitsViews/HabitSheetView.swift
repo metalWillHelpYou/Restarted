@@ -10,13 +10,13 @@ import SwiftUI
 struct HabitSheetView: View {
     @EnvironmentObject var habitVm: HabitViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var titleText: String = ""
+    @State private var habitTitle: String = ""
     @State private var goalText: String = ""
     @Binding var sheetModel: HabitSheetModel
     
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            CustomTextField(placeholder: sheetModel.titleText, text: $titleText)
+            CustomTextField(placeholder: sheetModel.titleText, text: $habitTitle)
             
             HStack {
                 Text("Time goal")
@@ -42,36 +42,39 @@ struct HabitSheetView: View {
             
             Spacer()
             
-            CustomButton(title: sheetModel.buttonLabel) {
-                handleButtonAction()
-            }
+            mainButton
         }
         .padding()
         .background(Color.background)
         .onTapGesture { self.hideKeyboard() }
-        .onAppear { initializeFields() }
+        .onAppear {
+            habitTitle = sheetModel.habit?.title ?? ""
+            goalText = sheetModel.habit != nil ? String(sheetModel.habit?.goal ?? 0) : ""
+        }
     }
 }
 
 extension HabitSheetView {
-    private func handleButtonAction() {
-        switch sheetModel.buttonType {
-        case .add:
-            if !titleText.isEmpty, let goal = Int32(goalText) {
-                habitVm.addHabit(titleText, goal: goal)
-                dismiss()
-            }
-        case .edit:
-            if let habit = sheetModel.habit, !titleText.isEmpty, let goal = Int32(goalText) {
-                habitVm.editHabit(entity: habit, newTitle: titleText, newGoal: goal)
-                dismiss()
-            }
-        }
-    }
-    
-    private func initializeFields() {
-        titleText = sheetModel.habit?.title ?? ""
-        goalText = sheetModel.habit != nil ? String(sheetModel.habit?.goal ?? 0) : ""
+    private var mainButton: some View {
+        Button(action: {
+            habitVm.handleButtonAction(
+                sheetModel: sheetModel, 
+                habitTitle: habitTitle,
+                goal: goalText,
+                dismiss: {
+                    habitTitle = ""
+                    goalText = ""
+                    dismiss()
+                }
+            )
+        }, label: {
+            Text(sheetModel.buttonLabel)
+                .frame(height: 55)
+                .frame(maxWidth: .infinity)
+                .foregroundStyle(habitTitle.isEmpty && goalText.isEmpty ? Color.gray : Color.text)
+                .strokeBackground(habitTitle.isEmpty && goalText.isEmpty ? Color.gray : Color.highlight)
+        })
+        .disabled(habitTitle.isEmpty && goalText.isEmpty)
     }
 }
 
