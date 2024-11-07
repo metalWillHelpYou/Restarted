@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class AlertsManager: ObservableObject {
+final class AlertsManager: ObservableObject {
     func getNoTitleAlert() -> Alert {
         Alert(
             title: Text("Empty Field."),

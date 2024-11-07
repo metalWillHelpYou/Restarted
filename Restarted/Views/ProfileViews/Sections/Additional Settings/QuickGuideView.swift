@@ -22,6 +22,7 @@ struct QuickGuideView: View {
         .tabViewStyle(PageTabViewStyle())
         .onAppear {
             let seconds = 10 * 60
+            timerVm.selectRandomGame()
             timerVm.startTimer(seconds: seconds)
         }
         .onDisappear { timerVm.stopTimer() }

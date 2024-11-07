@@ -8,7 +8,8 @@
 import CoreData
 import SwiftUI
 
-class ArticleViewModel: ObservableObject {
+@MainActor
+final class ArticleViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedArticles: [Article] = []
 

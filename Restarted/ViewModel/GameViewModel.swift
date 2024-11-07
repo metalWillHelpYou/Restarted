@@ -8,7 +8,8 @@
 import Foundation
 import CoreData
 
-class GameViewModel: ObservableObject {
+@MainActor
+final class GameViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedEntities: [Game] = []
     

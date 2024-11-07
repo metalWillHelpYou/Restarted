@@ -9,7 +9,8 @@ import Foundation
 import Combine
 import CoreData
 
-class TimerViewModel: ObservableObject {
+@MainActor
+final class TimerViewModel: ObservableObject {
     @Published var timeRemaining: Int = 0
     @Published var isTimerRunning: Bool = false
     @Published var currentGame: String = "No game selected"

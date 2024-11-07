@@ -9,7 +9,8 @@ import Foundation
 import CoreData
 import SwiftUI
 
-class HabitViewModel: ObservableObject {
+@MainActor
+final class HabitViewModel: ObservableObject {
     let container: NSPersistentContainer
     @Published var savedHabits: [Habit] = []
     @Published var selectedHabit: Habit? = nil

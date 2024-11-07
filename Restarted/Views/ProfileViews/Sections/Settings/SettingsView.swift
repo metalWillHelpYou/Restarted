@@ -19,8 +19,6 @@ struct SettingsView: View {
             
             Text("Privacy and Security")
             
-            Text("Export diary")
-            
             Toggle(isOn: $isNotificationsOn, label: {
                 Text("Notifications")
             })
