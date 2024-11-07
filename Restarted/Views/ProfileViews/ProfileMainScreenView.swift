@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ProfileMainScreenView: View {
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    @StateObject private var viewModel = ProfileViewModel()
+    @Binding var showSigInView: Bool
+    
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,15 +19,41 @@ struct ProfileMainScreenView: View {
                 
                 AdditionalSettingsView()
                 
+                logOutButton
+                
                 Spacer()
             }
             .navigationTitle("Profile")
             .background(Color.background)
         }
-        .preferredColorScheme(userTheme.setTheme)
+    }
+}
+
+extension ProfileMainScreenView {
+    private var logOutButton: some View {
+        VStack {
+            Button(action: {
+                Task {
+                    do {
+                        try viewModel.signOut()
+                        showSigInView = true
+                    } catch {
+                        print(error)
+                    }
+                }
+            }, label: {
+                Text("Log Out")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(Color.primary)
+            })
+        }
+        .padding()
+        .strokeBackground(Color.highlight)
+        .padding(.horizontal)
+        .padding(.top, 40)
     }
 }
 
 #Preview {
-    ProfileMainScreenView()
+    ProfileMainScreenView(showSigInView: .constant(false))
 }

@@ -119,7 +119,7 @@ class HabitViewModel: ObservableObject {
             }
         case .edit:
             if let habit = sheetModel.habit, !habitTitle.isEmpty {
-                editHabit(entity: habit, newTitle: habitTitle, newGoal: Int32(goal) ?? 0)
+                editHabit(entity: habit, newTitle: habitTitle, newGoal: Int32(goal) ?? 0 )
                 dismiss()
             }
         }
