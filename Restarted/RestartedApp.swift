@@ -31,6 +31,12 @@ struct RestartedApp: App {
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
     
+//    init(){
+//        // write for db here
+//      // gpt write to firestore db
+//        
+//    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -21,10 +21,21 @@ struct ProfileMainScreenView: View {
                 
                 logOutButton
                 
+//                if let user = viewModel.user {
+//                    Text("User id: \(user.userId)")
+//                    
+//                    if let email = user.email {
+//                        Text(email)
+//                    }
+//                }
+//                
                 Spacer()
             }
             .navigationTitle("Profile")
             .background(Color.background)
+            .task {
+                try? await viewModel.loadCurruntUser()
+            }
         }
     }
 }

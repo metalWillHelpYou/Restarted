@@ -15,12 +15,13 @@ final class SignInWithEmailViewModel: ObservableObject {
     func signUp() async throws {
         guard !email.isEmpty, !password.isEmpty else { return }
         
-        _ = try await AuthenticaitionManager.shared.createUser(email: email, password: password)
+        let authDataResult = try await AuthenticaitionManager.shared.createUser(email: email, password: password)
+        try await UserManager.shared.createUser(auth: authDataResult)
     }
     
     func signIn() async throws {
         guard !email.isEmpty, !password.isEmpty else { return }
         
-        _ = try await AuthenticaitionManager.shared.signInUser(email: email, password: password)
+        try await AuthenticaitionManager.shared.signInUser(email: email, password: password)
     }
 }
