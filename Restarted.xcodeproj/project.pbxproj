@@ -38,12 +38,12 @@
 		9B6E6C362CDE424B002D3042 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9B6E6C352CDE424B002D3042 /* GoogleSignIn */; };
 		9B6E6C382CDE424B002D3042 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9B6E6C372CDE424B002D3042 /* GoogleSignInSwift */; };
 		9B6E6C3B2CDE450F002D3042 /* AuthentcationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E6C3A2CDE450F002D3042 /* AuthentcationViewModel.swift */; };
-		9B6E6C3D2CDE456D002D3042 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E6C3C2CDE456D002D3042 /* Utilites.swift */; };
 		9B6E6C3F2CDE4668002D3042 /* GoogleSignInResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */; };
 		9B6E6C412CDE4BBB002D3042 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF172CE4BC58009A7FD7 /* UserManager.swift */; };
+		9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF1B2CE65642009A7FD7 /* Utilites.swift */; };
 		9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */; };
 		9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
@@ -108,12 +108,12 @@
 		9B6E6C322CDE4233002D3042 /* GoogleService-Info-7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-7.plist"; sourceTree = "<group>"; };
 		9B6E6C392CDE42A5002D3042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9B6E6C3A2CDE450F002D3042 /* AuthentcationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentcationViewModel.swift; sourceTree = "<group>"; };
-		9B6E6C3C2CDE456D002D3042 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Utilites.swift; path = ../../../../../../Utilites.swift; sourceTree = "<group>"; };
 		9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInResultModel.swift; sourceTree = "<group>"; };
 		9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9B77BF172CE4BC58009A7FD7 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		9B77BF1B2CE65642009A7FD7 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 		9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
@@ -318,13 +318,13 @@
 		9B2AFD822C009A3100E908F5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9B6E6C3A2CDE450F002D3042 /* AuthentcationViewModel.swift */,
+				9BBA81C62CDCE475006EB807 /* SignInWithEmailViewModel.swift */,
 				9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */,
 				9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */,
 				9B9DE1102C63FF1100422443 /* GameViewModel.swift */,
 				9BD812A62C7519F9005A6085 /* TimerViewModel.swift */,
-				9BBA81C62CDCE475006EB807 /* SignInWithEmailViewModel.swift */,
 				9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */,
-				9B6E6C3A2CDE450F002D3042 /* AuthentcationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -343,7 +343,6 @@
 			isa = PBXGroup;
 			children = (
 				9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */,
-				9B6E6C3C2CDE456D002D3042 /* Utilites.swift */,
 				9B5834512C67D62E007FAB6C /* AlertsManager.swift */,
 				9B3AD9072C0F60F000230004 /* ThemeChanger.swift */,
 				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
@@ -354,6 +353,7 @@
 				9BBA81C22CDCE3C6006EB807 /* AuthenticationManager.swift */,
 				9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */,
 				9B77BF172CE4BC58009A7FD7 /* UserManager.swift */,
+				9B77BF1B2CE65642009A7FD7 /* Utilites.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -520,6 +520,7 @@
 				9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */,
 				9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
+				9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
@@ -541,7 +542,6 @@
 				9B5834522C67D62E007FAB6C /* AlertsManager.swift in Sources */,
 				9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
-				9B6E6C3D2CDE456D002D3042 /* Utilites.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */,
 				9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */,

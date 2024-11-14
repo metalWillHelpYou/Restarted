@@ -19,10 +19,10 @@ final class ProfileViewModel: ObservableObject {
     }
     
     func toggleNotifications() {
-        guard var user else { return }
-        user.toggleNotificationStatus()
+        guard let user else { return }
+        let currentValue = user.isNotificationsOn ?? false
         Task {
-            try UserManager.shared.updateUserNotificationsStatus(user: user)
+            try await UserManager.shared.updateUserNotificationsStatus(userId: user.userId, isNotificationsOn: !currentValue)
             self.user = try await UserManager.shared.getUser(userId: user.userId)
         }
     }
