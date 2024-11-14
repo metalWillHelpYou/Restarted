@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @AppStorage("isNotificationsOn") private var isNotificationsOn: Bool = false
+    @ObservedObject var viewModel: ProfileViewModel
     @State private var showApperance = false
     @State private var showLanguage = false
     
@@ -19,10 +18,13 @@ struct SettingsView: View {
             
             Text("Privacy and Security")
             
-            Toggle(isOn: $isNotificationsOn, label: {
+            Toggle(isOn: $viewModel.isNotificationsOn) {
                 Text("Notifications")
-            })
+            }
             .toggleStyle(SwitchToggleStyle(tint: Color.highlight))
+            .onChange(of: viewModel.isNotificationsOn) {
+                viewModel.toggleNotifications()
+            }
             
             NavigationLink(destination: LanguageView()) {
                 Text("Language")
@@ -53,5 +55,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    SettingsView(viewModel: ProfileViewModel())
 }

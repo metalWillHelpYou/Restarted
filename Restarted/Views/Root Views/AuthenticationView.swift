@@ -9,7 +9,7 @@ import SwiftUI
 import GoogleSignInSwift
 
 struct AuthenticationView: View {
-    @StateObject private var viewModel = AuthentcationViewModel()
+    @StateObject private var viewModel = AuthenticationViewModel()
     @Binding var showSignInView: Bool
     
     var body: some View {

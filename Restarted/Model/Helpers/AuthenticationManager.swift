@@ -8,8 +8,8 @@
 import Foundation
 import FirebaseAuth
 
-final class AuthenticaitionManager {
-    static let shared = AuthenticaitionManager()
+final class AuthenticationManager {
+    static let shared = AuthenticationManager()
     private init() { }
     
     func getAuthenticatedUser() throws -> AuthDataResultModel {
@@ -26,7 +26,7 @@ final class AuthenticaitionManager {
 }
 
 // MARK: SIGN IN WITH EMAIL
-extension AuthenticaitionManager {
+extension AuthenticationManager {
     @discardableResult
     func createUser(email: String, password: String) async throws -> AuthDataResultModel {
         let authDataResult = try await Auth.auth().createUser(withEmail: email, password: password)
@@ -61,7 +61,7 @@ extension AuthenticaitionManager {
 }
 
 // MARK: SIGN IN WITH SSO
-extension AuthenticaitionManager {
+extension AuthenticationManager {
     @discardableResult
     func signInWithGoogle(tokens: GoogleSignInResultModel) async throws -> AuthDataResultModel {
         let credential = GoogleAuthProvider.credential(withIDToken: tokens.idToken, accessToken: tokens.accessToken)

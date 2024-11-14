@@ -15,20 +15,20 @@ struct ProfileMainScreenView: View {
         NavigationStack {
             VStack {
                 
-                SettingsView()
+                SettingsView(viewModel: viewModel)
                 
                 AdditionalSettingsView()
                 
                 logOutButton
                 
-//                if let user = viewModel.user {
-//                    Text("User id: \(user.userId)")
-//                    
-//                    if let email = user.email {
-//                        Text(email)
-//                    }
-//                }
-//                
+                if let user = viewModel.user {
+                    Text("User id: \(user.userId)")
+                    
+                    if let email = user.email {
+                        Text(email)
+                    }
+                }
+                
                 Spacer()
             }
             .navigationTitle("Profile")
