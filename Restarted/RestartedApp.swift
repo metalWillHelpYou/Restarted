@@ -39,7 +39,7 @@ struct RestartedApp: App {
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            RootView()
                 .environmentObject(habitVm)
                 .environmentObject(articleVm)
                 .environmentObject(gameVm)

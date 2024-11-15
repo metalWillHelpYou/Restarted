@@ -19,6 +19,7 @@ struct SignInWithEmailView: View {
                     .background(Color.gray.opacity(0.4))
                     .foregroundStyle(Color.text)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .keyboardType(.emailAddress)
                 
                 SecureField("Password", text: $viewModel.password)
                     .padding()
@@ -47,7 +48,7 @@ struct SignInWithEmailView: View {
                     Text("Sign In")
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(Color.text)
+                        .foregroundStyle(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
                         .strokeBackground(Color.highlight)
                 })
@@ -56,7 +57,6 @@ struct SignInWithEmailView: View {
                 Spacer()
             }
             .navigationTitle("Sign In")
-            .padding(.horizontal)
             .background(Color.background)
         }
     }

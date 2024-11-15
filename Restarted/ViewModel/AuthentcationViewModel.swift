@@ -14,11 +14,9 @@ final class AuthenticationViewModel: ObservableObject {
         let tokens = try await helper.signIn()
         let authDataResult = try await AuthenticationManager.shared.signInWithGoogle(tokens: tokens)
         
-        // Проверяем, существует ли пользователь в базе данных
         let userId = authDataResult.uid
         let existingUser = try? await UserManager.shared.getUser(userId: userId)
         
-        // Если пользователь уже существует, не создаем его заново
         if existingUser == nil {
             let newUser = DBUser(auth: authDataResult)
             try await UserManager.shared.createUser(user: newUser)

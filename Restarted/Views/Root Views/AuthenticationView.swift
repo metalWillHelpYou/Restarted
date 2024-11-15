@@ -18,16 +18,7 @@ struct AuthenticationView: View {
                 Color.background.ignoresSafeArea()
                 
                 VStack {
-                    NavigationLink {
-                        SignInWithEmailView(showSignInView: $showSignInView)
-                    } label: {
-                        Text("Sign In with Email")
-                            .frame(height: 55)
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(Color.text)
-                            .clipShape(RoundedRectangle(cornerRadius: 10))
-                            .strokeBackground(Color.highlight)
-                    }
+                    SignInWithEmailView(showSignInView: $showSignInView)
                     
                     GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
                         Task {

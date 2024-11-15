@@ -69,6 +69,7 @@
 		9BF77AF92CDA556200FDE543 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */; };
 		9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */; };
 		9BF77AFD2CDA55DF00FDE543 /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AFB2CDA55DF00FDE543 /* HabitModel.xcdatamodeld */; };
+		9BF77F232CE75A08006FC86F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77F222CE75A08006FC86F /* RootView.swift */; };
 		9BFD3AB92CE2651B0000A460 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9BFD3AB82CE2651B0000A460 /* FirebaseFirestore */; };
 		9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE38882CB7F36100325173 /* QGHabitsView.swift */; };
 		9BFE388B2CB7F3C300325173 /* QGArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */; };
@@ -135,6 +136,7 @@
 		9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9BF77AF82CDA556200FDE543 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9BF77AFC2CDA55DF00FDE543 /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
+		9BF77F222CE75A08006FC86F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		9BFE38882CB7F36100325173 /* QGHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGHabitsView.swift; sourceTree = "<group>"; };
 		9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGArticlesView.swift; sourceTree = "<group>"; };
 		9BFE388C2CB7F43600325173 /* QGTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGTimerView.swift; sourceTree = "<group>"; };
@@ -349,8 +351,8 @@
 				9B7528B52C2753D000657E8A /* CustomTabBar.swift */,
 				9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */,
 				9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */,
-				9B0139D52CB9730500365128 /* LocalNotificationManager.swift */,
 				9BBA81C22CDCE3C6006EB807 /* AuthenticationManager.swift */,
+				9B0139D52CB9730500365128 /* LocalNotificationManager.swift */,
 				9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */,
 				9B77BF172CE4BC58009A7FD7 /* UserManager.swift */,
 				9B77BF1B2CE65642009A7FD7 /* Utilites.swift */,
@@ -364,6 +366,7 @@
 				9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */,
 				9BBA81C42CDCE426006EB807 /* SignInWithEmailView.swift */,
 				9B2AFD762C009A0D00E908F5 /* ContentView.swift */,
+				9BF77F222CE75A08006FC86F /* RootView.swift */,
 			);
 			path = "Root Views";
 			sourceTree = "<group>";
@@ -523,6 +526,7 @@
 				9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
+				9BF77F232CE75A08006FC86F /* RootView.swift in Sources */,
 				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
