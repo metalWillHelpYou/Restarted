@@ -45,7 +45,7 @@ struct ContentView: View {
                     .setupTab(.stats)
 
                     NavigationView {
-                        ProfileMainScreenView(showSigInView: $showSignInView)
+                        ProfileMainScreenView(showSignInView: $showSignInView, activeTab: activeTab)
                     }
                     .setupTab(.profile)
                 }
@@ -53,6 +53,13 @@ struct ContentView: View {
                 CustomTabBar(activeTab: activeTab, allTabs: $allTabs)
             }
         }
+        .onAppear {
+            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+            self.showSignInView = authUser == nil ? true : false
+        }
+        .fullScreenCover(isPresented: $showSignInView, content: {
+            AuthenticationView(showSignInView: $showSignInView)
+        })
     }
 }
 

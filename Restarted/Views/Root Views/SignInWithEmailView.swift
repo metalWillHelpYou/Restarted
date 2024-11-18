@@ -9,15 +9,21 @@ import SwiftUI
 
 struct SignInWithEmailView: View {
     @StateObject var viewModel = SignInWithEmailViewModel()
+    
     @Binding var showSignInView: Bool
     
     var body: some View {
         NavigationStack {
             VStack {
+                Text("Sign In")
+                    .font(.largeTitle)
+                    .foregroundStyle(Color.highlight)
+                    .padding(.vertical)
+                
                 TextField("Email", text: $viewModel.email)
                     .padding()
                     .background(Color.gray.opacity(0.4))
-                    .foregroundStyle(Color.text)
+                    .foregroundStyle(Color.white)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                     .keyboardType(.emailAddress)
                 
@@ -26,41 +32,42 @@ struct SignInWithEmailView: View {
                     .background(Color.gray.opacity(0.4))
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 
+                Text(viewModel.tip)
+                    .foregroundStyle(Color.highlight)
+                    .font(.caption)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
                 Button(action: {
                     Task {
                         do {
                             try await viewModel.signUp()
                             showSignInView = false
-                            return
                         } catch {
-                            print(error)
+                            print("Sign Up Error: \(error)")
                         }
                         
                         do {
                             try await viewModel.signIn()
                             showSignInView = false
-                            return
                         } catch {
-                            print(error)
+                            print("Sign In Error: \(error)")
                         }
                     }
                 }, label: {
                     Text("Sign In")
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
-                        .foregroundStyle(Color.white)
+                        .foregroundStyle(viewModel.isButtonEnabled ? Color.text : Color.gray)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .strokeBackground(Color.highlight)
+                        .strokeBackground(viewModel.isButtonEnabled ? Color.highlight : Color.gray.opacity(0.4))
                 })
-                .padding(.vertical, 32)
-                
-                Spacer()
+                .disabled(!viewModel.isButtonEnabled)
+                .padding(.top, 56)
             }
-            .navigationTitle("Sign In")
-            .background(Color.background)
         }
     }
 }
+
 
 #Preview {
     SignInWithEmailView(showSignInView: .constant(false))

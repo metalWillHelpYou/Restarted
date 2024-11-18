@@ -16,7 +16,6 @@ final class HabitViewModel: ObservableObject {
     @Published var selectedHabit: Habit? = nil
     @Published var showDeleteDialog: Bool = false
     
-    // Вычисляемое свойство для активных привычек
     var activeHabits: [Habit] {
         savedHabits.filter { $0.isActive }
     }
@@ -30,7 +29,7 @@ final class HabitViewModel: ObservableObject {
             }
         }
         
-        fetchHabits() // Загружаем все привычки один раз
+        fetchHabits()
     }
     
     func fetchHabits() {
@@ -67,7 +66,7 @@ final class HabitViewModel: ObservableObject {
     // MARK: - Operations with active habits
     func addHabitToActive(_ habit: Habit) {
         habit.isActive = true
-        saveData() // Сохраняем изменения
+        saveData()
     }
     
     func removeHabitFromActive(_ habit: Habit) {
@@ -79,7 +78,7 @@ final class HabitViewModel: ObservableObject {
     func saveData() {
         do {
             try container.viewContext.save()
-            fetchHabits() // Обновляем список после сохранения
+            fetchHabits()
         } catch let error {
             print("Error: \(error)")
         }

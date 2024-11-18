@@ -58,6 +58,14 @@ extension AuthenticationManager {
         
         try await user.sendEmailVerification(beforeUpdatingEmail: email)
     }
+    
+    func deleteUser() async throws {
+        guard let user = Auth.auth().currentUser else {
+            throw URLError(.unknown)
+        }
+        
+        try await user.delete()
+    }
 }
 
 // MARK: SIGN IN WITH SSO

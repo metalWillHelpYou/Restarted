@@ -11,11 +11,11 @@ import Foundation
 final class ProfileViewModel: ObservableObject {
     @Published private(set) var user: DBUser? = nil
     @Published var isNotificationsOn: Bool = false
-
+    
     func loadCurruntUser() async throws {
         let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-        
+        isNotificationsOn = self.user?.isNotificationsOn ?? false
     }
     
     func toggleNotifications() {
@@ -29,6 +29,10 @@ final class ProfileViewModel: ObservableObject {
     
     func signOut() throws {
         try AuthenticationManager.shared.signOut()
+    }
+    
+    func deleteAccount() async throws {
+        try await AuthenticationManager.shared.deleteUser()
     }
 }
 

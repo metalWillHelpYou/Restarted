@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseCore
+import FirebaseAuth
 
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
@@ -31,11 +32,11 @@ struct RestartedApp: App {
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
     
-//    init(){
-//        // write for db here
-//      // gpt write to firestore db
-//        
-//    }
+    //    init(){
+    //        // write for db here
+    //      // gpt write to firestore db
+    //
+    //    }
     
     var body: some Scene {
         WindowGroup {

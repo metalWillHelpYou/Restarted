@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProfileMainScreenView: View {
     @StateObject private var viewModel = ProfileViewModel()
-    @Binding var showSigInView: Bool
+    @Binding var showSignInView: Bool
+    @Binding var activeTab: Tab
     
     var body: some View {
         NavigationStack {
@@ -20,6 +21,19 @@ struct ProfileMainScreenView: View {
                 AdditionalSettingsView()
                 
                 logOutButton
+                
+                Button("Delete account", role: .destructive) {
+                    Task {
+                        do {
+                            try await viewModel.deleteAccount()
+                            showSignInView = true
+                            try? await Task.sleep(nanoseconds: 5_000_000_000)
+                            activeTab = .home
+                        } catch {
+                            print(error)
+                        }
+                    }
+                }
                 
                 if let user = viewModel.user {
                     Text("User id: \(user.userId)")
@@ -47,7 +61,9 @@ extension ProfileMainScreenView {
                 Task {
                     do {
                         try viewModel.signOut()
-                        showSigInView = true
+                        showSignInView = true
+                        try? await Task.sleep(nanoseconds: 5_000_000_000)
+                        activeTab = .home
                     } catch {
                         print(error)
                     }
@@ -66,5 +82,5 @@ extension ProfileMainScreenView {
 }
 
 #Preview {
-    ProfileMainScreenView(showSigInView: .constant(false))
+    ProfileMainScreenView(showSignInView: .constant(false), activeTab: .constant(.profile))
 }

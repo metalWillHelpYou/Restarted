@@ -18,26 +18,52 @@ struct AuthenticationView: View {
                 Color.background.ignoresSafeArea()
                 
                 VStack {
+                    
+                    Spacer()
                     SignInWithEmailView(showSignInView: $showSignInView)
                     
-                    GoogleSignInButton(viewModel: GoogleSignInButtonViewModel(scheme: .dark, style: .wide, state: .normal)) {
+                    CustomGoogleSignInButton {
                         Task {
                             do {
                                 try await viewModel.signInGoogle()
                                 showSignInView = false
                             } catch {
-                                print(error)
+                                print("Google Sign In Error: \(error)")
                             }
                         }
                     }
+                    
+                    Spacer()
                 }
                 .padding(.horizontal)
             }
-            .navigationTitle("Sign In")
         }
     }
 }
 
 #Preview {
     AuthenticationView(showSignInView: .constant(false))
+}
+
+struct CustomGoogleSignInButton: View {
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            HStack {
+                Image("googleIcon")
+                    .resizable()
+                    .frame(width: 24, height: 24)
+                    
+                Text("Sign in with Google")
+                    .foregroundColor(.black)
+                    .padding(.leading, 8)
+            }
+            .frame(height: 55)
+            .frame(maxWidth: .infinity)
+            .background(Color.white)
+            .cornerRadius(10)
+            .shadow(color: .gray.opacity(0.4), radius: 4, x: 0, y: 2)
+        }
+    }
 }
