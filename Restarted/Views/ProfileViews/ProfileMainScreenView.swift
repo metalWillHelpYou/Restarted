@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileMainScreenView: View {
     @StateObject private var viewModel = ProfileViewModel()
-    @Binding var showSignInView: Bool
+    @EnvironmentObject var root: RootViewModel
     @Binding var activeTab: Tab
     
     var body: some View {
@@ -26,8 +26,8 @@ struct ProfileMainScreenView: View {
                     Task {
                         do {
                             try await viewModel.deleteAccount()
-                            showSignInView = true
-                            try? await Task.sleep(nanoseconds: 5_000_000_000)
+                            root.screen = .authentication
+                            //ScreenManager.shared.screen = .authentication
                             activeTab = .home
                         } catch {
                             print(error)
@@ -61,8 +61,8 @@ extension ProfileMainScreenView {
                 Task {
                     do {
                         try viewModel.signOut()
-                        showSignInView = true
-                        try? await Task.sleep(nanoseconds: 5_000_000_000)
+                        root.screen = .authentication
+                        //ScreenManager.shared.screen = .authentication
                         activeTab = .home
                     } catch {
                         print(error)
@@ -82,5 +82,5 @@ extension ProfileMainScreenView {
 }
 
 #Preview {
-    ProfileMainScreenView(showSignInView: .constant(false), activeTab: .constant(.profile))
+    ProfileMainScreenView(activeTab: .constant(.profile))
 }

@@ -10,7 +10,7 @@ import GoogleSignInSwift
 
 struct AuthenticationView: View {
     @StateObject private var viewModel = AuthenticationViewModel()
-    @Binding var showSignInView: Bool
+    @EnvironmentObject var root: RootViewModel
     
     var body: some View {
         NavigationStack {
@@ -20,13 +20,14 @@ struct AuthenticationView: View {
                 VStack {
                     
                     Spacer()
-                    SignInWithEmailView(showSignInView: $showSignInView)
+                    SignInWithEmailView()
                     
                     CustomGoogleSignInButton {
                         Task {
                             do {
                                 try await viewModel.signInGoogle()
-                                showSignInView = false
+                                //root.screen = .content
+                                ScreenManager.shared.screen = .content
                             } catch {
                                 print("Google Sign In Error: \(error)")
                             }
@@ -42,7 +43,7 @@ struct AuthenticationView: View {
 }
 
 #Preview {
-    AuthenticationView(showSignInView: .constant(false))
+    AuthenticationView()
 }
 
 struct CustomGoogleSignInButton: View {

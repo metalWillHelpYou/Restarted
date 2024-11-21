@@ -45,6 +45,7 @@
 		9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF172CE4BC58009A7FD7 /* UserManager.swift */; };
 		9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF1B2CE65642009A7FD7 /* Utilites.swift */; };
 		9B7D09A12CEB6AFA001B2C4A /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D099F2CEB6AFA001B2C4A /* HabitModel.xcdatamodeld */; };
+		9B7D09A72CEBB07B001B2C4A /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D09A52CEBB07B001B2C4A /* ArticleModel.xcdatamodeld */; };
 		9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */; };
 		9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
@@ -67,7 +68,6 @@
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
-		9BF77AF92CDA556200FDE543 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */; };
 		9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */; };
 		9BF77F232CE75A08006FC86F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77F222CE75A08006FC86F /* RootView.swift */; };
 		9BFD3AB92CE2651B0000A460 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9BFD3AB82CE2651B0000A460 /* FirebaseFirestore */; };
@@ -107,7 +107,7 @@
 		9B5A41C12CB67FEF00617FEB /* QuickGuideView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickGuideView.swift; sourceTree = "<group>"; };
 		9B6294E52C12216200CDFBC5 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
 		9B6E6C322CDE4233002D3042 /* GoogleService-Info-7.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-7.plist"; sourceTree = "<group>"; };
-		9B6E6C392CDE42A5002D3042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		9B6E6C392CDE42A5002D3042 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9B6E6C3A2CDE450F002D3042 /* AuthentcationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthentcationViewModel.swift; sourceTree = "<group>"; };
 		9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInResultModel.swift; sourceTree = "<group>"; };
 		9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
@@ -116,6 +116,7 @@
 		9B77BF172CE4BC58009A7FD7 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		9B77BF1B2CE65642009A7FD7 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 		9B7D09A02CEB6AFA001B2C4A /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
+		9B7D09A62CEBB07B001B2C4A /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
@@ -134,7 +135,6 @@
 		9BDE50472C0A02F400910F23 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSheetView.swift; sourceTree = "<group>"; };
 		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
-		9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9BF77AF82CDA556200FDE543 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9BF77F222CE75A08006FC86F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		9BFE38882CB7F36100325173 /* QGHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGHabitsView.swift; sourceTree = "<group>"; };
@@ -220,9 +220,8 @@
 		9B2AFD442C00996100E908F5 /* Restarted */ = {
 			isa = PBXGroup;
 			children = (
+				9B7D09A42CEBB02E001B2C4A /* googlePlists */,
 				9B6E6C392CDE42A5002D3042 /* Info.plist */,
-				9B6E6C322CDE4233002D3042 /* GoogleService-Info-7.plist */,
-				9B5834A92CDCE82A00A6437B /* GoogleService-Info.plist */,
 				9B2AFD5E2C0099F100E908F5 /* RestartedApp.swift */,
 				9B2AFD5F2C0099F100E908F5 /* Model */,
 				9B2AFD822C009A3100E908F5 /* ViewModel */,
@@ -248,9 +247,10 @@
 			children = (
 				9BBA81C02CDCE35A006EB807 /* AuthenticationUserModel.swift */,
 				9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */,
-				9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */,
-				9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */,
 				9B7D099F2CEB6AFA001B2C4A /* HabitModel.xcdatamodeld */,
+				9B7D09A52CEBB07B001B2C4A /* ArticleModel.xcdatamodeld */,
+				9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */,
+				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
 				9B3AD9062C0F60AF00230004 /* Helpers */,
 			);
 			path = Model;
@@ -344,18 +344,8 @@
 		9B3AD9062C0F60AF00230004 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */,
-				9B5834512C67D62E007FAB6C /* AlertsManager.swift */,
-				9B3AD9072C0F60F000230004 /* ThemeChanger.swift */,
-				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
-				9B7528B52C2753D000657E8A /* CustomTabBar.swift */,
-				9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */,
-				9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */,
-				9B0139D52CB9730500365128 /* LocalNotificationManager.swift */,
-				9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */,
-				9BBA81C22CDCE3C6006EB807 /* AuthenticationManager.swift */,
-				9B77BF172CE4BC58009A7FD7 /* UserManager.swift */,
-				9B77BF1B2CE65642009A7FD7 /* Utilites.swift */,
+				9B7D09A32CEBAFBE001B2C4A /* Authentication */,
+				9B7D09A22CEBAF86001B2C4A /* UI */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -380,6 +370,40 @@
 				9BFE388E2CB7F4CA00325173 /* QGDiaryView.swift */,
 			);
 			path = QuickGuideViews;
+			sourceTree = "<group>";
+		};
+		9B7D09A22CEBAF86001B2C4A /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9B5834512C67D62E007FAB6C /* AlertsManager.swift */,
+				9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */,
+				9B3AD9072C0F60F000230004 /* ThemeChanger.swift */,
+				9B7528B52C2753D000657E8A /* CustomTabBar.swift */,
+				9B58344F2C6792DE007FAB6C /* GameSheetModel.swift */,
+				9BA8CC082C8F5819005AF647 /* HabitSheetModel.swift */,
+				9B0139D52CB9730500365128 /* LocalNotificationManager.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		9B7D09A32CEBAFBE001B2C4A /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				9BBA81C22CDCE3C6006EB807 /* AuthenticationManager.swift */,
+				9B77BF172CE4BC58009A7FD7 /* UserManager.swift */,
+				9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */,
+				9B77BF1B2CE65642009A7FD7 /* Utilites.swift */,
+			);
+			path = Authentication;
+			sourceTree = "<group>";
+		};
+		9B7D09A42CEBB02E001B2C4A /* googlePlists */ = {
+			isa = PBXGroup;
+			children = (
+				9B6E6C322CDE4233002D3042 /* GoogleService-Info-7.plist */,
+				9B5834A92CDCE82A00A6437B /* GoogleService-Info.plist */,
+			);
+			path = googlePlists;
 			sourceTree = "<group>";
 		};
 		9BD8129E2C720BC8005A6085 /* Help Views */ = {
@@ -511,7 +535,7 @@
 				9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */,
 				9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */,
 				9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */,
-				9BF77AF92CDA556200FDE543 /* ArticleModel.xcdatamodeld in Sources */,
+				9B7D09A72CEBB07B001B2C4A /* ArticleModel.xcdatamodeld in Sources */,
 				9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */,
 				9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */,
 				9BBA81C32CDCE3C6006EB807 /* AuthenticationManager.swift in Sources */,
@@ -857,12 +881,12 @@
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		9BF77AF52CDA556200FDE543 /* ArticleModel.xcdatamodeld */ = {
+		9B7D09A52CEBB07B001B2C4A /* ArticleModel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */,
+				9B7D09A62CEBB07B001B2C4A /* ArticleModel.xcdatamodel */,
 			);
-			currentVersion = 9BF77AF62CDA556200FDE543 /* ArticleModel.xcdatamodel */;
+			currentVersion = 9B7D09A62CEBB07B001B2C4A /* ArticleModel.xcdatamodel */;
 			name = ArticleModel.xcdatamodeld;
 			path = /Users/metalwillhelpyou/.Trash/Restarted/Restarted/Model/ArticleModel.xcdatamodeld;
 			sourceTree = "<group>";

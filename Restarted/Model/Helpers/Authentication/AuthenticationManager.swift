@@ -81,3 +81,8 @@ extension AuthenticationManager {
         return AuthDataResultModel(user: authDataResult.user)
     }
 }
+
+enum Screen {
+    case authentication
+    case content
+}

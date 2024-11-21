@@ -11,7 +11,6 @@ struct ContentView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @AppStorage("activeTab") private var storedActiveTab: String = Tab.home.rawValue
     @State private var allTabs: [AnimatedTab] = Tab.allCases.map { AnimatedTab(tab: $0) }
-    @Binding var showSignInView: Bool
 
     private var activeTab: Binding<Tab> {
         Binding(
@@ -45,7 +44,7 @@ struct ContentView: View {
                     .setupTab(.stats)
 
                     NavigationView {
-                        ProfileMainScreenView(showSignInView: $showSignInView, activeTab: activeTab)
+                        ProfileMainScreenView(activeTab: activeTab)
                     }
                     .setupTab(.profile)
                 }
@@ -53,22 +52,16 @@ struct ContentView: View {
                 CustomTabBar(activeTab: activeTab, allTabs: $allTabs)
             }
         }
-        .onAppear {
-            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-            self.showSignInView = authUser == nil ? true : false
-        }
-        .fullScreenCover(isPresented: $showSignInView, content: {
-            AuthenticationView(showSignInView: $showSignInView)
-        })
     }
 }
 
 #Preview {
-    ContentView(showSignInView: .constant(false))
+    ContentView()
         .environmentObject(HabitViewModel())
         .environmentObject(ArticleViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(AlertsManager())
         .environmentObject(TimerViewModel())
+        .environmentObject(RootViewModel())
         .environmentObject(LocalNotificationManager())
 }

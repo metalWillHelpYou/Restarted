@@ -32,6 +32,8 @@ struct RestartedApp: App {
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
     
+    @StateObject var rootVm = RootViewModel()
+    
     //    init(){
     //        // write for db here
     //      // gpt write to firestore db
@@ -47,6 +49,7 @@ struct RestartedApp: App {
                 .environmentObject(gameSheetVm)
                 .environmentObject(timerVm)
                 .environmentObject(lnManager)
+                .environmentObject(rootVm)
                 .preferredColorScheme(userTheme.setTheme)
         }
     }

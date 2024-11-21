@@ -9,9 +9,8 @@ import SwiftUI
 
 struct SignInWithEmailView: View {
     @StateObject var viewModel = SignInWithEmailViewModel()
-    
-    @Binding var showSignInView: Bool
-    
+    @EnvironmentObject var root: RootViewModel
+
     var body: some View {
         NavigationStack {
             VStack {
@@ -41,14 +40,16 @@ struct SignInWithEmailView: View {
                     Task {
                         do {
                             try await viewModel.signUp()
-                            showSignInView = false
+                            root.screen = .content
+                            //ScreenManager.shared.screen = .content
                         } catch {
                             print("Sign Up Error: \(error)")
                         }
                         
                         do {
                             try await viewModel.signIn()
-                            showSignInView = false
+                            root.screen = .content
+                            //ScreenManager.shared.screen = .content
                         } catch {
                             print("Sign In Error: \(error)")
                         }
@@ -70,5 +71,5 @@ struct SignInWithEmailView: View {
 
 
 #Preview {
-    SignInWithEmailView(showSignInView: .constant(false))
+    SignInWithEmailView()
 }

@@ -13,7 +13,7 @@ struct DBUser: Codable {
     let email: String?
     let photoUrl: String?
     let dateCreated: Date?
-    let isNotificationsOn: Bool?
+    var isNotificationsOn: Bool?
     
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid

@@ -7,20 +7,47 @@
 
 import SwiftUI
 
+//class ScreenManager: ObservableObject {
+//    static let shared = ScreenManager()
+//    private init() { }
+//    
+//    @Published var screen: Screen = .authentication
+//    
+//    func updateAuthenticationState() {
+//        let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+//        DispatchQueue.main.async {
+//            self.screen = authUser != nil ? .content : .authentication
+//        }
+//    }
+//}
+
+@MainActor
+final class RootViewModel: ObservableObject {
+    @Published var screen: Screen = .authentication
+    
+    func updateAuthenticationState() {
+        let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
+        DispatchQueue.main.async {
+            self.screen = authUser != nil ? .content : .authentication
+        }
+    }
+}
+
 struct RootView: View {
-    @State private var showSignInView: Bool = false
+    @EnvironmentObject var root: RootViewModel
     
     var body: some View {
         ZStack {
-            ContentView(showSignInView: $showSignInView)
+            if root.screen == .content {
+                ContentView()
+            } else {
+                AuthenticationView()
+            }
         }
         .onAppear {
-            let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-            self.showSignInView = authUser == nil ? true : false
+            root.updateAuthenticationState()
+            //ScreenManager.shared.updateAuthenticationState()
         }
-        .fullScreenCover(isPresented: $showSignInView, content: {
-            AuthenticationView(showSignInView: $showSignInView)
-        })
     }
 }
 
