@@ -15,7 +15,7 @@ final class ProfileViewModel: ObservableObject {
     func loadCurruntUser() async throws {
         let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
         self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-        isNotificationsOn = self.user?.isNotificationsOn ?? false
+        //isNotificationsOn = self.user?.isNotificationsOn ?? false
     }
     
     func toggleNotifications() {

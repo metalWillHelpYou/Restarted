@@ -18,6 +18,8 @@ struct ProfileMainScreenView: View {
                 
                 SettingsView(viewModel: viewModel)
                 
+                igdTests
+                
                 AdditionalSettingsView()
                 
                 logOutButton
@@ -32,14 +34,6 @@ struct ProfileMainScreenView: View {
                         } catch {
                             print(error)
                         }
-                    }
-                }
-                
-                if let user = viewModel.user {
-                    Text("User id: \(user.userId)")
-                    
-                    if let email = user.email {
-                        Text(email)
                     }
                 }
                 
@@ -78,6 +72,26 @@ extension ProfileMainScreenView {
         .strokeBackground(Color.highlight)
         .padding(.horizontal)
         .padding(.top, 40)
+    }
+    
+    private var igdTests: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            NavigationLink(destination: IGDTestInfoView(testType: .longTest)) {
+                Text("Internet Gaming Disorder test")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+            
+            NavigationLink(destination: IGDTestInfoView(testType: .shortTest)) {
+                Text("Short Internet Gaming Disorder test")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
+        }
+        .foregroundStyle(Color.primary)
+        .padding()
+        .strokeBackground(Color.highlight)
+        .padding(.horizontal)
+        .padding(.top, 40)
+        
     }
 }
 
