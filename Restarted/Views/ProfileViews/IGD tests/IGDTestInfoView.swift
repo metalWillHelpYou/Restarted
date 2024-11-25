@@ -9,33 +9,32 @@ import SwiftUI
 
 struct IGDTestInfoView: View {
     @State var testType: TestType
-
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
                 HStack {
                     Text("Internet Gaming Disorder Test")
                         .font(.largeTitle)
-
+                    
                     Spacer()
-
+                    
                     infoLink
                 }
-
+                
                 if testType == .shortTest {
                     Text("Short Form")
                         .foregroundStyle(Color.highlight)
                         .font(.title)
                 }
-
+                
                 Spacer()
-
+                
                 Text(descriptionText)
                     .font(.title3)
-                    .padding(.top)
-
+                
                 Spacer()
-
+                
                 NavigationLink(destination: destinationView) {
                     Text("Start Test")
                         .frame(height: 55)
@@ -51,8 +50,6 @@ struct IGDTestInfoView: View {
     }
 }
 
-// MARK: - Subviews
-
 extension IGDTestInfoView {
     private var infoLink: some View {
         let urlString: String
@@ -62,7 +59,7 @@ extension IGDTestInfoView {
         case .shortTest:
             urlString = "https://pmc.ncbi.nlm.nih.gov/articles/PMC8953588/"
         }
-
+        
         return Group {
             if let url = URL(string: urlString) {
                 Link(destination: url) {
@@ -78,16 +75,22 @@ extension IGDTestInfoView {
         switch testType {
         case .longTest:
             return """
-            These questions will ask you about your gaming activity during the past year (i.e., last 12 months).
-            By gaming activity we understand any gaming-related activity that has been played either from a computer/laptop or from a gaming console or any other kind of device (e.g., mobile phone, tablet, etc.) both online and/or offline.
+            
+            It consists of 20 questions about your life over the past 12 months.
+            Answer as honestly and openly as possible — this is crucial for accurate results.
+            
+            ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
             """
         case .shortTest:
             return """
-            This short form of the Internet Gaming Disorder Test provides a quick screening for gaming behavior over the past 12 months.
+            It consists of 9 questions about your life over the past 12 months.
+            Answer as honestly and openly as possible — this is crucial for accurate results.
+            
+            ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
             """
         }
     }
-
+    
     private var destinationView: AnyView {
         switch testType {
         case .longTest:

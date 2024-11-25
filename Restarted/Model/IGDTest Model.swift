@@ -7,11 +7,11 @@
 
 import Foundation
 
-enum TestQuestions: String, CaseIterable {
+enum LongTestQuestions: String, CaseIterable {
     case question1 = "I often lose sleep because of long gaming sessions."
     case question2 = "I never play games in order to feel better."
     case question3 = "I have significantly increased the amount of time I play games over last year."
-    case uestion4 = "When I am not gaming I feel more irritable."
+    case question4 = "When I am not gaming I feel more irritable."
     case question5 = "I have lost interest in other hobbies because of my gaming"
     case question6 = "I would like to cut down my gaming time but it’s difficult to do."
     case question7 = "I usually think about my next gaming session when I am not playing."

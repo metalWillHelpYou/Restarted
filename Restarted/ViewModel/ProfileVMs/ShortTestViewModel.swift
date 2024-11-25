@@ -32,24 +32,34 @@ final class ShortTestViewModel: IGDTestViewModelProtocol {
     }
     
     private func calculateResult() {
-        let totalScore = selectedAnswers.compactMap { $0 }.reduce(0) { partialResult, answer in
-            switch answer {
-            case .never: return partialResult + 0
-            case .rarely: return partialResult + 1
-            case .sometimes: return partialResult + 2
-            case .often: return partialResult + 3
-            case .veryOften: return partialResult + 4
+        // Подсчет выполненных критериев
+        var fulfilledCriteriaCount = 0
+
+        for answer in selectedAnswers {
+            guard let answer = answer else { continue }
+            
+            if answer == .veryOften {
+                fulfilledCriteriaCount += 1
             }
         }
-        
+
         let conclusion: String
-        switch totalScore {
-        case 0...5: conclusion = "Низкий уровень зависимости. У вас сбалансированное отношение к играм."
-        case 6...10: conclusion = "Средний уровень зависимости. Рекомендуется пересмотреть своё отношение к играм."
-        default: conclusion = "Высокий уровень зависимости. Пора принимать меры для снижения времени, проводимого за играми."
+        if fulfilledCriteriaCount >= 5 {
+            conclusion = """
+            High risk of gaming addiction based on DSM-5 criteria.
+            
+            It is strongly recommended to consult a specialist.
+            """
+        } else {
+            conclusion = """
+            No signs of gaming addiction detected.
+            
+            Maintain healthy gaming habits to prevent future problems.
+            """
         }
-        
-        self.result = TestResult(totalScore: totalScore, conclusion: conclusion)
+
+        // Сохранение результата
+        self.result = TestResult(totalScore: fulfilledCriteriaCount, conclusion: conclusion)
     }
 }
 

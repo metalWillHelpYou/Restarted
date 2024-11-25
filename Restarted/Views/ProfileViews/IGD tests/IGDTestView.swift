@@ -27,11 +27,11 @@ struct IGDTestView<ViewModel: IGDTestViewModelProtocol>: View {
                     }
                     .toolbar {
                         ToolbarItem(placement: .topBarLeading) {
-                            previousQuestion
+                            endTest
                         }
                         
                         ToolbarItem(placement: .topBarTrailing) {
-                            endTest
+                            previousQuestion
                         }
                     }
                 }
@@ -46,7 +46,7 @@ extension IGDTestView {
         Text(viewModel.currentQuestion)
             .multilineTextAlignment(.leading)
             .font(.title2)
-            .frame(maxHeight: 150)
+            .frame(maxWidth: .infinity, maxHeight: 150, alignment: .leading)
             .padding(.horizontal)
     }
     
@@ -104,6 +104,7 @@ extension IGDTestView {
             
             Button("Try again") {
                 dismiss()
+                viewModel.resetTest()
             }
             .frame(height: 55)
             .frame(maxWidth: .infinity)
