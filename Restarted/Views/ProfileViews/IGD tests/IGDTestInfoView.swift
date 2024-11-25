@@ -35,6 +35,9 @@ struct IGDTestInfoView: View {
                 
                 Spacer()
                 
+                Text("The test results are not a definitive diagnosis. For an accurate assessment and professional help, please consult a specialist.")
+                    .font(.headline)
+                
                 NavigationLink(destination: destinationView) {
                     Text("Start Test")
                         .frame(height: 55)

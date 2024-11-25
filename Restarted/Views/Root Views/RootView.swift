@@ -23,7 +23,7 @@ import SwiftUI
 
 @MainActor
 final class RootViewModel: ObservableObject {
-    @Published var screen: Screen = .authentication
+    @Published var screen: Screen = .content
     
     func updateAuthenticationState() {
         let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()

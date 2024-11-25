@@ -15,7 +15,7 @@ struct QuickGuideView: View {
             QGHabitsView()
             QGArticlesView()
             QGTimerView()
-            QGDiaryView()
+            QGTestsView()
         }
         .multilineTextAlignment(.center)
         .background(Color.background)

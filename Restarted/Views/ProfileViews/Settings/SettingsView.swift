@@ -13,10 +13,14 @@ struct SettingsView: View {
     @State private var showLanguage = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Schedule")
-            
-            Text("Privacy and Security")
+        VStack(alignment: .leading, spacing: 16) { 
+            Button(action: {
+                showApperance.toggle()
+            }) {
+                Text("Appearance")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .foregroundStyle(Color.primary)
+            }
             
             Toggle(isOn: $viewModel.isNotificationsOn) {
                 Text("Notifications")
@@ -31,14 +35,7 @@ struct SettingsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.primary)
             }
-            
-            Button(action: {
-                showApperance.toggle()
-            }) {
-                Text("Appearance")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(Color.primary)
-            }
+
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()
