@@ -35,7 +35,7 @@ struct ProfileMainScreenView: View {
                 try? await viewModel.loadCurruntUser()
             }
             .confirmationDialog("Are you sure?", isPresented: $showLogOut, titleVisibility: .visible) {
-                logOutButton
+                logOutConformationButton
             }
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestore
 
-struct DBUser: Codable {
+struct DBUser: Codable, Equatable {
     let userId: String
     let email: String?
     let photoUrl: String?

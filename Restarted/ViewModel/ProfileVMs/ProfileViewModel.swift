@@ -6,27 +6,55 @@
 //
 
 import Foundation
+import SwiftUI
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
     @Published private(set) var user: DBUser? = nil
-    @Published var isNotificationsOn: Bool = false
+    @AppStorage("isNotificationsOn") var isNotificationsOn: Bool = false
     
     func loadCurruntUser() async throws {
         let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
-        self.user = try await UserManager.shared.getUser(userId: authDataResult.uid)
-        //isNotificationsOn = self.user?.isNotificationsOn ?? false
+        let fetchedUser = try await UserManager.shared.getUser(userId: authDataResult.uid)
+
+        DispatchQueue.main.async {
+            if self.user != fetchedUser {
+                self.user = fetchedUser
+                self.isNotificationsOn = fetchedUser.isNotificationsOn ?? false
+            }
+        }
     }
     
     func toggleNotifications() {
         guard let user else { return }
-        let currentValue = user.isNotificationsOn ?? false
+
+        // Local update
+        isNotificationsOn.toggle()
+
         Task {
-            try await UserManager.shared.updateUserNotificationsStatus(userId: user.userId, isNotificationsOn: !currentValue)
-            self.user = try await UserManager.shared.getUser(userId: user.userId)
+            do {
+                // Sending the updated status to Firebase
+                try await UserManager.shared.updateUserNotificationsStatus(
+                    userId: user.userId,
+                    isNotificationsOn: isNotificationsOn
+                )
+
+                // After a successful update, we synchronize with the database
+                let updatedUser = try await UserManager.shared.getUser(userId: user.userId)
+                DispatchQueue.main.async {
+                    self.user = updatedUser
+                    self.isNotificationsOn = updatedUser.isNotificationsOn ?? false
+                }
+            } catch {
+                // In case of an error, we return the previous state
+                DispatchQueue.main.async {
+                    self.isNotificationsOn.toggle()
+                }
+                print("Ошибка обновления уведомлений: \(error)")
+            }
         }
     }
-    
+
     func signOut() throws {
         try AuthenticationManager.shared.signOut()
     }
