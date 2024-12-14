@@ -13,23 +13,47 @@ struct ArticleMainScreenView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                VStack {
-//                    ForEach(articleVm.savedArticles) { article in
-//                         NavigationLink(destination: ArticleView(article: article)) {
-//                             ArticleCardView(article: article)
-//                         }
-//                     }
-                    Text("Work In progress")
-                        .font(.largeTitle)
+                VStack(spacing: 16) {
+                    if !articleVm.savedArticles.isEmpty {
+                        ForEach(articleVm.savedArticles) { article in
+                            VStack(alignment: .leading, spacing: 8) {
+                                Text(article.title)
+                                    .font(.headline)
+                                Text(article.text.isEmpty ? "Нет текста" : article.text)
+                                    .lineLimit(2)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                Text(article.isRead ? "Прочитано" : "Не прочитано")
+                                    .font(.caption)
+                                    .foregroundColor(article.isRead ? .green : .red)
+                            }
+                            .padding()
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .background(Color(.systemGray6))
+                            .cornerRadius(8)
+                            .shadow(radius: 2)
+                        }
+                    } else {
+                        Text("No Articles Yet")
+                            .font(.headline)
+                            .foregroundColor(.gray)
+                            .padding()
+                    }
                 }
+                .padding()
             }
             .frame(maxWidth: .infinity)
             .navigationTitle("Articles")
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .background(Color.background)
+            .task {
+                await articleVm.fetchArticles()
+            }
         }
     }
 }
+
+
 
 //TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
 

@@ -10,6 +10,7 @@
 		9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0139D52CB9730500365128 /* LocalNotificationManager.swift */; };
 		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
 		9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */; };
+		9B108F992CFF418900F41360 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B108F982CFF418900F41360 /* ArticleModel.swift */; };
 		9B140DB82CB67EFF0067F30B /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9B140DB72CB67EFF0067F30B /* MarkdownUI */; };
 		9B2525B62CF0D2A40012E9B2 /* IGDTestInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2525B52CF0D2A40012E9B2 /* IGDTestInfoView.swift */; };
 		9B2525B82CF0E3D10012E9B2 /* ShortTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2525B72CF0E3D10012E9B2 /* ShortTestViewModel.swift */; };
@@ -47,7 +48,6 @@
 		9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF172CE4BC58009A7FD7 /* UserManager.swift */; };
 		9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF1B2CE65642009A7FD7 /* Utilites.swift */; };
 		9B7D09A12CEB6AFA001B2C4A /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D099F2CEB6AFA001B2C4A /* HabitModel.xcdatamodeld */; };
-		9B7D09A72CEBB07B001B2C4A /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D09A52CEBB07B001B2C4A /* ArticleModel.xcdatamodeld */; };
 		9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */; };
 		9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */; };
 		9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */; };
@@ -86,6 +86,7 @@
 		9B0139D52CB9730500365128 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
 		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		9B0EA5662C10C89C00E8291C /* HabitSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitSheetView.swift; sourceTree = "<group>"; };
+		9B108F982CFF418900F41360 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		9B2525B52CF0D2A40012E9B2 /* IGDTestInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDTestInfoView.swift; sourceTree = "<group>"; };
 		9B2525B72CF0E3D10012E9B2 /* ShortTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortTestViewModel.swift; sourceTree = "<group>"; };
 		9B2AFD422C00996100E908F5 /* Restarted.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Restarted.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,7 +124,6 @@
 		9B77BF172CE4BC58009A7FD7 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		9B77BF1B2CE65642009A7FD7 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 		9B7D09A02CEB6AFA001B2C4A /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
-		9B7D09A62CEBB07B001B2C4A /* ArticleModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ArticleModel.xcdatamodel; sourceTree = "<group>"; };
 		9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9B9CE87A2C90494100BCF0D7 /* CustomElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomElements.swift; sourceTree = "<group>"; };
@@ -248,8 +248,8 @@
 			children = (
 				9BBA81C02CDCE35A006EB807 /* AuthenticationUserModel.swift */,
 				9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */,
+				9B108F982CFF418900F41360 /* ArticleModel.swift */,
 				9B7D099F2CEB6AFA001B2C4A /* HabitModel.xcdatamodeld */,
-				9B7D09A52CEBB07B001B2C4A /* ArticleModel.xcdatamodeld */,
 				9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */,
 				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
 				9BD5E8B42CF23646002464E4 /* IGDTest Model.swift */,
@@ -575,7 +575,6 @@
 				9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */,
 				9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */,
 				9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */,
-				9B7D09A72CEBB07B001B2C4A /* ArticleModel.xcdatamodeld in Sources */,
 				9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */,
 				9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */,
 				9BBA81C32CDCE3C6006EB807 /* AuthenticationManager.swift in Sources */,
@@ -605,6 +604,7 @@
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B0EA5672C10C89C00E8291C /* HabitSheetView.swift in Sources */,
 				9B9CE87B2C90494100BCF0D7 /* CustomElements.swift in Sources */,
+				9B108F992CFF418900F41360 /* ArticleModel.swift in Sources */,
 				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
 				9B6E6C3F2CDE4668002D3042 /* GoogleSignInResultModel.swift in Sources */,
 				9BBA81C72CDCE475006EB807 /* SignInWithEmailViewModel.swift in Sources */,
@@ -922,17 +922,6 @@
 			currentVersion = 9B7D09A02CEB6AFA001B2C4A /* HabitModel.xcdatamodel */;
 			name = HabitModel.xcdatamodeld;
 			path = /Users/metalwillhelpyou/.Trash/Restarted/Restarted/Model/HabitModel.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-		9B7D09A52CEBB07B001B2C4A /* ArticleModel.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				9B7D09A62CEBB07B001B2C4A /* ArticleModel.xcdatamodel */,
-			);
-			currentVersion = 9B7D09A62CEBB07B001B2C4A /* ArticleModel.xcdatamodel */;
-			name = ArticleModel.xcdatamodeld;
-			path = /Users/metalwillhelpyou/.Trash/Restarted/Restarted/Model/ArticleModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

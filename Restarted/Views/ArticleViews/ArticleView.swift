@@ -9,14 +9,13 @@ import SwiftUI
 
 struct ArticleView: View {
     @EnvironmentObject var articleVm: ArticleViewModel
-    var article: Article?
     
     @State private var isComplete = false
     @State private var isRead = false
     
     var body: some View {
         VStack(alignment: .leading) {
-            Text(article?.title ?? "Unknown")
+            Text("")
                 .multilineTextAlignment(.leading)
                 .bold()
                 .font(.title)
@@ -27,7 +26,7 @@ struct ArticleView: View {
 //                .clipShape(RoundedRectangle(cornerRadius: 15))
 //                .shadow(color: .black.opacity(0.4), radius: 4, y: 4)
             
-            Text(article?.content ?? "Unknown")
+            Text("")
             
             Spacer()
         }
@@ -39,7 +38,7 @@ struct ArticleView: View {
 
 //TODO: показать сколько времени потребуется для прочтения
 
-#Preview {
-    ArticleView(article: nil)
-        .environmentObject(ArticleViewModel())
-}
+//#Preview {
+//    ArticleView(article: nil)
+//        .environmentObject(ArticleViewModel())
+//}
