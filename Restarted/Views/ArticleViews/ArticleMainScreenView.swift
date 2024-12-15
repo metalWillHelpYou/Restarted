@@ -15,32 +15,13 @@ struct ArticleMainScreenView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     if !articleVm.savedArticles.isEmpty {
-                        ForEach(articleVm.savedArticles) { article in
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(article.title)
-                                    .font(.headline)
-                                Text(article.text.isEmpty ? "Нет текста" : article.text)
-                                    .lineLimit(2)
-                                    .font(.subheadline)
-                                    .foregroundColor(.secondary)
-                                Text(article.isRead ? "Прочитано" : "Не прочитано")
-                                    .font(.caption)
-                                    .foregroundColor(article.isRead ? .green : .red)
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .background(Color(.systemGray6))
-                            .cornerRadius(8)
-                            .shadow(radius: 2)
-                        }
+                        beginnerSection
+                        
+                        intermediateSection
                     } else {
-                        Text("No Articles Yet")
-                            .font(.headline)
-                            .foregroundColor(.gray)
-                            .padding()
+                        ProgressView()
                     }
                 }
-                .padding()
             }
             .frame(maxWidth: .infinity)
             .navigationTitle("Articles")
@@ -53,11 +34,47 @@ struct ArticleMainScreenView: View {
     }
 }
 
-
-
 //TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
 
 #Preview {
     ArticleMainScreenView()
         .environmentObject(ArticleViewModel())
+}
+
+extension ArticleMainScreenView {
+    private var beginnerSection: some View {
+        VStack(alignment: .leading) {
+            Text("Beginer level")
+                .font(.title)
+                .padding(.horizontal)
+                .offset(y: 8)
+            
+            ForEach(articleVm.savedArticles) { article in
+                if article.isForBeginers {
+                    NavigationLink(destination: ArticleView(article: article)) {
+                        ArticleCardView(article: article)
+                            .padding(.bottom)
+                    }
+                }
+            }
+        }
+    }
+    
+    private var intermediateSection: some View {
+        VStack(alignment: .leading) {
+            Text("Intermediate level")
+                .font(.title)
+                .padding(.horizontal)
+                .offset(y: 8)
+            
+            ForEach(articleVm.savedArticles) { article in
+                if !article.isForBeginers {
+                    NavigationLink(destination: ArticleView(article: article)) {
+                        ArticleCardView(article: article)
+                            .padding(.bottom)
+                    }
+                }
+            }
+        }
+    }
 }

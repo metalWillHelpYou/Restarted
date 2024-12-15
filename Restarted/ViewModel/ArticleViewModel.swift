@@ -11,14 +11,31 @@ import FirebaseFirestore
 @MainActor
 final class ArticleViewModel: ObservableObject {
     @Published var savedArticles: [Article] = []
-    
-    private let firestoreService: FirestoreService
-    
-    init(firestoreService: FirestoreService = FirestoreService()) {
-        self.firestoreService = firestoreService
-    }
-    
+
     func fetchArticles() async {
-        savedArticles = await firestoreService.fetchArticles()
+        savedArticles = await ArticleManager.shared.fetchArticles()
+    }
+
+    func toggleReadStatus(for articleId: String) {
+        guard let index = savedArticles.firstIndex(where: { $0.id == articleId }) else {
+            return
+        }
+        
+        savedArticles[index].isRead.toggle()
+        let updatedIsRead = savedArticles[index].isRead
+        
+        Task {
+            do {
+                try await ArticleManager.shared.updateReadStatus(
+                    articleId: articleId,
+                    isRead: updatedIsRead
+                )
+            } catch {
+                DispatchQueue.main.async {
+                    self.savedArticles[index].isRead.toggle()
+                }
+                print("Error updating the reading status: \(error)")
+            }
+        }
     }
 }

@@ -10,35 +10,36 @@ import SwiftUI
 struct ArticleView: View {
     @EnvironmentObject var articleVm: ArticleViewModel
     
-    @State private var isComplete = false
-    @State private var isRead = false
+    let article: Article
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("")
-                .multilineTextAlignment(.leading)
-                .bold()
-                .font(.title)
-            
-//            Image(article.imageName)
-//                .resizable()
-//                .frame(height: 228)
-//                .clipShape(RoundedRectangle(cornerRadius: 15))
-//                .shadow(color: .black.opacity(0.4), radius: 4, y: 4)
-            
-            Text("")
-            
-            Spacer()
+        NavigationStack {
+            VStack {
+                Text("Reading time: \(article.readingTime) minutes")
+                
+    //            Image(article.imageName)
+    //                .resizable()
+    //                .frame(height: 228)
+    //                .clipShape(RoundedRectangle(cornerRadius: 15))
+    //                .shadow(color: .black.opacity(0.4), radius: 4, y: 4)
+                
+                Text(article.text)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                
+                Spacer()
+            }
+            .navigationTitle(article.title)
+            .navigationBarTitleDisplayMode(.inline)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
+            .background(Color.background)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(32)
-        .background(Color.background)
     }
 }
 
 //TODO: показать сколько времени потребуется для прочтения
 
-//#Preview {
-//    ArticleView(article: nil)
-//        .environmentObject(ArticleViewModel())
-//}
+#Preview {
+    ArticleView(article: Article(id: "dsdsd", title: "First", text: "blabla", isForBeginers: true, readingTime: 9))
+        .environmentObject(ArticleViewModel())
+}

@@ -324,11 +324,11 @@
 		9B2AFD822C009A3100E908F5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */,
+				9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */,
 				9BD5E8B12CF2359A002464E4 /* AuthenticationVMs */,
 				9BD5E8B22CF235BB002464E4 /* GameVMs */,
 				9BD5E8B32CF235D9002464E4 /* ProfileVMs */,
-				9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */,
-				9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
