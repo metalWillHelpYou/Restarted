@@ -69,6 +69,7 @@ final class UserManager {
     private init() { }
     
     private let userCollection = Firestore.firestore().collection("users")
+    private let articleCollection = Firestore.firestore().collection("articles")
 
     private func userDocument(userId: String) -> DocumentReference {
         userCollection.document(userId)
@@ -76,6 +77,15 @@ final class UserManager {
     
     func createUser(user: DBUser) async throws {
         try userDocument(userId: user.userId).setData(from: user, merge: false)
+        
+        let articlesSnapshot = try await articleCollection.getDocuments()
+        
+        let userArticlesCollection = userDocument(userId: user.userId).collection("articles")
+        
+        for document in articlesSnapshot.documents {
+            let articleData = document.data()
+            try await userArticlesCollection.document(document.documentID).setData(articleData)
+        }
     }
     
     func getUser(userId: String) async throws -> DBUser {

@@ -69,32 +69,41 @@ final class ArticleManager {
     
     private let db = Firestore.firestore()
     var articles: [Article] = []
-    private let articleCollection = Firestore.firestore().collection("articles")
+    
+    private func userArticlesCollection() -> CollectionReference? {
+        guard let userId = Auth.auth().currentUser?.uid else {
+            print("Error: The user is not authenticated.")
+            return nil
+        }
+        return db.collection("users").document(userId).collection("articles")
+    }
     
     func fetchArticles() async -> [Article] {
-        let db = Firestore.firestore()
+        guard let articlesCollection = userArticlesCollection() else { return [] }
         
         do {
-            let snapshot = try await db.collection("articles").getDocuments()
+            let snapshot = try await articlesCollection.getDocuments()
             let articles = try snapshot.documents.map { doc -> Article in
                 let jsonData = try JSONSerialization.data(withJSONObject: doc.data())
                 return try JSONDecoder().decode(Article.self, from: jsonData)
             }
+            self.articles = articles
             return articles
         } catch {
-            print("Error loading or parsing articles: \(error)")
+            print("Error loading or parsing user articles: \(error)")
             return []
         }
     }
     
-    private func articleDocument(articleId: String) -> DocumentReference {
-        articleCollection.document(articleId)
+    private func articleDocument(articleId: String) -> DocumentReference? {
+        guard let articlesCollection = userArticlesCollection() else { return nil }
+        return articlesCollection.document(articleId)
     }
     
     func updateReadStatus(articleId: String, isRead: Bool) async throws {
-        guard Auth.auth().currentUser?.uid != nil else {
-            print("Error: The user is not authenticated.")
-            throw URLError(.userAuthenticationRequired)
+        guard let document = articleDocument(articleId: articleId) else {
+            print("Error: Unable to get reference to user article document.")
+            throw URLError(.badURL)
         }
         
         let data: [String: Any] = [
@@ -102,7 +111,7 @@ final class ArticleManager {
         ]
         
         do {
-            try await articleDocument(articleId: articleId).updateData(data)
+            try await document.updateData(data)
         } catch {
             print("Error updating the status of an article: \(error)")
             throw error
