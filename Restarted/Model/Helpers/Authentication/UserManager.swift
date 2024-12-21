@@ -11,6 +11,7 @@ import FirebaseFirestore
 struct DBUser: Codable, Equatable {
     let userId: String
     let email: String?
+    let name: String?
     let photoUrl: String?
     let dateCreated: Date?
     var isNotificationsOn: Bool?
@@ -18,6 +19,7 @@ struct DBUser: Codable, Equatable {
     init(auth: AuthDataResultModel) {
         self.userId = auth.uid
         self.email = auth.email
+        self.name = auth.name
         self.photoUrl = auth.photoUrl
         self.dateCreated = Date()
         self.isNotificationsOn = false
@@ -26,12 +28,14 @@ struct DBUser: Codable, Equatable {
     init (
         userId: String,
         email: String? = nil,
+        name: String? = nil,
         photoUrl: String? = nil,
         dateCreated: Date? = nil,
         isNotificationsOn: Bool? = nil
     ) {
         self.userId = userId
         self.email = email
+        self.name = name
         self.photoUrl = photoUrl
         self.dateCreated = dateCreated
         self.isNotificationsOn = isNotificationsOn
@@ -40,6 +44,7 @@ struct DBUser: Codable, Equatable {
     enum CodingKeys: String, CodingKey {
         case userId = "user_id"
         case email = "email"
+        case name = "name"
         case photoUrl = "photo_url"
         case dateCreated = "date_created"
         case isNotificationsOn = "is_notifications_on"
@@ -49,6 +54,7 @@ struct DBUser: Codable, Equatable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.userId, forKey: .userId)
         try container.encodeIfPresent(self.email, forKey: .email)
+        try container.encodeIfPresent(self.name, forKey: .name)
         try container.encodeIfPresent(self.photoUrl, forKey: .photoUrl)
         try container.encodeIfPresent(self.dateCreated, forKey: .dateCreated)
         try container.encodeIfPresent(self.isNotificationsOn, forKey: .isNotificationsOn)
@@ -58,6 +64,7 @@ struct DBUser: Codable, Equatable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.userId = try container.decode(String.self, forKey: .userId)
         self.email = try container.decodeIfPresent(String.self, forKey: .email)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
         self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
         self.dateCreated = try container.decodeIfPresent(Date.self, forKey: .dateCreated)
         self.isNotificationsOn = try container.decodeIfPresent(Bool.self, forKey: .isNotificationsOn)
@@ -98,5 +105,11 @@ final class UserManager {
         ]
         
         try await userDocument(userId: userId).updateData(data)
+    }
+    
+    func deleteUserDocument(userId: String) async throws {
+        let documentRef = userCollection.document(userId)
+        try await documentRef.delete()
+        print("User with id \(userId) deleted successfully")
     }
 }

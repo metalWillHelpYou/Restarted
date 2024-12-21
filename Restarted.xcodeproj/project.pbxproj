@@ -72,6 +72,8 @@
 		9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A62C7519F9005A6085 /* TimerViewModel.swift */; };
 		9BDE50482C0A02F400910F23 /* HabitListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* HabitListView.swift */; };
 		9BE560FB2C652E7400CEFCD7 /* GameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */; };
+		9BE572B82D15ED1000A4D45E /* ProfileInfoLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE572B72D15ED1000A4D45E /* ProfileInfoLinkView.swift */; };
+		9BE572BA2D15F17200A4D45E /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE572B92D15F17200A4D45E /* ProfileInfoView.swift */; };
 		9BE96A112C05251300CE3EBB /* StatisticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE96A102C05251300CE3EBB /* StatisticView.swift */; };
 		9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */; };
 		9BF77F232CE75A08006FC86F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77F222CE75A08006FC86F /* RootView.swift */; };
@@ -144,6 +146,8 @@
 		9BD812A62C7519F9005A6085 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
 		9BDE50472C0A02F400910F23 /* HabitListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitListView.swift; sourceTree = "<group>"; };
 		9BE560FA2C652E7400CEFCD7 /* GameSheetView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameSheetView.swift; sourceTree = "<group>"; };
+		9BE572B72D15ED1000A4D45E /* ProfileInfoLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoLinkView.swift; sourceTree = "<group>"; };
+		9BE572B92D15F17200A4D45E /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		9BE96A102C05251300CE3EBB /* StatisticView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticView.swift; sourceTree = "<group>"; };
 		9BF77AF82CDA556200FDE543 /* GameModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GameModel.xcdatamodel; sourceTree = "<group>"; };
 		9BF77F222CE75A08006FC86F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -299,10 +303,12 @@
 		9B2AFD752C009A0D00E908F5 /* ProfileViews */ = {
 			isa = PBXGroup;
 			children = (
+				9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */,
+				9BE572B72D15ED1000A4D45E /* ProfileInfoLinkView.swift */,
+				9BE572B92D15F17200A4D45E /* ProfileInfoView.swift */,
 				9B0EA5622C106EE400E8291C /* Settings */,
 				9BA8E2CE2CF1FBF600A0BC00 /* IGD tests */,
 				9B0EA5652C106FAF00E8291C /* Additional Settings */,
-				9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */,
 			);
 			path = ProfileViews;
 			sourceTree = "<group>";
@@ -587,6 +593,7 @@
 				9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */,
 				9B2525B82CF0E3D10012E9B2 /* ShortTestViewModel.swift in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
+				9BE572B82D15ED1000A4D45E /* ProfileInfoLinkView.swift in Sources */,
 				9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */,
 				9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
@@ -599,6 +606,7 @@
 				9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* StatsMainView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
+				9BE572BA2D15F17200A4D45E /* ProfileInfoView.swift in Sources */,
 				9B5A41C22CB67FEF00617FEB /* QuickGuideView.swift in Sources */,
 				9B6E6C3B2CDE450F002D3042 /* AuthentcationViewModel.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
@@ -744,6 +752,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Restarted/Restarted.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Restarted/Preview Content\"";
@@ -770,6 +779,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Restarted;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -785,6 +795,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Restarted/Restarted.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Restarted/Preview Content\"";
@@ -811,6 +822,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Restarted;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = auto;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;

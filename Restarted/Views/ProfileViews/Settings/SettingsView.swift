@@ -13,7 +13,7 @@ struct SettingsView: View {
     @State private var showLanguage = false
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 16) { 
+        VStack(alignment: .leading, spacing: 24) { 
             Button(action: {
                 showApperance.toggle()
             }) {

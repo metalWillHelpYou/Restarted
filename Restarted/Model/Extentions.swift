@@ -22,3 +22,14 @@ extension View {
         )
     }
 }
+
+extension DateFormatter {
+    static let userDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd.MM.yyyy"
+        formatter.locale = Locale(identifier: "ru_RU") 
+        formatter.timeZone = TimeZone.current
+        return formatter
+    }()
+}
+

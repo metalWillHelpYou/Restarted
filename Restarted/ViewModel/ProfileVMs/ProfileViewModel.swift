@@ -12,6 +12,7 @@ import SwiftUI
 final class ProfileViewModel: ObservableObject {
     @Published private(set) var user: DBUser? = nil
     @AppStorage("isNotificationsOn") var isNotificationsOn: Bool = false
+    @AppStorage("localUserName") var localUserName: String = ""
     
     func loadCurruntUser() async throws {
         let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
@@ -21,6 +22,10 @@ final class ProfileViewModel: ObservableObject {
             if self.user != fetchedUser {
                 self.user = fetchedUser
                 self.isNotificationsOn = fetchedUser.isNotificationsOn ?? false
+                
+                if let name = fetchedUser.name, self.localUserName != name {
+                    self.localUserName = name
+                }
             }
         }
     }
@@ -62,5 +67,36 @@ final class ProfileViewModel: ObservableObject {
     func deleteAccount() async throws {
         try await AuthenticationManager.shared.deleteUser()
     }
+    
+    func generateGreeting() -> String {
+        let hour = Calendar.current.component(.hour, from: Date())
+        
+        switch hour {
+        case 7..<10:
+            return "Good morning"
+        case 11..<17:
+            return "Good day"
+        case 18..<22:
+            return "Good evening"
+        default:
+            return "Good night"
+        }
+    }
+    
+    func formatDateForDisplay(_ date: Date?) -> String {
+        guard let date = date else {
+            return "Data is empty"
+        }
+        return DateFormatter.userDateFormatter.string(from: date)
+    }
+    
+    
+    private func localUserNameChanger() async throws {
+        guard let user = user, let name = user.name else { return }
+        if localUserName != name {
+            DispatchQueue.main.async {
+                self.localUserName = name
+            }
+        }
+    }
 }
-

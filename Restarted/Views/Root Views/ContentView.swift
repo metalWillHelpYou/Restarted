@@ -62,6 +62,7 @@ struct ContentView: View {
         .environmentObject(GameViewModel())
         .environmentObject(AlertsManager())
         .environmentObject(TimerViewModel())
+        .environmentObject(ProfileViewModel())
         .environmentObject(RootViewModel())
         .environmentObject(LocalNotificationManager())
 }

@@ -25,7 +25,6 @@ struct StatisticView: View {
         .padding()
         .strokeBackground(Color.highlight)
         .padding(.horizontal)
-        .padding(.top)
     }
 }
 

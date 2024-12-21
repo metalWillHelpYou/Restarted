@@ -64,7 +64,17 @@ extension AuthenticationManager {
             throw URLError(.unknown)
         }
         
-        try await user.delete()
+        let userId = user.uid
+        do {
+            try await UserManager.shared.deleteUserDocument(userId: userId)
+            
+            try await user.delete()
+            
+            print("User data deleted successfully")
+        } catch {
+            print("Error while deleteng user: \(error.localizedDescription)")
+            throw error
+        }
     }
 }
 

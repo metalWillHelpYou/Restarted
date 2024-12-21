@@ -31,6 +31,7 @@ struct RestartedApp: App {
     @StateObject var gameSheetVm = AlertsManager()
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
+    @StateObject private var profileVm = ProfileViewModel()
     
     @StateObject var rootVm = RootViewModel()
     
@@ -49,6 +50,7 @@ struct RestartedApp: App {
                 .environmentObject(gameSheetVm)
                 .environmentObject(timerVm)
                 .environmentObject(lnManager)
+                .environmentObject(profileVm)
                 .environmentObject(rootVm)
                 .preferredColorScheme(userTheme.setTheme)
         }
