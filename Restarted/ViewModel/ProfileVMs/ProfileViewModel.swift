@@ -10,56 +10,57 @@ import SwiftUI
 
 @MainActor
 final class ProfileViewModel: ObservableObject {
-    @Published private(set) var user: DBUser? = nil
+    // MARK: - Published Properties
+    @Published var user: DBUser? = nil
+    @Published var newNameHandler: String = ""
     @AppStorage("isNotificationsOn") var isNotificationsOn: Bool = false
     @AppStorage("localUserName") var localUserName: String = ""
-    
-    func loadCurruntUser() async throws {
+
+    // MARK: - Public Methods
+
+    func loadCurrentUser() async throws {
         let authDataResult = try AuthenticationManager.shared.getAuthenticatedUser()
         let fetchedUser = try await UserManager.shared.getUser(userId: authDataResult.uid)
 
-        DispatchQueue.main.async {
-            if self.user != fetchedUser {
-                self.user = fetchedUser
-                self.isNotificationsOn = fetchedUser.isNotificationsOn ?? false
-                
-                if let name = fetchedUser.name, self.localUserName != name {
-                    self.localUserName = name
-                }
-            }
-        }
+        updateUserState(with: fetchedUser)
     }
     
     func toggleNotifications() {
         guard let user else { return }
-
-        // Local update
+        
         isNotificationsOn.toggle()
 
         Task {
             do {
-                // Sending the updated status to Firebase
                 try await UserManager.shared.updateUserNotificationsStatus(
                     userId: user.userId,
                     isNotificationsOn: isNotificationsOn
                 )
-
-                // After a successful update, we synchronize with the database
-                let updatedUser = try await UserManager.shared.getUser(userId: user.userId)
-                DispatchQueue.main.async {
-                    self.user = updatedUser
-                    self.isNotificationsOn = updatedUser.isNotificationsOn ?? false
-                }
             } catch {
-                // In case of an error, we return the previous state
-                DispatchQueue.main.async {
-                    self.isNotificationsOn.toggle()
-                }
-                print("Ошибка обновления уведомлений: \(error)")
+                revertNotificationsToggle()
+                print("Failed to update notifications status: \(error)")
             }
         }
     }
+    
+    func changeUserName() {
+         guard let user else { return }
+         
+         localUserName = newNameHandler
 
+         Task {
+             do {
+                 try await UserManager.shared.updateUserName(
+                     userId: user.userId,
+                     name: localUserName
+                 )
+                 newNameHandler = ""
+             } catch {
+                 print("Error while updating user name: \(error)")
+             }
+         }
+     }
+    
     func signOut() throws {
         try AuthenticationManager.shared.signOut()
     }
@@ -70,33 +71,39 @@ final class ProfileViewModel: ObservableObject {
     
     func generateGreeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
-        
-        switch hour {
-        case 7..<10:
-            return "Good morning"
-        case 11..<17:
-            return "Good day"
-        case 18..<22:
-            return "Good evening"
-        default:
-            return "Good night"
-        }
+        return greetingMessage(for: hour)
     }
     
     func formatDateForDisplay(_ date: Date?) -> String {
-        guard let date = date else {
-            return "Data is empty"
-        }
+        guard let date = date else { return "Date is empty" }
         return DateFormatter.userDateFormatter.string(from: date)
     }
+
+    // MARK: - Private Methods
+
+    private func updateUserState(with fetchedUser: DBUser) {
+        DispatchQueue.main.async {
+            self.user = fetchedUser
+            self.isNotificationsOn = fetchedUser.isNotificationsOn ?? false
+            self.syncLocalUserNameIfNeeded(with: fetchedUser.name)
+        }
+    }
     
+    private func syncLocalUserNameIfNeeded(with name: String?) {
+        guard let name, localUserName != name else { return }
+        localUserName = name
+    }
     
-    private func localUserNameChanger() async throws {
-        guard let user = user, let name = user.name else { return }
-        if localUserName != name {
-            DispatchQueue.main.async {
-                self.localUserName = name
-            }
+    private func revertNotificationsToggle() {
+        DispatchQueue.main.async { self.isNotificationsOn.toggle() }
+    }
+    
+    private func greetingMessage(for hour: Int) -> String {
+        switch hour {
+        case 7..<10: return "Good morning"
+        case 11..<17: return "Good day"
+        case 18..<22: return "Good evening"
+        default: return "Good night"
         }
     }
 }

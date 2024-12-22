@@ -27,6 +27,7 @@
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
 		9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
+		9B3D81962D1883870079A072 /* ChangeNameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
 		9B42AE3B2C8A50F800343433 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */; };
 		9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F862C00B22500B6D645 /* CirclesView.swift */; };
@@ -106,6 +107,7 @@
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
+		9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameSheetView.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9B568F862C00B22500B6D645 /* CirclesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CirclesView.swift; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */,
 				9BE572B72D15ED1000A4D45E /* ProfileInfoLinkView.swift */,
 				9BE572B92D15F17200A4D45E /* ProfileInfoView.swift */,
+				9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */,
 				9B0EA5622C106EE400E8291C /* Settings */,
 				9BA8E2CE2CF1FBF600A0BC00 /* IGD tests */,
 				9B0EA5652C106FAF00E8291C /* Additional Settings */,
@@ -598,6 +601,7 @@
 				9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */,
 				9B2AFD682C0099F100E908F5 /* RestartedApp.swift in Sources */,
 				9BF77F232CE75A08006FC86F /* RootView.swift in Sources */,
+				9B3D81962D1883870079A072 /* ChangeNameSheetView.swift in Sources */,
 				9BD5E8B72CF24E12002464E4 /* LongTestViewModel.swift in Sources */,
 				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,

@@ -72,44 +72,79 @@ struct DBUser: Codable, Equatable {
 }
 
 final class UserManager {
+    // MARK: - Singleton
     static let shared = UserManager()
     private init() { }
     
+    // MARK: - Firestore Collections
     private let userCollection = Firestore.firestore().collection("users")
     private let articleCollection = Firestore.firestore().collection("articles")
-
+    
+    // MARK: - Private Helpers
     private func userDocument(userId: String) -> DocumentReference {
         userCollection.document(userId)
     }
     
-    func createUser(user: DBUser) async throws {
-        try userDocument(userId: user.userId).setData(from: user, merge: false)
-        
-        let articlesSnapshot = try await articleCollection.getDocuments()
-        
-        let userArticlesCollection = userDocument(userId: user.userId).collection("articles")
-        
-        for document in articlesSnapshot.documents {
-            let articleData = document.data()
-            try await userArticlesCollection.document(document.documentID).setData(articleData)
-        }
+    private func userArticlesCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("articles")
     }
     
+    // MARK: - Public Methods
+    
+    // Creates a new user in Firestore and initializes their articles collection.
+    func createUser(user: DBUser) async throws {
+        // Save user data
+        try userDocument(userId: user.userId).setData(from: user, merge: false)
+        
+        // Initialize user's articles
+        try await initializeUserArticles(for: user.userId)
+    }
+    
+    // Fetches a user document from Firestore.
     func getUser(userId: String) async throws -> DBUser {
         try await userDocument(userId: userId).getDocument(as: DBUser.self)
     }
-
+    
+    // Updates the user's notifications status in Firestore.
     func updateUserNotificationsStatus(userId: String, isNotificationsOn: Bool) async throws {
-        let data: [String : Any] = [
-            DBUser.CodingKeys.isNotificationsOn.rawValue : isNotificationsOn
-        ]
-        
-        try await userDocument(userId: userId).updateData(data)
+        try await updateUserField(
+            userId: userId,
+            field: DBUser.CodingKeys.isNotificationsOn.rawValue,
+            value: isNotificationsOn
+        )
     }
     
+    // Updates the user's name in Firestore.
+    func updateUserName(userId: String, name: String) async throws {
+        try await updateUserField(
+            userId: userId,
+            field: DBUser.CodingKeys.name.rawValue,
+            value: name
+        )
+    }
+    
+    // Deletes the user's Firestore document.
     func deleteUserDocument(userId: String) async throws {
-        let documentRef = userCollection.document(userId)
-        try await documentRef.delete()
-        print("User with id \(userId) deleted successfully")
+        try await userDocument(userId: userId).delete()
+        print("User with ID \(userId) deleted successfully.")
+    }
+    
+    // MARK: - Private Methods
+    
+    // Initializes articles for a new user by copying data from the global articles collection.
+    private func initializeUserArticles(for userId: String) async throws {
+        let articlesSnapshot = try await articleCollection.getDocuments()
+        let userArticlesRef = userArticlesCollection(userId: userId)
+        
+        for document in articlesSnapshot.documents {
+            let articleData = document.data()
+            try await userArticlesRef.document(document.documentID).setData(articleData)
+        }
+    }
+    
+    // Updates a specific field in the user's Firestore document.
+    private func updateUserField(userId: String, field: String, value: Any) async throws {
+        let data: [String: Any] = [field: value]
+        try await userDocument(userId: userId).updateData(data)
     }
 }

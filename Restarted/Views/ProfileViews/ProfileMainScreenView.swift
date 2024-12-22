@@ -29,8 +29,7 @@ struct ProfileMainScreenView: View {
             .navigationTitle("Profile")
             .background(Color.background)
             .task {
-                try? await viewModel.loadCurruntUser()
-                
+                try? await viewModel.loadCurrentUser()
             }
         }
     }
