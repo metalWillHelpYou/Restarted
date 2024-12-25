@@ -16,7 +16,7 @@ struct TimerView: View {
     @Binding var isTimerRunning: Bool
     @State private var isStatusLineAppeared: Bool = false
     
-    var game: Game?
+    var game: GameFirestore?
     var seconds: Int
     
     var body: some View {

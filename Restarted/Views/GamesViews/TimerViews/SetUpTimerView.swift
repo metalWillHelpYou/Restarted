@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SetUpTimerView: View {
     @EnvironmentObject var timerVm: TimerViewModel
-    var game: Game?
+    var game: GameFirestore?
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0

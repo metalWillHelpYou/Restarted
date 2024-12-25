@@ -34,7 +34,7 @@ struct ContentView: View {
                     .setupTab(.articles)
 
                     NavigationView {
-                        GamesMainScreenView()
+                        GameMainScreenView()
                     }
                     .setupTab(.games)
 

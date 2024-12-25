@@ -79,6 +79,7 @@ final class UserManager {
     // MARK: - Firestore Collections
     private let userCollection = Firestore.firestore().collection("users")
     private let articleCollection = Firestore.firestore().collection("articles")
+    private let gamesCollection = Firestore.firestore().collection("games")
     
     // MARK: - Private Helpers
     private func userDocument(userId: String) -> DocumentReference {
@@ -89,15 +90,24 @@ final class UserManager {
         userDocument(userId: userId).collection("articles")
     }
     
+    private func userGamesCollection(userId: String) -> CollectionReference {
+        userDocument(userId: userId).collection("games")
+    }
+    
     // MARK: - Public Methods
     
     // Creates a new user in Firestore and initializes their articles collection.
     func createUser(user: DBUser) async throws {
-        // Save user data
-        try userDocument(userId: user.userId).setData(from: user, merge: false)
-        
-        // Initialize user's articles
-        try await initializeUserArticles(for: user.userId)
+        do {
+            try userDocument(userId: user.userId).setData(from: user, merge: false)
+            
+            // Initialize user's articles
+            try await initializeUserArticles(for: user.userId)
+            
+            try await initializeUserGames(for: user.userId)
+        } catch {
+            print("Error with user creation: \(error)")
+        }
     }
     
     // Fetches a user document from Firestore.
@@ -131,7 +141,7 @@ final class UserManager {
     
     // MARK: - Private Methods
     
-    // Initializes articles for a new user by copying data from the global articles collection.
+    // Sub collection initialization
     private func initializeUserArticles(for userId: String) async throws {
         let articlesSnapshot = try await articleCollection.getDocuments()
         let userArticlesRef = userArticlesCollection(userId: userId)
@@ -142,6 +152,16 @@ final class UserManager {
         }
     }
     
+    private func initializeUserGames(for userId: String) async throws {
+        let gamesSnapshot = try await gamesCollection.getDocuments()
+        let userGamesRef = userGamesCollection(userId: userId)
+        
+        for document in gamesSnapshot.documents {
+            let gameData = document.data()
+            try await userGamesRef.document(document.documentID).setData(gameData)
+        }
+    }
+
     // Updates a specific field in the user's Firestore document.
     private func updateUserField(userId: String, field: String, value: Any) async throws {
         let data: [String: Any] = [field: value]

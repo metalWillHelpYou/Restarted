@@ -7,76 +7,43 @@
 
 import Foundation
 import CoreData
+import SwiftUI
+import FirebaseFirestore
 
 @MainActor
 final class GameViewModel: ObservableObject {
-    let container: NSPersistentContainer
+    //let container: NSPersistentContainer
     @Published var savedEntities: [Game] = []
+    @Published var gameTitleHandler: String = ""
+    @Published var savedGames: [GameFirestore] = []
     
-    init() {
-        container = NSPersistentContainer(name: "GameModel")
-        container.loadPersistentStores { (description, error) in
-            if let error = error {
-                print("Error: \(error)")
-            }
-        }
-        fetchGames()
+    
+    func fetchGames() async {
+        savedGames = await GameManager.shared.fetchGames()
     }
     
-    func fetchGames() {
-        let request = NSFetchRequest<Game>(entityName: "Game")
+    func addGame(_ game: String) async {
         do {
-            savedEntities = try container.viewContext.fetch(request)
-        } catch let error {
-            print("Error: \(error)")
+            savedGames = try await GameManager.shared.addGame(withTitle: game)
+            gameTitleHandler = ""
+        } catch {
+            print("Error adding game: \(error.localizedDescription)")
         }
     }
     
-    func addGame(_ game: String) {
-        let newGame = Game(context: container.viewContext)
-        newGame.title = game
-        
-        saveData()
-    }
-    
-    func editGame(entity: Game, newTitle: String) {
-        entity.title = newTitle
-        
-        saveData()
-    }
-    
-    func deleteGame(_ game: Game) {
-        container.viewContext.delete(game)
-        saveData()
-    }
-    
-    func updateGameTime(game: Game, seconds: Int32) {
-        game.seconds = seconds
-        
-        saveData()
-    }
-    
-    func saveData() {
+    func editGame(_ game: GameFirestore) async {
+        guard !gameTitleHandler.isEmpty, gameTitleHandler != game.title else {
+            print("No changes to update or title is empty.")
+            return
+        }
+
         do {
-            try container.viewContext.save()
-            fetchGames()
-        } catch let error {
-            print("Error: \(error)")
-        }
-    }
-    
-    func handleButtonAction(sheetModel: GameSheetModel, gameTitle: String, dismiss: () -> Void) {
-        switch sheetModel.buttonType {
-        case .add:
-            if !gameTitle.isEmpty {
-                addGame(gameTitle)
-                dismiss()
-            }
-        case .edit:
-            if let game = sheetModel.game, !gameTitle.isEmpty {
-                editGame(entity: game, newTitle: gameTitle)
-                dismiss()
-            }
+            try await GameManager.shared.editGame(gameId: game.id, title: gameTitleHandler)
+            print("Game successfully updated.")
+            await fetchGames()
+            gameTitleHandler = ""
+        } catch {
+            print("Error editing game: \(error.localizedDescription)")
         }
     }
 }
