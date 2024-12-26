@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-struct GameFirestore: Codable, Identifiable {
+struct GameFirestore: Codable, Identifiable, Equatable {
     let id: String
     let title: String
     let seconds: Int
@@ -119,7 +119,7 @@ final class GameManager {
     }
     
     func editGame(gameId: String, title: String) async throws {
-        guard let gameDocument = gameDocument(gameId: gameId) else {
+        guard gameDocument(gameId: gameId) != nil else {
             print("Error: Unable to get reference to user game document.")
             throw URLError(.badURL)
         }
@@ -128,6 +128,16 @@ final class GameManager {
             gameId: gameId,
             field: GameFirestore.CodingKeys.title.rawValue,
             value: title)
+    }
+    
+    func deleteGame(gameId: String) async throws {
+        guard gameDocument(gameId: gameId) != nil else {
+            print("Error: Unable to get reference to user game document.")
+            throw URLError(.badURL)
+        }
+        
+        try await gameDocument(gameId: gameId)?.delete()
+        print("Game with ID \(gameId) deleted successfully.")
     }
     
     private func updateGameField(gameId: String, field: String, value: Any) async throws {

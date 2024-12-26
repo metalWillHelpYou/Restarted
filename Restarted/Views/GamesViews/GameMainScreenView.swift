@@ -10,10 +10,12 @@ import SwiftUI
 struct GameMainScreenView: View {
     @EnvironmentObject var viewModel: GameViewModel
     @EnvironmentObject var lnManager: LocalNotificationManager
+    @Environment(\.dismiss) var dismiss
     
     @State private var showNewGameSheet: Bool = false
     @State private var showEditGameSheet: Bool = false
-    @State private var selectedGame: GameFirestore?
+    @State private var selectedGame: GameFirestore? = nil
+    @State private var showDeleteDialog: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -34,8 +36,14 @@ struct GameMainScreenView: View {
                                         selectedGame = game
                                         showEditGameSheet.toggle()
                                     }
-                                    .tint(.yellow)
-
+                                    .tint(.orange)
+                                }
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button("Delete") {
+                                        selectedGame = game
+                                        showDeleteDialog.toggle()
+                                    }
+                                    .tint(.red)
                                 }
                             }
                             .listRowSeparatorTint(Color.highlight)
@@ -60,14 +68,32 @@ struct GameMainScreenView: View {
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .sheet(isPresented: $showNewGameSheet) {
                 AddGameSheetView()
-                    .presentationDetents([.medium])
+                    .presentationDetents([.fraction(0.2)])
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showEditGameSheet) {
+                if let game = selectedGame {
+                    EditGameSheetView(game: game)
+                        .presentationDetents([.fraction(0.2)])
+                        .presentationDragIndicator(.visible)
+                }
             }
             .task {
                 try? await lnManager.requestAuthorization()
                 await lnManager.getCurrentSettings()
             }
-            .task {
-                await viewModel.fetchGames()
+            .task { await viewModel.fetchGames() }
+            .onChange(of: selectedGame) { newValue, _ in
+                print("gameToEdit changed to: \(String(describing: newValue))")
+            }
+            .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
+                if let game = selectedGame {
+                    Button("Delete", role: .destructive) {
+                        Task {
+                            await viewModel.deleteGame(with: game.id)
+                        }
+                    }
+                }
             }
         }
     }
@@ -82,12 +108,15 @@ extension GameMainScreenView {
         })
     }
     
-    private var editGameButton: some View {
-        Button("Edit") {
-            showEditGameSheet.toggle()
-           }
-           .tint(.red)
+    private var enableNotifiationsButton: some View {
+        Button("Enable Notifications") { lnManager.openSettings() }
+            .foregroundStyle(Color.text)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .strokeBackground(Color.highlight)
+            .padding(.horizontal)
     }
+    
 }
 
 struct AddGameSheetView: View {
@@ -112,9 +141,12 @@ struct AddGameSheetView: View {
                 Text("Save")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color.text)
-                    .strokeBackground(Color.highlight)
+                    .foregroundStyle(!viewModel.gameTitleHandler.isEmpty ? Color.text : Color.gray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .strokeBackground(!viewModel.gameTitleHandler.isEmpty ? Color.highlight : Color.gray)
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.gameTitleHandler)
             })
+            .disabled(viewModel.gameTitleHandler.isEmpty)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)
@@ -125,9 +157,8 @@ struct AddGameSheetView: View {
 struct EditGameSheetView: View {
     @EnvironmentObject var viewModel: GameViewModel
     @Environment(\.dismiss) var dismiss
-    @State private var newTitle: String = ""
     
-    let game: GameFirestore
+    var game: GameFirestore
     
     var body: some View {
         VStack {
@@ -140,37 +171,31 @@ struct EditGameSheetView: View {
             
             Button(action: {
                 Task {
-                    viewModel.gameTitleHandler = newTitle
-                    await viewModel.editGame(game)
+                    do {
+                        try await viewModel.editGame(gameId: game.id, title: viewModel.gameTitleHandler)
+                        dismiss()
+                    } catch {
+                        print("Error updating game: \(error)")
+                    }
                 }
-                dismiss()
             }, label: {
                 Text("Save")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color.text)
-                    .strokeBackground(Color.highlight)
+                    .foregroundStyle(!viewModel.gameTitleHandler.isEmpty ? Color.text : Color.gray)
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .strokeBackground(!viewModel.gameTitleHandler.isEmpty ? Color.highlight : Color.gray)
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.gameTitleHandler)
             })
+            .disabled(viewModel.gameTitleHandler.isEmpty)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)
         .background(Color.background)
-        .onDisappear {
-            viewModel.gameTitleHandler = ""
-        }
+
     }
 }
 
-extension GameMainScreenView {
-    private var enableNotifiationsButton: some View {
-        Button("Enable Notifications") { lnManager.openSettings() }
-            .foregroundStyle(Color.text)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .strokeBackground(Color.highlight)
-            .padding(.horizontal)
-    }
-}
 
 #Preview {
     GameMainScreenView()

@@ -46,7 +46,7 @@
 		9B6E6C412CDE4BBB002D3042 /* SignInGoogleHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */; };
 		9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */; };
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
-		9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF172CE4BC58009A7FD7 /* UserManager.swift */; };
+		9B77BF182CE4BC58009A7FD7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF172CE4BC58009A7FD7 /* UserModel.swift */; };
 		9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF1B2CE65642009A7FD7 /* Utilites.swift */; };
 		9B7D09A12CEB6AFA001B2C4A /* HabitModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9B7D099F2CEB6AFA001B2C4A /* HabitModel.xcdatamodeld */; };
 		9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */; };
@@ -125,7 +125,7 @@
 		9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInGoogleHelper.swift; sourceTree = "<group>"; };
 		9B71D1852C5FDE6B00FF3EA3 /* HapticManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticManager.swift; sourceTree = "<group>"; };
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		9B77BF172CE4BC58009A7FD7 /* UserManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		9B77BF172CE4BC58009A7FD7 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9B77BF1B2CE65642009A7FD7 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
 		9B7D09A02CEB6AFA001B2C4A /* HabitModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HabitModel.xcdatamodel; sourceTree = "<group>"; };
 		9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
@@ -252,10 +252,9 @@
 		9B2AFD5F2C0099F100E908F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9BBA81C02CDCE35A006EB807 /* AuthenticationUserModel.swift */,
-				9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */,
 				9B108F982CFF418900F41360 /* ArticleModel.swift */,
 				9BBE86DA2D19E8DD0069B58E /* GameModel.swift */,
+				9B77BF172CE4BC58009A7FD7 /* UserModel.swift */,
 				9B7D099F2CEB6AFA001B2C4A /* HabitModel.xcdatamodeld */,
 				9BF77AF72CDA556200FDE543 /* GameModel.xcdatamodeld */,
 				9B6294E52C12216200CDFBC5 /* Extentions.swift */,
@@ -401,8 +400,9 @@
 			isa = PBXGroup;
 			children = (
 				9BBA81C22CDCE3C6006EB807 /* AuthenticationManager.swift */,
-				9B77BF172CE4BC58009A7FD7 /* UserManager.swift */,
+				9BBA81C02CDCE35A006EB807 /* AuthenticationUserModel.swift */,
 				9B6E6C402CDE4BBB002D3042 /* SignInGoogleHelper.swift */,
+				9B6E6C3E2CDE4668002D3042 /* GoogleSignInResultModel.swift */,
 				9B77BF1B2CE65642009A7FD7 /* Utilites.swift */,
 			);
 			path = Authentication;
@@ -583,7 +583,7 @@
 				9BA8CC092C8F5819005AF647 /* HabitSheetModel.swift in Sources */,
 				9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */,
 				9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */,
-				9B77BF182CE4BC58009A7FD7 /* UserManager.swift in Sources */,
+				9B77BF182CE4BC58009A7FD7 /* UserModel.swift in Sources */,
 				9B6294E62C12216200CDFBC5 /* Extentions.swift in Sources */,
 				9BBA81C32CDCE3C6006EB807 /* AuthenticationManager.swift in Sources */,
 				9BD5E8B52CF23646002464E4 /* IGDTest Model.swift in Sources */,
