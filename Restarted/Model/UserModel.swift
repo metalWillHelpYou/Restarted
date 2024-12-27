@@ -101,10 +101,7 @@ final class UserManager {
         do {
             try userDocument(userId: user.userId).setData(from: user, merge: false)
             
-            // Initialize user's articles
             try await initializeUserArticles(for: user.userId)
-            
-            try await initializeUserGames(for: user.userId)
         } catch {
             print("Error with user creation: \(error)")
         }

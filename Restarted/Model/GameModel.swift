@@ -78,37 +78,46 @@ final class GameManager {
         do {
             let snapshot = try await gameCollection.getDocuments()
             let games = snapshot.documents.compactMap { doc -> GameFirestore? in
-                guard let jsonData = try? JSONSerialization.data(withJSONObject: doc.data()) else { return nil }
-                return try? JSONDecoder().decode(GameFirestore.self, from: jsonData)
+                let data = doc.data()
+                return parseGame(from: data)
             }
             self.games = games
             return games
         } catch {
-            print("Error loading or parsing user games: \(error)")
+            print("Error fetching games: \(error)")
             return []
         }
     }
-    
+
+    private func parseGame(from data: [String: Any]) -> GameFirestore? {
+        guard
+            let id = data[GameFirestore.CodingKeys.id.rawValue] as? String,
+            let title = data[GameFirestore.CodingKeys.title.rawValue] as? String,
+            let seconds = data[GameFirestore.CodingKeys.seconds.rawValue] as? Int
+        else {
+            return nil
+        }
+        
+        let dateAdded = (data[GameFirestore.CodingKeys.dateAdded.rawValue] as? Timestamp)?.dateValue()
+        return GameFirestore(id: id, title: title, seconds: seconds, dateAdded: dateAdded)
+    }
+
     func addGame(withTitle title: String) async throws -> [GameFirestore] {
         guard let gameCollection = userGameCollection() else {
             throw NSError(domain: "GameManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
 
         let newGameId = UUID().uuidString
-        let newGame = GameFirestore(
-            id: newGameId,
-            title: title,
-            seconds: 0,
-            dateAdded: Date()
-        )
+        let newGame = GameFirestore(id: newGameId, title: title, seconds: 0, dateAdded: Date())
+        let gameData = createGameData(from: newGame)
 
         do {
-            let jsonData = try JSONEncoder().encode(newGame)
-            guard let jsonDict = try JSONSerialization.jsonObject(with: jsonData) as? [String: Any] else {
-                throw NSError(domain: "GameManager", code: 2, userInfo: [NSLocalizedDescriptionKey: "Failed to convert game to dictionary."])
+            let snapshot = try await gameCollection.getDocuments()
+            if snapshot.isEmpty {
+                print("Creating games collection for user...")
             }
 
-            try await gameCollection.document(newGameId).setData(jsonDict)
+            try await gameCollection.document(newGameId).setData(gameData)
             print("Game successfully added with ID: \(newGameId)")
             
             return await fetchGames()
@@ -116,6 +125,15 @@ final class GameManager {
             print("Error adding game: \(error)")
             throw error
         }
+    }
+
+    private func createGameData(from game: GameFirestore) -> [String: Any] {
+        [
+            GameFirestore.CodingKeys.id.rawValue: game.id,
+            GameFirestore.CodingKeys.title.rawValue: game.title,
+            GameFirestore.CodingKeys.seconds.rawValue: game.seconds,
+            GameFirestore.CodingKeys.dateAdded.rawValue: game.dateAdded.map { Timestamp(date: $0) } ?? FieldValue.serverTimestamp()
+        ]
     }
     
     func editGame(gameId: String, title: String) async throws {

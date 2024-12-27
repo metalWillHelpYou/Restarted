@@ -48,7 +48,16 @@ struct GameMainScreenView: View {
                             }
                             .listRowSeparatorTint(Color.highlight)
                         }
-                        .toolbar { addGameButton }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarTrailing) {
+                                addGameButton
+                            }
+                        }
+                        .toolbar {
+                            ToolbarItem(placement: .topBarLeading) {
+                                sortGames
+                            }
+                        }
                         .listStyle(PlainListStyle())
                     } else {
                         HStack {
@@ -108,6 +117,26 @@ extension GameMainScreenView {
         })
     }
     
+    private var sortGames: some View {
+        Menu {
+            Button("Sort by Name") {
+                viewModel.sortByTitle()
+            }
+
+            Button("Sort by Date") {
+                viewModel.sortByDateAdded()
+            }
+
+            Button("Sort by Time") {
+                viewModel.sortByTime()
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
+                .foregroundStyle(Color.highlight)
+                .frame(width: 30, height: 30)
+        }
+    }
+    
     private var enableNotifiationsButton: some View {
         Button("Enable Notifications") { lnManager.openSettings() }
             .foregroundStyle(Color.text)
@@ -116,7 +145,6 @@ extension GameMainScreenView {
             .strokeBackground(Color.highlight)
             .padding(.horizontal)
     }
-    
 }
 
 struct AddGameSheetView: View {
@@ -195,7 +223,6 @@ struct EditGameSheetView: View {
 
     }
 }
-
 
 #Preview {
     GameMainScreenView()
