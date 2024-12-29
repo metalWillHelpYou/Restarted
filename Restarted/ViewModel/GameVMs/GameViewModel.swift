@@ -18,6 +18,7 @@ final class GameViewModel: ObservableObject {
     }
 
     @Published var savedGames: [GameFirestore] = []
+    @Published var savedPresets: [TimePresetFirestore] = []
     @Published var gameTitleHandler: String = ""
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.none.rawValue
 
@@ -26,6 +27,7 @@ final class GameViewModel: ObservableObject {
         set { currentSortTypeRawValue = newValue.rawValue }
     }
 
+    // MARK: - Game Logic
     func fetchGames() async {
         savedGames = await GameManager.shared.fetchGames()
         applyCurrentSort()
@@ -86,6 +88,20 @@ final class GameViewModel: ObservableObject {
         case .byTitle: sortByTitle()
         case .byDateAdded: sortByDateAdded()
         case .byTime: sortByTime()
+        }
+    }
+
+    // MARK: - Preset Logic
+    func fetchPresets(for gameId: String) async {
+        savedPresets =  await GamePresetManager.shared.fetchPresets(forGameId: gameId)
+    }
+
+    func deletePreset(with id: String, for gameId: String) async {
+        do {
+            try await GamePresetManager.shared.deletePreset(forGameId: gameId, presetId: id)
+            await fetchPresets(for: id)
+        } catch {
+            print("Error deleting preset: \(error.localizedDescription)")
         }
     }
 }

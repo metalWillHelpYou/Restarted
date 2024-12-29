@@ -28,7 +28,6 @@ struct RestartedApp: App {
     @StateObject var articleVm = ArticleViewModel()
     
     @StateObject var gameVm = GameViewModel()
-    @StateObject var gameSheetVm = AlertsManager()
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
     @StateObject private var profileVm = ProfileViewModel()
@@ -47,7 +46,6 @@ struct RestartedApp: App {
                 .environmentObject(habitVm)
                 .environmentObject(articleVm)
                 .environmentObject(gameVm)
-                .environmentObject(gameSheetVm)
                 .environmentObject(timerVm)
                 .environmentObject(lnManager)
                 .environmentObject(profileVm)

@@ -100,11 +100,6 @@ final class TimerViewModel: ObservableObject {
         return (hours, minutes, remainingSeconds)
     }
     
-    func formattedTime(from seconds: Int32) -> String {
-        let (hours, minutes, remainingSeconds) = convertSecondsToTime(Int(seconds))
-        return String(format: "%02d:%02d:%02d", hours, minutes, remainingSeconds)
-    }
-    
     func formatTimeDigits(hours: Int, minutes: Int) -> String {
         hours > 0 ? String(format: "%d:%02d", hours, minutes) : String(format: "%2d", minutes)
     }

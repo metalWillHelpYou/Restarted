@@ -8,11 +8,15 @@
 import SwiftUI
 
 struct SetUpTimerView: View {
-    @EnvironmentObject var timerVm: TimerViewModel
-    var game: GameFirestore?
+    @EnvironmentObject var viewModel: GameViewModel
+    @State private var showDeletePresetDialog: Bool = false
+    @State private var presetToDelete: TimePresetFirestore?
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
+    
+    var game: GameFirestore?
+    var selectedPreset: TimePresetFirestore?
     
     var body: some View {
         NavigationStack {
@@ -28,14 +32,33 @@ struct SetUpTimerView: View {
                 }
                 .transition(.move(edge: .leading))
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.background)
-            .navigationTitle(gameTitle)
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                timerVm.fetchPresets()
-                hours = 0
-                minutes = 0
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.background)
+        .navigationTitle(gameTitle)
+        .navigationBarTitleDisplayMode(.inline)
+        .onAppear {
+            Task {
+                if let game = game {
+                    await viewModel.fetchPresets(for: game.id)
+                }
+            }
+            hours = 0
+            minutes = 0
+        }
+        .onDisappear { viewModel.savedPresets = [] }
+        .confirmationDialog(
+            "Are you sure?",
+            isPresented: $showDeletePresetDialog,
+            titleVisibility: .visible
+        ) {
+            if let preset = presetToDelete, let game = game {
+                Button("Delete", role: .destructive) {
+                    Task {
+                        await viewModel.deletePreset(with: preset.id, for: game.id)
+                        await viewModel.fetchPresets(for: game.id)
+                    }
+                }
             }
         }
     }
@@ -71,31 +94,29 @@ extension SetUpTimerView {
     
     private var savedTimesList: some View {
         VStack(alignment: .leading) {
-            if !timerVm.savedPresets.isEmpty {
+            if !viewModel.savedPresets.isEmpty {
                 Text("Recents")
                     .font(.headline)
                     .padding(.horizontal)
             }
             
             List {
-                ForEach(timerVm.savedPresets, id: \.self) { preset in
-                    let time = timerVm.convertSecondsToTime(Int(preset.seconds))
+                ForEach(viewModel.savedPresets) { preset in
+                    let time = TimeTools.convertSecondsToTime(preset.seconds)
                     
                     NavigationLink(
-                        destination: {
-                            TimerView(
-                                isTimerRunning: .constant(true),
-                                game: game,
-                                seconds: Int(preset.seconds)
-                            )
-                        },
+                        destination: TimerView(
+                            isTimerRunning: .constant(true),
+                            game: game,
+                            seconds: Int(preset.seconds)
+                        ),
                         label: {
                             VStack(alignment: .leading) {
-                                Text(timerVm.formatTimeDigits(hours: time.hours, minutes: time.minutes))
+                                Text(TimeTools.formatTimeDigits(hours: time.hours, minutes: time.minutes))
                                     .font(.title)
                                     .padding(.vertical, 2)
                                 
-                                Text(timerVm.formatTimeText(hours: time.hours, minutes: time.minutes))
+                                Text(TimeTools.formatTimeText(hours: time.hours, minutes: time.minutes))
                                     .font(.caption)
                                     .foregroundColor(.highlight.opacity(0.7))
                             }
@@ -103,16 +124,15 @@ extension SetUpTimerView {
                     )
                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                         Button("Delete") {
-                            withAnimation(.easeInOut(duration: 0.5)) {
-                                timerVm.deletePreset(preset)
-                            }
+                            presetToDelete = preset
+                            showDeletePresetDialog = true
                         }
                         .tint(.red)
                     }
                     .listRowBackground(Color.background)
                 }
-                .listRowSeparatorTint(Color.highlight)
             }
+            .listRowSeparatorTint(Color.highlight)
             .listStyle(PlainListStyle())
             .offset(y: -2)
         }
@@ -138,7 +158,11 @@ extension SetUpTimerView {
         .disabled(!isTimeSelected)
         .simultaneousGesture(TapGesture().onEnded {
             if isTimeSelected {
-                timerVm.saveTime(seconds: (hours * 3600) + (minutes * 60))
+                if let game = game {
+                    Task {
+                        try await GamePresetManager.shared.addPreset(forGameId: game.id, seconds: (hours * 3600) + (minutes * 60))
+                    }
+                }
             }
         })
     }
@@ -153,4 +177,5 @@ extension SetUpTimerView {
 #Preview {
     SetUpTimerView()
         .environmentObject(TimerViewModel())
+        .environmentObject(GameViewModel())
 }
