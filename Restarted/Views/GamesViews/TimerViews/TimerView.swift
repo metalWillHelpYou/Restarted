@@ -10,7 +10,7 @@ import SwiftUI
 struct TimerView: View {
     @Environment(\.dismiss) var dismiss
     
-    @EnvironmentObject var timerVM: TimerViewModel
+    @EnvironmentObject var viewModel: TimerViewModel
     @State private var showStopDialog: Bool = false
     @StateObject var notificationManager = LocalNotificationManager()
     @Binding var isTimerRunning: Bool
@@ -45,7 +45,7 @@ struct TimerView: View {
                             .font(.headline)
                     }
                     
-                    Text(timerVM.timeString())
+                    Text(viewModel.timeString())
                         .font(.largeTitle)
                         .padding()
                 }
@@ -65,8 +65,8 @@ struct TimerView: View {
         .foregroundStyle(.white)
         .navigationBarBackButtonHidden(true)
         .onAppear {
-            if game != nil {
-                timerVM.startTimer(seconds: seconds)
+            if let game = game {
+                viewModel.startTimer(seconds: seconds, forGameId: game.id)
             }
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 isStatusLineAppeared = true
@@ -75,7 +75,7 @@ struct TimerView: View {
             Task {
                 await notificationManager.scheduleTimerEndedNotification(duration: TimeInterval(seconds))
             }
-            timerVM.onTimerEnded = {
+            viewModel.onTimerEnded = {
                 dismiss()
             }
         }
@@ -87,14 +87,14 @@ struct TimerView: View {
 
 extension TimerView {
     private var circleProgress: CGFloat {
-        return seconds > 0 ? CGFloat(timerVM.timeRemaining) / CGFloat(seconds) : 0
+        return seconds > 0 ? CGFloat(viewModel.timeRemaining) / CGFloat(seconds) : 0
     }
     
     private var pauseButton: some View {
         Button(action: {
-            timerVM.isTimerRunning ? timerVM.pauseTimer() : timerVM.resumeTimer()
+            viewModel.isTimerRunning ? viewModel.pauseTimer() : viewModel.resumeTimer()
         }, label: {
-            Text(timerVM.isTimerRunning ? "Pause" : "Resume")
+            Text(viewModel.isTimerRunning ? "Pause" : "Resume")
                 .foregroundStyle(Color.white)
                 .frame(maxWidth: .infinity)
                 .padding()
@@ -119,12 +119,14 @@ extension TimerView {
     
     private var stopConfirmationButtons: some View {
         Group {
-            Button("Stop", role: .destructive) {
-                timerVM.stopTimer()
-                isTimerRunning = false
-                
-                notificationManager.removeRequest(withIdentifier: "TimerEnded")
-                dismiss()
+            if let game = game {
+                Button("Stop", role: .destructive) {
+                    viewModel.stopTimer(forGameId: game.id)
+                    isTimerRunning = false
+                    
+                    notificationManager.removeRequest(withIdentifier: "TimerEnded")
+                    dismiss()
+                }
             }
             Button("Cancel", role: .cancel) { }
         }

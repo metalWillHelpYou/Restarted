@@ -102,7 +102,7 @@ final class ProfileViewModel: ObservableObject {
         switch hour {
         case 7..<10: return "Good morning"
         case 11..<17: return "Good day"
-        case 18..<22: return "Good evening"
+        case 17...23: return "Good evening"
         default: return "Good night"
         }
     }

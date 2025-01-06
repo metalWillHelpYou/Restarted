@@ -23,9 +23,9 @@ struct QuickGuideView: View {
         .onAppear {
             let seconds = 10 * 60
             timerVm.selectRandomGame()
-            timerVm.startTimer(seconds: seconds)
+            timerVm.startTimer(seconds: seconds, forGameId: "nil")
         }
-        .onDisappear { timerVm.stopTimer() }
+        .onDisappear { timerVm.stopTimer(forGameId: "nil") }
     }
 }
 

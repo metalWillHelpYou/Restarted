@@ -108,7 +108,7 @@ extension SetUpTimerView {
                         destination: TimerView(
                             isTimerRunning: .constant(true),
                             game: game,
-                            seconds: Int(preset.seconds)
+                            seconds: preset.seconds
                         ),
                         label: {
                             VStack(alignment: .leading) {
