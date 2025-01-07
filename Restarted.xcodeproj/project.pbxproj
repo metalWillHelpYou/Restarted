@@ -20,12 +20,13 @@
 		9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD692C009A0D00E908F5 /* ArticleCardView.swift */; };
 		9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD6A2C009A0D00E908F5 /* ArticleMainScreenView.swift */; };
 		9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD6B2C009A0D00E908F5 /* ArticleView.swift */; };
-		9B2AFD7B2C009A0D00E908F5 /* StatsMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD6D2C009A0D00E908F5 /* StatsMainView.swift */; };
+		9B2AFD7B2C009A0D00E908F5 /* StatisticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD6D2C009A0D00E908F5 /* StatisticsView.swift */; };
 		9B2AFD7D2C009A0D00E908F5 /* GameMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD702C009A0D00E908F5 /* GameMainScreenView.swift */; };
 		9B2AFD7E2C009A0D00E908F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD722C009A0D00E908F5 /* HomeView.swift */; };
 		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
 		9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */; };
+		9B397CA92D2C452F005CBBD1 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B3D81962D1883870079A072 /* ChangeNameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
@@ -101,12 +102,13 @@
 		9B2AFD692C009A0D00E908F5 /* ArticleCardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCardView.swift; sourceTree = "<group>"; };
 		9B2AFD6A2C009A0D00E908F5 /* ArticleMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD6B2C009A0D00E908F5 /* ArticleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleView.swift; sourceTree = "<group>"; };
-		9B2AFD6D2C009A0D00E908F5 /* StatsMainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatsMainView.swift; sourceTree = "<group>"; };
+		9B2AFD6D2C009A0D00E908F5 /* StatisticsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatisticsView.swift; sourceTree = "<group>"; };
 		9B2AFD702C009A0D00E908F5 /* GameMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD722C009A0D00E908F5 /* HomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
+		9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameSheetView.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
@@ -280,8 +282,8 @@
 		9B2AFD6E2C009A0D00E908F5 /* StatsViews */ = {
 			isa = PBXGroup;
 			children = (
+				9B2AFD6D2C009A0D00E908F5 /* StatisticsView.swift */,
 				9B0EA5612C106ED500E8291C /* Stats */,
-				9B2AFD6D2C009A0D00E908F5 /* StatsMainView.swift */,
 			);
 			path = StatsViews;
 			sourceTree = "<group>";
@@ -340,6 +342,7 @@
 				9BD5E8B12CF2359A002464E4 /* AuthenticationVMs */,
 				9BD5E8B22CF235BB002464E4 /* GameVMs */,
 				9BD5E8B32CF235D9002464E4 /* ProfileVMs */,
+				9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -578,6 +581,7 @@
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,
 				9BD812A52C74F044005A6085 /* TimerView.swift in Sources */,
 				9BFE388F2CB7F4CA00325173 /* QGTestsView.swift in Sources */,
+				9B397CA92D2C452F005CBBD1 /* StatisticsViewModel.swift in Sources */,
 				9B2525B62CF0D2A40012E9B2 /* IGDTestInfoView.swift in Sources */,
 				9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */,
 				9B9FD6712D21613E00FD6A17 /* TimeTools.swift in Sources */,
@@ -613,7 +617,7 @@
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9BF77AFA2CDA556200FDE543 /* GameModel.xcdatamodeld in Sources */,
-				9B2AFD7B2C009A0D00E908F5 /* StatsMainView.swift in Sources */,
+				9B2AFD7B2C009A0D00E908F5 /* StatisticsView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
 				9BE572BA2D15F17200A4D45E /* ProfileInfoView.swift in Sources */,
 				9B5A41C22CB67FEF00617FEB /* QuickGuideView.swift in Sources */,

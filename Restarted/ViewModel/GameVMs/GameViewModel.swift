@@ -11,7 +11,6 @@ import FirebaseFirestore
 @MainActor
 final class GameViewModel: ObservableObject {
     enum SortType: String {
-        case none
         case byTitle
         case byDateAdded
         case byTime
@@ -20,10 +19,10 @@ final class GameViewModel: ObservableObject {
     @Published var savedGames: [GameFirestore] = []
     @Published var savedPresets: [TimePresetFirestore] = []
     @Published var gameTitleHandler: String = ""
-    @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.none.rawValue
+    @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
 
     private var currentSortType: SortType {
-        get { SortType(rawValue: currentSortTypeRawValue) ?? .none }
+        get { SortType(rawValue: currentSortTypeRawValue) ?? .byDateAdded }
         set { currentSortTypeRawValue = newValue.rawValue }
     }
 
@@ -84,7 +83,6 @@ final class GameViewModel: ObservableObject {
 
     private func applyCurrentSort() {
         switch currentSortType {
-        case .none: break
         case .byTitle: sortByTitle()
         case .byDateAdded: sortByDateAdded()
         case .byTime: sortByTime()

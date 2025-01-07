@@ -32,4 +32,9 @@ struct TimeTools {
         
         return components.joined(separator: " ")
     }
+    
+    static func convertSecondsToHours(_ seconds: Int) -> Int {
+        let hours = seconds / 3600
+        return hours
+    }
 }

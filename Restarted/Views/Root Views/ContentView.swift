@@ -39,7 +39,7 @@ struct ContentView: View {
                     .setupTab(.games)
 
                     NavigationView {
-                        StatsMainView()
+                        StatisticsView()
                     }
                     .setupTab(.stats)
 
