@@ -67,7 +67,7 @@ enum Tab: String, CaseIterable {
     
     var title: String {
         switch self {
-        case .home: return "Home"
+        case .home: return "Habits"
         case .articles: return "Articles"
         case .games: return "Games"
         case .stats: return "Stats"
