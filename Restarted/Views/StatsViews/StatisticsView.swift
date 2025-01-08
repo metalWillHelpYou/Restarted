@@ -14,20 +14,20 @@ struct StatisticsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                if !viewModel.fetchedGames.isEmpty {
+                if !viewModel.fetchedGames.isEmpty && !viewModel.fetchedHabits.isEmpty {
                     VStack {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Average session duration")
                                 .font(.title3)
                                 .foregroundStyle(Color.highlight)
                             
-                            ForEach(viewModel.fetchedGames.filter { viewModel.findAverageSessionTime(in: $0) != "00:00" }) { game in
+                            ForEach(viewModel.fetchedGames.filter { viewModel.findAverageGameSessionTime(in: $0) != "00:00" }) { game in
                                 HStack {
                                     Text(game.title)
                                     
                                     Spacer()
                                     
-                                    Text(viewModel.findAverageSessionTime(in: game))
+                                    Text(viewModel.findAverageGameSessionTime(in: game))
                                 }
                             }
                         }
@@ -40,7 +40,7 @@ struct StatisticsView: View {
                                     .font(.title3)
                                     .foregroundStyle(Color.highlight)
                                 
-                                ForEach(viewModel.findTheLargestNumberOfLaunches(of: viewModel.fetchedGames)) { game in
+                                ForEach(viewModel.findTheLargestNumberOfGameLaunches(of: viewModel.fetchedGames)) { game in
                                     HStack {
                                         
                                         Text(game.title)
@@ -58,7 +58,7 @@ struct StatisticsView: View {
                                     .font(.title3)
                                     .foregroundStyle(Color.highlight)
                                 
-                                ForEach(viewModel.findTheLargestNumberOfTime(of: viewModel.fetchedGames)) { game in
+                                ForEach(viewModel.findTheLargestNumberOfGameTime(of: viewModel.fetchedGames)) { game in
                                     HStack {
                                         
                                         Text(game.title)
@@ -70,7 +70,44 @@ struct StatisticsView: View {
                             }
                             .padding()
                             .strokeBackground(Color.highlight)
+                            
                         }
+                        
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Top of habit completions")
+                                .font(.title3)
+                                .foregroundStyle(Color.highlight)
+                            
+                            ForEach(viewModel.findMostComplietableHabits(of: viewModel.fetchedHabits)) { habit in
+                                HStack {
+                                    
+                                    Text(habit.title)
+                                    
+                                    Spacer()
+                                    Text("\(habit.amountOfComletion)")
+                                }
+                            }
+                        }
+                        .padding()
+                        .strokeBackground(Color.highlight)
+                        
+                        VStack(alignment: .leading, spacing: 16) {
+                            Text("Top of habit streaks")
+                                .font(.title3)
+                                .foregroundStyle(Color.highlight)
+                            
+                            ForEach(viewModel.findLargestStreaks(of: viewModel.fetchedHabits)) { habit in
+                                HStack {
+                                    
+                                    Text(habit.title)
+                                    
+                                    Spacer()
+                                    Text("\(habit.streak)")
+                                }
+                            }
+                        }
+                        .padding()
+                        .strokeBackground(Color.highlight)
                         
                         Spacer()
                     }
@@ -84,6 +121,7 @@ struct StatisticsView: View {
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .background(Color.background)
             .task { await viewModel.fetchGames() }
+            .task { await viewModel.fetchHabits() }
         }
     }
 }

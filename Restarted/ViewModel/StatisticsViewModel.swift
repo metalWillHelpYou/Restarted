@@ -10,23 +10,24 @@ import Foundation
 @MainActor
 final class StatisticsViewModel: ObservableObject {
     @Published var fetchedGames: [GameFirestore] = []
+    @Published var fetchedHabits: [HabitFirestore] = []
     
     
     func fetchGames() async {
         fetchedGames = await GameManager.shared.fetchGames()
     }
     
-    func findTheLargestNumberOfLaunches(of games: [GameFirestore]) -> [GameFirestore] {
+    func findTheLargestNumberOfGameLaunches(of games: [GameFirestore]) -> [GameFirestore] {
         let mostLaunchebleGames = Array(games.sorted { $0.sessionCount > $1.sessionCount }.prefix(3))
         return mostLaunchebleGames
     }
     
-    func findTheLargestNumberOfTime(of games: [GameFirestore]) -> [GameFirestore] {
+    func findTheLargestNumberOfGameTime(of games: [GameFirestore]) -> [GameFirestore] {
         let theLargestAmountOfTime = Array(games.sorted { $0.seconds > $1.seconds }.prefix(3))
         return theLargestAmountOfTime
     }
     
-    func findAverageSessionTime(in game: GameFirestore) -> String {
+    func findAverageGameSessionTime(in game: GameFirestore) -> String {
         guard game.seconds != 0, game.sessionCount != 0 else { return "00:00" }
         
         let formattedSeconds = game.seconds / 3600
@@ -37,5 +38,19 @@ final class StatisticsViewModel: ObservableObject {
         let minutes = totalMinutes % 60
         
         return String(format: "%02d:%02d", hours, minutes)
+    }
+    
+    func fetchHabits() async {
+        fetchedHabits = await HabitManager.shared.fetchHabits()
+    }
+    
+    func findMostComplietableHabits(of habits: [HabitFirestore]) -> [HabitFirestore] {
+        let mostComplietableHabits = Array(habits.sorted { $0.amountOfComletion > $1.amountOfComletion }.prefix(3))
+        return mostComplietableHabits
+    }
+    
+    func findLargestStreaks(of habits: [HabitFirestore]) -> [HabitFirestore] {
+        let largestStreaks = Array(habits.sorted { $0.streak > $1.streak }.prefix(3))
+        return largestStreaks
     }
 }
