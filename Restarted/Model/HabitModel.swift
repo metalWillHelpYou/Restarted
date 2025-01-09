@@ -17,7 +17,8 @@ struct HabitFirestore: Codable, Identifiable, Equatable {
     let isCompleted: Bool
     var streak: Int
     var amountOfComletion: Int
-    
+    var time: Int
+
     init(
         id: String,
         title: String,
@@ -25,7 +26,8 @@ struct HabitFirestore: Codable, Identifiable, Equatable {
         isActive: Bool,
         isCompleted: Bool,
         streak: Int,
-        amountOfComletion: Int
+        amountOfComletion: Int,
+        time: Int
     ) {
         self.id = id
         self.title = title
@@ -34,8 +36,9 @@ struct HabitFirestore: Codable, Identifiable, Equatable {
         self.isCompleted = isCompleted
         self.streak = streak
         self.amountOfComletion = amountOfComletion
+        self.time = time
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case id = "habit_id"
         case title = "habit_title"
@@ -44,8 +47,9 @@ struct HabitFirestore: Codable, Identifiable, Equatable {
         case isCompleted = "is_completed"
         case streak = "streak"
         case amountOfComletion = "amount_of_comletion"
+        case time = "time"
     }
-    
+
     func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.id, forKey: .id)
@@ -55,8 +59,9 @@ struct HabitFirestore: Codable, Identifiable, Equatable {
         try container.encodeIfPresent(self.isCompleted, forKey: .isCompleted)
         try container.encodeIfPresent(self.streak, forKey: .streak)
         try container.encodeIfPresent(self.amountOfComletion, forKey: .amountOfComletion)
+        try container.encodeIfPresent(self.time, forKey: .time)
     }
-    
+
     init(from decoder: any Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decode(String.self, forKey: .id)
@@ -66,6 +71,7 @@ struct HabitFirestore: Codable, Identifiable, Equatable {
         self.isCompleted = try container.decodeIfPresent(Bool.self, forKey: .isCompleted) ?? false
         self.streak = try container.decode(Int.self, forKey: .streak)
         self.amountOfComletion = try container.decode(Int.self, forKey: .amountOfComletion)
+        self.time = try container.decodeIfPresent(Int.self, forKey: .time) ?? 0
     }
 }
 
@@ -120,17 +126,18 @@ final class HabitManager {
         let isCompleted = data[HabitFirestore.CodingKeys.isCompleted.rawValue] as? Bool ?? false
         let streak = data[HabitFirestore.CodingKeys.streak.rawValue] as? Int ?? 0
         let amountOfComletion = data[HabitFirestore.CodingKeys.amountOfComletion.rawValue] as? Int ?? 0
+        let time = data[HabitFirestore.CodingKeys.time.rawValue] as? Int ?? 0 // Новый параметр
         
-        return HabitFirestore(id: id, title: title, dateAdded: dateAdded, isActive: isActive, isCompleted: isCompleted, streak: streak, amountOfComletion: amountOfComletion)
+        return HabitFirestore(id: id, title: title, dateAdded: dateAdded, isActive: isActive, isCompleted: isCompleted, streak: streak, amountOfComletion: amountOfComletion, time: time)
     }
     
-    func addHabit(withTitle title: String) async throws -> [HabitFirestore] {
+    func addHabit(title: String, time: Int) async throws -> [HabitFirestore] {
         guard let habitCollection = userHabitCollection() else {
             throw NSError(domain: "HabitManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
 
         let newHabitId = UUID().uuidString
-        let newHabit = HabitFirestore(id: newHabitId, title: title, dateAdded: Date(), isActive: false, isCompleted: false, streak: 0, amountOfComletion: 0)
+        let newHabit = HabitFirestore(id: newHabitId, title: title, dateAdded: Date(), isActive: false, isCompleted: false, streak: 0, amountOfComletion: 0, time: time)
         let habitData = createHabitData(from: newHabit)
 
         do {
@@ -148,18 +155,20 @@ final class HabitManager {
             throw error
         }
     }
-    
+
     private func createHabitData(from habit: HabitFirestore) -> [String: Any] {
         [
-            HabitFirestore.CodingKeys.id.rawValue : habit.id,
-            HabitFirestore.CodingKeys.title.rawValue : habit.title,
-            HabitFirestore.CodingKeys.dateAdded.rawValue : habit.dateAdded,
-            HabitFirestore.CodingKeys.isActive.rawValue : habit.isActive,
-            HabitFirestore.CodingKeys.isCompleted.rawValue : habit.isCompleted,
-            HabitFirestore.CodingKeys.streak.rawValue : habit.streak,
-            HabitFirestore.CodingKeys.amountOfComletion.rawValue : habit.amountOfComletion
+            HabitFirestore.CodingKeys.id.rawValue: habit.id,
+            HabitFirestore.CodingKeys.title.rawValue: habit.title,
+            HabitFirestore.CodingKeys.dateAdded.rawValue: habit.dateAdded,
+            HabitFirestore.CodingKeys.isActive.rawValue: habit.isActive,
+            HabitFirestore.CodingKeys.isCompleted.rawValue: habit.isCompleted,
+            HabitFirestore.CodingKeys.streak.rawValue: habit.streak,
+            HabitFirestore.CodingKeys.amountOfComletion.rawValue: habit.amountOfComletion,
+            HabitFirestore.CodingKeys.time.rawValue: habit.time
         ]
     }
+
     
     func editHabit(habitId: String, title: String) async throws {
         guard habitDocument(habitId: habitId) != nil else {

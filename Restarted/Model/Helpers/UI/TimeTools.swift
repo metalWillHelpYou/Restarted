@@ -37,4 +37,6 @@ struct TimeTools {
         let hours = seconds / 3600
         return hours
     }
+    
+    
 }

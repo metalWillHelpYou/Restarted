@@ -22,9 +22,9 @@ final class HabitViewModel: ObservableObject {
         savedHabits = await HabitManager.shared.fetchHabits()
     }
     
-    func addHabit(_ habit: String) async {
+    func addHabit(with title: String, and time: Int) async {
         do {
-            savedHabits = try await HabitManager.shared.addHabit(withTitle: habit)
+            savedHabits = try await HabitManager.shared.addHabit(title: title, time: time)
             await fetchHabits()
             habitTitleHandler = ""
         } catch {

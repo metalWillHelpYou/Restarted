@@ -94,6 +94,10 @@ struct HabitListView: View {
 struct AddHabitView: View {
     @EnvironmentObject var viewModel: HabitViewModel
     @Environment (\.dismiss) var dismiss
+    
+    @State private var hours: Int = 0
+    @State private var minutes: Int = 0
+    
     var body: some View {
         VStack {
             TextField("New habit", text: $viewModel.habitTitleHandler)
@@ -103,9 +107,27 @@ struct AddHabitView: View {
                 .background(Color.highlight.opacity(0.4))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
+            
+            HStack(spacing: 20) {
+                Picker("Hours", selection: $hours) {
+                    ForEach(0..<13) { hour in
+                        Text("\(hour) h").tag(hour)
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+                
+                Picker("Minutes", selection: $minutes) {
+                    ForEach(0..<60) { minute in
+                        Text("\(minute) m").tag(minute)
+                    }
+                }
+                .pickerStyle(WheelPickerStyle())
+            }
+            .padding(.horizontal)
+            
             Button(action: {
                 Task {
-                    await viewModel.addHabit(viewModel.habitTitleHandler)
+                    await viewModel.addHabit(with: viewModel.habitTitleHandler, and: (hours * 3600) + (minutes * 60))
                 }
                 dismiss()
             }, label: {

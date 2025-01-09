@@ -32,6 +32,10 @@ struct HabitsMainScreenView: View {
                                 }
                                 
                                 Text(habit.title)
+                                
+                                Spacer()
+                                
+                                Text("\(TimeTools.convertSecondsToHours(habit.time))")
                             }
                             .padding(.vertical, 8)
                             .listRowBackground(Color.background)
