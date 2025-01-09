@@ -14,7 +14,7 @@ struct StatisticsView: View {
     var body: some View {
         NavigationStack {
             ScrollView {
-                if !viewModel.fetchedGames.isEmpty && !viewModel.fetchedHabits.isEmpty {
+                if !viewModel.fetchedGames.isEmpty || !viewModel.fetchedHabits.isEmpty {
                     VStack {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Average session duration")

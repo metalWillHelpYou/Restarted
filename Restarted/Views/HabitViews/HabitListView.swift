@@ -18,41 +18,52 @@ struct HabitListView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                List {
-                    ForEach(viewModel.savedHabits) { habit in
-                        HStack {
-                            Text(habit.title)
-                            Spacer()
-                            
-                            Button {
-                                Task {
-                                    await viewModel.addHabitToActive(habitId: habit.id)
+                if !viewModel.savedHabits.isEmpty {
+                    List {
+                        ForEach(viewModel.savedHabits) { habit in
+                            HStack {
+                                Text(habit.title)
+                                Spacer()
+                                
+                                Button {
+                                    Task {
+                                        await viewModel.addHabitToActive(habitId: habit.id)
+                                    }
+                                } label: {
+                                    Image(systemName: viewModel.isHabitActive ? "checkmark.circle.fill" : "plus")
+                                        .resizable()
+                                        .frame(width: 24, height: 24)
                                 }
-                            } label: {
-                                Image(systemName: viewModel.isHabitActive ? "checkmark.circle.fill" : "plus")
-                                    .resizable()
-                                    .frame(width: 24, height: 24)
+                            }
+                            .listRowBackground(Color.background)
+                            .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                Button("Delete") {
+                                    selectedHabit = habit
+                                    showDeleteHabit.toggle()
+                                }
+                                .tint(.red)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button("Edit") {
+                                    selectedHabit = habit
+                                    showEditHabit.toggle()
+                                }
+                                .tint(.orange)
                             }
                         }
-                        .listRowBackground(Color.background)
-                        .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                            Button("Delete") {
-                                selectedHabit = habit
-                                showDeleteHabit.toggle()
-                            }
-                            .tint(.red)
-                        }
-                        .swipeActions(edge: .leading, allowsFullSwipe: true) {
-                            Button("Edit") {
-                                selectedHabit = habit
-                                showEditHabit.toggle()
-                            }
-                            .tint(.orange)
-                        }
+                        .listRowSeparatorTint(Color.highlight)
                     }
-                    .listRowSeparatorTint(Color.highlight)
+                    .listStyle(PlainListStyle())
+                } else {
+                    HStack{
+                        Text("Create your new habit")
+                            .font(.headline)
+                            .foregroundStyle(.gray)
+                            .transition(.opacity)
+                            
+                        addButton
+                    }
                 }
-                .listStyle(PlainListStyle())
             }
             .navigationTitle("Available Habits")
             .navigationBarTitleDisplayMode(.inline)
@@ -61,10 +72,10 @@ struct HabitListView: View {
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showAddHabit.toggle()
-                    } label: {
-                        PlusButton()
+                    if !viewModel.savedHabits.isEmpty {
+                        addButton
+                    } else {
+                        EmptyView()
                     }
                 }
             }
@@ -82,6 +93,16 @@ struct HabitListView: View {
                     }
                 }
             }
+        }
+    }
+}
+
+extension HabitListView {
+    private var addButton: some View {
+        Button(action: {
+            showAddHabit.toggle()
+        }) {
+            PlusButton()
         }
     }
 }
