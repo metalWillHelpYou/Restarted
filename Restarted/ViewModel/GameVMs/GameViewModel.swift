@@ -10,12 +10,6 @@ import FirebaseFirestore
 
 @MainActor
 final class GameViewModel: ObservableObject {
-    enum SortType: String {
-        case byTitle
-        case byDateAdded
-        case byTime
-    }
-
     @Published var savedGames: [GameFirestore] = []
     @Published var savedPresets: [TimePresetFirestore] = []
     @Published var gameTitleHandler: String = ""

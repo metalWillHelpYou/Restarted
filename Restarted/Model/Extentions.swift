@@ -33,3 +33,9 @@ extension DateFormatter {
     }()
 }
 
+enum SortType: String {
+    case byTitle
+    case byDateAdded
+    case byTime
+}
+

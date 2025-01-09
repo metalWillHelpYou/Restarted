@@ -17,9 +17,16 @@ final class HabitViewModel: ObservableObject {
     @Published var showDeleteDialog: Bool = false
     @Published var habitTitleHandler: String = ""
     @AppStorage("isNotificationsOn") var isHabitActive: Bool = false
+    @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
+
+    private var currentSortType: SortType {
+        get { SortType(rawValue: currentSortTypeRawValue) ?? .byDateAdded }
+        set { currentSortTypeRawValue = newValue.rawValue }
+    }
     
     func fetchHabits() async {
         savedHabits = await HabitManager.shared.fetchHabits()
+        applyCurrentSort()
     }
     
     func addHabit(with title: String, and time: Int) async {
@@ -76,6 +83,34 @@ final class HabitViewModel: ObservableObject {
             await fetchHabits()
         } catch {
             print("Error marking habit as done: \(error.localizedDescription)")
+        }
+    }
+    
+    func sortByTitle() {
+        savedHabits.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
+        currentSortType = .byTitle
+    }
+
+    func sortByDateAdded() {
+        savedHabits.sort {
+            guard let firstDate = $0.dateAdded, let secondDate = $1.dateAdded else {
+                return $0.dateAdded != nil
+            }
+            return firstDate < secondDate
+        }
+        currentSortType = .byDateAdded
+    }
+
+    func sortByTime() {
+        savedHabits.sort { $0.time > $1.time }
+        currentSortType = .byTime
+    }
+
+    private func applyCurrentSort() {
+        switch currentSortType {
+        case .byTitle: sortByTitle()
+        case .byDateAdded: sortByDateAdded()
+        case .byTime: sortByTime()
         }
     }
 }

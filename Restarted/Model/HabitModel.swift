@@ -12,7 +12,7 @@ import FirebaseFirestore
 struct HabitFirestore: Codable, Identifiable, Equatable {
     let id: String
     let title: String
-    let dateAdded: Date
+    let dateAdded: Date?
     let isActive: Bool
     let isCompleted: Bool
     var streak: Int
@@ -160,7 +160,7 @@ final class HabitManager {
         [
             HabitFirestore.CodingKeys.id.rawValue: habit.id,
             HabitFirestore.CodingKeys.title.rawValue: habit.title,
-            HabitFirestore.CodingKeys.dateAdded.rawValue: habit.dateAdded,
+            HabitFirestore.CodingKeys.dateAdded.rawValue: habit.dateAdded ?? Date(),
             HabitFirestore.CodingKeys.isActive.rawValue: habit.isActive,
             HabitFirestore.CodingKeys.isCompleted.rawValue: habit.isCompleted,
             HabitFirestore.CodingKeys.streak.rawValue: habit.streak,

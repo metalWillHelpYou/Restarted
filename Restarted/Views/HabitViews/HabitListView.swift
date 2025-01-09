@@ -53,6 +53,11 @@ struct HabitListView: View {
                         }
                         .listRowSeparatorTint(Color.highlight)
                     }
+                    .toolbar {
+                        ToolbarItem(placement: .topBarLeading) {
+                            sortHabits
+                        }
+                    }
                     .listStyle(PlainListStyle())
                 } else {
                     HStack{
@@ -103,6 +108,26 @@ extension HabitListView {
             showAddHabit.toggle()
         }) {
             PlusButton()
+        }
+    }
+    
+    private var sortHabits: some View {
+        Menu {
+            Button("Sort by Name") {
+                viewModel.sortByTitle()
+            }
+
+            Button("Sort by Date") {
+                viewModel.sortByDateAdded()
+            }
+
+            Button("Sort by Time") {
+                viewModel.sortByTime()
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
+                .foregroundStyle(Color.highlight)
+                .frame(width: 30, height: 30)
         }
     }
 }
