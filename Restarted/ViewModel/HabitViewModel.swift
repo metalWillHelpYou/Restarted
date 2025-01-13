@@ -29,9 +29,9 @@ final class HabitViewModel: ObservableObject {
         applyCurrentSort()
     }
     
-    func addHabit(with title: String, and time: Int) async {
+    func addHabit(with title: String) async {
         do {
-            savedHabits = try await HabitManager.shared.addHabit(title: title, time: time)
+            savedHabits = try await HabitManager.shared.addHabit(title: title)
             await fetchHabits()
             habitTitleHandler = ""
         } catch {

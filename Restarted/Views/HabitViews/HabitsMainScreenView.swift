@@ -9,42 +9,37 @@ import SwiftUI
 
 struct HabitsMainScreenView: View {
     @EnvironmentObject var viewModel: HabitViewModel
-    @State private var showHabitListView: Bool = false
+    @State private var showAddHabit: Bool = false
+    @State private var showEditHabit: Bool = false
+    @State private var showDeleteHabit: Bool = false
     @State private var selectedHabit: HabitFirestore? = nil
-    @State private var showDeleteHabitFromActive: Bool = false
-    @State private var isHabitComplete: Bool = false
-    
+
     var body: some View {
         NavigationStack {
             VStack {
                 circleSection
                 
-                if viewModel.savedHabits.filter({ $0.isActive }).count > 0 {
+                if !viewModel.savedHabits.isEmpty {
                     List {
-                        ForEach(viewModel.savedHabits.filter({ $0.isActive })) { habit in
-                            HStack {
-                                Button {
-                                    Task {
-                                        await viewModel.markAsDone(habit.id)
-                                    }
-                                } label: {
-                                    Image(systemName: "circle")
-                                }
-                                
+                        ForEach(viewModel.savedHabits) { habit in
+                            NavigationLink(destination: StopwatchView(habit: habit), label: {
                                 Text(habit.title)
-                                
-                                Spacer()
-                                
-                                Text("\(TimeTools.convertSecondsToHours(habit.time))")
-                            }
+                            })
                             .padding(.vertical, 8)
                             .listRowBackground(Color.background)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button("Delete") {
                                     selectedHabit = habit
-                                    showDeleteHabitFromActive.toggle()
+                                    showDeleteHabit.toggle()
                                 }
                                 .tint(.red)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button("Edit") {
+                                    selectedHabit = habit
+                                    showEditHabit.toggle()
+                                }
+                                .tint(.orange)
                             }
                         }
                         .listRowSeparatorTint(Color.highlight)
@@ -57,35 +52,40 @@ struct HabitsMainScreenView: View {
                             .font(.headline)
                             .foregroundStyle(.gray)
                             .transition(.opacity)
-                        NavigationLink(destination: HabitListView()) { PlusButton() }
+                        addButton
                     }
                     Spacer()
                 }
             }
-            
-            Spacer()
-        }
-        .navigationTitle("Habits")
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.background)
-        .task { await viewModel.fetchHabits() }
-        .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                if viewModel.savedHabits.filter({ $0.isActive }).count > 0 {
-                    NavigationLink(destination: HabitListView()) {
-                        PlusButton()
+            .navigationTitle("Habits")
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.background)
+            .task { await viewModel.fetchHabits() }
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if !viewModel.savedHabits.isEmpty {
+                        addButton
                     }
-                } else {
-                    EmptyView()
                 }
             }
-        }
-        .confirmationDialog("Are you sure?", isPresented: $showDeleteHabitFromActive) {
-            if let habit = selectedHabit {
-                Button("Delete", role: .destructive) {
-                    Task {
-                        await viewModel.removeHabitFromActive(habitId: habit.id)
+            .sheet(isPresented: $showAddHabit) {
+                AddHabitView()
+                    .presentationDetents([.fraction(0.2)])
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showEditHabit) {
+                if let habit = selectedHabit {
+                    EditHabitView(habit: habit)
+                        .presentationDetents([.fraction(0.2)])
+                        .presentationDragIndicator(.visible)
+                }
+            }
+            .confirmationDialog("Are you sure?", isPresented: $showDeleteHabit) {
+                if let habit = selectedHabit {
+                    Button("Delete", role: .destructive) {
+                        Task {
+                            await viewModel.deleteHabit(with: habit.id)
+                        }
                     }
                 }
             }
@@ -105,6 +105,14 @@ extension HabitsMainScreenView {
                 .fill(Color.highlight)
                 .frame(height: 4)
                 .padding(.horizontal)
+        }
+    }
+    
+    private var addButton: some View {
+        Button(action: {
+            showAddHabit.toggle()
+        }) {
+            PlusButton()
         }
     }
 }

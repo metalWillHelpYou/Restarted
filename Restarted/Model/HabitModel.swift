@@ -131,13 +131,13 @@ final class HabitManager {
         return HabitFirestore(id: id, title: title, dateAdded: dateAdded, isActive: isActive, isCompleted: isCompleted, streak: streak, amountOfComletion: amountOfComletion, time: time)
     }
     
-    func addHabit(title: String, time: Int) async throws -> [HabitFirestore] {
+    func addHabit(title: String) async throws -> [HabitFirestore] {
         guard let habitCollection = userHabitCollection() else {
             throw NSError(domain: "HabitManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
 
         let newHabitId = UUID().uuidString
-        let newHabit = HabitFirestore(id: newHabitId, title: title, dateAdded: Date(), isActive: false, isCompleted: false, streak: 0, amountOfComletion: 0, time: time)
+        let newHabit = HabitFirestore(id: newHabitId, title: title, dateAdded: Date(), isActive: false, isCompleted: false, streak: 0, amountOfComletion: 0, time: 0)
         let habitData = createHabitData(from: newHabit)
 
         do {
