@@ -16,6 +16,7 @@ final class HabitViewModel: ObservableObject {
     @Published var selectedHabit: HabitFirestore? = nil
     @Published var showDeleteDialog: Bool = false
     @Published var habitTitleHandler: String = ""
+    @Published var elapsedTime: Int = 0
     @AppStorage("isNotificationsOn") var isHabitActive: Bool = false
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
 
@@ -58,34 +59,6 @@ final class HabitViewModel: ObservableObject {
         }
     }
     
-    func addHabitToActive(habitId: String) async {
-        
-        do {
-            try await HabitManager.shared.addHabitToActive(with: habitId)
-        } catch {
-            print("Error adding habit to active: \(error.localizedDescription)")
-        }
-    }
-    
-    func removeHabitFromActive(habitId: String) async {
-        
-        do {
-            try await HabitManager.shared.removeHabitFromActive(with: habitId)
-            await fetchHabits()
-        } catch {
-            print("Error removing habit from active: \(error.localizedDescription)")
-        }
-    }
-    
-    func markAsDone(_ habitId: String) async {
-        do {
-            try await HabitManager.shared.markAsDone(habitId: habitId)
-            await fetchHabits()
-        } catch {
-            print("Error marking habit as done: \(error.localizedDescription)")
-        }
-    }
-    
     func sortByTitle() {
         savedHabits.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
         currentSortType = .byTitle
@@ -102,7 +75,7 @@ final class HabitViewModel: ObservableObject {
     }
 
     func sortByTime() {
-        savedHabits.sort { $0.time > $1.time }
+        savedHabits.sort { $0.seconds > $1.seconds }
         currentSortType = .byTime
     }
 
@@ -111,6 +84,17 @@ final class HabitViewModel: ObservableObject {
         case .byTitle: sortByTitle()
         case .byDateAdded: sortByDateAdded()
         case .byTime: sortByTime()
+        }
+    }
+    
+    func sendElapsedTimeToHabitManager(for habitId: String) async {
+        guard elapsedTime > 0 else { return }
+        
+        do {
+            try await HabitManager.shared.updateHabitTime(for: habitId, elapsedTime: elapsedTime)
+            print("Updated habit time successfully!")
+        } catch {
+            print("Error updating habit time: \(error)")
         }
     }
 }

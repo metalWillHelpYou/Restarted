@@ -28,7 +28,7 @@ struct StopwatchView: View {
         .foregroundStyle(Color.white)
         .background(Color.black)
         .onAppear {
-            viewModel.startStopwatch()
+            viewModel.startStopwatch(forHabitId: habit.id)
         }
     }
 }
@@ -55,6 +55,7 @@ extension StopwatchView {
     
     private var resetButton: some View {
         Button {
+            viewModel.stopStopwatch(forHabitId: habit.id)
             dismiss()
         } label: {
             Text("Reset")
@@ -68,7 +69,7 @@ extension StopwatchView {
     
     private var toggleButton: some View {
         Button(action: {
-            viewModel.isStopwatchRunning ? viewModel.pauseStopwatch() : viewModel.startStopwatch()
+            viewModel.isStopwatchRunning ? viewModel.pauseStopwatch() : viewModel.startStopwatch(forHabitId: habit.id)
         }) {
             Text(viewModel.isStopwatchRunning ? "Pause" : "Resume")
                 .foregroundStyle(Color.white)

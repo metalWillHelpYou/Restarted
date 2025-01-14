@@ -38,5 +38,9 @@ struct TimeTools {
         return hours
     }
     
-    
+    static func convertSecondsToHoursMinutes(_ seconds: Int) -> (hours: Int, minutes: Int) {
+        let hours = seconds / 3600
+        let minutes = (seconds % 3600) / 60
+        return (hours, minutes)
+    }
 }

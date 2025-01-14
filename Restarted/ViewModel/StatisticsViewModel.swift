@@ -9,47 +9,86 @@ import Foundation
 
 @MainActor
 final class StatisticsViewModel: ObservableObject {
-    @Published var fetchedGames: [GameFirestore] = []
-    @Published var fetchedHabits: [HabitFirestore] = []
-
-    func fetchGames() async {
-        fetchedGames = await GameManager.shared.fetchGames()
+    // MARK: - Published Properties
+    
+    @Published var games: [GameFirestore] = []
+    @Published var habits: [HabitFirestore] = []
+    
+    // MARK: - Load Data
+    
+    func loadGames() async {
+        games = await GameManager.shared.fetchGames()
     }
     
-    func hasSufficientGameData() -> Bool {
-        fetchedGames.count >= 3 && fetchedGames.contains(where: { $0.sessionCount > 0 || $0.seconds > 0 })
+    func loadHabits() async {
+        habits = await HabitManager.shared.fetchHabits()
     }
     
-    func hasSufficientHabitData() -> Bool {
-        fetchedHabits.count >= 3 && fetchedHabits.contains(where: { $0.amountOfComletion > 0 || $0.streak > 0 })
+    // MARK: - Games Statistics
+    
+    func hasEnoughGameData() -> Bool {
+        games.count >= 3 && games.contains {
+            $0.sessionCount > 0 || $0.seconds > 0
+        }
     }
     
-    func findTheLargestNumberOfGameLaunches(of games: [GameFirestore]) -> [GameFirestore] {
-        Array(games.sorted { $0.sessionCount > $1.sessionCount }.prefix(3))
-    }
-    
-    func findTheLargestNumberOfGameTime(of games: [GameFirestore]) -> [GameFirestore] {
-        Array(games.sorted { $0.seconds > $1.seconds }.prefix(3))
-    }
-    
-    func findAverageGameSessionTime(in game: GameFirestore) -> String {
-        guard game.seconds != 0, game.sessionCount != 0 else { return "00:00" }
-        let average = Double(game.seconds) / Double(game.sessionCount)
-        let hours = Int(average) / 3600
-        let minutes = (Int(average) % 3600) / 60
+    func averageGameSessionTime(for game: GameFirestore) -> String {
+        guard game.seconds > 0, game.sessionCount > 0 else {
+            return "00:00"
+        }
+        let averageSeconds = Double(game.seconds) / Double(game.sessionCount)
+        let hours = Int(averageSeconds) / 3600
+        let minutes = (Int(averageSeconds) % 3600) / 60
         return String(format: "%02d:%02d", hours, minutes)
     }
     
-    func fetchHabits() async {
-        fetchedHabits = await HabitManager.shared.fetchHabits()
+    func topGamesByLaunches(limit: Int = 3) -> [GameFirestore] {
+        Array(
+            games
+                .sorted { $0.sessionCount > $1.sessionCount }
+                .prefix(limit)
+        )
     }
     
-    func findMostComplietableHabits(of habits: [HabitFirestore]) -> [HabitFirestore] {
-        Array(habits.sorted { $0.amountOfComletion > $1.amountOfComletion }.prefix(3))
+    func topGamesByTotalTime(limit: Int = 3) -> [GameFirestore] {
+        Array(
+            games
+                .sorted { $0.seconds > $1.seconds }
+                .prefix(limit)
+        )
     }
     
-    func findLargestStreaks(of habits: [HabitFirestore]) -> [HabitFirestore] {
-        Array(habits.sorted { $0.streak > $1.streak }.prefix(3))
+    // MARK: - Habits Statistics
+    
+    func hasEnoughHabitData() -> Bool {
+        habits.count >= 3 && habits.contains {
+            $0.sessionCount > 0 || $0.seconds > 0 || $0.streak > 0
+        }
+    }
+    
+    func averageHabitTime(for habit: HabitFirestore) -> String {
+        guard habit.seconds > 0, habit.sessionCount > 0 else {
+            return "00:00"
+        }
+        let averageSeconds = Double(habit.seconds) / Double(habit.sessionCount)
+        let hours = Int(averageSeconds) / 3600
+        let minutes = (Int(averageSeconds) % 3600) / 60
+        return String(format: "%02d:%02d", hours, minutes)
+    }
+    
+    func topHabitsByStreak(limit: Int = 3) -> [HabitFirestore] {
+        Array(
+            habits
+                .sorted { $0.streak > $1.streak }
+                .prefix(limit)
+        )
+    }
+    
+    func topHabitsByTotalTime(limit: Int = 3) -> [HabitFirestore] {
+        Array(
+            habits
+                .sorted { $0.seconds > $1.seconds }
+                .prefix(limit)
+        )
     }
 }
-
