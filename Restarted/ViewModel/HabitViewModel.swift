@@ -58,6 +58,7 @@ final class HabitViewModel: ObservableObject {
             print("Error deleting habit: \(error.localizedDescription)")
         }
     }
+
     
     func sortByTitle() {
         savedHabits.sort { $0.title.localizedCompare($1.title) == .orderedAscending }

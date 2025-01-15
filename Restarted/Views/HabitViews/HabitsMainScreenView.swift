@@ -67,6 +67,10 @@ struct HabitsMainScreenView: View {
                         addButton
                     }
                 }
+                
+                ToolbarItem(placement: .topBarLeading) {
+                    sortHabits
+                }
             }
             .sheet(isPresented: $showAddHabit) {
                 AddHabitView()
@@ -113,6 +117,26 @@ extension HabitsMainScreenView {
             showAddHabit.toggle()
         }) {
             PlusButton()
+        }
+    }
+    
+    private var sortHabits: some View {
+        Menu {
+            Button("Sort by Name") {
+                viewModel.sortByTitle()
+            }
+
+            Button("Sort by Date") {
+                viewModel.sortByDateAdded()
+            }
+
+            Button("Sort by Time") {
+                viewModel.sortByTime()
+            }
+        } label: {
+            Image(systemName: "arrow.up.arrow.down")
+                .foregroundStyle(Color.highlight)
+                .frame(width: 30, height: 30)
         }
     }
 }
