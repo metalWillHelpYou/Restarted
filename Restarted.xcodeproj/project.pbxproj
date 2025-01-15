@@ -75,6 +75,7 @@
 		9BF77F232CE75A08006FC86F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77F222CE75A08006FC86F /* RootView.swift */; };
 		9BFA14EF2D356BA30073D4C4 /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA14EE2D356BA30073D4C4 /* StopwatchViewModel.swift */; };
 		9BFA14F12D356C000073D4C4 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA14F02D356C000073D4C4 /* StopwatchView.swift */; };
+		9BFA14F32D37C7B60073D4C4 /* AddTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA14F22D37C7B60073D4C4 /* AddTimeView.swift */; };
 		9BFC14552D2D637200D8E2DF /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC14542D2D637200D8E2DF /* HabitModel.swift */; };
 		9BFD3AB92CE2651B0000A460 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9BFD3AB82CE2651B0000A460 /* FirebaseFirestore */; };
 		9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE38882CB7F36100325173 /* QGHabitsView.swift */; };
@@ -148,6 +149,7 @@
 		9BF77F222CE75A08006FC86F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		9BFA14EE2D356BA30073D4C4 /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 		9BFA14F02D356C000073D4C4 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
+		9BFA14F22D37C7B60073D4C4 /* AddTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeView.swift; sourceTree = "<group>"; };
 		9BFC14542D2D637200D8E2DF /* HabitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitModel.swift; sourceTree = "<group>"; };
 		9BFE38882CB7F36100325173 /* QGHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGHabitsView.swift; sourceTree = "<group>"; };
 		9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGArticlesView.swift; sourceTree = "<group>"; };
@@ -305,13 +307,13 @@
 		9B2AFD772C009A0D00E908F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9BD8129E2C720BC8005A6085 /* Help Views */,
 				9B3872A62C8CE82300C76784 /* HabitViews */,
 				9B2AFD6C2C009A0D00E908F5 /* ArticleViews */,
 				9B2AFD712C009A0D00E908F5 /* GameViews */,
 				9B2AFD6E2C009A0D00E908F5 /* StatsViews */,
 				9B2AFD752C009A0D00E908F5 /* ProfileViews */,
 				9B5834AB2CDCEB4F00A6437B /* Root Views */,
+				9BD8129E2C720BC8005A6085 /* Help Views */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -445,6 +447,7 @@
 			isa = PBXGroup;
 			children = (
 				9BD8129F2C720C27005A6085 /* PlusButton.swift */,
+				9BFA14F22D37C7B60073D4C4 /* AddTimeView.swift */,
 			);
 			path = "Help Views";
 			sourceTree = "<group>";
@@ -566,6 +569,7 @@
 				9B9FD6712D21613E00FD6A17 /* TimeTools.swift in Sources */,
 				9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */,
 				9BDE50482C0A02F400910F23 /* SecondaryHabitView.swift in Sources */,
+				9BFA14F32D37C7B60073D4C4 /* AddTimeView.swift in Sources */,
 				9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */,
 				9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */,
 				9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */,

@@ -14,6 +14,7 @@ struct GameMainScreenView: View {
     
     @State private var showNewGameSheet: Bool = false
     @State private var showEditGameSheet: Bool = false
+    @State private var showAddTime: Bool = false
     @State private var selectedGame: GameFirestore? = nil
     @State private var showDeleteDialog: Bool = false
     
@@ -32,12 +33,20 @@ struct GameMainScreenView: View {
                                 .listRowBackground(Color.background)
                                 .padding(.vertical, 8)
                                 .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                    Button("Add time") {
+                                        selectedGame = game
+                                        showAddTime.toggle()
+                                    }
+                                    .tint(.gray)
+                                }
+                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                     Button("Edit") {
                                         selectedGame = game
                                         showEditGameSheet.toggle()
                                     }
                                     .tint(.orange)
                                 }
+                                
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button("Delete") {
                                         selectedGame = game
@@ -87,6 +96,17 @@ struct GameMainScreenView: View {
                         .presentationDragIndicator(.visible)
                 }
             }
+            .sheet(isPresented: $showAddTime, content: {
+                AddTimeView { seconds in
+                    if let game = selectedGame {
+                        Task {
+                            await viewModel.addTimeTo(gameId: game.id, time: seconds)
+                        }
+                    }
+                }
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+            })
             .task {
                 try? await lnManager.requestAuthorization()
                 await lnManager.getCurrentSettings()

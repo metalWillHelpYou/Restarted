@@ -54,6 +54,17 @@ final class GameViewModel: ObservableObject {
             print("Error deleting game: \(error.localizedDescription)")
         }
     }
+    
+    func addTimeTo(gameId: String, time: Int) async {
+        Task {
+            do {
+                try await GameManager.shared.updateGameTime(for: gameId, elapsedTime: time)
+                await fetchGames()
+            } catch {
+                print("Error adding extra time to game: \(error.localizedDescription)")
+            }
+        }
+    }
 
     func sortByTitle() {
         savedGames.sort { $0.title.localizedCompare($1.title) == .orderedAscending }

@@ -12,6 +12,7 @@ struct HabitsMainScreenView: View {
     @State private var showAddHabit: Bool = false
     @State private var showEditHabit: Bool = false
     @State private var showDeleteHabit: Bool = false
+    @State private var showAddTime: Bool = false
     @State private var selectedHabit: HabitFirestore? = nil
 
     var body: some View {
@@ -33,6 +34,13 @@ struct HabitsMainScreenView: View {
                                     showDeleteHabit.toggle()
                                 }
                                 .tint(.red)
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                Button("Add time") {
+                                    selectedHabit = habit
+                                    showAddTime.toggle()
+                                }
+                                .tint(.gray)
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button("Edit") {
@@ -84,6 +92,17 @@ struct HabitsMainScreenView: View {
                         .presentationDragIndicator(.visible)
                 }
             }
+            .sheet(isPresented: $showAddTime, content: {
+                AddTimeView { seconds in
+                    if let habit = selectedHabit {
+                        Task {
+                            await viewModel.addTimeTo(habitId: habit.id, time: seconds)
+                        }
+                    }
+                }
+                .presentationDetents([.medium])
+                .presentationDragIndicator(.visible)
+            })
             .confirmationDialog("Are you sure?", isPresented: $showDeleteHabit) {
                 if let habit = selectedHabit {
                     Button("Delete", role: .destructive) {

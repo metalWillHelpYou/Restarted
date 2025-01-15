@@ -59,6 +59,16 @@ final class HabitViewModel: ObservableObject {
         }
     }
 
+    func addTimeTo(habitId: String, time: Int) async {
+        Task {
+            do {
+                try await HabitManager.shared.updateHabitTime(for: habitId, elapsedTime: time)
+                await fetchHabits()
+            } catch {
+                print("Error adding extra time to habit: \(error.localizedDescription)")
+            }
+        }
+    }
     
     func sortByTitle() {
         savedHabits.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
