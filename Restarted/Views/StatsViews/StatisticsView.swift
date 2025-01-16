@@ -155,10 +155,12 @@ struct StatisticsView: View {
             .navigationTitle("Statistics")
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .background(Color.background)
-//            .task {
-//                await viewModel.loadGames()
-//                await viewModel.loadHabits()
-//            }
+            .onAppear {
+                viewModel.startListening()
+            }
+            .onDisappear {
+                viewModel.stopListening()
+            }
         }
     }
     

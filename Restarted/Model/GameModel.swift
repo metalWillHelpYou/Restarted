@@ -44,10 +44,10 @@ final class GameManager {
     private init() { }
     
     private let db = Firestore.firestore()
-    private var listener: ListenerRegistration? // Слушатель для коллекции игр
+    private var listener: ListenerRegistration?
     var games: [GameFirestore] = [] {
         didSet {
-            NotificationCenter.default.post(name: .gamesDidChange, object: nil) // Уведомляем подписчиков
+            NotificationCenter.default.post(name: .gamesDidChange, object: nil)
         }
     }
     

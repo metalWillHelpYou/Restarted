@@ -14,15 +14,43 @@ final class StatisticsViewModel: ObservableObject {
     @Published var games: [GameFirestore] = []
     @Published var habits: [HabitFirestore] = []
     
-    // MARK: - Load Data
+    // MARK: - Initialization
     
-//    func loadGames() async {
-//        games = await GameManager.shared.fetchGames()
-//    }
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(gamesDidChange), name: .gamesDidChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(habitsDidChange), name: .habitsDidChange, object: nil)
+    }
     
-//    func loadHabits() async {
-//        habits = await HabitManager.shared.fetchHabits()
-//    }
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .gamesDidChange, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .habitsDidChange, object: nil)
+    }
+    
+    // MARK: - Listener Management
+    
+    func startListening() {
+        GameManager.shared.startListeningToGames()
+        HabitManager.shared.startListeningToHabits()
+    }
+    
+    func stopListening() {
+        GameManager.shared.stopListeningToGames()
+        HabitManager.shared.stopListeningToHabits()
+    }
+    
+    // MARK: - Notification Handlers
+    
+    @objc private func gamesDidChange() {
+        DispatchQueue.main.async {
+            self.games = GameManager.shared.games
+        }
+    }
+    
+    @objc private func habitsDidChange() {
+        DispatchQueue.main.async {
+            self.habits = HabitManager.shared.habits
+        }
+    }
     
     // MARK: - Games Statistics
     
