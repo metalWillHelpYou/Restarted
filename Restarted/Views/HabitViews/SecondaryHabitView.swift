@@ -67,11 +67,7 @@ struct EditHabitView: View {
             
             Button(action: {
                 Task {
-                    do {
-                       try await viewModel.editHabit(habit.id, title: viewModel.habitTitleHandler)
-                    } catch {
-                        print(error.localizedDescription)
-                    }
+                    await viewModel.editHabit(habit.id, title: viewModel.habitTitleHandler)
                 }
                 dismiss()
             }, label: {

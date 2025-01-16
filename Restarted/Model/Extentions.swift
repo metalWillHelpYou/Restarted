@@ -39,3 +39,18 @@ enum SortType: String {
     case byTime
 }
 
+extension NSNotification.Name {
+    static let habitsDidChange = NSNotification.Name("habitsDidChange")
+}
+
+extension NSNotification.Name {
+    static let articlesDidChange = NSNotification.Name("articlesDidChange")
+}
+
+extension NSNotification.Name {
+    static let gamesDidChange = NSNotification.Name("gamesDidChange")
+}
+
+extension NSNotification.Name {
+    static let gamePresetsDidChange = NSNotification.Name("gamePresetsDidChange")
+}

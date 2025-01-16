@@ -12,6 +12,7 @@ struct AddTimeView: View {
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         VStack {
@@ -42,6 +43,7 @@ struct AddTimeView: View {
             Button {
                 let seconds = (hours * 3600) + (minutes * 60)
                 onSave(seconds)
+                dismiss()
             } label: {
                 Text("Add")
                     .frame(height: 55)

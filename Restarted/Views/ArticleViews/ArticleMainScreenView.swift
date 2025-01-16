@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct ArticleMainScreenView: View {
-    @EnvironmentObject var articleVm: ArticleViewModel
+    @EnvironmentObject var viewModel: ArticleViewModel
     
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 16) {
-                    if !articleVm.savedArticles.isEmpty {
+                    if !viewModel.savedArticles.isEmpty {
                         beginnerSection
                         
                         intermediateSection
@@ -27,8 +27,11 @@ struct ArticleMainScreenView: View {
             .navigationTitle("Articles")
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .background(Color.background)
-            .task {
-                await articleVm.fetchArticles()
+            .onAppear {
+                viewModel.startListening()
+            }
+            .onDisappear {
+                viewModel.stopListening()
             }
         }
     }
@@ -49,7 +52,7 @@ extension ArticleMainScreenView {
                 .padding(.horizontal)
                 .offset(y: 8)
             
-            ForEach(articleVm.savedArticles) { article in
+            ForEach(viewModel.savedArticles) { article in
                 if article.isForBeginers {
                     NavigationLink(destination: ArticleView(article: article)) {
                         ArticleCardView(article: article)
@@ -67,7 +70,7 @@ extension ArticleMainScreenView {
                 .padding(.horizontal)
                 .offset(y: 8)
             
-            ForEach(articleVm.savedArticles) { article in
+            ForEach(viewModel.savedArticles) { article in
                 if !article.isForBeginers {
                     NavigationLink(destination: ArticleView(article: article)) {
                         ArticleCardView(article: article)

@@ -37,24 +37,6 @@ struct GameFirestore: Codable, Identifiable, Equatable {
         case dateAdded = "date_game_added"
         case sessionCount = "session_count"
     }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.id, forKey: .id)
-        try container.encodeIfPresent(self.title, forKey: .title)
-        try container.encodeIfPresent(self.seconds, forKey: .seconds)
-        try container.encodeIfPresent(self.dateAdded, forKey: .dateAdded)
-        try container.encodeIfPresent(self.sessionCount, forKey: .sessionCount)
-    }
-    
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
-        self.seconds = try container.decode(Int.self, forKey: .seconds)
-        self.dateAdded = try container.decodeIfPresent(Date.self, forKey: .dateAdded)
-        self.sessionCount = try container.decode(Int.self, forKey: .sessionCount)
-    }
 }
 
 final class GameManager {
@@ -62,7 +44,12 @@ final class GameManager {
     private init() { }
     
     private let db = Firestore.firestore()
-    var games: [GameFirestore] = []
+    private var listener: ListenerRegistration? // Слушатель для коллекции игр
+    var games: [GameFirestore] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .gamesDidChange, object: nil) // Уведомляем подписчиков
+        }
+    }
     
     private func userGameCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -73,28 +60,36 @@ final class GameManager {
         return db.collection("users").document(userId).collection("games")
     }
     
-    private func gameDocument(gameId: String) -> DocumentReference? {
-        guard let gameCollection = userGameCollection() else { return nil }
-        return gameCollection.document(gameId)
-    }
-    
-    func fetchGames() async -> [GameFirestore] {
-        guard let gameCollection = userGameCollection() else { return [] }
+    func startListeningToGames() {
+        guard let gameCollection = userGameCollection() else {
+            print("Error: User is not authenticated or collection is unavailable.")
+            return
+        }
         
-        do {
-            let snapshot = try await gameCollection.getDocuments()
-            let games = snapshot.documents.compactMap { doc -> GameFirestore? in
-                let data = doc.data()
-                return parseGame(from: data)
+        listener = gameCollection.addSnapshotListener { [weak self] snapshot, error in
+            if let error = error {
+                print("Error listening to game changes: \(error.localizedDescription)")
+                return
             }
-            self.games = games
-            return games
-        } catch {
-            print("Error fetching games: \(error)")
-            return []
+            
+            guard let documents = snapshot?.documents else {
+                print("No documents in games collection.")
+                self?.games = []
+                return
+            }
+            
+            self?.games = documents.compactMap { doc -> GameFirestore? in
+                let data = doc.data()
+                return self?.parseGame(from: data)
+            }
         }
     }
-
+    
+    func stopListeningToGames() {
+        listener?.remove()
+        listener = nil
+    }
+    
     private func parseGame(from data: [String: Any]) -> GameFirestore? {
         guard
             let id = data[GameFirestore.CodingKeys.id.rawValue] as? String,
@@ -109,33 +104,32 @@ final class GameManager {
         
         return GameFirestore(id: id, title: title, seconds: seconds, dateAdded: dateAdded, sessionCount: sessionCount)
     }
-
-
-    func addGame(withTitle title: String) async throws -> [GameFirestore] {
+    
+    private func gameDocument(gameId: String) -> DocumentReference? {
+        guard let gameCollection = userGameCollection() else { return nil }
+        return gameCollection.document(gameId)
+    }
+    
+    
+    func addGame(withTitle title: String) async throws {
         guard let gameCollection = userGameCollection() else {
             throw NSError(domain: "GameManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
-
+        
         let newGameId = UUID().uuidString
         let newGame = GameFirestore(id: newGameId, title: title, seconds: 0, dateAdded: Date(), sessionCount: 0)
         let gameData = createGameData(from: newGame)
-
+        
         do {
-            let snapshot = try await gameCollection.getDocuments()
-            if snapshot.isEmpty {
-                print("Creating games collection for user...")
-            }
-
+            // Добавляем новую игру
             try await gameCollection.document(newGameId).setData(gameData)
             print("Game successfully added with ID: \(newGameId)")
-            
-            return await fetchGames()
         } catch {
             print("Error adding game: \(error)")
             throw error
         }
     }
-
+    
     private func createGameData(from game: GameFirestore) -> [String: Any] {
         [
             GameFirestore.CodingKeys.id.rawValue: game.id,
@@ -162,7 +156,7 @@ final class GameManager {
         guard let gameDoc = gameDocument(gameId: gameId) else {
             throw NSError(domain: "GameManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid game document reference."])
         }
-
+        
         do {
             let document = try await gameDoc.getDocument()
             guard let data = document.data() else {
@@ -171,7 +165,7 @@ final class GameManager {
             
             if let existingSeconds = data[GameFirestore.CodingKeys.seconds.rawValue] as? Int {
                 let updatedSeconds = existingSeconds + elapsedTime
-
+                
                 try await updateGameField(gameId: gameId, field: GameFirestore.CodingKeys.seconds.rawValue, value: updatedSeconds)
                 print("Updated game time successfully for game ID: \(gameId)")
             } else {

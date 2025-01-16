@@ -37,16 +37,12 @@ struct SetUpTimerView: View {
         .background(Color.background)
         .navigationTitle(gameTitle)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear {
-            Task {
-                if let game = game {
-                    await viewModel.fetchPresets(for: game.id)
-                }
-            }
-            hours = 0
-            minutes = 0
-        }
         .onDisappear { viewModel.savedPresets = [] }
+        .onAppear {
+            if let game = game {
+                viewModel.selectedGameId = game.id
+            }
+        }
         .confirmationDialog(
             "Are you sure?",
             isPresented: $showDeletePresetDialog,
@@ -56,7 +52,6 @@ struct SetUpTimerView: View {
                 Button("Delete", role: .destructive) {
                     Task {
                         await viewModel.deletePreset(with: preset.id, for: game.id)
-                        await viewModel.fetchPresets(for: game.id)
                     }
                 }
             }
@@ -101,7 +96,7 @@ extension SetUpTimerView {
             }
             
             List {
-                ForEach(viewModel.savedPresets) { preset in
+                ForEach(viewModel.savedPresets.sorted(by: { $0.seconds > $1.seconds })) { preset in
                     let time = TimeTools.convertSecondsToTime(preset.seconds)
                     
                     NavigationLink(

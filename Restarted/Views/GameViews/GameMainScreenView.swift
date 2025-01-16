@@ -111,7 +111,12 @@ struct GameMainScreenView: View {
                 try? await lnManager.requestAuthorization()
                 await lnManager.getCurrentSettings()
             }
-            .task { await viewModel.fetchGames() }
+            .onAppear {
+                viewModel.startListening()
+            }
+            .onDisappear {
+                viewModel.stopListening()
+            }
             .onChange(of: selectedGame) { newValue, _ in
                 print("gameToEdit changed to: \(String(describing: newValue))")
             }
@@ -182,7 +187,7 @@ struct AddGameSheetView: View {
             
             Button(action: {
                 Task {
-                    await viewModel.addGame(viewModel.gameTitleHandler)
+                    await viewModel.addGame(with: viewModel.gameTitleHandler)
                 }
                 dismiss()
             }, label: {

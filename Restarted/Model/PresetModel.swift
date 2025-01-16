@@ -36,12 +36,23 @@ struct TimePresetFirestore: Codable, Identifiable, Equatable {
     }
 }
 
+
 final class GamePresetManager {
     static let shared = GamePresetManager()
     private init() { }
     
     private let db = Firestore.firestore()
-    var gamePresets: [TimePresetFirestore] = []
+    private var listener: ListenerRegistration?
+    var gamePresets: [TimePresetFirestore] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .gamePresetsDidChange, object: nil)
+        }
+    }
+    
+    private func presetDocument(forGameId gameId: String, presetId: String) -> DocumentReference? {
+        guard let presetCollection = presetCollection(forGameId: gameId) else { return nil }
+        return presetCollection.document(presetId)
+    }
     
     private func presetCollection(forGameId gameId: String) -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -51,26 +62,35 @@ final class GamePresetManager {
         return db.collection("users").document(userId).collection("games").document(gameId).collection("presets")
     }
     
-    private func presetDocument(forGameId gameId: String, presetId: String) -> DocumentReference? {
-        guard let presetCollection = presetCollection(forGameId: gameId) else { return nil }
-        return presetCollection.document(presetId)
+    func startListeningToPresets(forGameId gameId: String) {
+        guard let collection = presetCollection(forGameId: gameId) else {
+            print("Error: Invalid game ID or user is not authenticated.")
+            return
+        }
+        
+        // Устанавливаем слушатель
+        listener = collection.addSnapshotListener { [weak self] snapshot, error in
+            if let error = error {
+                print("Error listening to preset changes: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No documents in presets collection.")
+                self?.gamePresets = []
+                return
+            }
+            
+            self?.gamePresets = documents.compactMap { doc -> TimePresetFirestore? in
+                let data = doc.data()
+                return self?.parsePreset(from: data)
+            }
+        }
     }
     
-    func fetchPresets(forGameId gameId: String) async -> [TimePresetFirestore] {
-        guard let presetCollection = presetCollection(forGameId: gameId) else { return [] }
-        
-        do {
-            let snapshot = try await presetCollection.getDocuments()
-            let presets = snapshot.documents.compactMap { doc -> TimePresetFirestore? in
-                let data = doc.data()
-                return parsePreset(from: data)
-            }
-            self.gamePresets = presets
-            return presets
-        } catch {
-            print("Error fetching presets: \(error)")
-            return []
-        }
+    func stopListeningToPresets() {
+        listener?.remove()
+        listener = nil
     }
     
     private func parsePreset(from data: [String: Any]) -> TimePresetFirestore? {
@@ -84,7 +104,7 @@ final class GamePresetManager {
         return TimePresetFirestore(id: id, seconds: seconds)
     }
     
-    func addPreset(forGameId gameId: String, seconds: Int) async throws -> [TimePresetFirestore] {
+    func addPreset(forGameId gameId: String, seconds: Int) async throws {
         guard let presetCollection = presetCollection(forGameId: gameId) else {
             throw NSError(domain: "GamePresetManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid game ID or user is not authenticated."])
         }
@@ -95,7 +115,6 @@ final class GamePresetManager {
         do {
             try await presetCollection.document(newPreset.id).setData(presetData)
             print("Preset successfully added with ID: \(newPreset.id)")
-            return await fetchPresets(forGameId: gameId)
         } catch {
             print("Error adding preset: \(error)")
             throw error

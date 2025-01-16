@@ -48,7 +48,12 @@ final class HabitManager {
     private init() { }
     
     private let db = Firestore.firestore()
-    var habits: [HabitFirestore] = []
+    private var listener: ListenerRegistration?
+    var habits: [HabitFirestore] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .habitsDidChange, object: nil)
+        }
+    }
     
     private func userHabitCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -64,21 +69,34 @@ final class HabitManager {
         return habitCollection.document(habitId)
     }
     
-    func fetchHabits() async -> [HabitFirestore] {
-        guard let habitCollection = userHabitCollection() else { return [] }
-        
-        do {
-            let snapshot = try await habitCollection.getDocuments()
-            let habits = snapshot.documents.compactMap { doc -> HabitFirestore? in
-                let data = doc.data()
-                return parseHabit(from: data)
-            }
-            self.habits = habits
-            return habits
-        } catch {
-            print("Error fetching habits: \(error)")
-            return []
+    func startListeningToHabits() {
+        guard let habitCollection = userHabitCollection() else {
+            print("Error: User is not authenticated or collection is unavailable.")
+            return
         }
+        
+        listener = habitCollection.addSnapshotListener { [weak self] snapshot, error in
+            if let error = error {
+                print("Error listening to habit changes: \(error.localizedDescription)")
+                return
+            }
+            
+            guard let documents = snapshot?.documents else {
+                print("No documents in habits collection.")
+                self?.habits = []
+                return
+            }
+            
+            self?.habits = documents.compactMap { doc -> HabitFirestore? in
+                let data = doc.data()
+                return self?.parseHabit(from: data)
+            }
+        }
+    }
+    
+    func stopListeningToHabits() {
+        listener?.remove()
+        listener = nil
     }
     
     private func parseHabit(from data: [String: Any]) -> HabitFirestore? {
@@ -97,7 +115,7 @@ final class HabitManager {
         return HabitFirestore(id: id, title: title, dateAdded: dateAdded, streak: streak, seconds: seconds, sessionCount: sessionCount)
     }
     
-    func addHabit(title: String) async throws -> [HabitFirestore] {
+    func addHabit(title: String) async throws {
         guard let habitCollection = userHabitCollection() else {
             throw NSError(domain: "HabitManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
         }
@@ -114,8 +132,6 @@ final class HabitManager {
             
             try await habitCollection.document(newHabitId).setData(habitData)
             print("Habit successfully added with ID: \(newHabitId)")
-            
-            return await fetchHabits()
         } catch {
             print("Error adding habit: \(error)")
             throw error
@@ -192,8 +208,8 @@ final class HabitManager {
                 throw NSError(domain: "HabitManager", code: 404, userInfo: [NSLocalizedDescriptionKey: "Habit data not found."])
             }
             
-            let currentSessions = data["sessionCount"] as? Int ?? 0
-            try await habitDoc.updateData(["sessionCount": currentSessions + 1])
+            let currentSessions = data[HabitFirestore.CodingKeys.sessionCount.rawValue] as? Int ?? 0
+            try await habitDoc.updateData([HabitFirestore.CodingKeys.sessionCount.rawValue: currentSessions + 1])
             print("Incremented session count for habit ID: \(habitId)")
         } catch {
             print("Failed to increment session count: \(error)")
@@ -212,5 +228,21 @@ final class HabitManager {
         
         let data: [String: Any] = [field: value]
         try await habitDoc.updateData(data)
+    }
+    
+    func sumSecondsForUserHabits() async throws -> Int {
+        guard let collection = userHabitCollection() else {
+            throw NSError(domain: "AppError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated"])
+        }
+        
+        let snapshot = try await collection.getDocuments()
+        let documents = snapshot.documents
+        
+        let totalSeconds = documents.reduce(0) { partialSum, document in
+            let seconds = document.data()["seconds"] as? Int ?? 0
+            return partialSum + seconds
+        }
+        
+        return totalSeconds
     }
 }

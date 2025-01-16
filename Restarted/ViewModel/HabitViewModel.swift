@@ -19,41 +19,56 @@ final class HabitViewModel: ObservableObject {
     @Published var elapsedTime: Int = 0
     @AppStorage("isNotificationsOn") var isHabitActive: Bool = false
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
+    @Published var totalTime: Int = 0
 
     private var currentSortType: SortType {
         get { SortType(rawValue: currentSortTypeRawValue) ?? .byDateAdded }
         set { currentSortTypeRawValue = newValue.rawValue }
     }
     
-    func fetchHabits() async {
-        savedHabits = await HabitManager.shared.fetchHabits()
-        applyCurrentSort()
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(habitsDidChange), name: .habitsDidChange, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .habitsDidChange, object: nil)
+    }
+    
+    @objc private func habitsDidChange() {
+        DispatchQueue.main.async {
+            self.savedHabits = HabitManager.shared.habits
+        }
+    }
+    
+    func startListening() {
+        HabitManager.shared.startListeningToHabits()
+    }
+    
+    func stopListening() {
+        HabitManager.shared.stopListeningToHabits()
     }
     
     func addHabit(with title: String) async {
         do {
-            savedHabits = try await HabitManager.shared.addHabit(title: title)
-            await fetchHabits()
+            try await HabitManager.shared.addHabit(title: title)
             habitTitleHandler = ""
         } catch {
             print("Error adding habit: \(error.localizedDescription)")
         }
     }
-    
-    func editHabit(_ habitId: String, title: String) async throws {
+
+    func editHabit(_ habitId: String, title: String) async {
         do {
             try await HabitManager.shared.editHabit(habitId: habitId, title: title)
-            await fetchHabits()
             habitTitleHandler = ""
         } catch {
             print("Error editing title: \(error.localizedDescription)")
         }
     }
-    
+
     func deleteHabit(with id: String) async {
         do {
             try await HabitManager.shared.deleteHabit(habitId: id)
-            await fetchHabits()
         } catch {
             print("Error deleting habit: \(error.localizedDescription)")
         }
@@ -63,7 +78,6 @@ final class HabitViewModel: ObservableObject {
         Task {
             do {
                 try await HabitManager.shared.updateHabitTime(for: habitId, elapsedTime: time)
-                await fetchHabits()
             } catch {
                 print("Error adding extra time to habit: \(error.localizedDescription)")
             }
@@ -107,5 +121,9 @@ final class HabitViewModel: ObservableObject {
         } catch {
             print("Error updating habit time: \(error)")
         }
+    }
+    
+    func calculateHabitTime() {
+        totalTime = HabitManager.shared.habits.reduce(0) { $0 + $1.seconds }
     }
 }

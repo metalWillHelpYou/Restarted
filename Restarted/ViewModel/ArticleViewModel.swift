@@ -12,8 +12,26 @@ import FirebaseFirestore
 final class ArticleViewModel: ObservableObject {
     @Published var savedArticles: [Article] = []
 
-    func fetchArticles() async {
-        savedArticles = await ArticleManager.shared.fetchArticles()
+    init() {
+        NotificationCenter.default.addObserver(self, selector: #selector(articlesDidChange), name: .articlesDidChange, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .articlesDidChange, object: nil)
+    }
+    
+    @objc private func articlesDidChange() {
+        DispatchQueue.main.async {
+            self.savedArticles = ArticleManager.shared.articles
+        }
+    }
+    
+    func startListening() {
+        ArticleManager.shared.startListeningToArticles()
+    }
+    
+    func stopListening() {
+        ArticleManager.shared.stopListeningToArticles()
     }
 
     func toggleReadStatus(for articleId: String) {

@@ -16,13 +16,13 @@ final class StatisticsViewModel: ObservableObject {
     
     // MARK: - Load Data
     
-    func loadGames() async {
-        games = await GameManager.shared.fetchGames()
-    }
+//    func loadGames() async {
+//        games = await GameManager.shared.fetchGames()
+//    }
     
-    func loadHabits() async {
-        habits = await HabitManager.shared.fetchHabits()
-    }
+//    func loadHabits() async {
+//        habits = await HabitManager.shared.fetchHabits()
+//    }
     
     // MARK: - Games Statistics
     

@@ -49,26 +49,6 @@ struct DBUser: Codable, Equatable {
         case dateCreated = "date_created"
         case isNotificationsOn = "is_notifications_on"
     }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.userId, forKey: .userId)
-        try container.encodeIfPresent(self.email, forKey: .email)
-        try container.encodeIfPresent(self.name, forKey: .name)
-        try container.encodeIfPresent(self.photoUrl, forKey: .photoUrl)
-        try container.encodeIfPresent(self.dateCreated, forKey: .dateCreated)
-        try container.encodeIfPresent(self.isNotificationsOn, forKey: .isNotificationsOn)
-    }
-    
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.userId = try container.decode(String.self, forKey: .userId)
-        self.email = try container.decodeIfPresent(String.self, forKey: .email)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
-        self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
-        self.dateCreated = try container.decodeIfPresent(Date.self, forKey: .dateCreated)
-        self.isNotificationsOn = try container.decodeIfPresent(Bool.self, forKey: .isNotificationsOn)
-    }
 }
 
 final class UserManager {

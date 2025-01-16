@@ -41,26 +41,6 @@ struct Article: Codable, Identifiable, Equatable {
         case isForBeginers = "is_for_beginers"
         case readingTime = "reading_time"
     }
-
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.id, forKey: .id)
-        try container.encode(self.title, forKey: .title)
-        try container.encode(self.text, forKey: .text)
-        try container.encode(self.isRead, forKey: .isRead)
-        try container.encode(self.isForBeginers, forKey: .isForBeginers)
-        try container.encode(self.readingTime, forKey: .readingTime)
-    }
-    
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
-        self.title = try container.decode(String.self, forKey: .title)
-        self.text = try container.decode(String.self, forKey: .text)
-        self.isRead = try container.decodeIfPresent(Bool.self, forKey: .isRead) ?? false
-        self.isForBeginers = try container.decodeIfPresent(Bool.self, forKey: .isForBeginers) ?? false
-        self.readingTime = try container.decodeIfPresent(Int.self, forKey: .readingTime) ?? 0
-    }
 }
 
 final class ArticleManager {
@@ -68,7 +48,12 @@ final class ArticleManager {
     private init() { }
     
     private let db = Firestore.firestore()
-    var articles: [Article] = []
+    private var listener: ListenerRegistration?
+    var articles: [Article] = [] {
+        didSet {
+            NotificationCenter.default.post(name: .articlesDidChange, object: nil)
+        }
+    }
     
     private func userArticlesCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
@@ -78,26 +63,39 @@ final class ArticleManager {
         return db.collection("users").document(userId).collection("articles")
     }
     
-    func fetchArticles() async -> [Article] {
-        guard let articlesCollection = userArticlesCollection() else { return [] }
+    func startListeningToArticles() {
+        guard let articlesCollection = userArticlesCollection() else {
+            print("Error: User is not authenticated or collection is unavailable.")
+            return
+        }
         
-        do {
-            let snapshot = try await articlesCollection.getDocuments()
-            let articles = try snapshot.documents.map { doc -> Article in
-                let jsonData = try JSONSerialization.data(withJSONObject: doc.data())
-                return try JSONDecoder().decode(Article.self, from: jsonData)
+        listener = articlesCollection.addSnapshotListener { [weak self] snapshot, error in
+            if let error = error {
+                print("Error listening to article changes: \(error.localizedDescription)")
+                return
             }
-            self.articles = articles
-            return articles
-        } catch {
-            print("Error loading or parsing user articles: \(error)")
-            return []
+            
+            guard let documents = snapshot?.documents else {
+                print("No documents in articles collection.")
+                self?.articles = []
+                return
+            }
+            
+            do {
+                self?.articles = try documents.map { doc -> Article in
+                    let jsonData = try JSONSerialization.data(withJSONObject: doc.data())
+                    return try JSONDecoder().decode(Article.self, from: jsonData)
+                }
+            } catch {
+                print("Error decoding articles: \(error.localizedDescription)")
+                self?.articles = []
+            }
         }
     }
     
-    private func articleDocument(articleId: String) -> DocumentReference? {
-        guard let articlesCollection = userArticlesCollection() else { return nil }
-        return articlesCollection.document(articleId)
+    func stopListeningToArticles() {
+        listener?.remove()
+        listener = nil
     }
     
     func updateReadStatus(articleId: String, isRead: Bool) async throws {
@@ -117,4 +115,10 @@ final class ArticleManager {
             throw error
         }
     }
+    
+    private func articleDocument(articleId: String) -> DocumentReference? {
+        guard let articlesCollection = userArticlesCollection() else { return nil }
+        return articlesCollection.document(articleId)
+    }
 }
+
