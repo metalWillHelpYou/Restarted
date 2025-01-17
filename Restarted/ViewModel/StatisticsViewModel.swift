@@ -52,37 +52,38 @@ final class StatisticsViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Games Statistics
+    // MARK: - Time Formatting
     
-    func hasEnoughGameData() -> Bool {
-        games.count >= 3 && games.contains {
-            $0.sessionCount > 0 || $0.seconds > 0
-        }
-    }
-    
-    func averageGameSessionTime(for game: GameFirestore) -> String {
-        guard game.seconds > 0, game.sessionCount > 0 else {
-            return "00:00"
-        }
-        let averageSeconds = Double(game.seconds) / Double(game.sessionCount)
-        let hours = Int(averageSeconds) / 3600
-        let minutes = (Int(averageSeconds) % 3600) / 60
+    private func formatTime(seconds: Int) -> String {
+        guard seconds > 0 else { return "00:00" }
+        let hours = seconds / 3600
+        let minutes = (seconds % 3600) / 60
         return String(format: "%02d:%02d", hours, minutes)
     }
     
-    func topGamesByLaunches(limit: Int = 3) -> [GameFirestore] {
+    // MARK: - Games Statistics
+    
+    func hasEnoughGameData() -> Bool {
+        games.count >= 3
+    }
+    
+    func averageGameSessionTime(for game: GameFirestore) -> String {
+        guard game.seconds > 0, game.sessionCount > 0 else { return "00:00" }
+        let averageSeconds = game.seconds / game.sessionCount
+        return formatTime(seconds: averageSeconds)
+    }
+    
+    func topGamesByLaunches() -> [GameFirestore] {
         Array(
             games
                 .sorted { $0.sessionCount > $1.sessionCount }
-                .prefix(limit)
         )
     }
     
-    func topGamesByTotalTime(limit: Int = 3) -> [GameFirestore] {
+    func topGamesByTotalTime() -> [GameFirestore] {
         Array(
             games
                 .sorted { $0.seconds > $1.seconds }
-                .prefix(limit)
         )
     }
     
@@ -95,28 +96,22 @@ final class StatisticsViewModel: ObservableObject {
     }
     
     func averageHabitTime(for habit: HabitFirestore) -> String {
-        guard habit.seconds > 0, habit.sessionCount > 0 else {
-            return "00:00"
-        }
-        let averageSeconds = Double(habit.seconds) / Double(habit.sessionCount)
-        let hours = Int(averageSeconds) / 3600
-        let minutes = (Int(averageSeconds) % 3600) / 60
-        return String(format: "%02d:%02d", hours, minutes)
+        guard habit.seconds > 0, habit.sessionCount > 0 else { return "00:00" }
+        let averageSeconds = habit.seconds / habit.sessionCount
+        return formatTime(seconds: averageSeconds)
     }
     
-    func topHabitsByStreak(limit: Int = 3) -> [HabitFirestore] {
+    func topHabitsByStreak() -> [HabitFirestore] {
         Array(
             habits
                 .sorted { $0.streak > $1.streak }
-                .prefix(limit)
         )
     }
     
-    func topHabitsByTotalTime(limit: Int = 3) -> [HabitFirestore] {
+    func topHabitsByTotalTime() -> [HabitFirestore] {
         Array(
             habits
                 .sorted { $0.seconds > $1.seconds }
-                .prefix(limit)
         )
     }
 }

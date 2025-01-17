@@ -37,9 +37,12 @@ struct StatisticsView: View {
                                 }
                             }
                             
+                            Divider()
+                                .frame(height: 2)
+                                .background(Color.highlight)
+                            
                             // Top games by sessions and by total hours
-                            HStack(alignment: .top, spacing: 16) {
-                                statSection(title: "Top of sessions") {
+                                statSection(title: "Sessions") {
                                     ForEach(
                                         viewModel.topGamesByLaunches()
                                     ) { game in
@@ -50,6 +53,10 @@ struct StatisticsView: View {
                                         }
                                     }
                                 }
+                            
+                            Divider()
+                                .frame(height: 2)
+                                .background(Color.highlight)
                                 
                                 statSection(title: "Top of hours") {
                                     ForEach(
@@ -58,11 +65,10 @@ struct StatisticsView: View {
                                         HStack {
                                             Text(game.title)
                                             Spacer()
-                                            Text("\(TimeTools.convertSecondsToHours(game.seconds))h")
+                                            Text(TimeTools.convertSecondsToHoursMinutes(game.seconds))
                                         }
                                     }
                                 }
-                            }
                         }
                         .padding()
                         .strokeBackground(Color.highlight)
@@ -90,9 +96,12 @@ struct StatisticsView: View {
                                 }
                             }
                             
+                            Divider()
+                                .frame(height: 2)
+                                .background(Color.highlight)
+                            
                             // Top habits by completions and by streaks
-                            HStack(alignment: .top, spacing: 16) {
-                                statSection(title: "Top of completions") {
+                            statSection(title: "Completions") {
                                     ForEach(
                                         viewModel.habits
                                             .sorted { $0.sessionCount > $1.sessionCount }
@@ -105,19 +114,10 @@ struct StatisticsView: View {
                                         }
                                     }
                                 }
-                                
-                                statSection(title: "Top of habit streaks") {
-                                    ForEach(
-                                        viewModel.topHabitsByStreak()
-                                    ) { habit in
-                                        HStack {
-                                            Text(habit.title)
-                                            Spacer()
-                                            Text("\(habit.streak)")
-                                        }
-                                    }
-                                }
-                            }
+
+                            Divider()
+                                .frame(height: 2)
+                                .background(Color.highlight)
                             
                             // Top habits by total hours
                             statSection(title: "Top of habit hours") {
@@ -127,7 +127,7 @@ struct StatisticsView: View {
                                     HStack {
                                         Text(habit.title)
                                         Spacer()
-                                        Text("\(TimeTools.convertSecondsToHours(habit.seconds))h")
+                                        Text(TimeTools.convertSecondsToHoursMinutes(habit.seconds))
                                     }
                                 }
                             }

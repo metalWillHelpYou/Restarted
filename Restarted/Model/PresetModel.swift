@@ -113,6 +113,17 @@ final class GamePresetManager {
         let presetData = createPresetData(from: newPreset)
         
         do {
+            let snapshot = try await presetCollection.getDocuments()
+            let existingPresets = snapshot.documents.compactMap { doc -> TimePresetFirestore? in
+                let data = doc.data()
+                return parsePreset(from: data)
+            }
+
+            if existingPresets.contains(where: { $0.seconds == seconds }) {
+                print("Preset with \(seconds) seconds already exists for game \(gameId).")
+                return
+            }
+            
             try await presetCollection.document(newPreset.id).setData(presetData)
             print("Preset successfully added with ID: \(newPreset.id)")
         } catch {

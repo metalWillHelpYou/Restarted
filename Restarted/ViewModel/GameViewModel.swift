@@ -96,6 +96,7 @@ final class GameViewModel: ObservableObject {
     func addGame(with title: String) async {
         do {
             try await GameManager.shared.addGame(withTitle: title)
+            gameTitleHandler = ""
         } catch {
             print("Error adding game: \(error.localizedDescription)")
         }
