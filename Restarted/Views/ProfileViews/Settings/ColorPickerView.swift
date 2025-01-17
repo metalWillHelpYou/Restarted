@@ -38,6 +38,7 @@ struct CustomPickerView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @Environment(\.colorScheme) private var scheme
     @Namespace private var animation
+    
     var body: some View {
         HStack(spacing: 0) {
             ForEach(Theme.allCases, id: \.rawValue) { theme in
@@ -49,20 +50,20 @@ struct CustomPickerView: View {
                         ZStack {
                             if userTheme == theme {
                                 Capsule()
-                                    .fill(.pickerBG)
+                                    .fill(userTheme.capsuleColor(with: scheme))
                                     .matchedGeometryEffect(id: "ACTIVE", in: animation)
                             }
                         }
                         .animation(.snappy, value: userTheme)
                     }
-                    .contentShape(.rect)
+                    .contentShape(Rectangle())
                     .onTapGesture {
                         userTheme = theme
                     }
             }
         }
         .padding(3)
-        .background(Color.gray.opacity(0.18), in: .capsule)
+        .background(Color.gray.opacity(0.18), in: Capsule())
         .padding(.top)
     }
 }

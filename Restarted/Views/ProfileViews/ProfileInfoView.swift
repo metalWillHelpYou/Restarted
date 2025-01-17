@@ -20,9 +20,6 @@ struct ProfileInfoView: View {
             userDetailsSection
                 .padding(.horizontal)
             
-            accountActionsSection
-                .padding(.horizontal)
-            
             logOutButton
             
             Spacer()
@@ -62,20 +59,6 @@ extension ProfileInfoView {
                 Text("Joined")
                 Spacer()
                 Text(viewModel.formatDateForDisplay(viewModel.user?.dateCreated))
-            }
-        }
-        .padding()
-        .strokeBackground(Color.highlight)
-    }
-    
-    private var accountActionsSection: some View {
-        VStack(spacing: 24) {
-            Button(action: {
-                // Action for changing password (not implemented yet)
-            }) {
-                Text("Change password")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundStyle(Color.primary)
             }
             
             Button(action: {

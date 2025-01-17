@@ -15,24 +15,44 @@ final class StopwatchViewModel: ObservableObject {
     @Published var currentHabit: String = "No habit selected"
     
     private var stopwatchSubscription: AnyCancellable?
-    private var startTime: Date?
-
+    private var pausedTime: Int = 0
+    
     // MARK: - Stopwatch Logic
-
+    
     func startStopwatch(forHabitId habitId: String) {
-        elapsedTime = 0
-        startTime = Date()
-        resumeStopwatch()
+        guard !isStopwatchRunning else { return }
+        if pausedTime > 0 {
+            elapsedTime = pausedTime
+            resumeStopwatch()
+        } else {
+            elapsedTime = 0
+            startTimer()
+        }
     }
-
+    
     func pauseStopwatch() {
+        guard isStopwatchRunning else { return }
         stopwatchSubscription?.cancel()
         isStopwatchRunning = false
+        pausedTime = elapsedTime
     }
-
+    
     func resumeStopwatch() {
         guard !isStopwatchRunning else { return }
-        
+        startTimer()
+    }
+    
+    func stopStopwatch(forHabitId habitId: String) {
+        stopwatchSubscription?.cancel()
+        isStopwatchRunning = false
+        pausedTime = 0
+        Task {
+            await sendElapsedTimeToHabitManager(for: habitId)
+            await incrementSessionCount(for: habitId)
+        }
+    }
+    
+    private func startTimer() {
         stopwatchSubscription = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
@@ -40,16 +60,7 @@ final class StopwatchViewModel: ObservableObject {
             }
         isStopwatchRunning = true
     }
-
-    func stopStopwatch(forHabitId habitId: String) {
-        stopwatchSubscription?.cancel()
-        isStopwatchRunning = false
-        Task {
-            await sendElapsedTimeToHabitManager(for: habitId)
-            await incrementSessionCount(for: habitId)
-        }
-    }
-
+    
     private func handleStopwatchTick() {
         elapsedTime += 1
     }
@@ -60,9 +71,9 @@ final class StopwatchViewModel: ObservableObject {
         let seconds = elapsedTime % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
-
+    
     // MARK: - Firestore Logic
-
+    
     func sendElapsedTimeToHabitManager(for habitId: String) async {
         guard elapsedTime > 0 else { return }
 
@@ -73,7 +84,7 @@ final class StopwatchViewModel: ObservableObject {
             print("Error updating habit time: \(error)")
         }
     }
-
+    
     func incrementSessionCount(for habitId: String) async {
         do {
             try await HabitManager.shared.incrementSessionCount(for: habitId)

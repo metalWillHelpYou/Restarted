@@ -66,8 +66,9 @@ extension AddTimeView {
         VStack(spacing: 8) {
             Text("Add extra time")
                 .font(.title3)
-            Text("Only if you forgot about stopwatch")
-                .font(.caption)
+            
+            Text("Only if you forgot to log it manually")
+                .foregroundStyle(Color.highlight)
         }
     }
 }

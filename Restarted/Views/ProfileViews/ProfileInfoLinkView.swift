@@ -11,14 +11,29 @@ struct ProfileInfoLinkView: View {
     @EnvironmentObject var viewModel: ProfileViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            Text("\(viewModel.generateGreeting()), \(viewModel.localUserName)")
+        HStack {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("\(viewModel.generateGreeting()),")
+
+                    Text(viewModel.localUserName)
+                        .foregroundStyle(Color.highlight)
+                        .offset(x: -2)
+                }
                 .padding()
                 .font(.title2)
-                
-            Text("Волк это не волк волк это ходить")
+                    
+                Text("The most certain way to avoid failure is to commit to success")
+                    .padding()
+                    .font(.title3)
+                    .multilineTextAlignment(.leading)
+            }
+            
+            Spacer()
+            
+            Image(systemName: "chevron.right")
                 .padding()
-                .font(.title2)
+                .foregroundStyle(Color.highlight)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .foregroundStyle(Color.primary)

@@ -23,23 +23,30 @@ enum Theme: String, CaseIterable {
     func setIconColor(with scheme: ColorScheme) -> Color {
         switch self {
         case .systemDefault: return Color(.systemBlue)
-        case .light: return .lightIcon
-        case .dark: return .darkIcon
+        case .light: return Color(.lightIcon)
+        case .dark: return Color(.darkIcon)
         }
     }
     
     func setTextColor(with scheme: ColorScheme) -> Color {
         switch self {
-        case .systemDefault, .light: return .black
-        case .dark: return .white
+        case .systemDefault, .light: return Color(.black)
+        case .dark: return Color(.white)
         }
     }
     
     func setBackgroundColor(with scheme: ColorScheme) -> Color {
         switch self {
-        case .systemDefault: return Color(.systemFill)
-        case .light: return .themeCardBGlight
-        case .dark: return .themeCardBGDark
+        case .systemDefault: return Color(.themeCardBGDefault)
+        case .light: return Color(.themeCardBGlight)
+        case .dark: return Color(.themeCardBGDark)
+        }
+    }
+    
+    func capsuleColor(with scheme: ColorScheme) -> Color {
+        switch self {
+        case .systemDefault, .light: return Color(.white)
+        case .dark: return Color(.systemGray5)
         }
     }
 }
