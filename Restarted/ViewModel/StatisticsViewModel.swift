@@ -13,6 +13,10 @@ final class StatisticsViewModel: ObservableObject {
     
     @Published var games: [GameFirestore] = []
     @Published var habits: [HabitFirestore] = []
+    @Published var habitPercentage: Double = 0
+    @Published var gamePercentage: Double = 0
+    @Published var habitTime: Int = 0
+    @Published var gameTime: Int = 0
     
     // MARK: - Initialization
     
@@ -43,12 +47,14 @@ final class StatisticsViewModel: ObservableObject {
     @objc private func gamesDidChange() {
         DispatchQueue.main.async {
             self.games = GameManager.shared.games
+            self.calculateTimeDistribution()
         }
     }
     
     @objc private func habitsDidChange() {
         DispatchQueue.main.async {
             self.habits = HabitManager.shared.habits
+            self.calculateTimeDistribution()
         }
     }
     
@@ -59,6 +65,22 @@ final class StatisticsViewModel: ObservableObject {
         let hours = seconds / 3600
         let minutes = (seconds % 3600) / 60
         return String(format: "%02d:%02d", hours, minutes)
+    }
+    
+    // MARK: - Time Distribution Logic
+    
+    private func calculateTimeDistribution() {
+        habitTime = habits.reduce(0) { $0 + $1.seconds }
+        gameTime = games.reduce(0) { $0 + $1.seconds }
+        let totalTime = Double(habitTime + gameTime)
+        
+        if totalTime > 0 {
+            habitPercentage = (Double(habitTime) / totalTime) * 100
+            gamePercentage = (Double(gameTime) / totalTime) * 100
+        } else {
+            habitPercentage = 0
+            gamePercentage = 0
+        }
     }
     
     // MARK: - Games Statistics

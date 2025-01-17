@@ -217,4 +217,20 @@ final class GameManager {
         let data: [String: Any] = [field: value]
         try await gameDoc.updateData(data)
     }
+    
+    func sumSecondsForUserGames() async throws -> Int {
+        guard let collection = userGameCollection() else {
+            throw NSError(domain: "AppError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated"])
+        }
+        
+        let snapshot = try await collection.getDocuments()
+        let documents = snapshot.documents
+        
+        let totalSeconds = documents.reduce(0) { partialSum, document in
+            let seconds = document.data()["seconds"] as? Int ?? 0
+            return partialSum + seconds
+        }
+        
+        return totalSeconds
+    }
 }

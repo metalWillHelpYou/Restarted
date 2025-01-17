@@ -17,9 +17,7 @@ struct HabitsMainScreenView: View {
 
     var body: some View {
         NavigationStack {
-            VStack {
-                circleSection
-                
+            VStack {                
                 if !viewModel.savedHabits.isEmpty {
                     List {
                         ForEach(viewModel.savedHabits) { habit in
@@ -74,9 +72,6 @@ struct HabitsMainScreenView: View {
             .onDisappear {
                 viewModel.stopListening()
             }
-            .task {
-                viewModel.calculateHabitTime()
-            }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if !viewModel.savedHabits.isEmpty {
@@ -125,24 +120,6 @@ struct HabitsMainScreenView: View {
 }
 
 extension HabitsMainScreenView {
-    private var circleSection: some View {
-        VStack {
-            ZStack {
-                Circle()
-                    .stroke(Color.highlight, lineWidth: 4)
-                    .frame(width: 300, height: 300)
-                    .padding()
-                
-                Text("\(viewModel.totalTime)")
-            }
-            
-            RoundedRectangle(cornerRadius: 90)
-                .fill(Color.highlight)
-                .frame(height: 4)
-                .padding(.horizontal)
-        }
-    }
-    
     private var addButton: some View {
         Button(action: {
             showAddHabit.toggle()
