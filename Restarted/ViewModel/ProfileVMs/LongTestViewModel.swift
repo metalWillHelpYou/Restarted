@@ -7,10 +7,11 @@
 
 import Foundation
 
-final class LongTestViewModel: IGDTestViewModelProtocol {
+final class LongTestViewModel: ObservableObject {
     @Published var currentQuestionIndex: Int = 0
-    @Published var selectedAnswers: [Answers?]
+    @Published var selectedAnswers: [LongTestAnswers?]
     @Published var result: TestResult? = nil
+    @Published var isTestCompleted: Bool = false
     
     private let questions = LongTestQuestions.allCases
     
@@ -22,7 +23,7 @@ final class LongTestViewModel: IGDTestViewModelProtocol {
         questions[currentQuestionIndex].rawValue
     }
     
-    func selectAnswer(_ answer: Answers) {
+    func selectAnswer(_ answer: LongTestAnswers) {
         selectedAnswers[currentQuestionIndex] = answer
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
@@ -54,7 +55,7 @@ final class LongTestViewModel: IGDTestViewModelProtocol {
             let question = LongTestQuestions.allCases[index]
             guard let criteriaIndex = questionToCriteriaMap[question] else { continue }
 
-            if answer == .veryOften {
+            if answer == .stronglyAgree {
                 criteriaFulfilled[criteriaIndex] = true
             }
         }
@@ -80,5 +81,17 @@ final class LongTestViewModel: IGDTestViewModelProtocol {
         
         // Сохранение результата
         self.result = TestResult(totalScore: fulfilledCriteriaCount, conclusion: conclusion)
+    }
+    
+    func showPreviousQuestion() {
+        if currentQuestionIndex > 0 {
+            currentQuestionIndex -= 1
+        }
+    }
+    
+    func resetTest() {
+        currentQuestionIndex = 0
+        selectedAnswers = Array(repeating: nil, count: selectedAnswers.count)
+        result = nil
     }
 }

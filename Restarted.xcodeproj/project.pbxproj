@@ -45,6 +45,7 @@
 		9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7528B52C2753D000657E8A /* CustomTabBar.swift */; };
 		9B77BF182CE4BC58009A7FD7 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF172CE4BC58009A7FD7 /* UserModel.swift */; };
 		9B77BF1C2CE65642009A7FD7 /* Utilites.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B77BF1B2CE65642009A7FD7 /* Utilites.swift */; };
+		9B7CA0452D41203000B6055E /* LongTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7CA0442D41203000B6055E /* LongTestView.swift */; };
 		9B9C72CE2CDCEC88006F3BBF /* AuthenticationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */; };
 		9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */; };
 		9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameViewModel.swift */; };
@@ -63,7 +64,7 @@
 		9BBE86DB2D19E8DD0069B58E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE86DA2D19E8DD0069B58E /* GameModel.swift */; };
 		9BD5E8B52CF23646002464E4 /* IGDTest Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B42CF23646002464E4 /* IGDTest Model.swift */; };
 		9BD5E8B72CF24E12002464E4 /* LongTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B62CF24E12002464E4 /* LongTestViewModel.swift */; };
-		9BD5E8B92CF24F89002464E4 /* IGDTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B82CF24F89002464E4 /* IGDTestView.swift */; };
+		9BD5E8B92CF24F89002464E4 /* ShortTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B82CF24F89002464E4 /* ShortTestView.swift */; };
 		9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD8129F2C720C27005A6085 /* PlusButton.swift */; };
 		9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A22C721067005A6085 /* SetUpTimerView.swift */; };
 		9BD812A52C74F044005A6085 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A42C74F044005A6085 /* TimerView.swift */; };
@@ -123,6 +124,7 @@
 		9B7528B52C2753D000657E8A /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		9B77BF172CE4BC58009A7FD7 /* UserModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		9B77BF1B2CE65642009A7FD7 /* Utilites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilites.swift; sourceTree = "<group>"; };
+		9B7CA0442D41203000B6055E /* LongTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTestView.swift; sourceTree = "<group>"; };
 		9B9C72CD2CDCEC88006F3BBF /* AuthenticationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationView.swift; sourceTree = "<group>"; };
 		9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -137,7 +139,7 @@
 		9BBE86DA2D19E8DD0069B58E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
 		9BD5E8B42CF23646002464E4 /* IGDTest Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IGDTest Model.swift"; sourceTree = "<group>"; };
 		9BD5E8B62CF24E12002464E4 /* LongTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTestViewModel.swift; sourceTree = "<group>"; };
-		9BD5E8B82CF24F89002464E4 /* IGDTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDTestView.swift; sourceTree = "<group>"; };
+		9BD5E8B82CF24F89002464E4 /* ShortTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortTestView.swift; sourceTree = "<group>"; };
 		9BD8129F2C720C27005A6085 /* PlusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusButton.swift; sourceTree = "<group>"; };
 		9BD812A22C721067005A6085 /* SetUpTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpTimerView.swift; sourceTree = "<group>"; };
 		9BD812A42C74F044005A6085 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
@@ -411,7 +413,8 @@
 			isa = PBXGroup;
 			children = (
 				9B2525B52CF0D2A40012E9B2 /* IGDTestInfoView.swift */,
-				9BD5E8B82CF24F89002464E4 /* IGDTestView.swift */,
+				9BD5E8B82CF24F89002464E4 /* ShortTestView.swift */,
+				9B7CA0442D41203000B6055E /* LongTestView.swift */,
 			);
 			path = "IGD tests";
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				9BBA81C32CDCE3C6006EB807 /* AuthenticationManager.swift in Sources */,
 				9BD5E8B52CF23646002464E4 /* IGDTest Model.swift in Sources */,
 				9BBE86DB2D19E8DD0069B58E /* GameModel.swift in Sources */,
+				9B7CA0452D41203000B6055E /* LongTestView.swift in Sources */,
 				9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */,
 				9B568F872C00B22500B6D645 /* CirclesView.swift in Sources */,
 				9B6E6C412CDE4BBB002D3042 /* SignInGoogleHelper.swift in Sources */,
@@ -604,7 +608,7 @@
 				9BBA81C72CDCE475006EB807 /* SignInWithEmailViewModel.swift in Sources */,
 				9BBA81C52CDCE426006EB807 /* SignInWithEmailView.swift in Sources */,
 				9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */,
-				9BD5E8B92CF24F89002464E4 /* IGDTestView.swift in Sources */,
+				9BD5E8B92CF24F89002464E4 /* ShortTestView.swift in Sources */,
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */,

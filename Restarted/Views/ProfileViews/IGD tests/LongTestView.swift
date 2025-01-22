@@ -1,23 +1,22 @@
 //
-//  IGDTestView.swift
+//  LongTestView.swift
 //  Restarted
 //
-//  Created by metalWillHelpYou on 23.11.2024.
+//  Created by metalWillHelpYou on 22.01.2025.
 //
 
 import SwiftUI
 
-struct IGDTestView<ViewModel: IGDTestViewModelProtocol>: View {
-    @StateObject var viewModel: ViewModel
-    @State private var isTestCompleted = false
-    @Environment(\.dismiss) var dismiss
+struct LongTestView: View {
+    @StateObject private var viewModel = LongTestViewModel()
+    @Environment (\.dismiss) var dismiss
     
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(.background).ignoresSafeArea()
                 
-                if isTestCompleted {
+                if viewModel.isTestCompleted {
                     resultScreen
                 } else {
                     VStack(spacing: 16) {
@@ -41,7 +40,7 @@ struct IGDTestView<ViewModel: IGDTestViewModelProtocol>: View {
     }
 }
 
-extension IGDTestView {
+extension LongTestView {
     private var question: some View {
         Text(viewModel.currentQuestion)
             .multilineTextAlignment(.leading)
@@ -51,11 +50,11 @@ extension IGDTestView {
     }
     
     private var answers: some View {
-        ForEach(Answers.allCases, id: \.self) { answer in
+        ForEach(LongTestAnswers.allCases, id: \.self) { answer in
             Button(action: {
                 viewModel.selectAnswer(answer)
                 if viewModel.result != nil {
-                    isTestCompleted = true
+                    viewModel.isTestCompleted  = true
                 }
             }) {
                 Text(answer.rawValue)
@@ -80,7 +79,7 @@ extension IGDTestView {
         Button(action: {
             dismiss()
             viewModel.resetTest()
-            isTestCompleted = false
+            viewModel.isTestCompleted = false
         }, label: {
             Image(systemName: "multiply")
         })
@@ -115,22 +114,6 @@ extension IGDTestView {
     }
 }
 
-struct LongTestView: View {
-    var body: some View {
-        IGDTestView(viewModel: LongTestViewModel())
-    }
-}
-
-struct ShortTestView: View {
-    var body: some View {
-        IGDTestView(viewModel: ShortTestViewModel())
-    }
-}
-
 #Preview {
     LongTestView()
-}
-
-#Preview {
-    ShortTestView()
 }

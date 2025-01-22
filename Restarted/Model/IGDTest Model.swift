@@ -42,7 +42,15 @@ enum ShortTestQuestions: String, CaseIterable {
     case question9 = "Have you jeopardized or lost an important relationship, job or an educational or career opportunity because of your gaming activity?"
 }
 
-enum Answers: String, CaseIterable {
+enum LongTestAnswers: String, CaseIterable {
+    case stronglyDisagree = "Strongly disagree"
+    case disagree = "Disagree"
+    case neitherAgreeNorDisagree = "Neither agree nor disagree"
+    case agree = "Agree"
+    case stronglyAgree = "Strongly agree"
+}
+
+enum ShortTestAnswers: String, CaseIterable {
     case never = "Never"
     case rarely = "Rarely"
     case sometimes = "Sometimes"
@@ -63,29 +71,4 @@ struct Question {
 enum TestType {
     case longTest
     case shortTest
-}
-
-protocol IGDTestViewModelProtocol: ObservableObject {
-    var currentQuestionIndex: Int { get set }
-    var selectedAnswers: [Answers?] { get set }
-    var result: TestResult? { get set }
-    var currentQuestion: String { get }
-    
-    func selectAnswer(_ answer: Answers)
-    func showPreviousQuestion()
-    func resetTest()
-}
-
-extension IGDTestViewModelProtocol {
-    func showPreviousQuestion() {
-        if currentQuestionIndex > 0 {
-            currentQuestionIndex -= 1
-        }
-    }
-    
-    func resetTest() {
-        currentQuestionIndex = 0
-        selectedAnswers = Array(repeating: nil, count: selectedAnswers.count)
-        result = nil
-    }
 }

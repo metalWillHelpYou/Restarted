@@ -7,10 +7,11 @@
 
 import Foundation
 
-final class ShortTestViewModel: IGDTestViewModelProtocol {
+final class ShortTestViewModel: ObservableObject {
     @Published var currentQuestionIndex: Int = 0
-    @Published var selectedAnswers: [Answers?]
+    @Published var selectedAnswers: [ShortTestAnswers?]
     @Published var result: TestResult? = nil
+    @Published var isTestCompleted: Bool = false
     
     private let questions = ShortTestQuestions.allCases
     
@@ -22,7 +23,7 @@ final class ShortTestViewModel: IGDTestViewModelProtocol {
         questions[currentQuestionIndex].rawValue
     }
     
-    func selectAnswer(_ answer: Answers) {
+    func selectAnswer(_ answer: ShortTestAnswers) {
         selectedAnswers[currentQuestionIndex] = answer
         if currentQuestionIndex < questions.count - 1 {
             currentQuestionIndex += 1
@@ -60,6 +61,18 @@ final class ShortTestViewModel: IGDTestViewModelProtocol {
 
         // Сохранение результата
         self.result = TestResult(totalScore: fulfilledCriteriaCount, conclusion: conclusion)
+    }
+    
+    func showPreviousQuestion() {
+        if currentQuestionIndex > 0 {
+            currentQuestionIndex -= 1
+        }
+    }
+    
+    func resetTest() {
+        currentQuestionIndex = 0
+        selectedAnswers = Array(repeating: nil, count: selectedAnswers.count)
+        result = nil
     }
 }
 

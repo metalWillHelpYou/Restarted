@@ -38,7 +38,9 @@ struct IGDTestInfoView: View {
                 Text("The test results are not a definitive diagnosis. For an accurate assessment and professional help, please consult a specialist.")
                     .font(.headline)
                 
-                NavigationLink(destination: destinationView) {
+                NavigationLink(destination: {
+                    testType == .shortTest ? AnyView(ShortTestView()) : AnyView(LongTestView())
+                }) {
                     Text("Start Test")
                         .frame(height: 55)
                         .frame(maxWidth: .infinity)
@@ -91,15 +93,6 @@ extension IGDTestInfoView {
             
             ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
             """
-        }
-    }
-    
-    private var destinationView: AnyView {
-        switch testType {
-        case .longTest:
-            return AnyView(LongTestView())
-        case .shortTest:
-            return AnyView(ShortTestView())
         }
     }
 }
