@@ -21,7 +21,7 @@ struct StatisticsView: View {
                             ZStack {
                                 Circle()
                                     .trim(from: 0, to: CGFloat(viewModel.habitPercentage / 100))
-                                    .stroke(Color.mint, lineWidth: 20)
+                                    .stroke(Color.pie, lineWidth: 20)
                                     .rotationEffect(.degrees(-90))
 
                                 Circle()
@@ -34,10 +34,10 @@ struct StatisticsView: View {
                             
                             Spacer()
                             
-                            VStack {
-                                Text("Habits: \(String(format: "%.0f", viewModel.habitPercentage))%")
+                            VStack(alignment: .leading) {
+                                Text("Practice: \(String(format: "%.0f", viewModel.habitPercentage))%")
                                     .font(.headline)
-                                    .foregroundColor(Color.mint)
+                                    .foregroundColor(Color.pie)
                                 Text("Games: \(String(format: "%.0f", viewModel.gamePercentage))%")
                                     .font(.headline)
                                     .foregroundColor(Color.highlight)
@@ -106,13 +106,13 @@ struct StatisticsView: View {
                     // MARK: - Habit Statistics
                     if viewModel.habits.isEmpty == false {
                         VStack(alignment: .leading, spacing: 16) {
-                            Text("Habits")
+                            Text("Practice")
                                 .font(.title2)
                                 .bold()
                                 .foregroundStyle(Color.highlight)
                             
                             // Average habit duration
-                            statSection(title: "Average habit duration") {
+                            statSection(title: "Average practice duration") {
                                 ForEach(viewModel.habits.filter {
                                     viewModel.averageHabitTime(for: $0) != "00:00"
                                 }) { habit in

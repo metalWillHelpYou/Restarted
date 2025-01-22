@@ -9,12 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
-    @AppStorage("activeTab") private var storedActiveTab: String = Tab.home.rawValue
+    @AppStorage("activeTab") private var storedActiveTab: String = Tab.practice.rawValue
     @State private var allTabs: [AnimatedTab] = Tab.allCases.map { AnimatedTab(tab: $0) }
 
     private var activeTab: Binding<Tab> {
         Binding(
-            get: {Tab(rawValue: storedActiveTab) ?? .home },
+            get: {Tab(rawValue: storedActiveTab) ?? .practice },
             set: { newTab in storedActiveTab = newTab.rawValue }
         )
     }
@@ -26,7 +26,7 @@ struct ContentView: View {
                     NavigationView {
                         HabitsMainScreenView()
                     }
-                    .setupTab(.home)
+                    .setupTab(.practice)
 
                     NavigationView {
                         ArticleMainScreenView()

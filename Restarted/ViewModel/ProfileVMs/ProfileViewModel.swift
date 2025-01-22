@@ -100,9 +100,9 @@ final class ProfileViewModel: ObservableObject {
     
     private func greetingMessage(for hour: Int) -> String {
         switch hour {
-        case 7..<10: return "Good morning"
-        case 11..<17: return "Good day"
-        case 17...23: return "Good evening"
+        case 6...12: return "Good morning"
+        case 13...18: return "Good day"
+        case 19...23: return "Good evening"
         default: return "Good night"
         }
     }

@@ -59,7 +59,7 @@ extension View {
 }
 
 enum Tab: String, CaseIterable {
-    case home = "list.bullet"
+    case practice = "list.bullet"
     case articles = "doc.plaintext"
     case games = "gamecontroller"
     case stats = "chart.bar"
@@ -67,7 +67,7 @@ enum Tab: String, CaseIterable {
     
     var title: String {
         switch self {
-        case .home: return "Habits"
+        case .practice: return "Practice"
         case .articles: return "Articles"
         case .games: return "Games"
         case .stats: return "Stats"

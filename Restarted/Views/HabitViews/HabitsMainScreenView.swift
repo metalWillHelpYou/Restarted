@@ -63,7 +63,7 @@ struct HabitsMainScreenView: View {
                     Spacer()
                 }
             }
-            .navigationTitle("Habits")
+            .navigationTitle("Practice")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
             .onAppear {

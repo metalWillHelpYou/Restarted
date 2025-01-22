@@ -94,7 +94,7 @@ extension ProfileInfoView {
                 do {
                     try viewModel.signOut()
                     root.screen = .authentication
-                    activeTab = .home
+                    activeTab = .practice
                     viewModel.localUserName = ""
                 } catch {
                     print(error)
@@ -130,7 +130,7 @@ extension ProfileInfoView {
                         try await viewModel.deleteAccount()
                         root.screen = .authentication
                         //ScreenManager.shared.screen = .authentication
-                        activeTab = .home
+                        activeTab = .practice
                         viewModel.localUserName = ""
                     } catch {
                         print(error)
