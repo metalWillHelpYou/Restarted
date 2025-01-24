@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-enum LongTestQuestions: String, CaseIterable {
+enum LongTestQuestions: LocalizedStringKey, CaseIterable {
     case question1 = "I often lose sleep because of long gaming sessions."
     case question2 = "I never play games in order to feel better."
     case question3 = "I have significantly increased the amount of time I play games over last year."
@@ -30,7 +31,7 @@ enum LongTestQuestions: String, CaseIterable {
     case question20 = "I believe my gaming is negatively impacting on important areas of my life."
 }
                                                                                                                                          
-enum ShortTestQuestions: String, CaseIterable {
+enum ShortTestQuestions: LocalizedStringKey, CaseIterable {
     case question1 = "Do you think gaming has become the dominant activity in your daily life?"
     case question2 = "Do you feel more irritability, anxiety or even sadness when you try to either reduce or stop your gaming activity?"
     case question3 = "Do you feel the need to spend increasing amount of time engaged gaming in order to achieve satisfaction or pleasure?"
@@ -42,7 +43,7 @@ enum ShortTestQuestions: String, CaseIterable {
     case question9 = "Have you jeopardized or lost an important relationship, job or an educational or career opportunity because of your gaming activity?"
 }
 
-enum LongTestAnswers: String, CaseIterable {
+enum LongTestAnswers: LocalizedStringKey, CaseIterable {
     case stronglyDisagree = "Strongly disagree"
     case disagree = "Disagree"
     case neitherAgreeNorDisagree = "Neither agree nor disagree"
@@ -50,7 +51,7 @@ enum LongTestAnswers: String, CaseIterable {
     case stronglyAgree = "Strongly agree"
 }
 
-enum ShortTestAnswers: String, CaseIterable {
+enum ShortTestAnswers: LocalizedStringKey, CaseIterable {
     case never = "Never"
     case rarely = "Rarely"
     case sometimes = "Sometimes"
@@ -60,7 +61,7 @@ enum ShortTestAnswers: String, CaseIterable {
 
 struct TestResult {
     let totalScore: Int
-    let conclusion: String
+    let conclusion: LocalizedStringKey
 }
 
 struct Question {

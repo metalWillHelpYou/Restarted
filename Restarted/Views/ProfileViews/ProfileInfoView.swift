@@ -78,7 +78,7 @@ extension ProfileInfoView {
             Button(action: {
                 showLogOut.toggle()
             }) {
-                Text("Log Out")
+                Text("Log out")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.primary)
             }

@@ -69,7 +69,7 @@ final class ProfileViewModel: ObservableObject {
         try await AuthenticationManager.shared.deleteUser()
     }
     
-    func generateGreeting() -> String {
+    func generateGreeting() -> LocalizedStringKey {
         let hour = Calendar.current.component(.hour, from: Date())
         return greetingMessage(for: hour)
     }
@@ -98,12 +98,12 @@ final class ProfileViewModel: ObservableObject {
         DispatchQueue.main.async { self.isNotificationsOn.toggle() }
     }
     
-    private func greetingMessage(for hour: Int) -> String {
+    private func greetingMessage(for hour: Int) -> LocalizedStringKey {
         switch hour {
-        case 6...12: return "Good morning"
-        case 13...18: return "Good day"
-        case 19...23: return "Good evening"
-        default: return "Good night"
+        case 6...12: return "Good morning,"
+        case 13...18: return "Good day,"
+        case 19...23: return "Good evening,"
+        default: return "Good night,"
         }
     }
 }

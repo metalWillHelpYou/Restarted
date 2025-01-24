@@ -69,6 +69,7 @@ extension AddTimeView {
             
             Text("Only if you forgot to log it manually")
                 .foregroundStyle(Color.highlight)
+                .multilineTextAlignment(.center)
         }
     }
 }

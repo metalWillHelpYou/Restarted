@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 struct TimeTools {
     static func convertSecondsToTime(_ seconds: Int) -> (hours: Int, minutes: Int, seconds: Int) {
@@ -19,10 +20,11 @@ struct TimeTools {
         hours > 0 ? String(format: "%d:%02d", hours, minutes) : String(format: "%2d", minutes)
     }
     
-    static func formatTimeText(hours: Int, minutes: Int) -> String {
+    static func formatTimeText(hours: Int, minutes: Int) -> LocalizedStringKey {
         var components: [String] = []
         
         if hours > 0 {
+            // Простейшая логика для множественного числа
             components.append("\(hours) hour\(hours > 1 ? "s" : "")")
         }
         
@@ -30,7 +32,10 @@ struct TimeTools {
             components.append("\(minutes) minute\(minutes > 1 ? "s" : "")")
         }
         
-        return components.joined(separator: " ")
+        // Склеиваем массив строк...
+        let result = components.joined(separator: " ")
+        // ...и преобразуем в LocalizedStringKey
+        return LocalizedStringKey(result)
     }
     
     static func convertSecondsToHours(_ seconds: Int) -> Int {

@@ -25,7 +25,8 @@ struct StatisticsView: View {
                                     .rotationEffect(.degrees(-90))
 
                                 Circle()
-                                    .trim(from: CGFloat(viewModel.habitPercentage / 100), to: CGFloat((viewModel.habitPercentage + viewModel.gamePercentage) / 100))
+                                    .trim(from: CGFloat(viewModel.habitPercentage / 100),
+                                          to: CGFloat((viewModel.habitPercentage + viewModel.gamePercentage) / 100))
                                     .stroke(Color.highlight, lineWidth: 20)
                                     .rotationEffect(.degrees(-90))
                             }
@@ -53,8 +54,12 @@ struct StatisticsView: View {
                                 .bold()
                                 .foregroundStyle(Color.highlight)
                             
-                            // Average session duration for each game
-                            statSection(title: "Average session duration") {
+                            // — Average session duration —
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Average session duration")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.highlight)
+                                
                                 ForEach(viewModel.games.filter {
                                     viewModel.averageGameSessionTime(for: $0) != "00:00"
                                 }) { game in
@@ -65,16 +70,19 @@ struct StatisticsView: View {
                                     }
                                 }
                             }
+                            .padding(8)
                             
                             Divider()
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // Top games by sessions and by total hours
-                            statSection(title: "Sessions") {
-                                ForEach(
-                                    viewModel.topGamesByLaunches()
-                                ) { game in
+                            // — Sessions —
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Sessions")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.highlight)
+                                
+                                ForEach(viewModel.topGamesByLaunches()) { game in
                                     HStack {
                                         Text(game.title)
                                         Spacer()
@@ -82,15 +90,19 @@ struct StatisticsView: View {
                                     }
                                 }
                             }
+                            .padding(8)
                             
                             Divider()
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            statSection(title: "Hours") {
-                                ForEach(
-                                    viewModel.topGamesByTotalTime()
-                                ) { game in
+                            // — Hours —
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Hours")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.highlight)
+                                
+                                ForEach(viewModel.topGamesByTotalTime()) { game in
                                     HStack {
                                         Text(game.title)
                                         Spacer()
@@ -98,6 +110,7 @@ struct StatisticsView: View {
                                     }
                                 }
                             }
+                            .padding(8)
                         }
                         .padding()
                         .strokeBackground(Color.highlight)
@@ -111,8 +124,12 @@ struct StatisticsView: View {
                                 .bold()
                                 .foregroundStyle(Color.highlight)
                             
-                            // Average habit duration
-                            statSection(title: "Average practice duration") {
+                            // — Average practice duration —
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Average practice duration")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.highlight)
+                                
                                 ForEach(viewModel.habits.filter {
                                     viewModel.averageHabitTime(for: $0) != "00:00"
                                 }) { habit in
@@ -123,13 +140,18 @@ struct StatisticsView: View {
                                     }
                                 }
                             }
+                            .padding(8)
                             
                             Divider()
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // Top habits by completions and by streaks
-                            statSection(title: "Completions") {
+                            // — Completions —
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Completions")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.highlight)
+                                
                                 ForEach(
                                     viewModel.habits
                                         .sorted { $0.sessionCount > $1.sessionCount }
@@ -142,16 +164,19 @@ struct StatisticsView: View {
                                     }
                                 }
                             }
+                            .padding(8)
                             
                             Divider()
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // Top habits by total hours
-                            statSection(title: "Habit hours") {
-                                ForEach(
-                                    viewModel.topHabitsByTotalTime()
-                                ) { habit in
+                            // — Habit hours —
+                            VStack(alignment: .leading, spacing: 12) {
+                                Text("Practice hours")
+                                    .font(.headline)
+                                    .foregroundStyle(Color.highlight)
+                                
+                                ForEach(viewModel.topHabitsByTotalTime()) { habit in
                                     HStack {
                                         Text(habit.title)
                                         Spacer()
@@ -159,6 +184,7 @@ struct StatisticsView: View {
                                     }
                                 }
                             }
+                            .padding(8)
                         }
                         .padding()
                         .strokeBackground(Color.highlight)
@@ -189,25 +215,6 @@ struct StatisticsView: View {
                 viewModel.stopListening()
             }
         }
-    }
-    
-    // MARK: - Reusable View for Sections
-    @ViewBuilder
-    private func statSection<Content: View>(
-        title: String,
-        @ViewBuilder content: @escaping () -> Content
-    ) -> some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text(title)
-                .font(.headline)
-                .foregroundStyle(Color.highlight)
-            content()
-        }
-        .padding(8)
-        .background(
-            RoundedRectangle(cornerRadius: 8)
-                .fill(Color.background.opacity(0.1))
-        )
     }
 }
 

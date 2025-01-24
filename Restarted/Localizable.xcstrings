@@ -1,0 +1,1659 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "\nTest consists of 20 questions about your life over the past 12 months.\nAnswer as honestly and openly as possible — this is crucial for accurate results.\n\n⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест состоит из 20 вопросов о вашей жизни за последние 12 месяцев. Отвечайте как можно честнее и откровеннее — это важно для получения точных результатов.\n\n⚠️Все ответы будут удалены сразу же после того, как вы вернетесь на этот экран. Ваши ответы останутся полностью конфиденциальными.\n"
+          }
+        }
+      }
+    },
+    "%lld" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        }
+      }
+    },
+    "%lld h" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld h"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld ч"
+          }
+        }
+      }
+    },
+    "%lld m" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld m"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld м"
+          }
+        }
+      }
+    },
+    "Add" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить"
+          }
+        }
+      }
+    },
+    "Add extra time" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat čas navíc"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить еще времени"
+          }
+        }
+      }
+    },
+    "Add time" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidat čas"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить время"
+          }
+        }
+      }
+    },
+    "Agree" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Согласен"
+          }
+        }
+      }
+    },
+    "Appearance" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vzhled"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оформление"
+          }
+        }
+      }
+    },
+    "Are you sure to stop the timer?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Určitě chcete zastavit časovač?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Остановить таймер?  "
+          }
+        }
+      }
+    },
+    "Are you sure you want to delete?\nThis action cannot be undone." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены, что хотите удалить аккаунт? Это действие не может быть отменено. "
+          }
+        }
+      }
+    },
+    "Are you sure?" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jste si jistý?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вы уверены?"
+          }
+        }
+      }
+    },
+    "Articles" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Články"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статьи"
+          }
+        }
+      }
+    },
+    "ASD" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средняя продолжительность сессии"
+          }
+        }
+      }
+    },
+    "Average practice duration" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средняя продолжительность практики"
+          }
+        }
+      }
+    },
+    "Average session duration" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Средняя продолжительность игровой сессии"
+          }
+        }
+      }
+    },
+    "Beginer level" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начальный уровень"
+          }
+        }
+      }
+    },
+    "Cancel" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zrušit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отмена"
+          }
+        }
+      }
+    },
+    "Čeština" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čeština"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čeština"
+          }
+        }
+      }
+    },
+    "Change name" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Změnit jméno"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сменить имя"
+          }
+        }
+      }
+    },
+    "Choose a Style" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výběr stylu"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выберите стиль"
+          }
+        }
+      }
+    },
+    "Completions" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dokončení"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Завершения"
+          }
+        }
+      }
+    },
+    "Cycling" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cyklistika"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Велоспорт "
+          }
+        }
+      }
+    },
+    "Czech" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czech"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Czech"
+          }
+        }
+      }
+    },
+    "darkTheme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dark"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Темный"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odstranit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить"
+          }
+        }
+      }
+    },
+    "Delete account" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odstranění účtu"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Удалить аккаунт"
+          }
+        }
+      }
+    },
+    "Disagree" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не согласен"
+          }
+        }
+      }
+    },
+    "Do you feel more irritability, anxiety or even sadness when you try to either reduce or stop your gaming activity?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чувствуете ли вы себя более раздражённым, тревожным или даже грустным, когда пытаетесь сократить или прекратить свою игровую активность?"
+          }
+        }
+      }
+    },
+    "Do you feel the need to spend increasing amount of time engaged gaming in order to achieve satisfaction or pleasure?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чувствуете ли вы необходимость проводить всё больше времени за играми, чтобы получить удовлетворение или удовольствие?"
+          }
+        }
+      }
+    },
+    "Do you play in order to temporarily escape or relieve a negative mood (e.g., helplessness, guilt, anxiety)?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Играете ли вы, чтобы временно избежать или облегчить негативное настроение (например, чувство беспомощности, вины, тревоги)?"
+          }
+        }
+      }
+    },
+    "Do you systematically fail when trying to control or cease your gaming activity?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Систематически ли вы терпите неудачи, пытаясь контролировать или прекратить свою игровую активность?"
+          }
+        }
+      }
+    },
+    "Do you think gaming has become the dominant activity in your daily life?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Считаете ли вы, что игры стали доминирующей деятельностью в вашей повседневной жизни?"
+          }
+        }
+      }
+    },
+    "Edit" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать"
+          }
+        }
+      }
+    },
+    "Edit habit" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редактировать практику"
+          }
+        }
+      }
+    },
+    "Email" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Email"
+          }
+        }
+      }
+    },
+    "Enable Notifications" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolení oznámení"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Включить уведомления"
+          }
+        }
+      }
+    },
+    "English" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "English"
+          }
+        }
+      }
+    },
+    "Game Timer" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Časovač her"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игровой таймер"
+          }
+        }
+      }
+    },
+    "Games" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hry"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игры"
+          }
+        }
+      }
+    },
+    "Games: %@%%" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hry: %@%%"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Игры: %@%%"
+          }
+        }
+      }
+    },
+    "Good day," : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добрый день,"
+          }
+        }
+      }
+    },
+    "Good evening," : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добрый вечер,"
+          }
+        }
+      }
+    },
+    "Good morning," : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доброе утро,"
+          }
+        }
+      }
+    },
+    "Good night," : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Доброй ночи,"
+          }
+        }
+      }
+    },
+    "Have you continued your gaming activity despite knowing it was causing problems between you and other people?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжали ли вы играть, несмотря на то, что знали, что это вызывает проблемы в отношениях с другими людьми?"
+          }
+        }
+      }
+    },
+    "Have you deceived any of your family members, therapists or others because the amount of your gaming activity?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Обманывали ли вы кого-либо из членов семьи, терапевтов или других людей из-за количества времени, проводимого за играми?"
+          }
+        }
+      }
+    },
+    "Have you jeopardized or lost an important relationship, job or an educational or career opportunity because of your gaming activity?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подвергали ли вы риску или теряли важные отношения, работу, учебу или карьерные возможности из-за своей игровой активности?"
+          }
+        }
+      }
+    },
+    "Have you lost interests in previous hobbies and other entertainment activities as a result of your engagement with the game?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Потеряли ли вы интерес к прежним хобби и другим развлекательным занятиям из-за увлечения играми?"
+          }
+        }
+      }
+    },
+    "High risk of gaming addiction based on DSM-5 criteria.\n\nIt is strongly recommended to consult a specialist." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Высокий риск игровой зависимости согласно критериям DSM-5.  \n\nНастоятельно рекомендуется обратиться к специалисту."
+          }
+        }
+      }
+    },
+    "Hours" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hodiny"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часы"
+          }
+        }
+      }
+    },
+    "How to recognize the signs of videogame addiction?" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Как распознать признаки зависимости от видеоигр?"
+          }
+        }
+      }
+    },
+    "I believe my gaming is negatively impacting on important areas of my life." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я считаю, что моё увлечение играми негативно влияет на важные аспекты моей жизни."
+          }
+        }
+      }
+    },
+    "I do not think I could stop gaming." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я не думаю, что смогу перестать играть."
+          }
+        }
+      }
+    },
+    "I feel sad if I am not able to play games." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я чувствую грусть, если не могу играть в игры."
+          }
+        }
+      }
+    },
+    "I have lied to my family members because the amount of gaming I do." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я лгал(а) членам своей семьи из-за количества времени, которое провожу за играми."
+          }
+        }
+      }
+    },
+    "I have lost interest in other hobbies because of my gaming" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я потерял(а) интерес к другим хобби из-за увлечения играми."
+          }
+        }
+      }
+    },
+    "I have significantly increased the amount of time I play games over last year." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я значительно увеличил(а) количество времени, проводимого за играми, за последний год."
+          }
+        }
+      }
+    },
+    "I know my main daily activity has not been negatively affected by my gaming." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я знаю, что моя основная ежедневная деятельность не пострадала из-за моего увлечения играми."
+          }
+        }
+      }
+    },
+    "I need to spend increasing amounts of time engaged in playing games." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Мне нужно проводить всё больше времени, играя в игры."
+          }
+        }
+      }
+    },
+    "I never play games in order to feel better." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я никогда не играю в игры, чтобы почувствовать себя лучше."
+          }
+        }
+      }
+    },
+    "I often lose sleep because of long gaming sessions." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я часто лишаюсь сна из-за продолжительных игровых сессий."
+          }
+        }
+      }
+    },
+    "I often think that a whole day is not enough to do everything I need to do in-game." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я часто думаю, что целого дня недостаточно, чтобы сделать всё, что нужно в игре."
+          }
+        }
+      }
+    },
+    "I often try to play games less but find I cannot." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я часто пытаюсь играть меньше, но понимаю, что не могу."
+          }
+        }
+      }
+    },
+    "I play games to forget about whatever’s bothering me." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я играю в игры, чтобы забыть о том, что меня беспокоит."
+          }
+        }
+      }
+    },
+    "I play games to help me cope with any bad feelings I might have." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я играю в игры, чтобы справиться с неприятными чувствами, которые могу испытывать."
+          }
+        }
+      }
+    },
+    "I tend to get anxious if I can’t play games for any reason." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я обычно начинаю испытывать беспокойство, если по какой-либо причине не могу играть в игры."
+          }
+        }
+      }
+    },
+    "I think gaming has become the most time consuming activity in my life" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я думаю, что игры стали самым затратным по времени занятием в моей жизни."
+          }
+        }
+      }
+    },
+    "I think my gaming has jeopardized the relationship with my partner." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я думаю, что моё увлечение играми поставило под угрозу мои отношения с партнёром."
+          }
+        }
+      }
+    },
+    "I usually think about my next gaming session when I am not playing." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я обычно думаю о следующей игровой сессии, когда не играю."
+          }
+        }
+      }
+    },
+    "I would like to cut down my gaming time but it’s difficult to do." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Я хотел(а) бы сократить время, проводимое за играми, но это сложно сделать."
+          }
+        }
+      }
+    },
+    "Intermediate level" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продвинутый уровень"
+          }
+        }
+      }
+    },
+    "Internet Gaming Disorder test" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест на игровую зависимость"
+          }
+        }
+      }
+    },
+    "Joined" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Зарегистрирован"
+          }
+        }
+      }
+    },
+    "Language" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Язык"
+          }
+        }
+      }
+    },
+    "Learning Russian" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Учить английский"
+          }
+        }
+      }
+    },
+    "lightTheme" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Light"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Светлый"
+          }
+        }
+      }
+    },
+    "Log out" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выйти"
+          }
+        }
+      }
+    },
+    "Minutes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Минуты"
+          }
+        }
+      }
+    },
+    "Neither agree nor disagree" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ни с одним не согласен"
+          }
+        }
+      }
+    },
+    "Never" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Никогда"
+          }
+        }
+      }
+    },
+    "New habit" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая практика"
+          }
+        }
+      }
+    },
+    "New name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новое имя"
+          }
+        }
+      }
+    },
+    "New title" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая игра"
+          }
+        }
+      }
+    },
+    "No" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нет"
+          }
+        }
+      }
+    },
+    "No game selected" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не выбрана игра"
+          }
+        }
+      }
+    },
+    "No signs of gaming addiction detected.\n\nMaintain healthy gaming habits to prevent future problems." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Признаки игровой зависимости не обнаружены.  \n\nСохраняйте здоровые игровые привычки, чтобы избежать возможных проблем в будущем."
+          }
+        }
+      }
+    },
+    "Notifications" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Уведомления"
+          }
+        }
+      }
+    },
+    "Often" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часто"
+          }
+        }
+      }
+    },
+    "Only if you forgot to log it manually" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Только в том случае, если вы забыли зарегистрировать его вручную"
+          }
+        }
+      }
+    },
+    "Password" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пароль"
+          }
+        }
+      }
+    },
+    "Pause" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Пауза"
+          }
+        }
+      }
+    },
+    "Practice" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Практика"
+          }
+        }
+      }
+    },
+    "Practice hours" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Часы практики "
+          }
+        }
+      }
+    },
+    "Practice Tracker" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Трекер практики"
+          }
+        }
+      }
+    },
+    "Practice: %@%%" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Практика %@%%"
+          }
+        }
+      }
+    },
+    "PracticeTabTitle" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Practice"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Практика"
+          }
+        }
+      }
+    },
+    "Profile" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Профиль"
+          }
+        }
+      }
+    },
+    "Psychological tests" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Психологические тесты"
+          }
+        }
+      }
+    },
+    "Quick guide" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краткое руководство"
+          }
+        }
+      }
+    },
+    "Rarely" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Редко"
+          }
+        }
+      }
+    },
+    "Read tips to better understand the problem and find ways to overcome it." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Читайте статьи, чтобы лучше понять проблему и найти способы ее преодоления."
+          }
+        }
+      }
+    },
+    "Reading" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Чтение"
+          }
+        }
+      }
+    },
+    "Reading time: %lld minutes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время чтения: %lld минут"
+          }
+        }
+      }
+    },
+    "Recents" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Недавние"
+          }
+        }
+      }
+    },
+    "Reset" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сброс"
+          }
+        }
+      }
+    },
+    "Restarted FAQ" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restarted FAQ"
+          }
+        }
+      }
+    },
+    "Result" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результат"
+          }
+        }
+      }
+    },
+    "Resume" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Продолжить"
+          }
+        }
+      }
+    },
+    "Russian" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Russian"
+          }
+        }
+      }
+    },
+    "Save" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранить"
+          }
+        }
+      }
+    },
+    "Score: %lld" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очки: %lld"
+          }
+        }
+      }
+    },
+    "Sessions" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сессии"
+          }
+        }
+      }
+    },
+    "Set goals and track their time." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ставьте цели и следите за их выполнением."
+          }
+        }
+      }
+    },
+    "Short Form" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краткая версия"
+          }
+        }
+      }
+    },
+    "Short Internet Gaming Disorder test" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Краткий тест на игровую зависимость"
+          }
+        }
+      }
+    },
+    "Sign In" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Войти"
+          }
+        }
+      }
+    },
+    "Sign in with Google" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Google"
+          }
+        }
+      }
+    },
+    "Sometimes" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Иногда"
+          }
+        }
+      }
+    },
+    "Sort by Date" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировать по дате добавления"
+          }
+        }
+      }
+    },
+    "Sort by Name" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировать по имени"
+          }
+        }
+      }
+    },
+    "Sort by Time" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сортировать по количеству времени"
+          }
+        }
+      }
+    },
+    "Start" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Старт"
+          }
+        }
+      }
+    },
+    "Start Test" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Начать тест"
+          }
+        }
+      }
+    },
+    "Statistics" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Статистика"
+          }
+        }
+      }
+    },
+    "Stop" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Стоп"
+          }
+        }
+      }
+    },
+    "Strongly agree" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полностью согласен"
+          }
+        }
+      }
+    },
+    "Strongly disagree" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Полностью несогласен"
+          }
+        }
+      }
+    },
+    "systemDefault" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Default"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Система"
+          }
+        }
+      }
+    },
+    "Test consists of 9 questions about your life over the past 12 months.\nAnswer as honestly and openly as possible — this is crucial for accurate results.\"\n\n⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Тест состоит из 9 вопросов о вашей жизни за последние 12 месяцев.\nОтвечайте максимально честно и открыто — это важно для получения точных результатов\".\n\n⚠️ Все ответы будут удалены сразу же после того, как вы вернетесь на этот экран. Ваши ответы останутся полностью конфиденциальными."
+          }
+        }
+      }
+    },
+    "The first steps to understanding the problem" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Первые шаги к пониманию проблемы"
+          }
+        }
+      }
+    },
+    "The most certain way to avoid failure is to commit to success" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Самый верный способ не потерпеть неудачу - это решиться на успех"
+          }
+        }
+      }
+    },
+    "The test results are not a definitive diagnosis. For an accurate assessment and professional help, please consult a specialist." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Результаты теста не являются окончательным диагнозом. Для получения точной оценки и профессиональной помощи, пожалуйста, проконсультируйтесь со специалистом."
+          }
+        }
+      }
+    },
+    "Time is your most valuable resource" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Время - ваш самый ценный ресурс"
+          }
+        }
+      }
+    },
+    "Timer allows you to track how much time you spend on games. Add your favorite games, set the timer and go ahead." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Таймер позволяет отслеживать, сколько времени вы тратите на игры. Добавляйте свои любимые игры, устанавливайте таймер и вперед."
+          }
+        }
+      }
+    },
+    "To display statistics, you need to track at least 1 games or 1 habits." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Для отображения статистики вам необходимо отслеживать как минимум 1 игру или 1 практику."
+          }
+        }
+      }
+    },
+    "Try again" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Попробовать еще"
+          }
+        }
+      }
+    },
+    "Use IQ-20 and IGDS9-SF tests, they will help in diagnosis of gaming addiction." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используйте тесты IGD-20 и IGDS9-SF, они помогут в диагностике игровой зависимости."
+          }
+        }
+      }
+    },
+    "Very Often" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Очень часто"
+          }
+        }
+      }
+    },
+    "When I am not gaming I feel more irritable." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Когда я не играю, я чувствую себя более раздражительным(ой)."
+          }
+        }
+      }
+    },
+    "Yes" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ano"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Да"
+          }
+        }
+      }
+    },
+    "You're breathtaking!" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ты захватывающий!"
+          }
+        }
+      }
+    },
+    "Your curiosity knows no bounds." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твое любопытство не знает границ.  "
+          }
+        }
+      }
+    },
+    "Your new life starts here" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Твоя новая жизнь начинается здесь "
+          }
+        }
+      }
+    },
+    "Русский" : {
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Русский"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Русский"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

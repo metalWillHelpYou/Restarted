@@ -8,9 +8,13 @@
 import SwiftUI
 
 enum Theme: String, CaseIterable {
-    case systemDefault = "Default"
-    case light = "Light"
-    case dark = "Dark"
+    case systemDefault = "systemDefault"
+    case light = "lightTheme"
+    case dark = "darkTheme"
+    
+    var localizedTitle: LocalizedStringKey {
+        LocalizedStringKey(rawValue)
+    }
     
     var setTheme: ColorScheme? {
         switch self {

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class ShortTestViewModel: ObservableObject {
     @Published var currentQuestionIndex: Int = 0
@@ -19,7 +20,7 @@ final class ShortTestViewModel: ObservableObject {
         self.selectedAnswers = Array(repeating: nil, count: questions.count)
     }
     
-    var currentQuestion: String {
+    var currentQuestion: LocalizedStringKey {
         questions[currentQuestionIndex].rawValue
     }
     
@@ -44,7 +45,7 @@ final class ShortTestViewModel: ObservableObject {
             }
         }
 
-        let conclusion: String
+        let conclusion: LocalizedStringKey
         if fulfilledCriteriaCount >= 5 {
             conclusion = """
             High risk of gaming addiction based on DSM-5 criteria.

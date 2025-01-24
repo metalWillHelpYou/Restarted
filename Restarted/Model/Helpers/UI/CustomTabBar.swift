@@ -65,12 +65,12 @@ enum Tab: String, CaseIterable {
     case stats = "chart.bar"
     case profile = "person"
     
-    var title: String {
+    var title: LocalizedStringKey {
         switch self {
         case .practice: return "Practice"
         case .articles: return "Articles"
         case .games: return "Games"
-        case .stats: return "Stats"
+        case .stats: return "Statistics"
         case .profile: return "Profile"
         }
     }

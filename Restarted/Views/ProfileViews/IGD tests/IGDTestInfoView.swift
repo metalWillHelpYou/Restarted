@@ -14,7 +14,7 @@ struct IGDTestInfoView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 HStack {
-                    Text("Internet Gaming Disorder Test")
+                    Text("Internet Gaming Disorder test")
                         .font(.largeTitle)
                     
                     Spacer()
@@ -30,8 +30,9 @@ struct IGDTestInfoView: View {
                 
                 Spacer()
                 
-                Text(descriptionText)
+                descriptionText
                     .font(.title3)
+                
                 
                 Spacer()
                 
@@ -76,26 +77,34 @@ extension IGDTestInfoView {
         }
     }
     
-    private var descriptionText: String {
-        switch testType {
-        case .longTest:
-            return """
-            
-            It consists of 20 questions about your life over the past 12 months.
-            Answer as honestly and openly as possible — this is crucial for accurate results.
-            
-            ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
-            """
-        case .shortTest:
-            return """
-            It consists of 9 questions about your life over the past 12 months.
-            Answer as honestly and openly as possible — this is crucial for accurate results.
-            
-            ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
-            """
+    private var descriptionText: some View {
+        
+        VStack {
+            if testType == .longTest {
+                Text(
+                 """
+                
+                Test consists of 20 questions about your life over the past 12 months.
+                Answer as honestly and openly as possible — this is crucial for accurate results.
+                
+                ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
+                """
+                )
+                
+            } else {
+                Text(
+                    """
+                    Test consists of 9 questions about your life over the past 12 months.
+                    Answer as honestly and openly as possible — this is crucial for accurate results."
+                    
+                    ⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential.
+                    """
+                )
+            }
         }
     }
 }
+
 
 #Preview {
     IGDTestInfoView(testType: .longTest)

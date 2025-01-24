@@ -42,7 +42,7 @@ struct CustomPickerView: View {
     var body: some View {
         HStack(spacing: 0) {
             ForEach(Theme.allCases, id: \.rawValue) { theme in
-                Text(theme.rawValue)
+                Text(theme.localizedTitle)
                     .foregroundStyle(userTheme.setTextColor(with: scheme))
                     .padding(.vertical, 10)
                     .frame(width: 100)

@@ -14,18 +14,17 @@ struct ProfileInfoLinkView: View {
         HStack {
             VStack(alignment: .leading) {
                 HStack {
-                    Text("\(viewModel.generateGreeting()),")
+                    Text(viewModel.generateGreeting())
 
                     Text(viewModel.localUserName)
                         .foregroundStyle(Color.highlight)
-                        .offset(x: -2)
+                        .offset(x: -5)
                 }
                 .padding()
                 .font(.title2)
                     
                 Text("The most certain way to avoid failure is to commit to success")
                     .padding()
-                    .font(.title3)
                     .multilineTextAlignment(.leading)
             }
             

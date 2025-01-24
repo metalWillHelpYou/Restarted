@@ -8,40 +8,70 @@
 import SwiftUI
 
 struct LanguageView: View {
+    @EnvironmentObject var languageSettings: LanguageManager
+    
     var body: some View {
         VStack {
-            VStack(spacing: 16){
+            VStack(spacing: 16) {
+                
                 Button(action: {
-                    
+                    withAnimation(.easeInOut) {
+                        languageSettings.updateLanguage(to: "en")
+                    }
                 }) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("English")
-                        Text("English")
-                            .font(.caption)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("English")
+                            Text("English")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        if languageSettings.locale.identifier == "en" {
+                            Image(systemName: "checkmark")
+                                .transition(.scale)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.primary)
                 }
                 
                 Button(action: {
-                    
+                    withAnimation(.easeInOut) {
+                        languageSettings.updateLanguage(to: "ru")
+                    }
                 }) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Russian")
-                        Text("Русский")
-                            .font(.caption)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Russian")
+                            Text("Русский")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        if languageSettings.locale.identifier == "ru" {
+                            Image(systemName: "checkmark")
+                                .transition(.scale)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.primary)
                 }
-                
+    
                 Button(action: {
-                    
+                    withAnimation(.easeInOut) {
+                        languageSettings.updateLanguage(to: "cs")
+                    }
                 }) {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Czech")
-                        Text("Čeština")
-                            .font(.caption)
+                    HStack {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Czech")
+                            Text("Čeština")
+                                .font(.caption)
+                        }
+                        Spacer()
+                        if languageSettings.locale.identifier == "cs" {
+                            Image(systemName: "checkmark")
+                                .transition(.scale)
+                        }
                     }
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .foregroundStyle(Color.primary)
@@ -52,6 +82,7 @@ struct LanguageView: View {
             .padding()
             .strokeBackground(Color.highlight)
             .padding()
+            .animation(.default, value: languageSettings.locale.identifier)
             
             Spacer()
         }
@@ -62,4 +93,5 @@ struct LanguageView: View {
 
 #Preview {
     LanguageView()
+        .environmentObject(LanguageManager())
 }

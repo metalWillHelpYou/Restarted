@@ -31,6 +31,7 @@ struct RestartedApp: App {
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
     @StateObject private var profileVm = ProfileViewModel()
+    @StateObject private var languageSettings = LanguageManager()
     
     @StateObject var rootVm = RootViewModel()
     
@@ -50,6 +51,8 @@ struct RestartedApp: App {
                 .environmentObject(lnManager)
                 .environmentObject(profileVm)
                 .environmentObject(rootVm)
+                .environmentObject(languageSettings)
+                .environment(\.locale, languageSettings.locale)
                 .preferredColorScheme(userTheme.setTheme)
         }
     }

@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class LongTestViewModel: ObservableObject {
     @Published var currentQuestionIndex: Int = 0
@@ -19,7 +20,7 @@ final class LongTestViewModel: ObservableObject {
         self.selectedAnswers = Array(repeating: nil, count: questions.count)
     }
     
-    var currentQuestion: String {
+    var currentQuestion: LocalizedStringKey {
         questions[currentQuestionIndex].rawValue
     }
     
@@ -64,7 +65,7 @@ final class LongTestViewModel: ObservableObject {
         let fulfilledCriteriaCount = criteriaFulfilled.filter { $0 }.count
 
         // Заключение
-        let conclusion: String
+        let conclusion: LocalizedStringKey
         if fulfilledCriteriaCount >= 5 {
             conclusion = """
             High risk of gaming addiction based on DSM-5 criteria.
