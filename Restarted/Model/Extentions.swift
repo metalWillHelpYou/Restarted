@@ -40,7 +40,7 @@ enum SortType: String {
 }
 
 extension NSNotification.Name {
-    static let habitsDidChange = NSNotification.Name("habitsDidChange")
+    static let practicesDidChange = NSNotification.Name("practicesDidChange")
 }
 
 extension NSNotification.Name {

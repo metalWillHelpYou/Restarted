@@ -12,14 +12,14 @@ import Combine
 final class StopwatchViewModel: ObservableObject {
     @Published var elapsedTime: Int = 0
     @Published var isStopwatchRunning: Bool = false
-    @Published var currentHabit: String = "No habit selected"
+    @Published var currentPractice: String = "No practice selected"
     
     private var stopwatchSubscription: AnyCancellable?
     private var pausedTime: Int = 0
     
     // MARK: - Stopwatch Logic
     
-    func startStopwatch(forHabitId habitId: String) {
+    func startStopwatch(forPracticeId practiceId: String) {
         guard !isStopwatchRunning else { return }
         if pausedTime > 0 {
             elapsedTime = pausedTime
@@ -42,13 +42,13 @@ final class StopwatchViewModel: ObservableObject {
         startTimer()
     }
     
-    func stopStopwatch(forHabitId habitId: String) {
+    func stopStopwatch(forPracticeId practiceId: String) {
         stopwatchSubscription?.cancel()
         isStopwatchRunning = false
         pausedTime = 0
         Task {
-            await sendElapsedTimeToHabitManager(for: habitId)
-            await incrementSessionCount(for: habitId)
+            await sendElapsedTimeToPracticeManager(for: practiceId)
+            await incrementSessionCount(for: practiceId)
         }
     }
     
@@ -74,22 +74,22 @@ final class StopwatchViewModel: ObservableObject {
     
     // MARK: - Firestore Logic
     
-    func sendElapsedTimeToHabitManager(for habitId: String) async {
+    func sendElapsedTimeToPracticeManager(for practiceId: String) async {
         guard elapsedTime > 0 else { return }
 
         do {
-            try await HabitManager.shared.updateHabitTime(for: habitId, elapsedTime: elapsedTime)
-            print("Updated habit time successfully!")
+            try await PracticeManager.shared.updatePracticeTime(for: practiceId, elapsedTime: elapsedTime)
+            print("Updated practice time successfully!")
         } catch {
-            print("Error updating habit time: \(error)")
+            print("Error updating practice time: \(error)")
         }
     }
     
-    func incrementSessionCount(for habitId: String) async {
+    func incrementSessionCount(for practiceId: String) async {
         do {
-            try await HabitManager.shared.incrementSessionCount(for: habitId)
+            try await PracticeManager.shared.incrementSessionCount(for: practiceId)
         } catch {
-            print("Error updating habit session count: \(error)")
+            print("Error updating practice session count: \(error)")
         }
     }
 }

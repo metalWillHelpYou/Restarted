@@ -1,5 +1,5 @@
 //
-//  QGHabitsView.swift
+//  QGPracticeView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 10.10.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct QGHabitsView: View {
+struct QGPracticeView: View {
     
     var body: some View {
         VStack(alignment: .center) {
@@ -46,5 +46,5 @@ struct QGHabitsView: View {
 }
 
 #Preview {
-    QGHabitsView()
+    QGPracticeView()
 }

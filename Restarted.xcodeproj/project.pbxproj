@@ -24,7 +24,7 @@
 		9B2AFD7D2C009A0D00E908F5 /* GameMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD702C009A0D00E908F5 /* GameMainScreenView.swift */; };
 		9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */; };
 		9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B2AFD762C009A0D00E908F5 /* ContentView.swift */; };
-		9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */; };
+		9B3872A52C8CE48E00C76784 /* PracticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3872A42C8CE48E00C76784 /* PracticeViewModel.swift */; };
 		9B397CA92D2C452F005CBBD1 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B3D81962D1883870079A072 /* ChangeNameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */; };
@@ -50,7 +50,7 @@
 		9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */; };
 		9B9DE1112C63FF1100422443 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9DE1102C63FF1100422443 /* GameViewModel.swift */; };
 		9B9FD6712D21613E00FD6A17 /* TimeTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B9FD6702D21613E00FD6A17 /* TimeTools.swift */; };
-		9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */; };
+		9BA8CC072C8EE09E005AF647 /* PracticeMainScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BA8CC062C8EE09E005AF647 /* PracticeMainScreenView.swift */; };
 		9BB29BA92C81CCF2006E2ECD /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */; };
 		9BBA81B72CDCE052006EB807 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 9BBA81B62CDCE052006EB807 /* FirebaseAnalytics */; };
 		9BBA81B92CDCE052006EB807 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9BBA81B82CDCE052006EB807 /* FirebaseAuth */; };
@@ -70,16 +70,16 @@
 		9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A22C721067005A6085 /* SetUpTimerView.swift */; };
 		9BD812A52C74F044005A6085 /* TimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A42C74F044005A6085 /* TimerView.swift */; };
 		9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD812A62C7519F9005A6085 /* TimerViewModel.swift */; };
-		9BDE50482C0A02F400910F23 /* SecondaryHabitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* SecondaryHabitView.swift */; };
+		9BDE50482C0A02F400910F23 /* AddPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BDE50472C0A02F400910F23 /* AddPracticeView.swift */; };
 		9BE572B82D15ED1000A4D45E /* ProfileInfoLinkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE572B72D15ED1000A4D45E /* ProfileInfoLinkView.swift */; };
 		9BE572BA2D15F17200A4D45E /* ProfileInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE572B92D15F17200A4D45E /* ProfileInfoView.swift */; };
 		9BF77F232CE75A08006FC86F /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF77F222CE75A08006FC86F /* RootView.swift */; };
 		9BFA14EF2D356BA30073D4C4 /* StopwatchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA14EE2D356BA30073D4C4 /* StopwatchViewModel.swift */; };
 		9BFA14F12D356C000073D4C4 /* StopwatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA14F02D356C000073D4C4 /* StopwatchView.swift */; };
 		9BFA14F32D37C7B60073D4C4 /* AddTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFA14F22D37C7B60073D4C4 /* AddTimeView.swift */; };
-		9BFC14552D2D637200D8E2DF /* HabitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC14542D2D637200D8E2DF /* HabitModel.swift */; };
+		9BFC14552D2D637200D8E2DF /* PracticeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFC14542D2D637200D8E2DF /* PracticeModel.swift */; };
 		9BFD3AB92CE2651B0000A460 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 9BFD3AB82CE2651B0000A460 /* FirebaseFirestore */; };
-		9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE38882CB7F36100325173 /* QGHabitsView.swift */; };
+		9BFE38892CB7F36100325173 /* QGPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE38882CB7F36100325173 /* QGPracticeView.swift */; };
 		9BFE388B2CB7F3C300325173 /* QGArticlesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */; };
 		9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388C2CB7F43600325173 /* QGTimerView.swift */; };
 		9BFE388F2CB7F4CA00325173 /* QGTestsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BFE388E2CB7F4CA00325173 /* QGTestsView.swift */; };
@@ -104,7 +104,7 @@
 		9B2AFD702C009A0D00E908F5 /* GameMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD742C009A0D00E908F5 /* ProfileMainScreenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMainScreenView.swift; sourceTree = "<group>"; };
 		9B2AFD762C009A0D00E908F5 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitViewModel.swift; sourceTree = "<group>"; };
+		9B3872A42C8CE48E00C76784 /* PracticeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeViewModel.swift; sourceTree = "<group>"; };
 		9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameSheetView.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		9B9C72D12CDCF2D4006F3BBF /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		9B9DE1102C63FF1100422443 /* GameViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		9B9FD6702D21613E00FD6A17 /* TimeTools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTools.swift; sourceTree = "<group>"; };
-		9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HabitsMainScreenView.swift; sourceTree = "<group>"; };
+		9BA8CC062C8EE09E005AF647 /* PracticeMainScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeMainScreenView.swift; sourceTree = "<group>"; };
 		9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 		9BBA81C02CDCE35A006EB807 /* AuthenticationUserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationUserModel.swift; sourceTree = "<group>"; };
 		9BBA81C22CDCE3C6006EB807 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
@@ -145,15 +145,15 @@
 		9BD812A22C721067005A6085 /* SetUpTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpTimerView.swift; sourceTree = "<group>"; };
 		9BD812A42C74F044005A6085 /* TimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerView.swift; sourceTree = "<group>"; };
 		9BD812A62C7519F9005A6085 /* TimerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewModel.swift; sourceTree = "<group>"; };
-		9BDE50472C0A02F400910F23 /* SecondaryHabitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondaryHabitView.swift; sourceTree = "<group>"; };
+		9BDE50472C0A02F400910F23 /* AddPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPracticeView.swift; sourceTree = "<group>"; };
 		9BE572B72D15ED1000A4D45E /* ProfileInfoLinkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoLinkView.swift; sourceTree = "<group>"; };
 		9BE572B92D15F17200A4D45E /* ProfileInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInfoView.swift; sourceTree = "<group>"; };
 		9BF77F222CE75A08006FC86F /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		9BFA14EE2D356BA30073D4C4 /* StopwatchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchViewModel.swift; sourceTree = "<group>"; };
 		9BFA14F02D356C000073D4C4 /* StopwatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopwatchView.swift; sourceTree = "<group>"; };
 		9BFA14F22D37C7B60073D4C4 /* AddTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTimeView.swift; sourceTree = "<group>"; };
-		9BFC14542D2D637200D8E2DF /* HabitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HabitModel.swift; sourceTree = "<group>"; };
-		9BFE38882CB7F36100325173 /* QGHabitsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGHabitsView.swift; sourceTree = "<group>"; };
+		9BFC14542D2D637200D8E2DF /* PracticeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeModel.swift; sourceTree = "<group>"; };
+		9BFE38882CB7F36100325173 /* QGPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGPracticeView.swift; sourceTree = "<group>"; };
 		9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGArticlesView.swift; sourceTree = "<group>"; };
 		9BFE388C2CB7F43600325173 /* QGTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGTimerView.swift; sourceTree = "<group>"; };
 		9BFE388E2CB7F4CA00325173 /* QGTestsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QGTestsView.swift; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		9B2AFD5F2C0099F100E908F5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9BFC14542D2D637200D8E2DF /* HabitModel.swift */,
+				9BFC14542D2D637200D8E2DF /* PracticeModel.swift */,
 				9B108F982CFF418900F41360 /* ArticleModel.swift */,
 				9BBE86DA2D19E8DD0069B58E /* GameModel.swift */,
 				9B77BF172CE4BC58009A7FD7 /* UserModel.swift */,
@@ -300,7 +300,7 @@
 		9B2AFD772C009A0D00E908F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9B3872A62C8CE82300C76784 /* HabitViews */,
+				9B3872A62C8CE82300C76784 /* PracticeViews */,
 				9B2AFD6C2C009A0D00E908F5 /* ArticleViews */,
 				9B2AFD712C009A0D00E908F5 /* GameViews */,
 				9B2AFD6E2C009A0D00E908F5 /* StatsViews */,
@@ -314,7 +314,7 @@
 		9B2AFD822C009A3100E908F5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				9B3872A42C8CE48E00C76784 /* HabitViewModel.swift */,
+				9B3872A42C8CE48E00C76784 /* PracticeViewModel.swift */,
 				9BFA14EE2D356BA30073D4C4 /* StopwatchViewModel.swift */,
 				9BB29BA82C81CCF2006E2ECD /* ArticleViewModel.swift */,
 				9B9DE1102C63FF1100422443 /* GameViewModel.swift */,
@@ -326,14 +326,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		9B3872A62C8CE82300C76784 /* HabitViews */ = {
+		9B3872A62C8CE82300C76784 /* PracticeViews */ = {
 			isa = PBXGroup;
 			children = (
-				9BA8CC062C8EE09E005AF647 /* HabitsMainScreenView.swift */,
-				9BDE50472C0A02F400910F23 /* SecondaryHabitView.swift */,
+				9BA8CC062C8EE09E005AF647 /* PracticeMainScreenView.swift */,
+				9BDE50472C0A02F400910F23 /* AddPracticeView.swift */,
 				9BFA14F02D356C000073D4C4 /* StopwatchView.swift */,
 			);
-			path = HabitViews;
+			path = PracticeViews;
 			sourceTree = "<group>";
 		};
 		9B3AD9062C0F60AF00230004 /* Helpers */ = {
@@ -359,7 +359,7 @@
 		9B5A41C32CB7F2F500617FEB /* QuickGuideViews */ = {
 			isa = PBXGroup;
 			children = (
-				9BFE38882CB7F36100325173 /* QGHabitsView.swift */,
+				9BFE38882CB7F36100325173 /* QGPracticeView.swift */,
 				9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */,
 				9BFE388C2CB7F43600325173 /* QGTimerView.swift */,
 				9BFE388E2CB7F4CA00325173 /* QGTestsView.swift */,
@@ -548,17 +548,17 @@
 			files = (
 				9BBA81C12CDCE35A006EB807 /* AuthenticationUserModel.swift in Sources */,
 				9B2AFD7D2C009A0D00E908F5 /* GameMainScreenView.swift in Sources */,
-				9BFE38892CB7F36100325173 /* QGHabitsView.swift in Sources */,
+				9BFE38892CB7F36100325173 /* QGPracticeView.swift in Sources */,
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,
 				9BD812A52C74F044005A6085 /* TimerView.swift in Sources */,
 				9BFE388F2CB7F4CA00325173 /* QGTestsView.swift in Sources */,
 				9B397CA92D2C452F005CBBD1 /* StatisticsViewModel.swift in Sources */,
 				9B2525B62CF0D2A40012E9B2 /* IGDTestInfoView.swift in Sources */,
-				9B3872A52C8CE48E00C76784 /* HabitViewModel.swift in Sources */,
+				9B3872A52C8CE48E00C76784 /* PracticeViewModel.swift in Sources */,
 				9B9FD6712D21613E00FD6A17 /* TimeTools.swift in Sources */,
 				9B2AFD782C009A0D00E908F5 /* ArticleCardView.swift in Sources */,
-				9BDE50482C0A02F400910F23 /* SecondaryHabitView.swift in Sources */,
+				9BDE50482C0A02F400910F23 /* AddPracticeView.swift in Sources */,
 				9BFA14F32D37C7B60073D4C4 /* AddTimeView.swift in Sources */,
 				9B568F8B2C00B2CB00B6D645 /* AdditionalSettingsView.swift in Sources */,
 				9B9C72D22CDCF2D4006F3BBF /* ProfileViewModel.swift in Sources */,
@@ -586,7 +586,7 @@
 				9BBE00552D43FDCF001BE1DA /* LanguageManager.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
-				9BFC14552D2D637200D8E2DF /* HabitModel.swift in Sources */,
+				9BFC14552D2D637200D8E2DF /* PracticeModel.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* StatisticsView.swift in Sources */,
 				9BD812A02C720C27005A6085 /* PlusButton.swift in Sources */,
@@ -606,7 +606,7 @@
 				9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */,
 				9B2AFD7A2C009A0D00E908F5 /* ArticleView.swift in Sources */,
 				9BFE388D2CB7F43600325173 /* QGTimerView.swift in Sources */,
-				9BA8CC072C8EE09E005AF647 /* HabitsMainScreenView.swift in Sources */,
+				9BA8CC072C8EE09E005AF647 /* PracticeMainScreenView.swift in Sources */,
 				9BFE388B2CB7F3C300325173 /* QGArticlesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

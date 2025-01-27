@@ -1,5 +1,5 @@
 //
-//  SecondaryHabitView.swift
+//  SecondaryPracticeView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 31.05.2024.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct AddHabitView: View {
-    @EnvironmentObject var viewModel: HabitViewModel
+struct AddPracticeView: View {
+    @EnvironmentObject var viewModel: PracticeViewModel
     @Environment (\.dismiss) var dismiss
     
     @State private var hours: Int = 0
@@ -16,7 +16,7 @@ struct AddHabitView: View {
     
     var body: some View {
         VStack {
-            TextField("New habit", text: $viewModel.habitTitleHandler)
+            TextField("New practice", text: $viewModel.practiceTitleHandler)
                 .padding(.leading, 8)
                 .frame(height: 55)
                 .foregroundStyle(.black)
@@ -25,19 +25,19 @@ struct AddHabitView: View {
             
             Button(action: {
                 Task {
-                    await viewModel.addHabit(with: viewModel.habitTitleHandler)
+                    await viewModel.addPractice(with: viewModel.practiceTitleHandler)
                 }
                 dismiss()
             }, label: {
                 Text("Save")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.habitTitleHandler.isEmpty ? Color.text : Color.gray)
+                    .foregroundStyle(!viewModel.practiceTitleHandler.isEmpty ? Color.text : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.habitTitleHandler.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.habitTitleHandler)
+                    .strokeBackground(!viewModel.practiceTitleHandler.isEmpty ? Color.highlight : Color.gray)
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleHandler)
             })
-            .disabled(viewModel.habitTitleHandler.isEmpty)
+            .disabled(viewModel.practiceTitleHandler.isEmpty)
             
             Spacer()
         }
@@ -47,18 +47,18 @@ struct AddHabitView: View {
     }
 }
 
-struct EditHabitView: View {
-    @EnvironmentObject var viewModel: HabitViewModel
+struct EditPracticeView: View {
+    @EnvironmentObject var viewModel: PracticeViewModel
     @Environment (\.dismiss) var dismiss
     
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
     
-    let habit: HabitFirestore
+    let practice: PracticeFirestore
     
     var body: some View {
         VStack {
-            TextField("Edit habit", text: $viewModel.habitTitleHandler)
+            TextField("Edit practice", text: $viewModel.practiceTitleHandler)
                 .padding(.leading, 8)
                 .frame(height: 55)
                 .foregroundStyle(.black)
@@ -67,19 +67,19 @@ struct EditHabitView: View {
             
             Button(action: {
                 Task {
-                    await viewModel.editHabit(habit.id, title: viewModel.habitTitleHandler)
+                    await viewModel.editPractice(practice.id, title: viewModel.practiceTitleHandler)
                 }
                 dismiss()
             }, label: {
                 Text("Save")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.habitTitleHandler.isEmpty ? Color.text : Color.gray)
+                    .foregroundStyle(!viewModel.practiceTitleHandler.isEmpty ? Color.text : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.habitTitleHandler.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.habitTitleHandler)
+                    .strokeBackground(!viewModel.practiceTitleHandler.isEmpty ? Color.highlight : Color.gray)
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleHandler)
             })
-            .disabled(viewModel.habitTitleHandler.isEmpty)
+            .disabled(viewModel.practiceTitleHandler.isEmpty)
             
             Spacer()
         }

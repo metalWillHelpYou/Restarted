@@ -10,13 +10,13 @@ import SwiftUI
 struct StopwatchView: View {
     @StateObject private var viewModel = StopwatchViewModel()
     @Environment(\.dismiss) var dismiss
-    var habit: HabitFirestore
+    var practice: PracticeFirestore
     
     var body: some View {
         VStack {
             Spacer()
             
-            habitTitle
+            practiceTitle
             
             stopwatchTime
             
@@ -28,14 +28,14 @@ struct StopwatchView: View {
         .foregroundStyle(Color.white)
         .background(Color.black)
         .onAppear {
-            viewModel.startStopwatch(forHabitId: habit.id)
+            viewModel.startStopwatch(forPracticeId: practice.id)
         }
     }
 }
 
 extension StopwatchView {
-    private var habitTitle: some View {
-        Text(habit.title)
+    private var practiceTitle: some View {
+        Text(practice.title)
             .font(.headline)
     }
     
@@ -55,7 +55,7 @@ extension StopwatchView {
     
     private var resetButton: some View {
         Button {
-            viewModel.stopStopwatch(forHabitId: habit.id)
+            viewModel.stopStopwatch(forPracticeId: practice.id)
             dismiss()
         } label: {
             Text("Reset")
@@ -69,7 +69,7 @@ extension StopwatchView {
     
     private var toggleButton: some View {
         Button(action: {
-            viewModel.isStopwatchRunning ? viewModel.pauseStopwatch() : viewModel.startStopwatch(forHabitId: habit.id)
+            viewModel.isStopwatchRunning ? viewModel.pauseStopwatch() : viewModel.startStopwatch(forPracticeId: practice.id)
         }) {
             Text(viewModel.isStopwatchRunning ? "Pause" : "Resume")
                 .foregroundStyle(Color.white)

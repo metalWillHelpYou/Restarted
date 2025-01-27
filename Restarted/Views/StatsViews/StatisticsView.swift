@@ -20,13 +20,13 @@ struct StatisticsView: View {
                         HStack {
                             ZStack {
                                 Circle()
-                                    .trim(from: 0, to: CGFloat(viewModel.habitPercentage / 100))
+                                    .trim(from: 0, to: CGFloat(viewModel.practicePercentage / 100))
                                     .stroke(Color.pie, lineWidth: 20)
                                     .rotationEffect(.degrees(-90))
 
                                 Circle()
-                                    .trim(from: CGFloat(viewModel.habitPercentage / 100),
-                                          to: CGFloat((viewModel.habitPercentage + viewModel.gamePercentage) / 100))
+                                    .trim(from: CGFloat(viewModel.practicePercentage / 100),
+                                          to: CGFloat((viewModel.practicePercentage + viewModel.gamePercentage) / 100))
                                     .stroke(Color.highlight, lineWidth: 20)
                                     .rotationEffect(.degrees(-90))
                             }
@@ -36,7 +36,7 @@ struct StatisticsView: View {
                             Spacer()
                             
                             VStack(alignment: .leading) {
-                                Text("Practice: \(String(format: "%.0f", viewModel.habitPercentage))%")
+                                Text("Practice: \(String(format: "%.0f", viewModel.practicePercentage))%")
                                     .font(.headline)
                                     .foregroundColor(Color.pie)
                                 Text("Games: \(String(format: "%.0f", viewModel.gamePercentage))%")
@@ -116,8 +116,8 @@ struct StatisticsView: View {
                         .strokeBackground(Color.highlight)
                     }
                     
-                    // MARK: - Habit Statistics
-                    if viewModel.habits.isEmpty == false {
+                    // MARK: - Practice Statistics
+                    if viewModel.practices.isEmpty == false {
                         VStack(alignment: .leading, spacing: 16) {
                             Text("Practice")
                                 .font(.title2)
@@ -130,13 +130,13 @@ struct StatisticsView: View {
                                     .font(.headline)
                                     .foregroundStyle(Color.highlight)
                                 
-                                ForEach(viewModel.habits.filter {
-                                    viewModel.averageHabitTime(for: $0) != "00:00"
-                                }) { habit in
+                                ForEach(viewModel.practices.filter {
+                                    viewModel.averagePracticeTime(for: $0) != "00:00"
+                                }) { practice in
                                     HStack {
-                                        Text(habit.title)
+                                        Text(practice.title)
                                         Spacer()
-                                        Text(viewModel.averageHabitTime(for: habit))
+                                        Text(viewModel.averagePracticeTime(for: practice))
                                     }
                                 }
                             }
@@ -153,14 +153,14 @@ struct StatisticsView: View {
                                     .foregroundStyle(Color.highlight)
                                 
                                 ForEach(
-                                    viewModel.habits
+                                    viewModel.practices
                                         .sorted { $0.sessionCount > $1.sessionCount }
                                         .prefix(3)
-                                ) { habit in
+                                ) { practice in
                                     HStack {
-                                        Text(habit.title)
+                                        Text(practice.title)
                                         Spacer()
-                                        Text("\(habit.sessionCount)")
+                                        Text("\(practice.sessionCount)")
                                     }
                                 }
                             }
@@ -170,17 +170,17 @@ struct StatisticsView: View {
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // — Habit hours —
+                            // — Practice hours —
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Practice hours")
                                     .font(.headline)
                                     .foregroundStyle(Color.highlight)
                                 
-                                ForEach(viewModel.topHabitsByTotalTime()) { habit in
+                                ForEach(viewModel.topPracticesByTotalTime()) { practice in
                                     HStack {
-                                        Text(habit.title)
+                                        Text(practice.title)
                                         Spacer()
-                                        Text(TimeTools.convertSecondsToHoursMinutes(habit.seconds))
+                                        Text(TimeTools.convertSecondsToHoursMinutes(practice.seconds))
                                     }
                                 }
                             }
@@ -192,8 +192,8 @@ struct StatisticsView: View {
                     
                     // MARK: - No Data Placeholder
                     if !viewModel.hasEnoughGameData()
-                        && !viewModel.hasEnoughHabitData() {
-                        Text("To display statistics, you need to track at least 1 games or 1 habits.")
+                        && !viewModel.hasEnoughPracticeData() {
+                        Text("To display statistics, you need to track at least 1 games or 1 practices.")
                             .frame(maxWidth: .infinity)
                             .background(Color.background)
                             .font(.title2)

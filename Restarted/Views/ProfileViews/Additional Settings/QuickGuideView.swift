@@ -12,7 +12,7 @@ struct QuickGuideView: View {
     
     var body: some View {
         TabView {
-            QGHabitsView()
+            QGPracticeView()
             QGArticlesView()
             QGTimerView()
             QGTestsView()

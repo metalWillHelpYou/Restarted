@@ -469,7 +469,7 @@
         }
       }
     },
-    "Edit habit" : {
+    "Edit practice" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -988,22 +988,22 @@
         }
       }
     },
-    "New habit" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Новая практика"
-          }
-        }
-      }
-    },
     "New name" : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Новое имя"
+          }
+        }
+      }
+    },
+    "New practice" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Новая практика"
           }
         }
       }
@@ -1542,12 +1542,12 @@
         }
       }
     },
-    "To display statistics, you need to track at least 1 games or 1 habits." : {
+    "To display statistics, you need to track at least 1 games or 1 practices." : {
       "localizations" : {
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Для отображения статистики вам необходимо отслеживать как минимум 1 игру или 1 практику."
+            "value" : "Для отображения статистики добавьте хотя бы 1 игру или 1 практику"
           }
         }
       }

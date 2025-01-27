@@ -24,7 +24,7 @@ struct ContentView: View {
             ZStack(alignment: .bottom) {
                 TabView(selection: activeTab) {
                     NavigationView {
-                        HabitsMainScreenView()
+                        PracticeMainScreenView()
                     }
                     .setupTab(.practice)
 
@@ -57,7 +57,7 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .environmentObject(HabitViewModel())
+        .environmentObject(PracticeViewModel())
         .environmentObject(ArticleViewModel())
         .environmentObject(GameViewModel())
         .environmentObject(TimerViewModel())

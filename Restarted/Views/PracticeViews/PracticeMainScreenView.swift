@@ -1,5 +1,5 @@
 //
-//  HabitsMainScreenView.swift
+//  PracticesMainScreenView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 09.09.2024.
@@ -7,43 +7,43 @@
 
 import SwiftUI
 
-struct HabitsMainScreenView: View {
-    @EnvironmentObject var viewModel: HabitViewModel
-    @State private var showAddHabit: Bool = false
-    @State private var showEditHabit: Bool = false
-    @State private var showDeleteHabit: Bool = false
+struct PracticeMainScreenView: View {
+    @EnvironmentObject var viewModel: PracticeViewModel
+    @State private var showAddPractice: Bool = false
+    @State private var showEditPractice: Bool = false
+    @State private var showDeletePractice: Bool = false
     @State private var showAddTime: Bool = false
-    @State private var selectedHabit: HabitFirestore? = nil
+    @State private var selectedPractice: PracticeFirestore? = nil
 
     var body: some View {
         NavigationStack {
-            VStack {                
-                if !viewModel.savedHabits.isEmpty {
+            VStack {
+                if !viewModel.savedPractices.isEmpty {
                     List {
-                        ForEach(viewModel.savedHabits) { habit in
-                            NavigationLink(destination: StopwatchView(habit: habit), label: {
-                                Text(habit.title)
+                        ForEach(viewModel.savedPractices) { practice in
+                            NavigationLink(destination: StopwatchView(practice: practice), label: {
+                                Text(practice.title)
                             })
                             .padding(.vertical, 8)
                             .listRowBackground(Color.background)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button("Delete") {
-                                    selectedHabit = habit
-                                    showDeleteHabit.toggle()
+                                    selectedPractice = practice
+                                    showDeletePractice.toggle()
                                 }
                                 .tint(.red)
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button("Add time") {
-                                    selectedHabit = habit
+                                    selectedPractice = practice
                                     showAddTime.toggle()
                                 }
                                 .tint(.gray)
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                 Button("Edit") {
-                                    selectedHabit = habit
-                                    showEditHabit.toggle()
+                                    selectedPractice = practice
+                                    showEditPractice.toggle()
                                 }
                                 .tint(.orange)
                             }
@@ -74,43 +74,43 @@ struct HabitsMainScreenView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    if !viewModel.savedHabits.isEmpty {
+                    if !viewModel.savedPractices.isEmpty {
                         addButton
                     }
                 }
                 
                 ToolbarItem(placement: .topBarLeading) {
-                    sortHabits
+                    sortPractices
                 }
             }
-            .sheet(isPresented: $showAddHabit) {
-                AddHabitView()
+            .sheet(isPresented: $showAddPractice) {
+                AddPracticeView()
                     .presentationDetents([.fraction(0.2)])
                     .presentationDragIndicator(.visible)
             }
-            .sheet(isPresented: $showEditHabit) {
-                if let habit = selectedHabit {
-                    EditHabitView(habit: habit)
+            .sheet(isPresented: $showEditPractice) {
+                if let practice = selectedPractice {
+                    EditPracticeView(practice: practice)
                         .presentationDetents([.fraction(0.2)])
                         .presentationDragIndicator(.visible)
                 }
             }
             .sheet(isPresented: $showAddTime, content: {
                 AddTimeView { seconds in
-                    if let habit = selectedHabit {
+                    if let practice = selectedPractice {
                         Task {
-                            await viewModel.addTimeTo(habitId: habit.id, time: seconds)
+                            await viewModel.addTimeTo(practiceId: practice.id, time: seconds)
                         }
                     }
                 }
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
             })
-            .confirmationDialog("Are you sure?", isPresented: $showDeleteHabit) {
-                if let habit = selectedHabit {
+            .confirmationDialog("Are you sure?", isPresented: $showDeletePractice) {
+                if let practice = selectedPractice {
                     Button("Delete", role: .destructive) {
                         Task {
-                            await viewModel.deleteHabit(with: habit.id)
+                            await viewModel.deletePractice(with: practice.id)
                         }
                     }
                 }
@@ -119,16 +119,16 @@ struct HabitsMainScreenView: View {
     }
 }
 
-extension HabitsMainScreenView {
+extension PracticeMainScreenView {
     private var addButton: some View {
         Button(action: {
-            showAddHabit.toggle()
+            showAddPractice.toggle()
         }) {
             PlusButton()
         }
     }
     
-    private var sortHabits: some View {
+    private var sortPractices: some View {
         Menu {
             Button("Sort by Name") {
                 viewModel.sortByTitle()
@@ -150,6 +150,6 @@ extension HabitsMainScreenView {
 }
 
 #Preview {
-    HabitsMainScreenView()
-        .environmentObject(HabitViewModel())
+    PracticeMainScreenView()
+        .environmentObject(PracticeViewModel())
 }

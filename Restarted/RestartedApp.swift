@@ -23,28 +23,19 @@ struct RestartedApp: App {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
-    @StateObject var habitVm = HabitViewModel()
-    
+    @StateObject var practiceVm = PracticeViewModel()
     @StateObject var articleVm = ArticleViewModel()
-    
     @StateObject var gameVm = GameViewModel()
     @StateObject var timerVm = TimerViewModel()
     @StateObject var lnManager = LocalNotificationManager()
     @StateObject private var profileVm = ProfileViewModel()
     @StateObject private var languageSettings = LanguageManager()
-    
     @StateObject var rootVm = RootViewModel()
-    
-    //    init(){
-    //        // write for db here
-    //      // gpt write to firestore db
-    //
-    //    }
     
     var body: some Scene {
         WindowGroup {
             RootView()
-                .environmentObject(habitVm)
+                .environmentObject(practiceVm)
                 .environmentObject(articleVm)
                 .environmentObject(gameVm)
                 .environmentObject(timerVm)
