@@ -12,7 +12,7 @@ final class StatisticsViewModel: ObservableObject {
     // MARK: - Published Properties
     
     @Published var games: [GameFirestore] = []
-    @Published var practices: [PracticeFirestore] = []
+    @Published var practices: [Practice] = []
     @Published var practicePercentage: Double = 0
     @Published var gamePercentage: Double = 0
     @Published var practiceTime: Int = 0
@@ -34,12 +34,12 @@ final class StatisticsViewModel: ObservableObject {
     
     func startListening() {
         GameManager.shared.startListeningToGames()
-        PracticeManager.shared.startListeningToPractices()
+        PracticeManager.shared.startObservingPractices()
     }
     
     func stopListening() {
         GameManager.shared.stopListeningToGames()
-        PracticeManager.shared.stopListeningToPractices()
+        PracticeManager.shared.stopObservingPractices()
     }
     
     // MARK: - Notification Handlers
@@ -117,20 +117,20 @@ final class StatisticsViewModel: ObservableObject {
         }
     }
     
-    func averagePracticeTime(for practice: PracticeFirestore) -> String {
+    func averagePracticeTime(for practice: Practice) -> String {
         guard practice.seconds > 0, practice.sessionCount > 0 else { return "00:00" }
         let averageSeconds = practice.seconds / practice.sessionCount
         return formatTime(seconds: averageSeconds)
     }
     
-    func topPracticesByStreak() -> [PracticeFirestore] {
+    func topPracticesByStreak() -> [Practice] {
         Array(
             practices
                 .sorted { $0.streak > $1.streak }
         )
     }
     
-    func topPracticesByTotalTime() -> [PracticeFirestore] {
+    func topPracticesByTotalTime() -> [Practice] {
         Array(
             practices
                 .sorted { $0.seconds > $1.seconds }

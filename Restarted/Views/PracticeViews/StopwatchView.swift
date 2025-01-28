@@ -10,7 +10,7 @@ import SwiftUI
 struct StopwatchView: View {
     @StateObject private var viewModel = StopwatchViewModel()
     @Environment(\.dismiss) var dismiss
-    var practice: PracticeFirestore
+    var practice: Practice
     
     var body: some View {
         VStack {

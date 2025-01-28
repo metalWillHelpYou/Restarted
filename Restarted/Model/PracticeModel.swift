@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-struct PracticeFirestore: Codable, Identifiable, Equatable {
+struct Practice: Codable, Identifiable, Equatable {
     let id: String
     let title: String
     let dateAdded: Date?
@@ -49,18 +49,20 @@ final class PracticeManager {
     
     private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-    var practices: [PracticeFirestore] = [] {
+    
+    var practices: [Practice] = [] {
         didSet {
             NotificationCenter.default.post(name: .practicesDidChange, object: nil)
         }
     }
+    
+    // MARK: - Firestore references
     
     private func userPracticeCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: The user is not authenticated.")
             return nil
         }
-        
         return db.collection("users").document(userId).collection("practices")
     }
     
@@ -69,7 +71,9 @@ final class PracticeManager {
         return practiceCollection.document(practiceId)
     }
     
-    func startListeningToPractices() {
+    // MARK: - Реальное время (наблюдение за изменениями)
+    
+    func startObservingPractices() {
         guard let practiceCollection = userPracticeCollection() else {
             print("Error: User is not authenticated or collection is unavailable.")
             return
@@ -87,33 +91,19 @@ final class PracticeManager {
                 return
             }
             
-            self?.practices = documents.compactMap { doc -> PracticeFirestore? in
+            self?.practices = documents.compactMap { doc -> Practice? in
                 let data = doc.data()
-                return self?.parsePractice(from: data)
+                return self?.decodePractice(from: data)
             }
         }
     }
     
-    func stopListeningToPractices() {
+    func stopObservingPractices() {
         listener?.remove()
         listener = nil
     }
     
-    private func parsePractice(from data: [String: Any]) -> PracticeFirestore? {
-        guard
-            let id = data[PracticeFirestore.CodingKeys.id.rawValue] as? String,
-            let title = data[PracticeFirestore.CodingKeys.title.rawValue] as? String,
-            let dateAdded = (data[PracticeFirestore.CodingKeys.dateAdded.rawValue] as? Timestamp)?.dateValue()
-        else {
-            return nil
-        }
-        
-        let streak = data[PracticeFirestore.CodingKeys.streak.rawValue] as? Int ?? 0
-        let seconds = data[PracticeFirestore.CodingKeys.seconds.rawValue] as? Int ?? 0
-        let sessionCount = data[PracticeFirestore.CodingKeys.sessionCount.rawValue] as? Int ?? 1
-        
-        return PracticeFirestore(id: id, title: title, dateAdded: dateAdded, streak: streak, seconds: seconds, sessionCount: sessionCount)
-    }
+    // MARK: - CRUD
     
     func addPractice(title: String) async throws {
         guard let practiceCollection = userPracticeCollection() else {
@@ -121,8 +111,16 @@ final class PracticeManager {
         }
         
         let newPracticeId = UUID().uuidString
-        let newPractice = PracticeFirestore(id: newPracticeId, title: title, dateAdded: Date(), streak: 0, seconds: 0, sessionCount: 0)
-        let practiceData = createPracticeData(from: newPractice)
+        let newPractice = Practice(
+            id: newPracticeId,
+            title: title,
+            dateAdded: Date(),
+            streak: 0,
+            seconds: 0,
+            sessionCount: 0
+        )
+        
+        let practiceData = encodePractice(newPractice)
         
         do {
             let snapshot = try await practiceCollection.getDocuments()
@@ -138,33 +136,21 @@ final class PracticeManager {
         }
     }
     
-    private func createPracticeData(from practice: PracticeFirestore) -> [String: Any] {
-        [
-            PracticeFirestore.CodingKeys.id.rawValue: practice.id,
-            PracticeFirestore.CodingKeys.title.rawValue: practice.title,
-            PracticeFirestore.CodingKeys.dateAdded.rawValue: practice.dateAdded ?? Date(),
-            PracticeFirestore.CodingKeys.streak.rawValue: practice.streak,
-            PracticeFirestore.CodingKeys.seconds.rawValue: practice.seconds,
-            PracticeFirestore.CodingKeys.sessionCount.rawValue: practice.sessionCount
-        ]
-    }
-    
-    
     func editPractice(practiceId: String, title: String) async throws {
-        guard practiceDocument(practiceId: practiceId) != nil else {
+        guard let _ = practiceDocument(practiceId: practiceId) else {
             print("Error: Unable to get reference to user practice document.")
             throw URLError(.badURL)
         }
         
         try await updatePracticeField(
             practiceId: practiceId,
-            field: PracticeFirestore.CodingKeys.title.rawValue,
+            field: Practice.CodingKeys.title.rawValue,
             value: title
         )
     }
     
     func deletePractice(practiceId: String) async throws {
-        guard practiceDocument(practiceId: practiceId) != nil else {
+        guard let _ = practiceDocument(practiceId: practiceId) else {
             print("Error: Unable to get reference to user practice document.")
             throw URLError(.badURL)
         }
@@ -184,9 +170,9 @@ final class PracticeManager {
                 throw NSError(domain: "PracticeManager", code: 404, userInfo: [NSLocalizedDescriptionKey: "Practice data not found."])
             }
             
-            if let existingSeconds = data["seconds"] as? Int {
+            if let existingSeconds = data[Practice.CodingKeys.seconds.rawValue] as? Int {
                 let updatedSeconds = existingSeconds + elapsedTime
-                try await practiceDoc.updateData(["seconds": updatedSeconds])
+                try await practiceDoc.updateData([Practice.CodingKeys.seconds.rawValue: updatedSeconds])
                 print("Practice time updated to \(updatedSeconds) seconds.")
             } else {
                 throw NSError(domain: "PracticeManager", code: 404, userInfo: [NSLocalizedDescriptionKey: "Invalid format for seconds field."])
@@ -208,26 +194,15 @@ final class PracticeManager {
                 throw NSError(domain: "PracticeManager", code: 404, userInfo: [NSLocalizedDescriptionKey: "Practice data not found."])
             }
             
-            let currentSessions = data[PracticeFirestore.CodingKeys.sessionCount.rawValue] as? Int ?? 0
-            try await practiceDoc.updateData([PracticeFirestore.CodingKeys.sessionCount.rawValue: currentSessions + 1])
+            let currentSessions = data[Practice.CodingKeys.sessionCount.rawValue] as? Int ?? 0
+            try await practiceDoc.updateData([
+                Practice.CodingKeys.sessionCount.rawValue: currentSessions + 1
+            ])
             print("Incremented session count for practice ID: \(practiceId)")
         } catch {
             print("Failed to increment session count: \(error)")
             throw error
         }
-    }
-    
-    private func updatePracticeField(practiceId: String, field: String, value: Any) async throws {
-        guard userPracticeCollection() != nil else {
-            throw NSError(domain: "PracticeManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
-        }
-        
-        guard let practiceDoc = practiceDocument(practiceId: practiceId) else {
-            throw NSError(domain: "PracticeManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid practice document reference."])
-        }
-        
-        let data: [String: Any] = [field: value]
-        try await practiceDoc.updateData(data)
     }
     
     func sumSecondsForUserPractices() async throws -> Int {
@@ -239,10 +214,55 @@ final class PracticeManager {
         let documents = snapshot.documents
         
         let totalSeconds = documents.reduce(0) { partialSum, document in
-            let seconds = document.data()["seconds"] as? Int ?? 0
+            let seconds = document.data()[Practice.CodingKeys.seconds.rawValue] as? Int ?? 0
             return partialSum + seconds
         }
         
         return totalSeconds
+    }
+    
+    // MARK: - Вспомогательные методы (encode/decode)
+    
+    private func decodePractice(from data: [String: Any]) -> Practice? {
+        guard
+            let id = data[Practice.CodingKeys.id.rawValue] as? String,
+            let title = data[Practice.CodingKeys.title.rawValue] as? String,
+            let dateAdded = (data[Practice.CodingKeys.dateAdded.rawValue] as? Timestamp)?.dateValue()
+        else {
+            return nil
+        }
+        
+        let streak = data[Practice.CodingKeys.streak.rawValue] as? Int ?? 0
+        let seconds = data[Practice.CodingKeys.seconds.rawValue] as? Int ?? 0
+        let sessionCount = data[Practice.CodingKeys.sessionCount.rawValue] as? Int ?? 1
+        
+        return Practice(
+            id: id,
+            title: title,
+            dateAdded: dateAdded,
+            streak: streak,
+            seconds: seconds,
+            sessionCount: sessionCount
+        )
+    }
+    
+    private func encodePractice(_ practice: Practice) -> [String: Any] {
+        [
+            Practice.CodingKeys.id.rawValue: practice.id,
+            Practice.CodingKeys.title.rawValue: practice.title,
+            Practice.CodingKeys.dateAdded.rawValue: practice.dateAdded ?? Date(),
+            Practice.CodingKeys.streak.rawValue: practice.streak,
+            Practice.CodingKeys.seconds.rawValue: practice.seconds,
+            Practice.CodingKeys.sessionCount.rawValue: practice.sessionCount
+        ]
+    }
+    
+    private func updatePracticeField(practiceId: String, field: String, value: Any) async throws {
+        guard let practiceDoc = practiceDocument(practiceId: practiceId) else {
+            throw NSError(domain: "PracticeManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid practice document reference."])
+        }
+        
+        let data: [String: Any] = [field: value]
+        try await practiceDoc.updateData(data)
     }
 }

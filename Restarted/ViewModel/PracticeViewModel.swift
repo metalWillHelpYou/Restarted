@@ -6,18 +6,15 @@
 //
 
 import Foundation
-import CoreData
 import SwiftUI
 
 @MainActor
 final class PracticeViewModel: ObservableObject {
-    @Published var savedPractices: [PracticeFirestore] = []
-    @Published var activePractices: [PracticeFirestore] = []
-    @Published var selectedPractice: PracticeFirestore? = nil
+    @Published var savedPractices: [Practice] = []
+    @Published var selectedPractice: Practice? = nil
     @Published var showDeleteDialog: Bool = false
-    @Published var practiceTitleHandler: String = ""
+    @Published var practiceTitleInput: String = ""
     @Published var elapsedTime: Int = 0
-    @AppStorage("isNotificationsOn") var isPracticeActive: Bool = false
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
     @Published var totalTime: Int = 0
 
@@ -27,7 +24,12 @@ final class PracticeViewModel: ObservableObject {
     }
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(practicesDidChange), name: .practicesDidChange, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(practicesDidChange),
+            name: .practicesDidChange,
+            object: nil
+        )
     }
     
     deinit {
@@ -40,18 +42,22 @@ final class PracticeViewModel: ObservableObject {
         }
     }
     
-    func startListening() {
-        PracticeManager.shared.startListeningToPractices()
+    // MARK: - Observing
+    
+    func startObserving() {
+        PracticeManager.shared.startObservingPractices()
     }
     
-    func stopListening() {
-        PracticeManager.shared.stopListeningToPractices()
+    func stopObserving() {
+        PracticeManager.shared.stopObservingPractices()
     }
+    
+    // MARK: - CRUD
     
     func addPractice(with title: String) async {
         do {
             try await PracticeManager.shared.addPractice(title: title)
-            practiceTitleHandler = ""
+            practiceTitleInput = ""
         } catch {
             print("Error adding practice: \(error.localizedDescription)")
         }
@@ -60,7 +66,7 @@ final class PracticeViewModel: ObservableObject {
     func editPractice(_ practiceId: String, title: String) async {
         do {
             try await PracticeManager.shared.editPractice(practiceId: practiceId, title: title)
-            practiceTitleHandler = ""
+            practiceTitleInput = ""
         } catch {
             print("Error editing title: \(error.localizedDescription)")
         }
@@ -73,16 +79,16 @@ final class PracticeViewModel: ObservableObject {
             print("Error deleting practice: \(error.localizedDescription)")
         }
     }
-
+    
     func addTimeTo(practiceId: String, time: Int) async {
-        Task {
-            do {
-                try await PracticeManager.shared.updatePracticeTime(for: practiceId, elapsedTime: time)
-            } catch {
-                print("Error adding extra time to practice: \(error.localizedDescription)")
-            }
+        do {
+            try await PracticeManager.shared.updatePracticeTime(for: practiceId, elapsedTime: time)
+        } catch {
+            print("Error adding extra time to practice: \(error.localizedDescription)")
         }
     }
+    
+    // MARK: - Sorting
     
     func sortByTitle() {
         savedPractices.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
@@ -106,11 +112,16 @@ final class PracticeViewModel: ObservableObject {
 
     private func applyCurrentSort() {
         switch currentSortType {
-        case .byTitle: sortByTitle()
-        case .byDateAdded: sortByDateAdded()
-        case .byTime: sortByTime()
+        case .byTitle:
+            sortByTitle()
+        case .byDateAdded:
+            sortByDateAdded()
+        case .byTime:
+            sortByTime()
         }
     }
+    
+    // MARK: - Extra
     
     func sendElapsedTimeToPracticeManager(for practiceId: String) async {
         guard elapsedTime > 0 else { return }

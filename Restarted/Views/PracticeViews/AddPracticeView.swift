@@ -16,7 +16,7 @@ struct AddPracticeView: View {
     
     var body: some View {
         VStack {
-            TextField("New practice", text: $viewModel.practiceTitleHandler)
+            TextField("New practice", text: $viewModel.practiceTitleInput)
                 .padding(.leading, 8)
                 .frame(height: 55)
                 .foregroundStyle(.black)
@@ -25,19 +25,19 @@ struct AddPracticeView: View {
             
             Button(action: {
                 Task {
-                    await viewModel.addPractice(with: viewModel.practiceTitleHandler)
+                    await viewModel.addPractice(with: viewModel.practiceTitleInput)
                 }
                 dismiss()
             }, label: {
                 Text("Save")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.practiceTitleHandler.isEmpty ? Color.text : Color.gray)
+                    .foregroundStyle(!viewModel.practiceTitleInput.isEmpty ? Color.text : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.practiceTitleHandler.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleHandler)
+                    .strokeBackground(!viewModel.practiceTitleInput.isEmpty ? Color.highlight : Color.gray)
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleInput)
             })
-            .disabled(viewModel.practiceTitleHandler.isEmpty)
+            .disabled(viewModel.practiceTitleInput.isEmpty)
             
             Spacer()
         }
@@ -54,11 +54,11 @@ struct EditPracticeView: View {
     @State private var hours: Int = 0
     @State private var minutes: Int = 0
     
-    let practice: PracticeFirestore
+    let practice: Practice
     
     var body: some View {
         VStack {
-            TextField("Edit practice", text: $viewModel.practiceTitleHandler)
+            TextField("Edit practice", text: $viewModel.practiceTitleInput)
                 .padding(.leading, 8)
                 .frame(height: 55)
                 .foregroundStyle(.black)
@@ -67,19 +67,19 @@ struct EditPracticeView: View {
             
             Button(action: {
                 Task {
-                    await viewModel.editPractice(practice.id, title: viewModel.practiceTitleHandler)
+                    await viewModel.editPractice(practice.id, title: viewModel.practiceTitleInput)
                 }
                 dismiss()
             }, label: {
                 Text("Save")
                     .frame(height: 55)
                     .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.practiceTitleHandler.isEmpty ? Color.text : Color.gray)
+                    .foregroundStyle(!viewModel.practiceTitleInput.isEmpty ? Color.text : Color.gray)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.practiceTitleHandler.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleHandler)
+                    .strokeBackground(!viewModel.practiceTitleInput.isEmpty ? Color.highlight : Color.gray)
+                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleInput)
             })
-            .disabled(viewModel.practiceTitleHandler.isEmpty)
+            .disabled(viewModel.practiceTitleInput.isEmpty)
             
             Spacer()
         }

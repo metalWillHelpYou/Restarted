@@ -9,11 +9,15 @@ import SwiftUI
 
 struct PracticeMainScreenView: View {
     @EnvironmentObject var viewModel: PracticeViewModel
+    
     @State private var showAddPractice: Bool = false
     @State private var showEditPractice: Bool = false
     @State private var showDeletePractice: Bool = false
     @State private var showAddTime: Bool = false
-    @State private var selectedPractice: PracticeFirestore? = nil
+    
+    // Можно хранить выбранную практику в ViewModel
+    // или локально, как сейчас.
+    @State private var selectedPractice: Practice? = nil
 
     var body: some View {
         NavigationStack {
@@ -21,9 +25,9 @@ struct PracticeMainScreenView: View {
                 if !viewModel.savedPractices.isEmpty {
                     List {
                         ForEach(viewModel.savedPractices) { practice in
-                            NavigationLink(destination: StopwatchView(practice: practice), label: {
+                            NavigationLink(destination: StopwatchView(practice: practice)) {
                                 Text(practice.title)
-                            })
+                            }
                             .padding(.vertical, 8)
                             .listRowBackground(Color.background)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
@@ -67,10 +71,10 @@ struct PracticeMainScreenView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
             .onAppear {
-                viewModel.startListening()
+                viewModel.startObserving()
             }
             .onDisappear {
-                viewModel.stopListening()
+                viewModel.stopObserving()
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
@@ -95,7 +99,7 @@ struct PracticeMainScreenView: View {
                         .presentationDragIndicator(.visible)
                 }
             }
-            .sheet(isPresented: $showAddTime, content: {
+            .sheet(isPresented: $showAddTime) {
                 AddTimeView { seconds in
                     if let practice = selectedPractice {
                         Task {
@@ -105,7 +109,7 @@ struct PracticeMainScreenView: View {
                 }
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
-            })
+            }
             .confirmationDialog("Are you sure?", isPresented: $showDeletePractice) {
                 if let practice = selectedPractice {
                     Button("Delete", role: .destructive) {
@@ -119,11 +123,13 @@ struct PracticeMainScreenView: View {
     }
 }
 
+// MARK: - Extensions / Private Views
+
 extension PracticeMainScreenView {
     private var addButton: some View {
-        Button(action: {
+        Button {
             showAddPractice.toggle()
-        }) {
+        } label: {
             PlusButton()
         }
     }
