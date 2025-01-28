@@ -34,19 +34,29 @@ final class ShortTestViewModel: ObservableObject {
     }
     
     private func calculateResult() {
-        // Подсчет выполненных критериев
-        var fulfilledCriteriaCount = 0
-
-        for answer in selectedAnswers {
+        var totalScore: Int = 0
+        for (_, answer) in selectedAnswers.enumerated() {
             guard let answer = answer else { continue }
             
-            if answer == .veryOften {
-                fulfilledCriteriaCount += 1
+            let answerScore: Int
+            switch answer {
+            case .never:
+                answerScore = 1
+            case .rarely:
+                answerScore = 2
+            case .sometimes:
+                answerScore = 3
+            case .often:
+                answerScore = 4
+            case .veryOften:
+                answerScore = 5
             }
+            
+            totalScore += answerScore
         }
-
+        
         let conclusion: LocalizedStringKey
-        if fulfilledCriteriaCount >= 5 {
+        if totalScore >= 32 {
             conclusion = """
             High risk of gaming addiction based on DSM-5 criteria.
             
@@ -60,8 +70,7 @@ final class ShortTestViewModel: ObservableObject {
             """
         }
 
-        // Сохранение результата
-        self.result = TestResult(totalScore: fulfilledCriteriaCount, conclusion: conclusion)
+        self.result = TestResult(totalScore: totalScore, conclusion: conclusion)
     }
     
     func showPreviousQuestion() {
@@ -76,4 +85,3 @@ final class ShortTestViewModel: ObservableObject {
         result = nil
     }
 }
-

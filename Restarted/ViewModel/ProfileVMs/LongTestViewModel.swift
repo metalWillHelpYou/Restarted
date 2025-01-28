@@ -34,41 +34,31 @@ final class LongTestViewModel: ObservableObject {
     }
     
     private func calculateResult() {
-        let questionToCriteriaMap: [LongTestQuestions: Int] = [
-            .question1: 0, .question7: 0,                   // Preoccupation
-            .question4: 1, .question10: 1, .question16: 1,  // Withdrawal
-            .question3: 2, .question9: 2,                   // Tolerance
-            .question6: 3, .question12: 3, .question18: 3,  // Failure to Control
-            .question5: 4, .question13: 4,                  // Loss of Interest
-            .question20: 5,                                 // Continuation
-            .question11: 6,                                 // Deception
-            .question2: 7, .question8: 7, .question14: 7,   // Escape
-            .question17: 8, .question19: 8, .question15: 8  // Loss of Opportunities
-        ]
-
-        // Массив для отслеживания выполнения критериев
-        var criteriaFulfilled = Array(repeating: false, count: 9)
-
-        // Проверка выполнения критериев
-        for (index, answer) in selectedAnswers.enumerated() {
+        var totalScore: Int = 0
+        for (_, answer) in selectedAnswers.enumerated() {
             guard let answer = answer else { continue }
             
-            let question = LongTestQuestions.allCases[index]
-            guard let criteriaIndex = questionToCriteriaMap[question] else { continue }
-
-            if answer == .stronglyAgree {
-                criteriaFulfilled[criteriaIndex] = true
+            let answerScore: Int
+            switch answer {
+            case .stronglyDisagree:
+                answerScore = 1
+            case .disagree:
+                answerScore = 2
+            case .neitherAgreeNorDisagree:
+                answerScore = 3
+            case .agree:
+                answerScore = 4
+            case .stronglyAgree:
+                answerScore = 5
             }
+            
+            totalScore += answerScore
         }
         
-        // Подсчет выполненных критериев
-        let fulfilledCriteriaCount = criteriaFulfilled.filter { $0 }.count
-
-        // Заключение
         let conclusion: LocalizedStringKey
-        if fulfilledCriteriaCount >= 5 {
+        if totalScore >= 71 {
             conclusion = """
-            High risk of gaming addiction based on DSM-5 criteria.
+            High risk of gaming addiction detected based on your test score.
             
             It is strongly recommended to consult a specialist.
             """
@@ -80,8 +70,7 @@ final class LongTestViewModel: ObservableObject {
             """
         }
         
-        // Сохранение результата
-        self.result = TestResult(totalScore: fulfilledCriteriaCount, conclusion: conclusion)
+        self.result = TestResult(totalScore: totalScore, conclusion: conclusion)
     }
     
     func showPreviousQuestion() {
