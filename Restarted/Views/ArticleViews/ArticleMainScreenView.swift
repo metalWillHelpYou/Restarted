@@ -15,9 +15,8 @@ struct ArticleMainScreenView: View {
             ScrollView {
                 VStack(spacing: 16) {
                     if !viewModel.savedArticles.isEmpty {
-                        beginnerSection
-                        
-                        intermediateSection
+                        articleSection(title: "Beginner level", filter: { $0.isForBeginners })
+                        articleSection(title: "Intermediate level", filter: { !$0.isForBeginners })
                     } else {
                         ProgressView()
                     }
@@ -27,57 +26,29 @@ struct ArticleMainScreenView: View {
             .navigationTitle("Articles")
             .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .background(Color.background)
-            .onAppear {
-                viewModel.startListening()
-            }
-            .onDisappear {
-                viewModel.stopListening()
+            .onAppear { viewModel.startObserving() }
+            .onDisappear { viewModel.stopObserving() }
+        }
+    }
+    
+    private func articleSection(title: String, filter: (Article) -> Bool) -> some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.title)
+                .padding(.horizontal)
+                .offset(y: 8)
+            
+            ForEach(viewModel.savedArticles.filter(filter)) { article in
+                NavigationLink(destination: ArticleView(article: article)) {
+                    ArticleCardView(article: article)
+                        .padding(.bottom)
+                }
             }
         }
     }
 }
-
-//TODO: добавить в struct Article проперти для отслеживания прочтения статьи(показывать что статья прочитана)
 
 #Preview {
     ArticleMainScreenView()
         .environmentObject(ArticleViewModel())
-}
-
-extension ArticleMainScreenView {
-    private var beginnerSection: some View {
-        VStack(alignment: .leading) {
-            Text("Beginer level")
-                .font(.title)
-                .padding(.horizontal)
-                .offset(y: 8)
-            
-            ForEach(viewModel.savedArticles) { article in
-                if article.isForBeginers {
-                    NavigationLink(destination: ArticleView(article: article)) {
-                        ArticleCardView(article: article)
-                            .padding(.bottom)
-                    }
-                }
-            }
-        }
-    }
-    
-    private var intermediateSection: some View {
-        VStack(alignment: .leading) {
-            Text("Intermediate level")
-                .font(.title)
-                .padding(.horizontal)
-                .offset(y: 8)
-            
-            ForEach(viewModel.savedArticles) { article in
-                if !article.isForBeginers {
-                    NavigationLink(destination: ArticleView(article: article)) {
-                        ArticleCardView(article: article)
-                            .padding(.bottom)
-                    }
-                }
-            }
-        }
-    }
 }

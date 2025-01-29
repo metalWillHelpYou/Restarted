@@ -22,18 +22,6 @@ struct TimePresetFirestore: Codable, Identifiable, Equatable {
         case id = "preset_id"
         case seconds = "preset_seconds"
     }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.id, forKey: .id)
-        try container.encodeIfPresent(self.seconds, forKey: .seconds)
-    }
-    
-    init(from decoder: any Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(String.self, forKey: .id)
-        self.seconds = try container.decode(Int.self, forKey: .seconds)
-    }
 }
 
 

@@ -32,21 +32,19 @@ struct GameMainScreenView: View {
                                 }
                                 .listRowBackground(Color.background)
                                 .padding(.vertical, 8)
-                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
                                     Button("Add time") {
                                         selectedGame = game
                                         showAddTime.toggle()
                                     }
                                     .tint(.gray)
-                                }
-                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                    
                                     Button("Edit") {
                                         selectedGame = game
                                         showEditGameSheet.toggle()
                                     }
                                     .tint(.orange)
                                 }
-                                
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button("Delete") {
                                         selectedGame = game
@@ -111,12 +109,8 @@ struct GameMainScreenView: View {
                 try? await lnManager.requestAuthorization()
                 await lnManager.getCurrentSettings()
             }
-            .onAppear {
-                viewModel.startListening()
-            }
-            .onDisappear {
-                viewModel.stopListening()
-            }
+            .onAppear { viewModel.startObservingGames() }
+            .onDisappear { viewModel.stopObservingGames() }
             .onChange(of: selectedGame) { newValue, _ in
                 print("gameToEdit changed to: \(String(describing: newValue))")
             }

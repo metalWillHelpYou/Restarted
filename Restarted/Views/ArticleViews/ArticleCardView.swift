@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ArticleCardView: View {
-    @EnvironmentObject var articleVm: ArticleViewModel
+    @EnvironmentObject var articleViewModel: ArticleViewModel
     let article: Article
     
     var body: some View {
@@ -24,7 +24,7 @@ struct ArticleCardView: View {
             
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.25)) {
-                    articleVm.toggleReadStatus(for: article.id)
+                    articleViewModel.toggleReadStatus(for: article.id)
                 }
             }, label: {
                 Image(systemName: article.isRead ? "checkmark.circle" : "circle")
@@ -42,6 +42,6 @@ struct ArticleCardView: View {
 }
 
 #Preview {
-    ArticleCardView(article: Article(id: "id", title: "Title", text: "Text", isForBeginers: true, readingTime: 7))
+    ArticleCardView(article: Article(id: "id", title: "Title", text: "Text", isForBeginners: true, readingTime: 7))
         .environmentObject(ArticleViewModel())
 }

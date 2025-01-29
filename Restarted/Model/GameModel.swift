@@ -118,7 +118,6 @@ final class GameManager {
         let gameData = createGameData(from: newGame)
         
         do {
-            // Добавляем новую игру
             try await gameCollection.document(newGameId).setData(gameData)
             print("Game successfully added with ID: \(newGameId)")
         } catch {

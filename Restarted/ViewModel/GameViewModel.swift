@@ -56,16 +56,6 @@ final class GameViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    @objc private func gamesDidChange() {
-        DispatchQueue.main.async {
-            self.savedGames = self.gameManager.games
-            self.applyCurrentSort()
-            if self.selectedGameId == nil, let firstGame = self.savedGames.first {
-                self.selectedGameId = firstGame.id
-            }
-        }
-    }
-    
     private func applyCurrentSort() {
         switch currentSortType {
         case .byTitle:
@@ -84,11 +74,11 @@ final class GameViewModel: ObservableObject {
 
     // MARK: - Listeners
     
-    func startListening() {
+    func startObservingGames() {
         gameManager.startListeningToGames()
     }
     
-    func stopListening() {
+    func stopObservingGames() {
         gameManager.stopListeningToGames()
         presetManager.stopListeningToPresets()
     }

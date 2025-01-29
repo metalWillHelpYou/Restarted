@@ -37,7 +37,6 @@ struct SetUpTimerView: View {
         .background(Color.background)
         .navigationTitle(gameTitle)
         .navigationBarTitleDisplayMode(.inline)
-        .onDisappear { viewModel.savedPresets = [] }
         .onAppear {
             if let game = game {
                 viewModel.selectedGameId = game.id

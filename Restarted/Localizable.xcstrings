@@ -223,6 +223,7 @@
       }
     },
     "Beginer level" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -892,6 +893,7 @@
       }
     },
     "Intermediate level" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {

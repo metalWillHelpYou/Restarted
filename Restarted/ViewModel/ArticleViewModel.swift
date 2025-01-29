@@ -11,11 +11,12 @@ import Combine
 @MainActor
 final class ArticleViewModel: ObservableObject {
     @Published var savedArticles: [Article] = []
-    private let manager = ArticleManager.shared
+    
+    private let articleManager = ArticleManager.shared
     private var cancellables = Set<AnyCancellable>()
 
     init() {
-        manager.$articles
+        articleManager.$articles
             .receive(on: RunLoop.main)
             .sink { [weak self] articles in
                 self?.savedArticles = articles
@@ -23,12 +24,12 @@ final class ArticleViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    func startListening() {
-        ArticleManager.shared.startListeningToArticles()
+    func startObserving() {
+        articleManager.startObservingArticles()
     }
     
-    func stopListening() {
-        ArticleManager.shared.stopListeningToArticles()
+    func stopObserving() {
+        articleManager.stopObservingArticles()
     }
 
     func toggleReadStatus(for articleId: String) {
@@ -41,7 +42,7 @@ final class ArticleViewModel: ObservableObject {
         
         Task {
             do {
-                try await ArticleManager.shared.updateReadStatus(
+                try await articleManager.updateReadStatus(
                     articleId: articleId,
                     isRead: updatedIsRead
                 )

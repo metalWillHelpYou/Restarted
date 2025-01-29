@@ -14,7 +14,7 @@ struct Article: Codable, Identifiable, Equatable {
     let title: String
     let text: String
     var isRead: Bool
-    let isForBeginers: Bool
+    let isForBeginners: Bool
     let readingTime: Int
 
     init(
@@ -22,23 +22,23 @@ struct Article: Codable, Identifiable, Equatable {
         title: String,
         text: String,
         isRead: Bool = false,
-        isForBeginers: Bool,
+        isForBeginners: Bool,
         readingTime: Int
     ) {
         self.id = id
         self.title = title
         self.text = text
         self.isRead = isRead
-        self.isForBeginers = isForBeginers
+        self.isForBeginners = isForBeginners
         self.readingTime = readingTime
     }
 
     enum CodingKeys: String, CodingKey {
-        case id = "id"
-        case title = "title"
-        case text = "text"
+        case id
+        case title
+        case text
         case isRead = "is_read"
-        case isForBeginers = "is_for_beginers"
+        case isForBeginners = "is_for_beginners"
         case readingTime = "reading_time"
     }
 }
@@ -60,7 +60,7 @@ final class ArticleManager: ObservableObject {
         return db.collection("users").document(userId).collection("articles")
     }
     
-    func startListeningToArticles() {
+    func startObservingArticles() {
         guard let articlesCollection = userArticlesCollection() else {
             print("Error: User is not authenticated or collection is unavailable.")
             return
@@ -90,7 +90,7 @@ final class ArticleManager: ObservableObject {
         }
     }
     
-    func stopListeningToArticles() {
+    func stopObservingArticles() {
         listener?.remove()
         listener = nil
     }
@@ -118,4 +118,3 @@ final class ArticleManager: ObservableObject {
         return articlesCollection.document(articleId)
     }
 }
-
