@@ -5,12 +5,15 @@
 //  Created by metalWillHelpYou on 07.09.2024.
 //
 
-import Foundation
 import SwiftUI
+import Combine
 
 @MainActor
 final class PracticeViewModel: ObservableObject {
     @Published var savedPractices: [Practice] = []
+    private let manager = PracticeManager.shared
+    private var cancellables = Set<AnyCancellable>()
+    
     @Published var selectedPractice: Practice? = nil
     @Published var showDeleteDialog: Bool = false
     @Published var practiceTitleInput: String = ""
@@ -24,39 +27,29 @@ final class PracticeViewModel: ObservableObject {
     }
     
     init() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(practicesDidChange),
-            name: .practicesDidChange,
-            object: nil
-        )
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .practicesDidChange, object: nil)
-    }
-    
-    @objc private func practicesDidChange() {
-        DispatchQueue.main.async {
-            self.savedPractices = PracticeManager.shared.practices
-        }
+        manager.$practices
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newPractices in
+                self?.savedPractices = newPractices
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Observing
     
     func startObserving() {
-        PracticeManager.shared.startObservingPractices()
+        manager.startObservingPractices()
     }
     
     func stopObserving() {
-        PracticeManager.shared.stopObservingPractices()
+        manager.stopObservingPractices()
     }
     
     // MARK: - CRUD
     
     func addPractice(with title: String) async {
         do {
-            try await PracticeManager.shared.addPractice(title: title)
+            try await manager.addPractice(title: title)
             practiceTitleInput = ""
         } catch {
             print("Error adding practice: \(error.localizedDescription)")
@@ -65,7 +58,7 @@ final class PracticeViewModel: ObservableObject {
 
     func editPractice(_ practiceId: String, title: String) async {
         do {
-            try await PracticeManager.shared.editPractice(practiceId: practiceId, title: title)
+            try await manager.editPractice(practiceId: practiceId, title: title)
             practiceTitleInput = ""
         } catch {
             print("Error editing title: \(error.localizedDescription)")
@@ -74,7 +67,7 @@ final class PracticeViewModel: ObservableObject {
 
     func deletePractice(with id: String) async {
         do {
-            try await PracticeManager.shared.deletePractice(practiceId: id)
+            try await manager.deletePractice(practiceId: id)
         } catch {
             print("Error deleting practice: \(error.localizedDescription)")
         }
@@ -82,7 +75,7 @@ final class PracticeViewModel: ObservableObject {
     
     func addTimeTo(practiceId: String, time: Int) async {
         do {
-            try await PracticeManager.shared.updatePracticeTime(for: practiceId, elapsedTime: time)
+            try await manager.updatePracticeTime(for: practiceId, elapsedTime: time)
         } catch {
             print("Error adding extra time to practice: \(error.localizedDescription)")
         }
@@ -127,7 +120,7 @@ final class PracticeViewModel: ObservableObject {
         guard elapsedTime > 0 else { return }
         
         do {
-            try await PracticeManager.shared.updatePracticeTime(for: practiceId, elapsedTime: elapsedTime)
+            try await manager.updatePracticeTime(for: practiceId, elapsedTime: elapsedTime)
             print("Updated practice time successfully!")
         } catch {
             print("Error updating practice time: \(error)")
@@ -135,6 +128,6 @@ final class PracticeViewModel: ObservableObject {
     }
     
     func calculatePracticeTime() {
-        totalTime = PracticeManager.shared.practices.reduce(0) { $0 + $1.seconds }
+        totalTime = manager.practices.reduce(0) { $0 + $1.seconds }
     }
 }

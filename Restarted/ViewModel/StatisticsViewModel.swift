@@ -6,54 +6,66 @@
 //
 
 import Foundation
+import Combine
 
 @MainActor
 final class StatisticsViewModel: ObservableObject {
-    // MARK: - Published Properties
-    
     @Published var games: [GameFirestore] = []
     @Published var practices: [Practice] = []
+    
     @Published var practicePercentage: Double = 0
     @Published var gamePercentage: Double = 0
     @Published var practiceTime: Int = 0
     @Published var gameTime: Int = 0
     
+    private let gameManager = GameManager.shared
+    private let practiceManager = PracticeManager.shared
+
+    private var cancellables = Set<AnyCancellable>()
+    
     // MARK: - Initialization
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(gamesDidChange), name: .gamesDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(practicesDidChange), name: .practicesDidChange, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .gamesDidChange, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .practicesDidChange, object: nil)
+        gameManager.$games
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newGames in
+                self?.games = newGames
+            }
+            .store(in: &cancellables)
+        
+        practiceManager.$practices
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newPractices in
+                self?.practices = newPractices
+                self?.calculateTimeDistribution()
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Listener Management
     
     func startListening() {
-        GameManager.shared.startListeningToGames()
-        PracticeManager.shared.startObservingPractices()
+        gameManager.startListeningToGames()
+        practiceManager.startObservingPractices()
     }
     
     func stopListening() {
-        GameManager.shared.stopListeningToGames()
-        PracticeManager.shared.stopObservingPractices()
+        gameManager.stopListeningToGames()
+        practiceManager.stopObservingPractices()
     }
     
     // MARK: - Notification Handlers
     
     @objc private func gamesDidChange() {
         DispatchQueue.main.async {
-            self.games = GameManager.shared.games
+            self.games = self.gameManager.games
             self.calculateTimeDistribution()
         }
     }
     
     @objc private func practicesDidChange() {
         DispatchQueue.main.async {
-            self.practices = PracticeManager.shared.practices
+            self.practices = self.practiceManager.practices
             self.calculateTimeDistribution()
         }
     }

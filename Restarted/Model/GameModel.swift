@@ -41,15 +41,12 @@ struct GameFirestore: Codable, Identifiable, Equatable {
 
 final class GameManager {
     static let shared = GameManager()
-    private init() { }
+    @Published var games: [GameFirestore] = []
     
-    private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-    var games: [GameFirestore] = [] {
-        didSet {
-            NotificationCenter.default.post(name: .gamesDidChange, object: nil)
-        }
-    }
+    private let db = Firestore.firestore()
+    
+    private init() { }
     
     private func userGameCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {

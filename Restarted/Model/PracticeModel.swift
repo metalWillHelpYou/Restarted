@@ -43,18 +43,14 @@ struct Practice: Codable, Identifiable, Equatable {
     }
 }
 
-final class PracticeManager {
+final class PracticeManager: ObservableObject {
     static let shared = PracticeManager()
-    private init() { }
+    @Published var practices: [Practice] = []
     
-    private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-    
-    var practices: [Practice] = [] {
-        didSet {
-            NotificationCenter.default.post(name: .practicesDidChange, object: nil)
-        }
-    }
+    private let db = Firestore.firestore()
+
+    private init() { }
     
     // MARK: - Firestore references
     

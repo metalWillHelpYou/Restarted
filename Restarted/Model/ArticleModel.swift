@@ -43,18 +43,15 @@ struct Article: Codable, Identifiable, Equatable {
     }
 }
 
-final class ArticleManager {
+final class ArticleManager: ObservableObject {
     static let shared = ArticleManager()
-    private init() { }
+    @Published var articles: [Article] = []
     
-    private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-    var articles: [Article] = [] {
-        didSet {
-            NotificationCenter.default.post(name: .articlesDidChange, object: nil)
-        }
-    }
+    private let db = Firestore.firestore()
     
+    private init() { }
+
     private func userArticlesCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: The user is not authenticated.")

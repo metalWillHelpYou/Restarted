@@ -39,15 +39,12 @@ struct TimePresetFirestore: Codable, Identifiable, Equatable {
 
 final class GamePresetManager {
     static let shared = GamePresetManager()
-    private init() { }
+    @Published var gamePresets: [TimePresetFirestore] = []
     
-    private let db = Firestore.firestore()
     private var listener: ListenerRegistration?
-    var gamePresets: [TimePresetFirestore] = [] {
-        didSet {
-            NotificationCenter.default.post(name: .gamePresetsDidChange, object: nil)
-        }
-    }
+    private let db = Firestore.firestore()
+    
+    private init() { }
     
     private func presetDocument(forGameId gameId: String, presetId: String) -> DocumentReference? {
         guard let presetCollection = presetCollection(forGameId: gameId) else { return nil }
@@ -68,7 +65,6 @@ final class GamePresetManager {
             return
         }
         
-        // Устанавливаем слушатель
         listener = collection.addSnapshotListener { [weak self] snapshot, error in
             if let error = error {
                 print("Error listening to preset changes: \(error.localizedDescription)")

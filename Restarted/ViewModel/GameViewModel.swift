@@ -6,19 +6,29 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
+import Combine
 
 @MainActor
 final class GameViewModel: ObservableObject {
     @Published var savedGames: [GameFirestore] = []
     @Published var savedPresets: [TimePresetFirestore] = []
+    @Published var gameTitleHandler: String = ""
     @Published var selectedGameId: String? {
         didSet {
-            updatePresetListener()
+            guard let gameId = selectedGameId else {
+                presetManager.stopListeningToPresets()
+                savedPresets = []
+                return
+            }
+            presetManager.startListeningToPresets(forGameId: gameId)
         }
     }
-    @Published var gameTitleHandler: String = ""
+    
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
+    
+    private let gameManager = GameManager.shared
+    private let presetManager = GamePresetManager.shared
+    private var cancellables = Set<AnyCancellable>()
 
     private var currentSortType: SortType {
         get { SortType(rawValue: currentSortTypeRawValue)! }
@@ -26,29 +36,33 @@ final class GameViewModel: ObservableObject {
     }
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(gamesDidChange), name: .gamesDidChange, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(presetsDidChange), name: .gamePresetsDidChange, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .gamesDidChange, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .gamePresetsDidChange, object: nil)
-        GamePresetManager.shared.stopListeningToPresets()
+        gameManager.$games
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newGames in
+                guard let self = self else { return }
+                self.savedGames = newGames
+                self.applyCurrentSort()
+                if self.selectedGameId == nil, let firstGame = newGames.first {
+                    self.selectedGameId = firstGame.id
+                }
+            }
+            .store(in: &cancellables)
+
+        presetManager.$gamePresets
+            .receive(on: RunLoop.main)
+            .sink { [weak self] newPresets in
+                self?.savedPresets = newPresets
+            }
+            .store(in: &cancellables)
     }
     
     @objc private func gamesDidChange() {
         DispatchQueue.main.async {
-            self.savedGames = GameManager.shared.games
+            self.savedGames = self.gameManager.games
             self.applyCurrentSort()
             if self.selectedGameId == nil, let firstGame = self.savedGames.first {
                 self.selectedGameId = firstGame.id
             }
-        }
-    }
-    
-    @objc private func presetsDidChange() {
-        DispatchQueue.main.async {
-            self.savedPresets = GamePresetManager.shared.gamePresets
         }
     }
     
@@ -71,31 +85,31 @@ final class GameViewModel: ObservableObject {
     // MARK: - Listeners
     
     func startListening() {
-        GameManager.shared.startListeningToGames()
+        gameManager.startListeningToGames()
     }
     
     func stopListening() {
-        GameManager.shared.stopListeningToGames()
-        GamePresetManager.shared.stopListeningToPresets()
+        gameManager.stopListeningToGames()
+        presetManager.stopListeningToPresets()
     }
     
     private func updatePresetListener() {
         guard let gameId = selectedGameId else {
-            GamePresetManager.shared.stopListeningToPresets()
+            presetManager.stopListeningToPresets()
             savedPresets = []
             print("Preset listener stopped: No game selected.")
             return
         }
         
         print("Starting preset listener for game ID: \(gameId)")
-        GamePresetManager.shared.startListeningToPresets(forGameId: gameId)
+        presetManager.startListeningToPresets(forGameId: gameId)
     }
 
     // MARK: - Game Management
 
     func addGame(with title: String) async {
         do {
-            try await GameManager.shared.addGame(withTitle: title)
+            try await gameManager.addGame(withTitle: title)
             gameTitleHandler = ""
         } catch {
             print("Error adding game: \(error.localizedDescription)")
@@ -104,7 +118,7 @@ final class GameViewModel: ObservableObject {
 
     func editGame(gameId: String, title: String) async throws {
         do {
-            try await GameManager.shared.editGame(gameId: gameId, title: title)
+            try await gameManager.editGame(gameId: gameId, title: title)
             gameTitleHandler = ""
         } catch {
             print("Error editing title: \(error.localizedDescription)")
@@ -113,7 +127,7 @@ final class GameViewModel: ObservableObject {
 
     func deleteGame(with id: String) async {
         do {
-            try await GameManager.shared.deleteGame(gameId: id)
+            try await gameManager.deleteGame(gameId: id)
             if selectedGameId == id {
                 selectedGameId = savedGames.first?.id
             }
@@ -125,7 +139,7 @@ final class GameViewModel: ObservableObject {
     func addTimeTo(gameId: String, time: Int) async {
         Task {
             do {
-                try await GameManager.shared.updateGameTime(for: gameId, elapsedTime: time)
+                try await gameManager.updateGameTime(for: gameId, elapsedTime: time)
             } catch {
                 print("Error adding extra time to game: \(error.localizedDescription)")
             }
@@ -134,7 +148,7 @@ final class GameViewModel: ObservableObject {
     
     func deletePreset(with id: String, for gameId: String) async {
         do {
-            try await GamePresetManager.shared.deletePreset(forGameId: gameId, presetId: id)
+            try await presetManager.deletePreset(forGameId: gameId, presetId: id)
         } catch {
             print("Error deleting preset: \(error.localizedDescription)")
         }

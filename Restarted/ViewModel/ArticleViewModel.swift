@@ -6,24 +6,21 @@
 //
 
 import SwiftUI
-import FirebaseFirestore
+import Combine
 
 @MainActor
 final class ArticleViewModel: ObservableObject {
     @Published var savedArticles: [Article] = []
+    private let manager = ArticleManager.shared
+    private var cancellables = Set<AnyCancellable>()
 
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(articlesDidChange), name: .articlesDidChange, object: nil)
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self, name: .articlesDidChange, object: nil)
-    }
-    
-    @objc private func articlesDidChange() {
-        DispatchQueue.main.async {
-            self.savedArticles = ArticleManager.shared.articles
-        }
+        manager.$articles
+            .receive(on: RunLoop.main)
+            .sink { [weak self] articles in
+                self?.savedArticles = articles
+            }
+            .store(in: &cancellables)
     }
     
     func startListening() {
