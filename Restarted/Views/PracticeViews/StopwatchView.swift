@@ -72,12 +72,7 @@ extension StopwatchView {
             viewModel.isStopwatchRunning ? viewModel.pauseStopwatch() : viewModel.startStopwatch(forPracticeId: practice.id)
         }) {
             Text(viewModel.isStopwatchRunning ? "Pause" : "Resume")
-                .foregroundStyle(Color.white)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .padding(.horizontal)
-                .frame(height: 55)
-                .strokeBackground(Color.white)
+                .withSimpleButtonFormatting(foregroundStyle: Color.white, strokeBackground: Color.white)
         }
     }
 }

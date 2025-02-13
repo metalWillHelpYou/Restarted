@@ -58,11 +58,7 @@ extension LongTestView {
                 }
             }) {
                 Text(answer.rawValue)
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color.text)
-                    .strokeBackground(Color.highlight)
-                    .padding(.horizontal)
+                    .withAnswerButtonFormatting()
             }
         }
     }
@@ -105,10 +101,7 @@ extension LongTestView {
                 dismiss()
                 viewModel.resetTest()
             }
-            .frame(height: 55)
-            .frame(maxWidth: .infinity)
-            .foregroundStyle(Color.text)
-            .strokeBackground(Color.highlight)
+            .withSimpleButtonFormatting(foregroundStyle: Color.text)
             .padding(.horizontal)
         }
     }

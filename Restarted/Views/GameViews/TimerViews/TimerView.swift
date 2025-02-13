@@ -90,20 +90,6 @@ extension TimerView {
         return seconds > 0 ? CGFloat(viewModel.timeRemaining) / CGFloat(seconds) : 0
     }
     
-    private var pauseButton: some View {
-        Button(action: {
-            viewModel.isTimerRunning ? viewModel.pauseTimer() : viewModel.resumeTimer()
-        }, label: {
-            Text(viewModel.isTimerRunning ? "Pause" : "Resume")
-                .foregroundStyle(Color.white)
-                .frame(maxWidth: .infinity)
-                .padding()
-                .padding(.horizontal)
-                .frame(height: 55)
-                .strokeBackground(Color.white)
-        })
-    }
-    
     private var stopButton: some View {
         Button(action: {
             showStopDialog.toggle()
@@ -117,13 +103,21 @@ extension TimerView {
         })
     }
     
+    private var pauseButton: some View {
+        Button(action: {
+            viewModel.isTimerRunning ? viewModel.pauseTimer() : viewModel.resumeTimer()
+        }, label: {
+            Text(viewModel.isTimerRunning ? "Pause" : "Resume")
+                .withSimpleButtonFormatting(foregroundStyle: Color.white, strokeBackground: Color.white)
+        })
+    }
+    
     private var stopConfirmationButtons: some View {
         Group {
             if let game = game {
                 Button("Stop", role: .destructive) {
                     viewModel.stopTimer(forGameId: game.id)
                     isTimerRunning = false
-                    
                     notificationManager.removeRequest(withIdentifier: "TimerEnded")
                     dismiss()
                 }

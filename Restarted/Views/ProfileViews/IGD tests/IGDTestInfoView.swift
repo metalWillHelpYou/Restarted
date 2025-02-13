@@ -43,10 +43,7 @@ struct IGDTestInfoView: View {
                     testType == .shortTest ? AnyView(ShortTestView()) : AnyView(LongTestView())
                 }) {
                     Text("Start Test")
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(Color.text)
-                        .strokeBackground(Color.highlight)
+                        .withSimpleButtonFormatting(foregroundStyle: Color.text)
                 }
                 .padding(.vertical)
             }

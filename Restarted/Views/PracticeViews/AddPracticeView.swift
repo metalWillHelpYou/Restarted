@@ -17,11 +17,7 @@ struct AddPracticeView: View {
     var body: some View {
         VStack {
             TextField("New practice", text: $viewModel.practiceTitleInput)
-                .padding(.leading, 8)
-                .frame(height: 55)
-                .foregroundStyle(.black)
-                .background(Color.highlight.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .withTextFieldModifires()
             
             Button(action: {
                 Task {
@@ -30,12 +26,7 @@ struct AddPracticeView: View {
                 dismiss()
             }, label: {
                 Text("Save")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.practiceTitleInput.isEmpty ? Color.text : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.practiceTitleInput.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleInput)
+                    .withAnimatedButtonFormatting(viewModel.practiceTitleInput.isEmpty)
             })
             .disabled(viewModel.practiceTitleInput.isEmpty)
             
@@ -59,11 +50,7 @@ struct EditPracticeView: View {
     var body: some View {
         VStack {
             TextField("Edit practice", text: $viewModel.practiceTitleInput)
-                .padding(.leading, 8)
-                .frame(height: 55)
-                .foregroundStyle(.black)
-                .background(Color.highlight.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .withTextFieldModifires()
             
             Button(action: {
                 Task {
@@ -72,12 +59,7 @@ struct EditPracticeView: View {
                 dismiss()
             }, label: {
                 Text("Save")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.practiceTitleInput.isEmpty ? Color.text : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.practiceTitleInput.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.practiceTitleInput)
+                    .withAnimatedButtonFormatting(viewModel.practiceTitleInput.isEmpty)
             })
             .disabled(viewModel.practiceTitleInput.isEmpty)
             

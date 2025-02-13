@@ -20,12 +20,9 @@ struct SignInWithEmailView: View {
                     .padding(.vertical)
                 
                 TextField("Email", text: $viewModel.email)
+                    .withTextFieldModifires()
                     .padding()
-                    .background(Color.gray.opacity(0.4))
-                    .foregroundStyle(Color.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .keyboardType(.emailAddress)
-                
+
                 SecureField("Password", text: $viewModel.password)
                     .padding()
                     .background(Color.gray.opacity(0.4))
@@ -56,11 +53,7 @@ struct SignInWithEmailView: View {
                     }
                 }, label: {
                     Text("Sign In")
-                        .frame(height: 55)
-                        .frame(maxWidth: .infinity)
-                        .foregroundStyle(viewModel.isButtonEnabled ? Color.text : Color.gray)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .strokeBackground(viewModel.isButtonEnabled ? Color.highlight : Color.gray.opacity(0.4))
+                        .withAnimatedButtonFormatting(viewModel.isButtonEnabled)
                 })
                 .disabled(!viewModel.isButtonEnabled)
                 .padding(.top, 56)
@@ -68,7 +61,6 @@ struct SignInWithEmailView: View {
         }
     }
 }
-
 
 #Preview {
     SignInWithEmailView()

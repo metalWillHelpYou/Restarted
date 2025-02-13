@@ -31,20 +31,14 @@ struct QGTestsView: View {
                         answer = "Me too!"
                     }) {
                         Text("Yes")
-                            .frame(height: 55)
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(Color.text)
-                            .strokeBackground(Color.highlight)
+                            .withAnswerButtonFormatting()
                     }
                     
                     Button(action: {
                         answer = "I don't believe you"
                     }) {
                         Text("No")
-                            .frame(height: 55)
-                            .frame(maxWidth: .infinity)
-                            .foregroundStyle(Color.text)
-                            .strokeBackground(Color.highlight)
+                            .withAnswerButtonFormatting()
                     }
                 }
             }

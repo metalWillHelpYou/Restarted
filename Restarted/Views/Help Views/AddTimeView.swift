@@ -46,11 +46,7 @@ struct AddTimeView: View {
                 dismiss()
             } label: {
                 Text("Add")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color.text)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(Color.highlight)
+                    .withSimpleButtonFormatting(foregroundStyle: Color.text)
                     .padding(.bottom, 36)
             }
         }

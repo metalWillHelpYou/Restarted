@@ -14,22 +14,16 @@ struct ChangeNameSheetView: View {
     var body: some View {
         VStack {
             TextField("New name", text: $viewModel.newNameHandler)
-                .padding(.leading, 8)
-                .frame(height: 55)
-                .foregroundStyle(.black)
-                .background(Color.highlight.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .withTextFieldModifires()
             
             Button(action: {
                 viewModel.changeUserName()
                 dismiss()
             }, label: {
                 Text("Save")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(Color.text)
-                    .strokeBackground(Color.highlight)
+                    .withAnimatedButtonFormatting(viewModel.newNameHandler.isEmpty)
             })
+            .disabled(viewModel.newNameHandler.isEmpty)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)

@@ -63,6 +63,7 @@
 		9BBD4D192D200A49003A0B4C /* PresetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBD4D182D200A49003A0B4C /* PresetModel.swift */; };
 		9BBE00552D43FDCF001BE1DA /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE00542D43FDCF001BE1DA /* LanguageManager.swift */; };
 		9BBE86DB2D19E8DD0069B58E /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBE86DA2D19E8DD0069B58E /* GameModel.swift */; };
+		9BC35C3D2D5E499100992A76 /* CustomModifires.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BC35C3C2D5E499100992A76 /* CustomModifires.swift */; };
 		9BD5E8B52CF23646002464E4 /* IGDTest Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B42CF23646002464E4 /* IGDTest Model.swift */; };
 		9BD5E8B72CF24E12002464E4 /* LongTestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B62CF24E12002464E4 /* LongTestViewModel.swift */; };
 		9BD5E8B92CF24F89002464E4 /* ShortTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BD5E8B82CF24F89002464E4 /* ShortTestView.swift */; };
@@ -138,6 +139,7 @@
 		9BBD4D182D200A49003A0B4C /* PresetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresetModel.swift; sourceTree = "<group>"; };
 		9BBE00542D43FDCF001BE1DA /* LanguageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageManager.swift; sourceTree = "<group>"; };
 		9BBE86DA2D19E8DD0069B58E /* GameModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		9BC35C3C2D5E499100992A76 /* CustomModifires.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifires.swift; sourceTree = "<group>"; };
 		9BD5E8B42CF23646002464E4 /* IGDTest Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IGDTest Model.swift"; sourceTree = "<group>"; };
 		9BD5E8B62CF24E12002464E4 /* LongTestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongTestViewModel.swift; sourceTree = "<group>"; };
 		9BD5E8B82CF24F89002464E4 /* ShortTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShortTestView.swift; sourceTree = "<group>"; };
@@ -435,6 +437,7 @@
 			children = (
 				9BD8129F2C720C27005A6085 /* PlusButton.swift */,
 				9BFA14F22D37C7B60073D4C4 /* AddTimeView.swift */,
+				9BC35C3C2D5E499100992A76 /* CustomModifires.swift */,
 			);
 			path = "Help Views";
 			sourceTree = "<group>";
@@ -548,6 +551,7 @@
 			files = (
 				9BBA81C12CDCE35A006EB807 /* AuthenticationUserModel.swift in Sources */,
 				9B2AFD7D2C009A0D00E908F5 /* GameMainScreenView.swift in Sources */,
+				9BC35C3D2D5E499100992A76 /* CustomModifires.swift in Sources */,
 				9BFE38892CB7F36100325173 /* QGPracticeView.swift in Sources */,
 				9B2AFD802C009A0D00E908F5 /* ContentView.swift in Sources */,
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,

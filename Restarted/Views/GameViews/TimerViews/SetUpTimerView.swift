@@ -140,13 +140,8 @@ extension SetUpTimerView {
             },
             label: {
                 Text("Start")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(isTimeSelected ? Color.text : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(isTimeSelected ? Color.highlight : Color.gray)
+                    .withAnimatedButtonFormatting(!isTimeSelected)
                     .padding(.horizontal)
-                    .animation(.easeInOut(duration: 0.3), value: hours + minutes)
             }
         )
         .disabled(!isTimeSelected)

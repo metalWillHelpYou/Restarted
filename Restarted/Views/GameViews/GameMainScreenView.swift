@@ -173,11 +173,7 @@ struct AddGameSheetView: View {
     var body: some View {
         VStack {
             TextField("New name", text: $viewModel.gameTitleHandler)
-                .padding(.leading, 8)
-                .frame(height: 55)
-                .foregroundStyle(.black)
-                .background(Color.highlight.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .withTextFieldModifires()
             
             Button(action: {
                 Task {
@@ -186,12 +182,7 @@ struct AddGameSheetView: View {
                 dismiss()
             }, label: {
                 Text("Save")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.gameTitleHandler.isEmpty ? Color.text : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.gameTitleHandler.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.gameTitleHandler)
+                    .withAnimatedButtonFormatting(viewModel.gameTitleHandler.isEmpty)
             })
             .disabled(viewModel.gameTitleHandler.isEmpty)
         }
@@ -210,11 +201,7 @@ struct EditGameSheetView: View {
     var body: some View {
         VStack {
             TextField("New title", text: $viewModel.gameTitleHandler)
-                .padding(.leading, 8)
-                .frame(height: 55)
-                .foregroundStyle(.black)
-                .background(Color.highlight.opacity(0.4))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .withTextFieldModifires()
             
             Button(action: {
                 Task {
@@ -227,19 +214,13 @@ struct EditGameSheetView: View {
                 }
             }, label: {
                 Text("Save")
-                    .frame(height: 55)
-                    .frame(maxWidth: .infinity)
-                    .foregroundStyle(!viewModel.gameTitleHandler.isEmpty ? Color.text : Color.gray)
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
-                    .strokeBackground(!viewModel.gameTitleHandler.isEmpty ? Color.highlight : Color.gray)
-                    .animation(.easeInOut(duration: 0.3), value: viewModel.gameTitleHandler)
+                    .withAnimatedButtonFormatting(viewModel.gameTitleHandler.isEmpty)
             })
             .disabled(viewModel.gameTitleHandler.isEmpty)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .padding(.horizontal)
         .background(Color.background)
-
     }
 }
 
