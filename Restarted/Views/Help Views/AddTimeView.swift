@@ -43,17 +43,18 @@ struct AddTimeView: View {
             Button {
                 let seconds = (hours * 3600) + (minutes * 60)
                 onSave(seconds)
+                HapticManager.instance.notification(type: .success)
                 dismiss()
             } label: {
                 Text("Add")
-                    .withSimpleButtonFormatting(foregroundStyle: Color.text)
+                    .withAnimatedButtonFormatting(!isTimeSelected)
                     .padding(.bottom, 36)
             }
+            .disabled(!isTimeSelected)
         }
         .frame(maxHeight: .infinity)
         .padding()
         .background(Color.background)
-        
     }
 }
 
@@ -68,11 +69,14 @@ extension AddTimeView {
                 .multilineTextAlignment(.center)
         }
     }
+    
+    private var isTimeSelected: Bool {
+        hours > 0 || minutes > 0
+    }
 }
 
 
 #Preview {
-    AddTimeView { _ in
-        
-    }
+    AddTimeView { _ in }
 }
+

@@ -93,6 +93,7 @@ extension TimerView {
     private var stopButton: some View {
         Button(action: {
             showStopDialog.toggle()
+            HapticManager.instance.notification(type: .warning)
         }, label: {
             Text("Stop")
                 .foregroundStyle(Color.white)
@@ -106,6 +107,7 @@ extension TimerView {
     private var pauseButton: some View {
         Button(action: {
             viewModel.isTimerRunning ? viewModel.pauseTimer() : viewModel.resumeTimer()
+            HapticManager.instance.impact(style: .soft)
         }, label: {
             Text(viewModel.isTimerRunning ? "Pause" : "Resume")
                 .withSimpleButtonFormatting(foregroundStyle: Color.white, strokeBackground: Color.white)

@@ -14,9 +14,6 @@ struct PracticeMainScreenView: View {
     @State private var showEditPractice: Bool = false
     @State private var showDeletePractice: Bool = false
     @State private var showAddTime: Bool = false
-    
-    // Можно хранить выбранную практику в ViewModel
-    // или локально, как сейчас.
     @State private var selectedPractice: Practice? = nil
 
     var body: some View {
@@ -32,6 +29,7 @@ struct PracticeMainScreenView: View {
                             .listRowBackground(Color.background)
                             .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                 Button("Delete") {
+                                    HapticManager.instance.notification(type: .warning)
                                     selectedPractice = practice
                                     showDeletePractice.toggle()
                                 }
@@ -70,12 +68,8 @@ struct PracticeMainScreenView: View {
             .navigationTitle("Practice")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(Color.background)
-            .onAppear {
-                viewModel.startObserving()
-            }
-            .onDisappear {
-                viewModel.stopObserving()
-            }
+            .onAppear { viewModel.startObserving() }
+            .onDisappear { viewModel.stopObserving() }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
                     if !viewModel.savedPractices.isEmpty {
@@ -138,14 +132,17 @@ extension PracticeMainScreenView {
         Menu {
             Button("Sort by Name") {
                 viewModel.sortByTitle()
+                HapticManager.instance.impact(style: .soft)
             }
 
             Button("Sort by Date") {
                 viewModel.sortByDateAdded()
+                HapticManager.instance.impact(style: .soft)
             }
 
             Button("Sort by Time") {
                 viewModel.sortByTime()
+                HapticManager.instance.impact(style: .soft)
             }
         } label: {
             Image(systemName: "arrow.up.arrow.down")

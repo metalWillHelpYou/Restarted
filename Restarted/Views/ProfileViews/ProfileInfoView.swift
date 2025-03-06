@@ -28,7 +28,7 @@ struct ProfileInfoView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.background)
-        .confirmationDialog("Are you sure?", isPresented: $showLogOut, titleVisibility: .visible) {
+        .confirmationDialog("Are you sure?", isPresented: $showLogOut) {
             logOutConformationButton
         }
         .alert("Delete account", isPresented: $showDeleteAccount) {
@@ -106,6 +106,7 @@ extension ProfileInfoView {
     private var deleteAccountButton: some View {
         VStack {
             Button(action: {
+                HapticManager.instance.notification(type: .error)
                 showDeleteAccount.toggle()
             }) {
                 Text("Delete account")
@@ -122,8 +123,6 @@ extension ProfileInfoView {
 extension ProfileInfoView {
     private var alertButtons: some View {
         VStack {
-            Button("Cancel", role: .cancel) {
-            }
             Button("Delete", role: .destructive) {
                 Task {
                     do {

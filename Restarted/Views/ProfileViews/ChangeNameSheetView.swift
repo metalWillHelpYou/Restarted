@@ -18,6 +18,7 @@ struct ChangeNameSheetView: View {
             
             Button(action: {
                 viewModel.changeUserName()
+                HapticManager.instance.notification(type: .success)
                 dismiss()
             }, label: {
                 Text("Save")

@@ -25,6 +25,7 @@ struct ArticleCardView: View {
             Button(action: {
                 withAnimation(.easeInOut(duration: 0.25)) {
                     articleViewModel.toggleReadStatus(for: article.id)
+                    HapticManager.instance.impact(style: .light)
                 }
             }, label: {
                 Image(systemName: article.isRead ? "checkmark.circle" : "circle")
@@ -42,6 +43,14 @@ struct ArticleCardView: View {
 }
 
 #Preview {
-    ArticleCardView(article: Article(id: "id", title: "Title", text: "Text", isForBeginners: true, readingTime: 7))
-        .environmentObject(ArticleViewModel())
+    ArticleCardView(
+        article: Article(
+            id: "id",
+            title: "Title",
+            text: "Text",
+            isForBeginners: true,
+            readingTime: 7
+        )
+    )
+    .environmentObject(ArticleViewModel())
 }

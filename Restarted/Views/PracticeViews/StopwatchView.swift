@@ -27,6 +27,7 @@ struct StopwatchView: View {
         .padding()
         .foregroundStyle(Color.white)
         .background(Color.black)
+        .navigationBarBackButtonHidden()
         .onAppear {
             viewModel.startStopwatch(forPracticeId: practice.id)
         }
@@ -70,6 +71,7 @@ extension StopwatchView {
     private var toggleButton: some View {
         Button(action: {
             viewModel.isStopwatchRunning ? viewModel.pauseStopwatch() : viewModel.startStopwatch(forPracticeId: practice.id)
+            HapticManager.instance.impact(style: .soft)
         }) {
             Text(viewModel.isStopwatchRunning ? "Pause" : "Resume")
                 .withSimpleButtonFormatting(foregroundStyle: Color.white, strokeBackground: Color.white)

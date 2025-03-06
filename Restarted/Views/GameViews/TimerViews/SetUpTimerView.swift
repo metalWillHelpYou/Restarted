@@ -151,6 +151,7 @@ extension SetUpTimerView {
                     Task {
                         try await GamePresetManager.shared.addPreset(forGameId: game.id, seconds: (hours * 3600) + (minutes * 60))
                     }
+                    HapticManager.instance.impact(style: .light)
                 }
             }
         })

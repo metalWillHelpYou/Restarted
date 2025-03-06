@@ -32,7 +32,7 @@ struct GameMainScreenView: View {
                                 }
                                 .listRowBackground(Color.background)
                                 .padding(.vertical, 8)
-                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                .swipeActions(edge: .leading, allowsFullSwipe: true) {
                                     Button("Add time") {
                                         selectedGame = game
                                         showAddTime.toggle()
@@ -47,6 +47,7 @@ struct GameMainScreenView: View {
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button("Delete") {
+                                        HapticManager.instance.notification(type: .warning)
                                         selectedGame = game
                                         showDeleteDialog.toggle()
                                     }
@@ -114,7 +115,7 @@ struct GameMainScreenView: View {
             .onChange(of: selectedGame) { newValue, _ in
                 print("gameToEdit changed to: \(String(describing: newValue))")
             }
-            .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog, titleVisibility: .visible) {
+            .confirmationDialog("Are you sure?", isPresented: $showDeleteDialog) {
                 if let game = selectedGame {
                     Button("Delete", role: .destructive) {
                         Task {
@@ -140,14 +141,17 @@ extension GameMainScreenView {
         Menu {
             Button("Sort by Name") {
                 viewModel.sortByTitle()
+                HapticManager.instance.impact(style: .soft)
             }
 
             Button("Sort by Date") {
                 viewModel.sortByDateAdded()
+                HapticManager.instance.impact(style: .soft)
             }
 
             Button("Sort by Time") {
                 viewModel.sortByTime()
+                HapticManager.instance.impact(style: .soft)
             }
         } label: {
             Image(systemName: "arrow.up.arrow.down")
@@ -179,6 +183,7 @@ struct AddGameSheetView: View {
                 Task {
                     await viewModel.addGame(with: viewModel.gameTitleHandler)
                 }
+                HapticManager.instance.notification(type: .success)
                 dismiss()
             }, label: {
                 Text("Save")
@@ -207,6 +212,7 @@ struct EditGameSheetView: View {
                 Task {
                     do {
                         try await viewModel.editGame(gameId: game.id, title: viewModel.gameTitleHandler)
+                        HapticManager.instance.notification(type: .success)
                         dismiss()
                     } catch {
                         print("Error updating game: \(error)")

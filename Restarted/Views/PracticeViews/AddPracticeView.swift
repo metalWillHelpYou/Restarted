@@ -23,6 +23,7 @@ struct AddPracticeView: View {
                 Task {
                     await viewModel.addPractice(with: viewModel.practiceTitleInput)
                 }
+                HapticManager.instance.notification(type: .success)
                 dismiss()
             }, label: {
                 Text("Save")
@@ -56,6 +57,7 @@ struct EditPracticeView: View {
                 Task {
                     await viewModel.editPractice(practice.id, title: viewModel.practiceTitleInput)
                 }
+                HapticManager.instance.notification(type: .success)
                 dismiss()
             }, label: {
                 Text("Save")
