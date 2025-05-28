@@ -38,7 +38,6 @@ struct SignInWithEmailView: View {
                         do {
                             try await viewModel.signUp()
                             root.screen = .content
-                            //ScreenManager.shared.screen = .content
                         } catch {
                             print("Sign Up Error: \(error)")
                         }
@@ -46,7 +45,6 @@ struct SignInWithEmailView: View {
                         do {
                             try await viewModel.signIn()
                             root.screen = .content
-                            //ScreenManager.shared.screen = .content
                         } catch {
                             print("Sign In Error: \(error)")
                         }

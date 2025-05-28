@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-struct Article: Codable, Identifiable, Equatable {
+struct Article: Codable, Identifiable {
     let id: String
     let title: String
     let text: String

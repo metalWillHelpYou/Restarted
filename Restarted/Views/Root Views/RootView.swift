@@ -7,20 +7,6 @@
 
 import SwiftUI
 
-//class ScreenManager: ObservableObject {
-//    static let shared = ScreenManager()
-//    private init() { }
-//    
-//    @Published var screen: Screen = .authentication
-//    
-//    func updateAuthenticationState() {
-//        let authUser = try? AuthenticationManager.shared.getAuthenticatedUser()
-//        DispatchQueue.main.async {
-//            self.screen = authUser != nil ? .content : .authentication
-//        }
-//    }
-//}
-
 @MainActor
 final class RootViewModel: ObservableObject {
     @Published var screen: Screen = .content
@@ -46,7 +32,6 @@ struct RootView: View {
         }
         .onAppear {
             root.updateAuthenticationState()
-            //ScreenManager.shared.updateAuthenticationState()
         }
     }
 }

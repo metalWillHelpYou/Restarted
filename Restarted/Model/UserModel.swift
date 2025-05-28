@@ -119,7 +119,7 @@ final class UserManager {
     // MARK: - Private Methods
     
     // Sub collection initialization
-    private func initializeUserArticles(for userId: String) async throws {
+    func initializeUserArticles(for userId: String) async throws {
         let articlesSnapshot = try await articleCollection.getDocuments()
         let userArticlesRef = userArticlesCollection(userId: userId)
         

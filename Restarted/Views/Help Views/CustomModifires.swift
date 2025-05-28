@@ -68,7 +68,7 @@ struct SinpleButtonModifires: ViewModifier {
 
 extension View {
     func withSimpleButtonFormatting(foregroundStyle: Color, strokeBackground: Color = .highlight) -> some View {
-        modifier(SinpleButtonModifires(foregroundStyle: foregroundStyle))
+        modifier(SinpleButtonModifires(foregroundStyle: foregroundStyle, strokeBackground: strokeBackground))
     }
 }
 

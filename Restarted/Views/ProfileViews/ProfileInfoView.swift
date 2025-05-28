@@ -128,7 +128,6 @@ extension ProfileInfoView {
                     do {
                         try await viewModel.deleteAccount()
                         root.screen = .authentication
-                        //ScreenManager.shared.screen = .authentication
                         activeTab = .practice
                         viewModel.localUserName = ""
                     } catch {

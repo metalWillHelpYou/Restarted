@@ -30,7 +30,9 @@ final class PracticeViewModel: ObservableObject {
         manager.$practices
             .receive(on: RunLoop.main)
             .sink { [weak self] newPractices in
-                self?.savedPractices = newPractices
+                guard let self = self else { return }
+                self.savedPractices = newPractices
+                self.applyCurrentSort()
             }
             .store(in: &cancellables)
     }

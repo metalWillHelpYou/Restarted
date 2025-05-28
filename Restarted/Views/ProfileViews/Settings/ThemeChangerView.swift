@@ -1,5 +1,5 @@
 //
-//  ColorPickerView.swift
+//  ThemeChangerView.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 05.06.2024.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ColorPickerView: View {
+struct ThemeChangerView: View {
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
     @Environment(\.colorScheme) private var scheme
     
@@ -69,5 +69,5 @@ struct CustomPickerView: View {
 }
 
 #Preview {
-    ColorPickerView()
+    ThemeChangerView()
 }

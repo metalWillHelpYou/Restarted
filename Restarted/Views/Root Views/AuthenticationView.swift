@@ -27,7 +27,6 @@ struct AuthenticationView: View {
                             do {
                                 try await viewModel.signInGoogle()
                                 root.screen = .content
-                                //ScreenManager.shared.screen = .content
                             } catch {
                                 print("Google Sign In Error: \(error)")
                             }

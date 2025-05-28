@@ -3,6 +3,12 @@
   "strings" : {
     "\nTest consists of 20 questions about your life over the past 12 months.\nAnswer as honestly and openly as possible — this is crucial for accurate results.\n\n⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test se skládá z 20 otázek o vašem životě za posledních 12 měsíců.\nOdpovídejte co nejupřímněji a nejotevřeněji - to je pro přesné výsledky klíčové.\n\n⚠️ Všechny odpovědi budou vymazány ihned po návratu na tuto obrazovku. Vaše odpovědi zůstanou zcela důvěrné."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -109,6 +115,12 @@
     },
     "Agree" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Souhlasím"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -151,6 +163,12 @@
     },
     "Are you sure you want to delete?\nThis action cannot be undone." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jste si jisti, že je chcete odstranit?\nTuto akci nelze vzít zpět."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -191,19 +209,14 @@
         }
       }
     },
-    "ASD" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Средняя продолжительность сессии"
-          }
-        }
-      }
-    },
     "Average practice duration" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Průměrná délka praxí"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -214,6 +227,12 @@
     },
     "Average session duration" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Průměrná délka relace"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -222,9 +241,14 @@
         }
       }
     },
-    "Beginer level" : {
-      "extractionState" : "stale",
+    "Beginner level" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úroveň začátečníků"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -348,6 +372,12 @@
     "darkTheme" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tmavé"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -396,6 +426,12 @@
     },
     "Disagree" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nesouhlasím"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -406,6 +442,12 @@
     },
     "Do you feel more irritability, anxiety or even sadness when you try to either reduce or stop your gaming activity?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když se snažíš hraní her omezit nebo s ním přestat, cítíš se podrážděnější, nervóznější, skleslejší nebo smutnější?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -416,6 +458,12 @@
     },
     "Do you feel the need to spend increasing amount of time engaged gaming in order to achieve satisfaction or pleasure?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potřebuješ k dosažení pocitu spokojenosti a radosti hrát čím dál častěji?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -426,6 +474,12 @@
     },
     "Do you play in order to temporarily escape or relieve a negative mood (e.g., helplessness, guilt, anxiety)?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hraješ, abys dočasně utekl/a nebo ulevil/a špatné náladě (např. napětí,\nneklidu, bezmoci, pocitům viny)?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -436,6 +490,12 @@
     },
     "Do you systematically fail when trying to control or cease your gaming activity?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selháváš opakovaně, když se snažíš své hraní omezit nebo s ním přestat?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -446,6 +506,12 @@
     },
     "Do you think gaming has become the dominant activity in your daily life?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myslíš si, že se hraní her stalo dominantní činností ve tvém každodenním životě?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -472,6 +538,12 @@
     },
     "Edit practice" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Upravit název praxi"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -578,6 +650,12 @@
     },
     "Good day," : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobrý den,"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -588,6 +666,12 @@
     },
     "Good evening," : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobrý večer,"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -598,6 +682,12 @@
     },
     "Good morning," : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobré ráno,"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -608,6 +698,12 @@
     },
     "Good night," : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobrou noc,"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -618,6 +714,12 @@
     },
     "Have you continued your gaming activity despite knowing it was causing problems between you and other people?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokračuješ v hraní i přesto, že ti to způsobuje problémy mezi tebou a lidmi ve tvém okolí?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -628,6 +730,12 @@
     },
     "Have you deceived any of your family members, therapists or others because the amount of your gaming activity?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lhal/a jsi některému členu rodiny nebo někomu dalšímu ohledně\nmnožství času, které jsi strávil/a hraním?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -638,6 +746,12 @@
     },
     "Have you jeopardized or lost an important relationship, job or an educational or career opportunity because of your gaming activity?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ohrozil/a jsi nebo jsi přišel/přišla o důležitý vztah, práci, studijní či\npracovní příležitost kvůli hraní počítačových her?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -648,6 +762,12 @@
     },
     "Have you lost interests in previous hobbies and other entertainment activities as a result of your engagement with the game?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ztratil/a jsi kvůli hraní zájem o dřívější koníčky a další aktivity, které ti dělaly radost?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -658,6 +778,12 @@
     },
     "High risk of gaming addiction based on DSM-5 criteria.\n\nIt is strongly recommended to consult a specialist." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bylo zjištěno vysoké riziko herní závislosti podle kritérií DSM-5.\n\nDůrazně doporučujeme obrátit se na odborníka."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -668,6 +794,12 @@
     },
     "High risk of gaming addiction detected based on your test score.\n\nIt is strongly recommended to consult a specialist." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bylo zjištěno vysoké riziko herní závislosti na základě vašeho výsledku testu.\n\nDůrazně doporučujeme obrátit se na odborníka."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -694,6 +826,12 @@
     },
     "How to recognize the signs of videogame addiction?" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "How to recognize the signs of videogame addiction?"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -704,6 +842,12 @@
     },
     "I believe my gaming is negatively impacting on important areas of my life." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Domnívám se, že mé hraní negativně ovlivňuje důležité oblasti mého života."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -714,6 +858,12 @@
     },
     "I do not think I could stop gaming." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nemyslím si, že bych dokázal/a přestat hrát."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -724,6 +874,12 @@
     },
     "I feel sad if I am not able to play games." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když nemůžu hrát hry, jsem smutný."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -734,6 +890,12 @@
     },
     "I have lied to my family members because the amount of gaming I do." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lhal/a jsem členům své rodiny kvůli množství času, který trávím hraním."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -744,6 +906,12 @@
     },
     "I have lost interest in other hobbies because of my gaming" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvůli hraní jsem ztratil zájem o jiné koníčky."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -754,6 +922,12 @@
     },
     "I have significantly increased the amount of time I play games over last year." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Za poslední rok jsem výrazně prodloužil dobu hraní her."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -764,6 +938,12 @@
     },
     "I know my main daily activity has not been negatively affected by my gaming." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vím, že moje hlavní denní činnost nebyla hraním negativně ovlivněna."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -774,6 +954,12 @@
     },
     "I need to spend increasing amounts of time engaged in playing games." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Potřebuji trávit stále více času hraním her."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -784,6 +970,12 @@
     },
     "I never play games in order to feel better." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nikdy nehraji hry, abych se cítil lépe."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -794,6 +986,12 @@
     },
     "I often lose sleep because of long gaming sessions." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kvůli dlouhým herním seancím často ztrácím spánek."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -804,6 +1002,12 @@
     },
     "I often think that a whole day is not enough to do everything I need to do in-game." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Často si myslím, že celý den nestačí na to, abych udělal vše, co ve hře potřebuji."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -814,6 +1018,12 @@
     },
     "I often try to play games less but find I cannot." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Často se snažím hrát hry méně, ale nedaří se mi to."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -824,6 +1034,12 @@
     },
     "I play games to forget about whatever’s bothering me." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hraju hry, abych zapomněl na to, co mě trápí."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -834,6 +1050,12 @@
     },
     "I play games to help me cope with any bad feelings I might have." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hraji hry, které mi pomáhají vyrovnat se s případnými špatnými pocity."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -844,6 +1066,12 @@
     },
     "I tend to get anxious if I can’t play games for any reason." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mám tendenci být úzkostný/á, když nemůžu hrát hry z jakéhokoli důvodu."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -854,6 +1082,12 @@
     },
     "I think gaming has become the most time consuming activity in my life" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myslím, že hraní her se stalo časově nejnáročnější činností v mém životě."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -864,6 +1098,12 @@
     },
     "I think my gaming has jeopardized the relationship with my partner." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Myslím, že moje hraní her ohrozilo vztah s mým partnerem."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -874,6 +1114,12 @@
     },
     "I usually think about my next gaming session when I am not playing." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když zrovna nehraju, obvykle přemýšlím o dalším herním sezení."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -884,6 +1130,12 @@
     },
     "I would like to cut down my gaming time but it’s difficult to do." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rád bych zkrátil svůj herní čas, ale je to těžké."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -893,8 +1145,13 @@
       }
     },
     "Intermediate level" : {
-      "extractionState" : "stale",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokročilá úroveň"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -905,6 +1162,12 @@
     },
     "Internet Gaming Disorder test" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Internet Gaming Disorder test"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -915,6 +1178,12 @@
     },
     "Joined" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připojil se"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -925,6 +1194,12 @@
     },
     "Language" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jazyk"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -935,6 +1210,12 @@
     },
     "Learning Russian" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Studium ruštiny"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -946,6 +1227,12 @@
     "lightTheme" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobrý večer,"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -962,6 +1249,12 @@
     },
     "Log out" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odhlášení"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -972,6 +1265,12 @@
     },
     "Minutes" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minuty"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -982,6 +1281,12 @@
     },
     "Neither agree nor disagree" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ani souhlasím, ani nesouhlasím"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -992,6 +1297,12 @@
     },
     "Never" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nikdy"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1002,6 +1313,12 @@
     },
     "New name" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nové jméno"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1012,6 +1329,12 @@
     },
     "New practice" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nová praxe"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1022,6 +1345,12 @@
     },
     "New title" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nový název"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1032,6 +1361,12 @@
     },
     "No" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1042,6 +1377,12 @@
     },
     "No game selected" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nebyla vybrána žádná hra"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1052,6 +1393,12 @@
     },
     "No signs of gaming addiction detected.\n\nMaintain healthy gaming habits to prevent future problems." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nebyly zjištěny žádné známky herní závislosti.\n\nUdržujte zdravé herní návyky, abyste předešli případným problémům v budoucnosti."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1062,6 +1409,12 @@
     },
     "Notifications" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oznámení"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1072,6 +1425,12 @@
     },
     "Often" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Často"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1082,6 +1441,12 @@
     },
     "Only if you forgot to log it manually" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pouze v případě, že jste si to zapomněli ručně zapsat."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1092,6 +1457,12 @@
     },
     "Password" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Heslo"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1102,6 +1473,12 @@
     },
     "Pause" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pauza"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1112,6 +1489,12 @@
     },
     "Practice" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Praxe"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1122,6 +1505,12 @@
     },
     "Practice hours" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hodiny praxe"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1132,6 +1521,12 @@
     },
     "Practice Tracker" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sledování praxe"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1142,6 +1537,12 @@
     },
     "Practice: %@%%" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Praxe: %@%%"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1153,6 +1554,12 @@
     "PracticeTabTitle" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Praxe"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1169,6 +1576,12 @@
     },
     "Profile" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profil"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1179,6 +1592,12 @@
     },
     "Psychological tests" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Psychologické testy"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1189,6 +1608,12 @@
     },
     "Quick guide" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stručný průvodce"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1199,6 +1624,12 @@
     },
     "Rarely" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zřídka"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1209,6 +1640,12 @@
     },
     "Read tips to better understand the problem and find ways to overcome it." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přečtěte si tipy, které vám pomohou lépe porozumět problému a najít způsoby, jak ho překonat."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1219,6 +1656,12 @@
     },
     "Reading" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čtení"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1227,18 +1670,14 @@
         }
       }
     },
-    "Reading time: %lld minutes" : {
-      "localizations" : {
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Время чтения: %lld минут"
-          }
-        }
-      }
-    },
     "Recents" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedávné"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1249,6 +1688,12 @@
     },
     "Reset" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Reset"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1259,6 +1704,12 @@
     },
     "Restarted FAQ" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Restarted FAQ"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1269,6 +1720,12 @@
     },
     "Result" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výsledek"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1279,6 +1736,12 @@
     },
     "Resume" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pokračovát"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1289,6 +1752,12 @@
     },
     "Russian" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Russian"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1299,6 +1768,12 @@
     },
     "Save" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uložit"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1309,6 +1784,12 @@
     },
     "Score: %lld" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Počet bodů: %lld"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1319,6 +1800,12 @@
     },
     "Sessions" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relace"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1329,6 +1816,12 @@
     },
     "Set goals and track their time." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stanovte si cíle a sledujte jejich plnění."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1339,6 +1832,12 @@
     },
     "Short Form" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zkrácená forma"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1349,6 +1848,12 @@
     },
     "Short Internet Gaming Disorder test" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Krátký Internet Gaming Disorder test"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1359,6 +1864,12 @@
     },
     "Sign In" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přihlásit se"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1369,6 +1880,12 @@
     },
     "Sign in with Google" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sign in with Google"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1379,6 +1896,12 @@
     },
     "Sometimes" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Někdy"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1389,6 +1912,12 @@
     },
     "Sort by Date" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seřadit podle data"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1399,6 +1928,12 @@
     },
     "Sort by Name" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seřadit podle jména"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1409,6 +1944,12 @@
     },
     "Sort by Time" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řazení podle času"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1419,6 +1960,12 @@
     },
     "Start" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spustit"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1429,6 +1976,12 @@
     },
     "Start Test" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spustit test"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1439,6 +1992,12 @@
     },
     "Statistics" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Statistika"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1449,6 +2008,12 @@
     },
     "Stop" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zastavit"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1459,6 +2024,12 @@
     },
     "Strongly agree" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozhodně souhlasím"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1469,6 +2040,12 @@
     },
     "Strongly disagree" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rozhodně nesouhlasím"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1480,6 +2057,12 @@
     "systemDefault" : {
       "extractionState" : "manual",
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výchozí"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1496,6 +2079,12 @@
     },
     "Test consists of 9 questions about your life over the past 12 months.\nAnswer as honestly and openly as possible — this is crucial for accurate results.\"\n\n⚠️ All responses will be deleted immediately after you return to this screen. Your answers will remain completely confidential." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Test se skládá z 9 otázek týkajících se vašeho života za posledních 12 měsíců.\nOdpovídejte co nejupřímněji a nejotevřeněji – je to klíčové pro přesné výsledky.\n\n⚠️ Všechny vaše odpovědi budou okamžitě po návratu na tuto obrazovku vymazány. Vaše odpovědi zůstanou zcela důvěrné."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1506,6 +2095,12 @@
     },
     "The first steps to understanding the problem" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The first steps to understanding the problem"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1516,6 +2111,12 @@
     },
     "The most certain way to avoid failure is to commit to success" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nejspolehlivějším způsobem, jak se vyhnout neúspěchu, je plně se zavázat k úspěchu"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1526,6 +2127,12 @@
     },
     "The test results are not a definitive diagnosis. For an accurate assessment and professional help, please consult a specialist." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Výsledky testů nejsou definitivní diagnózou. Pro přesné posouzení a odbornou pomoc se obraťte na specialistu."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1536,6 +2143,12 @@
     },
     "Time is your most valuable resource" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Čas je váš nejcennější prostředek."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1546,6 +2159,12 @@
     },
     "Timer allows you to track how much time you spend on games. Add your favorite games, set the timer and go ahead." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Časovač umožňuje sledovat, kolik času strávíte hraním her. Přidejte své oblíbené hry, nastavte časovač a pokračujte."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1556,6 +2175,12 @@
     },
     "To display statistics, you need to track at least 1 games or 1 practices." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aby se zobrazily statistiky, musíte mít zaznamenanou alespoň 1 hru nebo 1 cvičení."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1566,6 +2191,12 @@
     },
     "Try again" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zkuste to znovu"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1576,6 +2207,18 @@
     },
     "Use IQ-20 and IGDS9-SF tests, they will help in diagnosis of gaming addiction." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Použijte testy IGD-20 a IGDS9-SF, které pomohou při diagnostice závislosti na hraní her."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Use IGD-20 and IGDS9-SF tests, they will help in diagnosis of gaming addiction."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1586,6 +2229,12 @@
     },
     "Very Often" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velmi často"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1596,6 +2245,12 @@
     },
     "When I am not gaming I feel more irritable." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Když nehraji, cítím se podrážděnější."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1622,6 +2277,12 @@
     },
     "You're breathtaking!" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You're breathtaking!"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1632,6 +2293,12 @@
     },
     "Your curiosity knows no bounds." : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tvoje zvědavost nezná hranic."
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1642,6 +2309,12 @@
     },
     "Your new life starts here" : {
       "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Váš nový život začíná zde"
+          }
+        },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",

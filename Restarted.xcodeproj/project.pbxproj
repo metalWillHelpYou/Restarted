@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0139D52CB9730500365128 /* LocalNotificationManager.swift */; };
-		9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */; };
+		9B0EA5642C106F3D00E8291C /* ThemeChangerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B0EA5632C106F3D00E8291C /* ThemeChangerView.swift */; };
 		9B108F992CFF418900F41360 /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B108F982CFF418900F41360 /* ArticleModel.swift */; };
 		9B140DB82CB67EFF0067F30B /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 9B140DB72CB67EFF0067F30B /* MarkdownUI */; };
 		9B2226392D425B3500BD96D7 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 9B2226382D425B3500BD96D7 /* Localizable.xcstrings */; };
@@ -88,7 +88,7 @@
 
 /* Begin PBXFileReference section */
 		9B0139D52CB9730500365128 /* LocalNotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNotificationManager.swift; sourceTree = "<group>"; };
-		9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		9B0EA5632C106F3D00E8291C /* ThemeChangerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChangerView.swift; sourceTree = "<group>"; };
 		9B108F982CFF418900F41360 /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		9B2226382D425B3500BD96D7 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		9B2525B52CF0D2A40012E9B2 /* IGDTestInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IGDTestInfoView.swift; sourceTree = "<group>"; };
@@ -184,7 +184,7 @@
 			isa = PBXGroup;
 			children = (
 				9B568F882C00B29C00B6D645 /* SettingsView.swift */,
-				9B0EA5632C106F3D00E8291C /* ColorPickerView.swift */,
+				9B0EA5632C106F3D00E8291C /* ThemeChangerView.swift */,
 				9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */,
 			);
 			path = Settings;
@@ -588,7 +588,7 @@
 				9BD5E8B72CF24E12002464E4 /* LongTestViewModel.swift in Sources */,
 				9BD812A72C7519F9005A6085 /* TimerViewModel.swift in Sources */,
 				9BBE00552D43FDCF001BE1DA /* LanguageManager.swift in Sources */,
-				9B0EA5642C106F3D00E8291C /* ColorPickerView.swift in Sources */,
+				9B0EA5642C106F3D00E8291C /* ThemeChangerView.swift in Sources */,
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
 				9BFC14552D2D637200D8E2DF /* PracticeModel.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,

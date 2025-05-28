@@ -12,11 +12,38 @@ struct ArticleMainScreenView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
+            ScrollView(showsIndicators: false) {
                 VStack(spacing: 16) {
                     if !viewModel.savedArticles.isEmpty {
-                        articleSection(title: "Beginner level", filter: { $0.isForBeginners })
-                        articleSection(title: "Intermediate level", filter: { !$0.isForBeginners })
+                        VStack(alignment: .leading) {
+                            Text("Beginner level")
+                                .font(.title)
+                                .padding(.horizontal)
+                                .offset(y: 8)
+                            
+                            ForEach(viewModel.savedArticles.filter { $0.isForBeginners }) { article in
+                                NavigationLink(destination: ArticleView(article: article)) {
+                                    ArticleCardView(article: article)
+                                        .padding(.bottom)
+                                }
+                            }
+                        }
+                        
+                        VStack(alignment: .leading) {
+                            Text("Intermediate level")
+                                .font(.title)
+                                .padding(.horizontal)
+                                .offset(y: 8)
+                            
+                            ForEach(viewModel.savedArticles.filter { !$0.isForBeginners }) { article in
+                                NavigationLink(destination: ArticleView(article: article)) {
+                                    ArticleCardView(article: article)
+                                        .padding(.bottom)
+                                }
+                            }
+                        }
+                        
+                        Spacer()
                     } else {
                         ProgressView()
                     }
@@ -28,22 +55,6 @@ struct ArticleMainScreenView: View {
             .background(Color.background)
             .onAppear { viewModel.startObserving() }
             .onDisappear { viewModel.stopObserving() }
-        }
-    }
-    
-    private func articleSection(title: String, filter: (Article) -> Bool) -> some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.title)
-                .padding(.horizontal)
-                .offset(y: 8)
-            
-            ForEach(viewModel.savedArticles.filter(filter)) { article in
-                NavigationLink(destination: ArticleView(article: article)) {
-                    ArticleCardView(article: article)
-                        .padding(.bottom)
-                }
-            }
         }
     }
 }

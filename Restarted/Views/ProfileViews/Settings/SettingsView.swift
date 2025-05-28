@@ -41,9 +41,8 @@ struct SettingsView: View {
         .padding()
         .strokeBackground(Color.highlight)
         .padding(.horizontal)
-        //.padding(.top, 40)
         .sheet(isPresented: $showApperance, content: {
-            ColorPickerView()
+            ThemeChangerView()
                 .presentationDetents([.height(410)])
                 .presentationDragIndicator(.visible)
                 .presentationBackground(.clear)

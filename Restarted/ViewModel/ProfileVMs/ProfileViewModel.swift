@@ -106,4 +106,16 @@ final class ProfileViewModel: ObservableObject {
         default: return "Good night,"
         }
     }
+    
+    func loadArticles() {
+        Task {
+            do {
+                if let user = user {
+                    try await UserManager.shared.initializeUserArticles(for: user.userId)
+                }
+            } catch {
+                print("error")
+            }
+        }
+    }
 }

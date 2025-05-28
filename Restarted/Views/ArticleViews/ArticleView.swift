@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MarkdownUI
 
 struct ArticleView: View {
     @EnvironmentObject var articleViewModel: ArticleViewModel
@@ -14,17 +15,14 @@ struct ArticleView: View {
     
     var body: some View {
         NavigationStack {
-            VStack(alignment: .leading) {
-                Text("Reading time: \(article.readingTime) minutes")
-                
-                Text(article.text)
+            ScrollView(showsIndicators: false) {
+                Markdown(article.text)
                     .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Spacer()
             }
-            .navigationTitle(article.title)
-            .navigationBarTitleDisplayMode(.inline)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .toolbarBackground(Color.highlight.opacity(0.3), for: .navigationBar)
             .padding(.horizontal)
             .background(Color.background)
         }
