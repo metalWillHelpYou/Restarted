@@ -50,7 +50,8 @@ final class ShortTestViewModel: ObservableObject {
         }
         
         let conclusion: LocalizedStringKey
-        if total >= 71 {
+        if total >= 32
+        {
             conclusion = """
             High risk of gaming addiction detected based on your test score.
             

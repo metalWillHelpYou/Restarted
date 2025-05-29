@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import MarkdownUI
 
 struct AdditionalSettingsView: View {
     var body: some View {
@@ -15,7 +14,10 @@ struct AdditionalSettingsView: View {
                 Text("Quick guide")
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
-            Text("Restarted FAQ")
+            NavigationLink(destination: FAQView()) {
+                Text("Restarted FAQ")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding()

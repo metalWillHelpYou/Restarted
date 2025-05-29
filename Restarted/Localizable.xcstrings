@@ -600,6 +600,29 @@
         }
       }
     },
+    "FAQ" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "### Q: Co je Restarted?\n\n*Restarted* je mobilní aplikace vytvořená v rámci mé závěrečné práce. Pomáhá vyvážit čas mezi videohrami a každodenními povinnostmi. Umožňuje:\n\n* přidávat a odškrtávat návyky;\n* spustit herní časovač a dostávat upozornění, když čas vyprší;\n* číst články o závislosti na hrách a praktické tipy;\n* zobrazit statistiky, jak rozdělujete svůj čas.\n\n### Q: Pro koho je určena?\n\nAplikace se hodí těm, kteří často hrají a chtějí lépe kontrolovat svůj čas, i všem, kdo pracují na budování návyků a cílů.\n\n### Q: Proč ji vyzkoušet?\n\n*Restarted* je zdarma, zabírá málo místa a nevyžaduje složité nastavení. Pokud budete chtít, můžete ji kdykoli smazat spolu se všemi svými daty.\n\n### Q: Pomůže mi to?\n\n*Restarted* nabízí nástroje — časovač, sledování návyků, články a statistiky. Účinek závisí na tom, jak je využijete. V případě potřeby můžete vždy vyhledat podporu odborníka.\n\n### Q: Kde se data ukládají?\n\nÚdaje o praktikách a hrách se ukládají do databáze Firebase Firestore. Statistiky se v databázi neukládají, zobrazují se přímo v zařízení.\n\n### Q: Můžu účet smazat?\n\nAno, tím smažete veškerá svá data bez možnosti obnovení.\n\n### Q: Na čem jsou články založeny?\n\nČlánky vycházejí z knihy *„Game Addiction. The Experience and the Effect“* autorů *Neils Clark* a *P. Shavaun Scott* a z dalších zdrojů uvedených na konci jednotlivých článků.\n\n### Q: Ukládají se výsledky testování?\n\nNe. Výsledky testu se odstraní okamžitě po zavření závěrečné obrazovky testu; nikdo kromě vás je neuvidí."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "### Q: What is Restarted?\n\n*Restarted* is a mobile application created for my final-year project. It helps balance time between video games and everyday tasks. In it you can:\n\n* add and check off habits;\n* start a game timer and receive reminders when time is up;\n* read articles about game addiction and practical tips;\n* view statistics showing how your time is distributed.\n\n### Q: Who is it for?\n\nThe app is useful for people who play frequently and want better control of their time, as well as anyone working on building habits and goals.\n\n### Q: Why should I try it?\n\n*Restarted* is free, takes little space, and needs no complicated setup. If you wish, you can delete it at any time along with all your data.\n\n### Q: Will it help me?\n\n*Restarted* gives you tools — a timer, habit tracker, articles, and statistics. The result depends on how you use them. If necessary, you can always seek help from a professional.\n\n### Q: Where is the data stored?\n\nData on practices and games is stored in a Firebase Firestore database. Statistics are not stored in the database; they are generated directly on the device.\n\n### Q: Can I delete my account?\n\nYes. Doing so removes all your data with no way to restore it.\n\n### Q: What are the articles based on?\n\nThe articles draw on the book *“Game Addiction. The Experience and the Effect”* by *Neils Clark* and *P. Shavaun Scott*, plus additional sources listed at the end of each article.\n\n### Q: Are test results saved?\n\nNo. Test results are deleted as soon as the final test screen is closed; no one but you will see them."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "### Q: Что такое Restarted?\n*Restarted* — это мобильное приложение для выпускной работы. Оно помогает сбалансировать время между видеоиграми и повседневными делами. В нём можно:\n\n* добавлять и отмечать привычки;\n* запускать таймер для игр и получать напоминания, когда время заканчивается;\n* читать статьи о зависимости от игр и практические советы;\n* смотреть статистику, как распределено ваше время.\n\n### Q: Для кого это сделано?\nПриложение пригодится тем, кто часто играет и хочет лучше контролировать своё время, а также всем, кто работает над формированием привычек и целей.\n\n### Q: Почему стоит попробовать?\n*Restarted* бесплатен, занимает немного места и не требует сложной настройки. Если захотите — удалите его в любой момент вместе со всеми данными.\n\n### Q: Мне это поможет?\n*Restarted* даёт инструменты — таймер, трекер привычек, статьи и статистику. Эффект зависит от того, как вы ими воспользуетесь. При необходимости всегда можно обратиться за поддержкой к специалисту.\n\n### Q: Где хранятся данные?\nДанные о практиках и играх хранятся в базе данных Firebase Firestore. Статистика не хранится в базе данных, она выводится прямо на устройстве. \n\n### Q: Могу ли я удалить аккаунт?\nДа, тем самым вы удалите все свои данные без возможности их восстановить. \n\n### Q: На чем основываются статьи?\nСтатьи основаны на книге *\"Game Addiction. The Experience and the Effect\"* авторов *Neils* *Clark* и *P. Shavaun Scott*. Так же используются дополнительные источники, которые указаны в нижней части статей. \n\n### Q: Сохраняются ли результаты тестирования?\nНет, результаты тестирования удаляются сразу, как только закрывается финальный экран тестирования. Никто, кроме вас, их не увидит. "
+          }
+        }
+      }
+    },
     "Game Timer" : {
       "localizations" : {
         "cs" : {
@@ -776,23 +799,6 @@
         }
       }
     },
-    "High risk of gaming addiction based on DSM-5 criteria.\n\nIt is strongly recommended to consult a specialist." : {
-      "extractionState" : "stale",
-      "localizations" : {
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bylo zjištěno vysoké riziko herní závislosti podle kritérií DSM-5.\n\nDůrazně doporučujeme obrátit se na odborníka."
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Высокий риск игровой зависимости согласно критериям DSM-5.  \n\nНастоятельно рекомендуется обратиться к специалисту."
-          }
-        }
-      }
-    },
     "High risk of gaming addiction detected based on your test score.\n\nIt is strongly recommended to consult a specialist." : {
       "localizations" : {
         "cs" : {
@@ -804,7 +810,7 @@
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Высокий риск игровой зависимости выявляется на основании результатов вашего теста.\n\nНастоятельно рекомендуется проконсультироваться со специалистом."
+            "value" : "Высокий риск игровой зависимости на основании результатов вашего теста.\n\nНастоятельно рекомендуется проконсультироваться со специалистом."
           }
         }
       }

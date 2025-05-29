@@ -31,6 +31,7 @@
 		9B406D032DE850EB00034F18 /* AddGameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D022DE850EB00034F18 /* AddGameSheetView.swift */; };
 		9B406D052DE8514200034F18 /* EditGameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D042DE8514200034F18 /* EditGameSheetView.swift */; };
 		9B406D072DE8517900034F18 /* EditPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D062DE8517900034F18 /* EditPracticeView.swift */; };
+		9B406D092DE87BC200034F18 /* FAQView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D082DE87BC200034F18 /* FAQView.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
 		9B42AE3B2C8A50F800343433 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
@@ -115,6 +116,7 @@
 		9B406D022DE850EB00034F18 /* AddGameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameSheetView.swift; sourceTree = "<group>"; };
 		9B406D042DE8514200034F18 /* EditGameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameSheetView.swift; sourceTree = "<group>"; };
 		9B406D062DE8517900034F18 /* EditPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPracticeView.swift; sourceTree = "<group>"; };
+		9B406D082DE87BC200034F18 /* FAQView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQView.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				9BFE388A2CB7F3C300325173 /* QGArticlesView.swift */,
 				9BFE388C2CB7F43600325173 /* QGTimerView.swift */,
 				9BFE388E2CB7F4CA00325173 /* QGTestsView.swift */,
+				9B406D082DE87BC200034F18 /* FAQView.swift */,
 			);
 			path = QuickGuideViews;
 			sourceTree = "<group>";
@@ -611,6 +614,7 @@
 				9B6E6C3B2CDE450F002D3042 /* AuthentcationViewModel.swift in Sources */,
 				9B2AFD792C009A0D00E908F5 /* ArticleMainScreenView.swift in Sources */,
 				9B108F992CFF418900F41360 /* ArticleModel.swift in Sources */,
+				9B406D092DE87BC200034F18 /* FAQView.swift in Sources */,
 				9BFA14EF2D356BA30073D4C4 /* StopwatchViewModel.swift in Sources */,
 				9BFA14F12D356C000073D4C4 /* StopwatchView.swift in Sources */,
 				9B71D1862C5FDE6B00FF3EA3 /* HapticManager.swift in Sources */,
