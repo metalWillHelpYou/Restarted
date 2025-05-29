@@ -777,6 +777,7 @@
       }
     },
     "High risk of gaming addiction based on DSM-5 criteria.\n\nIt is strongly recommended to consult a specialist." : {
+      "extractionState" : "stale",
       "localizations" : {
         "cs" : {
           "stringUnit" : {

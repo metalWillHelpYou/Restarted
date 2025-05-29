@@ -10,6 +10,7 @@ import Firebase
 import FirebaseCore
 import FirebaseAuth
 
+// Initialize Firebase SDK
 class AppDelegate: NSObject, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
@@ -18,11 +19,15 @@ class AppDelegate: NSObject, UIApplicationDelegate {
   }
 }
 
+// SwiftUI root of the application
 @main
 struct RestartedApp: App {
+    // Persistent user-selected color scheme
     @AppStorage("userTheme") private var userTheme: Theme = .systemDefault
+    // Bridges UIKit life-cycle callbacks to SwiftUI
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     
+    // View-models kept alive for the entire session.
     @StateObject var practiceVm = PracticeViewModel()
     @StateObject var articleVm = ArticleViewModel()
     @StateObject var gameVm = GameViewModel()

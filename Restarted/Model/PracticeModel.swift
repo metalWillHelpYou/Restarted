@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+// Encapsulates a single user practice stored in Firestore
 struct Practice: Codable, Identifiable, Equatable {
     let id: String
     let title: String
@@ -33,27 +34,30 @@ struct Practice: Codable, Identifiable, Equatable {
         self.sessionCount = sessionCount
     }
     
+    // Maps Swift property names to Firestore field keys
     enum CodingKeys: String, CodingKey {
         case id = "practice_id"
         case title = "practice_title"
         case dateAdded = "practice_date"
-        case streak = "streak"
-        case seconds = "seconds"
+        case streak
+        case seconds
         case sessionCount = "session_count"
     }
 }
 
+// Provides real-time synchronisation and CRUD operations for the current user's practices
 final class PracticeManager: ObservableObject {
+    // Singleton accessor
     static let shared = PracticeManager()
+    // Local cache that drives UI updates
     @Published var practices: [Practice] = []
     
     private var listener: ListenerRegistration?
     private let db = Firestore.firestore()
-
+    
     private init() { }
     
-    // MARK: - Firestore references
-    
+    // Firestore path helpers
     private func userPracticeCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: The user is not authenticated.")
@@ -62,13 +66,13 @@ final class PracticeManager: ObservableObject {
         return db.collection("users").document(userId).collection("practices")
     }
     
+    // Returns a reference to a single practice document within the user's collection
     private func practiceDocument(practiceId: String) -> DocumentReference? {
         guard let practiceCollection = userPracticeCollection() else { return nil }
         return practiceCollection.document(practiceId)
     }
     
-    // MARK: - Реальное время (наблюдение за изменениями)
-    
+    // Real-time updates
     func startObservingPractices() {
         guard let practiceCollection = userPracticeCollection() else {
             print("Error: User is not authenticated or collection is unavailable.")
@@ -94,13 +98,13 @@ final class PracticeManager: ObservableObject {
         }
     }
     
+    // Detaches the Firestore snapshot listener
     func stopObservingPractices() {
         listener?.remove()
         listener = nil
     }
     
-    // MARK: - CRUD
-    
+    // CRUD
     func addPractice(title: String) async throws {
         guard let practiceCollection = userPracticeCollection() else {
             throw NSError(domain: "PracticeManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
@@ -121,7 +125,7 @@ final class PracticeManager: ObservableObject {
         do {
             let snapshot = try await practiceCollection.getDocuments()
             if snapshot.isEmpty {
-                print("Creating practices collection for user...")
+                print("Creating practices collection for user…")
             }
             
             try await practiceCollection.document(newPracticeId).setData(practiceData)
@@ -133,7 +137,7 @@ final class PracticeManager: ObservableObject {
     }
     
     func editPractice(practiceId: String, title: String) async throws {
-        guard let _ = practiceDocument(practiceId: practiceId) else {
+        guard practiceDocument(practiceId: practiceId) != nil else {
             print("Error: Unable to get reference to user practice document.")
             throw URLError(.badURL)
         }
@@ -146,7 +150,7 @@ final class PracticeManager: ObservableObject {
     }
     
     func deletePractice(practiceId: String) async throws {
-        guard let _ = practiceDocument(practiceId: practiceId) else {
+        guard practiceDocument(practiceId: practiceId) != nil else {
             print("Error: Unable to get reference to user practice document.")
             throw URLError(.badURL)
         }
@@ -155,6 +159,7 @@ final class PracticeManager: ObservableObject {
         print("Practice with ID \(practiceId) deleted successfully.")
     }
     
+    // Adds `elapsedTime` to the stored seconds counter for a practice
     func updatePracticeTime(for practiceId: String, elapsedTime: Int) async throws {
         guard let practiceDoc = practiceDocument(practiceId: practiceId) else {
             throw NSError(domain: "PracticeManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid practice document reference."])
@@ -179,6 +184,7 @@ final class PracticeManager: ObservableObject {
         }
     }
     
+    // Increments the session counter for a practice
     func incrementSessionCount(for practiceId: String) async throws {
         guard let practiceDoc = practiceDocument(practiceId: practiceId) else {
             throw NSError(domain: "PracticeManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid practice document reference."])
@@ -201,6 +207,7 @@ final class PracticeManager: ObservableObject {
         }
     }
     
+    // Returns the total seconds accumulated across all practices for the user
     func sumSecondsForUserPractices() async throws -> Int {
         guard let collection = userPracticeCollection() else {
             throw NSError(domain: "AppError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated"])
@@ -209,16 +216,15 @@ final class PracticeManager: ObservableObject {
         let snapshot = try await collection.getDocuments()
         let documents = snapshot.documents
         
-        let totalSeconds = documents.reduce(0) { partialSum, document in
+        let totalSeconds = documents.reduce(0) { partial, document in
             let seconds = document.data()[Practice.CodingKeys.seconds.rawValue] as? Int ?? 0
-            return partialSum + seconds
+            return partial + seconds
         }
         
         return totalSeconds
     }
     
-    // MARK: - Вспомогательные методы (encode/decode)
-    
+    // Safely converts Firestore data into a `Practice` instance
     private func decodePractice(from data: [String: Any]) -> Practice? {
         guard
             let id = data[Practice.CodingKeys.id.rawValue] as? String,
@@ -242,6 +248,7 @@ final class PracticeManager: ObservableObject {
         )
     }
     
+    // Converts a `Practice` instance into a Firestore dictionary
     private func encodePractice(_ practice: Practice) -> [String: Any] {
         [
             Practice.CodingKeys.id.rawValue: practice.id,
@@ -253,12 +260,12 @@ final class PracticeManager: ObservableObject {
         ]
     }
     
+    // Generic wrapper around `updateData` for single-field updates
     private func updatePracticeField(practiceId: String, field: String, value: Any) async throws {
         guard let practiceDoc = practiceDocument(practiceId: practiceId) else {
             throw NSError(domain: "PracticeManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid practice document reference."])
         }
         
-        let data: [String: Any] = [field: value]
-        try await practiceDoc.updateData(data)
+        try await practiceDoc.updateData([field: value])
     }
 }

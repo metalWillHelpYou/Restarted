@@ -10,22 +10,27 @@ import Combine
 
 @MainActor
 final class PracticeViewModel: ObservableObject {
+    // Source of truth for UI
     @Published var savedPractices: [Practice] = []
+    // Handles cloud operations
     private let manager = PracticeManager.shared
     private var cancellables = Set<AnyCancellable>()
     
+    // UI state bindings
     @Published var selectedPractice: Practice? = nil
     @Published var showDeleteDialog: Bool = false
     @Published var practiceTitleInput: String = ""
     @Published var elapsedTime: Int = 0
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
     @Published var totalTime: Int = 0
-
+    
+    // Computed property bridging raw value and enum
     private var currentSortType: SortType {
         get { SortType(rawValue: currentSortTypeRawValue) ?? .byDateAdded }
         set { currentSortTypeRawValue = newValue.rawValue }
     }
     
+    // Subscribes to manager changes and applies stored sort order
     init() {
         manager.$practices
             .receive(on: RunLoop.main)
@@ -37,18 +42,11 @@ final class PracticeViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    // MARK: - Observing
+    // Observation control 
+    func startObserving() { manager.startObservingPractices() }
+    func stopObserving()  { manager.stopObservingPractices() }
     
-    func startObserving() {
-        manager.startObservingPractices()
-    }
-    
-    func stopObserving() {
-        manager.stopObservingPractices()
-    }
-    
-    // MARK: - CRUD
-    
+    // CRUD wrappers
     func addPractice(with title: String) async {
         do {
             try await manager.addPractice(title: title)
@@ -83,8 +81,7 @@ final class PracticeViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Sorting
-    
+    // Sorting handlers
     func sortByTitle() {
         savedPractices.sort { $0.title.localizedCompare($1.title) == .orderedAscending }
         currentSortType = .byTitle
@@ -107,16 +104,11 @@ final class PracticeViewModel: ObservableObject {
 
     private func applyCurrentSort() {
         switch currentSortType {
-        case .byTitle:
-            sortByTitle()
-        case .byDateAdded:
-            sortByDateAdded()
-        case .byTime:
-            sortByTime()
+        case .byTitle: sortByTitle()
+        case .byDateAdded: sortByDateAdded()
+        case .byTime: sortByTime()
         }
     }
-    
-    // MARK: - Extra
     
     func sendElapsedTimeToPracticeManager(for practiceId: String) async {
         guard elapsedTime > 0 else { return }

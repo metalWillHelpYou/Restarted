@@ -54,7 +54,7 @@ struct StatisticsView: View {
                                 .bold()
                                 .foregroundStyle(Color.highlight)
                             
-                            // — Average session duration —
+                            // Average session duration
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Average session duration")
                                     .font(.headline)
@@ -76,7 +76,7 @@ struct StatisticsView: View {
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // — Sessions —
+                            // Sessions
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Sessions")
                                     .font(.headline)
@@ -96,7 +96,7 @@ struct StatisticsView: View {
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // — Hours —
+                            // Hours
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Hours")
                                     .font(.headline)
@@ -124,7 +124,7 @@ struct StatisticsView: View {
                                 .bold()
                                 .foregroundStyle(Color.highlight)
                             
-                            // — Average practice duration —
+                            // Average practice duration
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Average practice duration")
                                     .font(.headline)
@@ -146,7 +146,7 @@ struct StatisticsView: View {
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // — Completions —
+                            // Completions
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Completions")
                                     .font(.headline)
@@ -170,7 +170,7 @@ struct StatisticsView: View {
                                 .frame(height: 2)
                                 .background(Color.highlight)
                             
-                            // — Practice hours —
+                            // Practice hours
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("Practice hours")
                                     .font(.headline)
@@ -218,7 +218,6 @@ struct StatisticsView: View {
     }
 }
 
-// MARK: - Preview
 #Preview {
     StatisticsView()
 }

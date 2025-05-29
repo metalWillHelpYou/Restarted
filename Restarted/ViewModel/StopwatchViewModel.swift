@@ -10,15 +10,17 @@ import Combine
 
 @MainActor
 final class StopwatchViewModel: ObservableObject {
+    // Seconds elapsed since session start
     @Published var elapsedTime: Int = 0
+    // Indicates active timer state
     @Published var isStopwatchRunning: Bool = false
+    // Descriptive label for selected practice
     @Published var currentPractice: String = "No practice selected"
-    
+
     private var stopwatchSubscription: AnyCancellable?
     private var pausedTime: Int = 0
-    
-    // MARK: - Stopwatch Logic
-    
+
+    // Starts new session or resumes from pause
     func startStopwatch(forPracticeId practiceId: String) {
         guard !isStopwatchRunning else { return }
         if pausedTime > 0 {
@@ -29,19 +31,22 @@ final class StopwatchViewModel: ObservableObject {
             startTimer()
         }
     }
-    
+
+    // Pauses timer and stores current value
     func pauseStopwatch() {
         guard isStopwatchRunning else { return }
         stopwatchSubscription?.cancel()
         isStopwatchRunning = false
         pausedTime = elapsedTime
     }
-    
+
+    // Continues ticking from `pausedTime`
     func resumeStopwatch() {
         guard !isStopwatchRunning else { return }
         startTimer()
     }
-    
+
+    // Stops timer and commits time to Firestore
     func stopStopwatch(forPracticeId practiceId: String) {
         stopwatchSubscription?.cancel()
         isStopwatchRunning = false
@@ -51,7 +56,8 @@ final class StopwatchViewModel: ObservableObject {
             await incrementSessionCount(for: practiceId)
         }
     }
-    
+
+    // Creates Combine timer that fires every second
     private func startTimer() {
         stopwatchSubscription = Timer.publish(every: 1.0, on: .main, in: .common)
             .autoconnect()
@@ -60,20 +66,21 @@ final class StopwatchViewModel: ObservableObject {
             }
         isStopwatchRunning = true
     }
-    
+
+    // Increments elapsed time by one
     private func handleStopwatchTick() {
         elapsedTime += 1
     }
-    
+
+    // Returns HH:MM:SS formatted string
     func formattedTime() -> String {
         let hours = elapsedTime / 3600
         let minutes = (elapsedTime % 3600) / 60
         let seconds = elapsedTime % 60
         return String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
-    
-    // MARK: - Firestore Logic
-    
+
+    // Firestore integration
     func sendElapsedTimeToPracticeManager(for practiceId: String) async {
         guard elapsedTime > 0 else { return }
 

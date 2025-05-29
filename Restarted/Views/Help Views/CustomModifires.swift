@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// Adds consistent padding, background and corner radius to TextFields
 struct TextFieldModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -20,12 +21,7 @@ struct TextFieldModifier: ViewModifier {
     }
 }
 
-extension View {
-    func withTextFieldModifires() -> some View {
-        modifier(TextFieldModifier())
-    }
-}
-
+// Styles buttons that animate disabled state changes
 struct AnimatedButtonModifires: ViewModifier {
     let stateObserver: Bool
     
@@ -40,12 +36,7 @@ struct AnimatedButtonModifires: ViewModifier {
     }
 }
 
-extension View {
-    func withAnimatedButtonFormatting(_ stateObserver: Bool) -> some View {
-        modifier(AnimatedButtonModifires(stateObserver: stateObserver))
-    }
-}
-
+// Styles static buttons with custom colors
 struct SinpleButtonModifires: ViewModifier {
     let foregroundStyle: Color
     let strokeBackground: Color
@@ -66,12 +57,7 @@ struct SinpleButtonModifires: ViewModifier {
     }
 }
 
-extension View {
-    func withSimpleButtonFormatting(foregroundStyle: Color, strokeBackground: Color = .highlight) -> some View {
-        modifier(SinpleButtonModifires(foregroundStyle: foregroundStyle, strokeBackground: strokeBackground))
-    }
-}
-
+// Styles answer buttons used in tests
 struct AnswerButtonModifires: ViewModifier {
     func body(content: Content) -> some View {
         content
@@ -84,6 +70,28 @@ struct AnswerButtonModifires: ViewModifier {
 }
 
 extension View {
+    // Applies `TextFieldModifier`
+    func withTextFieldModifires() -> some View {
+        modifier(TextFieldModifier())
+    }
+}
+
+extension View {
+    // Applies `AnimatedButtonModifires` with reactive color change
+    func withAnimatedButtonFormatting(_ stateObserver: Bool) -> some View {
+        modifier(AnimatedButtonModifires(stateObserver: stateObserver))
+    }
+}
+
+extension View {
+    // Applies `SinpleButtonModifires` with supplied colors
+    func withSimpleButtonFormatting(foregroundStyle: Color, strokeBackground: Color = .highlight) -> some View {
+        modifier(SinpleButtonModifires(foregroundStyle: foregroundStyle, strokeBackground: strokeBackground))
+    }
+}
+
+extension View {
+    // Applies `AnswerButtonModifires`
     func withAnswerButtonFormatting() -> some View {
         modifier(AnswerButtonModifires())
     }

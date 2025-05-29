@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+// Firestore representation of a single game
 struct GameFirestore: Codable, Identifiable, Equatable {
     let id: String
     let title: String
@@ -16,6 +17,7 @@ struct GameFirestore: Codable, Identifiable, Equatable {
     let dateAdded: Date?
     let sessionCount: Int
     
+    // Designated initializer
     init(
         id: String,
         title: String,
@@ -30,17 +32,21 @@ struct GameFirestore: Codable, Identifiable, Equatable {
         self.sessionCount = sessionCount
     }
     
+    // Maps Swift properties to Firestore fields.
     enum CodingKeys: String, CodingKey {
         case id = "game_id"
         case title = "game_title"
-        case seconds = "seconds"
+        case seconds
         case dateAdded = "date_game_added"
         case sessionCount = "session_count"
     }
 }
 
+// Manages real-time synchronization and CRUD operations for the user's games
 final class GameManager {
+    // Singleton instance
     static let shared = GameManager()
+    // Reactive cache that drives UI updates
     @Published var games: [GameFirestore] = []
     
     private var listener: ListenerRegistration?
@@ -48,6 +54,7 @@ final class GameManager {
     
     private init() { }
     
+    // Firestore path helpers
     private func userGameCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: The user is not authenticated.")
@@ -57,6 +64,13 @@ final class GameManager {
         return db.collection("users").document(userId).collection("games")
     }
     
+    // Returns reference to a single game document
+    private func gameDocument(gameId: String) -> DocumentReference? {
+        guard let gameCollection = userGameCollection() else { return nil }
+        return gameCollection.document(gameId)
+    }
+    
+    // Real-time updates
     func startListeningToGames() {
         guard let gameCollection = userGameCollection() else {
             print("Error: User is not authenticated or collection is unavailable.")
@@ -82,11 +96,13 @@ final class GameManager {
         }
     }
     
+    // Detaches the snapshot listener
     func stopListeningToGames() {
         listener?.remove()
         listener = nil
     }
     
+    // Safely converts Firestore data into a `GameFirestore` instance
     private func parseGame(from data: [String: Any]) -> GameFirestore? {
         guard
             let id = data[GameFirestore.CodingKeys.id.rawValue] as? String,
@@ -102,12 +118,7 @@ final class GameManager {
         return GameFirestore(id: id, title: title, seconds: seconds, dateAdded: dateAdded, sessionCount: sessionCount)
     }
     
-    private func gameDocument(gameId: String) -> DocumentReference? {
-        guard let gameCollection = userGameCollection() else { return nil }
-        return gameCollection.document(gameId)
-    }
-    
-    
+    // CRUD
     func addGame(withTitle title: String) async throws {
         guard let gameCollection = userGameCollection() else {
             throw NSError(domain: "GameManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated."])
@@ -126,6 +137,7 @@ final class GameManager {
         }
     }
     
+    // Converts a `GameFirestore` instance into a Firestore dictionary
     private func createGameData(from game: GameFirestore) -> [String: Any] {
         [
             GameFirestore.CodingKeys.id.rawValue: game.id,
@@ -136,6 +148,7 @@ final class GameManager {
         ]
     }
     
+    // Updates the title field of an existing game
     func editGame(gameId: String, title: String) async throws {
         guard gameDocument(gameId: gameId) != nil else {
             print("Error: Unable to get reference to user game document.")
@@ -145,9 +158,11 @@ final class GameManager {
         try await updateGameField(
             gameId: gameId,
             field: GameFirestore.CodingKeys.title.rawValue,
-            value: title)
+            value: title
+        )
     }
     
+    // Adds `elapsedTime` seconds to the stored time
     func updateGameTime(for gameId: String, elapsedTime: Int) async throws {
         guard let gameDoc = gameDocument(gameId: gameId) else {
             throw NSError(domain: "GameManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid game document reference."])
@@ -161,7 +176,6 @@ final class GameManager {
             
             if let existingSeconds = data[GameFirestore.CodingKeys.seconds.rawValue] as? Int {
                 let updatedSeconds = existingSeconds + elapsedTime
-                
                 try await updateGameField(gameId: gameId, field: GameFirestore.CodingKeys.seconds.rawValue, value: updatedSeconds)
                 print("Updated game time successfully for game ID: \(gameId)")
             } else {
@@ -173,6 +187,7 @@ final class GameManager {
         }
     }
     
+    // Increments the session counter for a game
     func incrementSessionCount(for gameId: String) async throws {
         guard let gameDoc = gameDocument(gameId: gameId) else {
             throw NSError(domain: "GameManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid game document reference."])
@@ -195,6 +210,7 @@ final class GameManager {
         }
     }
     
+    // Deletes a game document
     func deleteGame(gameId: String) async throws {
         guard gameDocument(gameId: gameId) != nil else {
             print("Error: Unable to get reference to user game document.")
@@ -205,6 +221,7 @@ final class GameManager {
         print("Game with ID \(gameId) deleted successfully.")
     }
     
+    // Generic wrapper around `updateData` for single-field updates
     private func updateGameField(gameId: String, field: String, value: Any) async throws {
         guard let gameDoc = gameDocument(gameId: gameId) else {
             throw NSError(domain: "GameManager", code: 3, userInfo: [NSLocalizedDescriptionKey: "Invalid game document reference."])
@@ -214,6 +231,7 @@ final class GameManager {
         try await gameDoc.updateData(data)
     }
     
+    // Returns total seconds accumulated across all user's games
     func sumSecondsForUserGames() async throws -> Int {
         guard let collection = userGameCollection() else {
             throw NSError(domain: "AppError", code: 401, userInfo: [NSLocalizedDescriptionKey: "User is not authenticated"])

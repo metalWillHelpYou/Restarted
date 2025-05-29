@@ -8,11 +8,16 @@
 import SwiftUI
 import Combine
 
+// Manages games list, presets list and sorting logic
 @MainActor
 final class GameViewModel: ObservableObject {
+    // Games displayed in UI
     @Published var savedGames: [GameFirestore] = []
+    // Presets for selected game
     @Published var savedPresets: [TimePresetFirestore] = []
+    // Text field binding for new game title
     @Published var gameTitleHandler: String = ""
+    // Currently selected game ID triggers presets listener
     @Published var selectedGameId: String? {
         didSet {
             guard let gameId = selectedGameId else {
@@ -26,15 +31,19 @@ final class GameViewModel: ObservableObject {
     
     @AppStorage("currentSortType") private var currentSortTypeRawValue: String = SortType.byDateAdded.rawValue
     
+    // Firestore managers
     private let gameManager = GameManager.shared
     private let presetManager = GamePresetManager.shared
+    // Combine subscriptions
     private var cancellables = Set<AnyCancellable>()
-
+    
+    // Current sorting preference
     private var currentSortType: SortType {
         get { SortType(rawValue: currentSortTypeRawValue)! }
         set { currentSortTypeRawValue = newValue.rawValue }
     }
     
+    // Subscribes to games and presets streams
     init() {
         gameManager.$games
             .receive(on: RunLoop.main)
@@ -47,7 +56,7 @@ final class GameViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-
+        
         presetManager.$gamePresets
             .receive(on: RunLoop.main)
             .sink { [weak self] newPresets in
@@ -56,6 +65,7 @@ final class GameViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+    // Applies stored sort option after updates
     private func applyCurrentSort() {
         switch currentSortType {
         case .byTitle:
@@ -72,31 +82,14 @@ final class GameViewModel: ObservableObject {
         }
     }
 
-    // MARK: - Listeners
-    
-    func startObservingGames() {
-        gameManager.startListeningToGames()
-    }
-    
+    // Listeners
+    func startObservingGames() { gameManager.startListeningToGames() }
     func stopObservingGames() {
         gameManager.stopListeningToGames()
         presetManager.stopListeningToPresets()
     }
     
-    private func updatePresetListener() {
-        guard let gameId = selectedGameId else {
-            presetManager.stopListeningToPresets()
-            savedPresets = []
-            print("Preset listener stopped: No game selected.")
-            return
-        }
-        
-        print("Starting preset listener for game ID: \(gameId)")
-        presetManager.startListeningToPresets(forGameId: gameId)
-    }
-
-    // MARK: - Game Management
-
+    // Game management
     func addGame(with title: String) async {
         do {
             try await gameManager.addGame(withTitle: title)

@@ -1,5 +1,5 @@
 //
-//  IGDTest Model.swift
+//  IGDTestModel.swift
 //  Restarted
 //
 //  Created by metalWillHelpYou on 23.11.2024.
@@ -8,16 +8,17 @@
 import Foundation
 import SwiftUI
 
+// IGD-20 questions
 enum LongTestQuestions: LocalizedStringKey, CaseIterable {
-    case question1 = "I often lose sleep because of long gaming sessions."
-    case question2 = "I never play games in order to feel better."
-    case question3 = "I have significantly increased the amount of time I play games over last year."
-    case question4 = "When I am not gaming I feel more irritable."
-    case question5 = "I have lost interest in other hobbies because of my gaming"
-    case question6 = "I would like to cut down my gaming time but it’s difficult to do."
-    case question7 = "I usually think about my next gaming session when I am not playing."
-    case question8 = "I play games to help me cope with any bad feelings I might have."
-    case question9 = "I need to spend increasing amounts of time engaged in playing games."
+    case question1  = "I often lose sleep because of long gaming sessions."
+    case question2  = "I never play games in order to feel better."
+    case question3  = "I have significantly increased the amount of time I play games over last year."
+    case question4  = "When I am not gaming I feel more irritable."
+    case question5  = "I have lost interest in other hobbies because of my gaming"
+    case question6  = "I would like to cut down my gaming time but it’s difficult to do."
+    case question7  = "I usually think about my next gaming session when I am not playing."
+    case question8  = "I play games to help me cope with any bad feelings I might have."
+    case question9  = "I need to spend increasing amounts of time engaged in playing games."
     case question10 = "I feel sad if I am not able to play games."
     case question11 = "I have lied to my family members because the amount of gaming I do."
     case question12 = "I do not think I could stop gaming."
@@ -30,7 +31,8 @@ enum LongTestQuestions: LocalizedStringKey, CaseIterable {
     case question19 = "I know my main daily activity has not been negatively affected by my gaming."
     case question20 = "I believe my gaming is negatively impacting on important areas of my life."
 }
-                                                                                                                                         
+
+// IGDS9-SF questions
 enum ShortTestQuestions: LocalizedStringKey, CaseIterable {
     case question1 = "Do you think gaming has become the dominant activity in your daily life?"
     case question2 = "Do you feel more irritability, anxiety or even sadness when you try to either reduce or stop your gaming activity?"
@@ -43,32 +45,37 @@ enum ShortTestQuestions: LocalizedStringKey, CaseIterable {
     case question9 = "Have you jeopardized or lost an important relationship, job or an educational or career opportunity because of your gaming activity?"
 }
 
+// Likert scale answers for IGD-20
 enum LongTestAnswers: LocalizedStringKey, CaseIterable {
-    case stronglyDisagree = "Strongly disagree"
-    case disagree = "Disagree"
-    case neitherAgreeNorDisagree = "Neither agree nor disagree"
-    case agree = "Agree"
-    case stronglyAgree = "Strongly agree"
+    case stronglyDisagree         = "Strongly disagree"
+    case disagree                 = "Disagree"
+    case neitherAgreeNorDisagree  = "Neither agree nor disagree"
+    case agree                    = "Agree"
+    case stronglyAgree            = "Strongly agree"
 }
 
+// Frequency‑based answers for IGDS9-SF
 enum ShortTestAnswers: LocalizedStringKey, CaseIterable {
-    case never = "Never"
-    case rarely = "Rarely"
-    case sometimes = "Sometimes"
-    case often = "Often"
-    case veryOften = "Very Often"
+    case never      = "Never"
+    case rarely     = "Rarely"
+    case sometimes  = "Sometimes"
+    case often      = "Often"
+    case veryOften  = "Very Often"
 }
 
+// Aggregated score and textual feedback
 struct TestResult {
     let totalScore: Int
     let conclusion: LocalizedStringKey
 }
 
+// Model of a single question shown in UI
 struct Question {
     let text: String
     let answers: [String]
 }
 
+// Available test variants
 enum TestType {
     case longTest
     case shortTest

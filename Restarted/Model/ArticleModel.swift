@@ -9,6 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+// Represents a single article and its metadata
 struct Article: Codable, Identifiable {
     let id: String
     let title: String
@@ -17,6 +18,7 @@ struct Article: Codable, Identifiable {
     let isForBeginners: Bool
     let readingTime: Int
 
+    // Designated initializer for full control
     init(
         id: String,
         title: String,
@@ -33,6 +35,7 @@ struct Article: Codable, Identifiable {
         self.readingTime = readingTime
     }
 
+    // Maps Swift properties to Firestore field names
     enum CodingKeys: String, CodingKey {
         case id
         case title
@@ -43,8 +46,12 @@ struct Article: Codable, Identifiable {
     }
 }
 
+// Provides real-time sync and CRUD operations for the user's articles
 final class ArticleManager: ObservableObject {
+    // Singleton instance
     static let shared = ArticleManager()
+
+    // Reactive cache powering the UI
     @Published var articles: [Article] = []
     
     private var listener: ListenerRegistration?
@@ -52,6 +59,7 @@ final class ArticleManager: ObservableObject {
     
     private init() { }
 
+    // Firestore path helpers
     private func userArticlesCollection() -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: The user is not authenticated.")
@@ -59,7 +67,8 @@ final class ArticleManager: ObservableObject {
         }
         return db.collection("users").document(userId).collection("articles")
     }
-    
+
+    // Real-time observation
     func startObservingArticles() {
         guard let articlesCollection = userArticlesCollection() else {
             print("Error: User is not authenticated or collection is unavailable.")
@@ -89,12 +98,14 @@ final class ArticleManager: ObservableObject {
             }
         }
     }
-    
+
+    // Stops listening for article changes
     func stopObservingArticles() {
         listener?.remove()
         listener = nil
     }
-    
+
+    // Sets the `isRead` flag for a given article
     func updateReadStatus(articleId: String, isRead: Bool) async throws {
         guard let document = articleDocument(articleId: articleId) else {
             print("Error: Unable to get reference to user article document.")
@@ -112,7 +123,8 @@ final class ArticleManager: ObservableObject {
             throw error
         }
     }
-    
+
+    // Returns a reference to a single article document
     private func articleDocument(articleId: String) -> DocumentReference? {
         guard let articlesCollection = userArticlesCollection() else { return nil }
         return articlesCollection.document(articleId)

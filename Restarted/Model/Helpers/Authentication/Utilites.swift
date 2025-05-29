@@ -8,27 +8,32 @@
 import Foundation
 import UIKit
 
+// Shared app‑wide helper functions
 final class Utilites {
+    // Global singleton instance
     static let shared = Utilites()
     private init() { }
     
+    // Returns the topmost visible view controller in the current window
     func topViewController(controller: UIViewController? = UIApplication.shared
                                 .connectedScenes
                                 .compactMap { $0 as? UIWindowScene }
                                 .flatMap { $0.windows }
                                 .first { $0.isKeyWindow }?.rootViewController) -> UIViewController? {
-        if let navigationController = controller as? UINavigationController {
-            return topViewController(controller: navigationController.visibleViewController)
+        // Unwrap navigation controller branch
+        if let nav = controller as? UINavigationController {
+            return topViewController(controller: nav.visibleViewController)
         }
-        if let tabController = controller as? UITabBarController {
-            if let selected = tabController.selectedViewController {
-                return topViewController(controller: selected)
-            }
+        // Unwrap tab bar controller branch
+        if let tab = controller as? UITabBarController,
+           let selected = tab.selectedViewController {
+            return topViewController(controller: selected)
         }
+        // Follow any presented view controllers
         if let presented = controller?.presentedViewController {
             return topViewController(controller: presented)
         }
+        // Base case of recursion
         return controller
     }
-
 }

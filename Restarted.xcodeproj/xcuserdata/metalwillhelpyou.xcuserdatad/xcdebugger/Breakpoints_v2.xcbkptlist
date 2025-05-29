@@ -23,17 +23,121 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5F31FF39-BBAD-452F-910C-A7A3A24A1D2D"
-            shouldBeEnabled = "No"
+            uuid = "7FD1821B-1E68-4872-AF34-1685B38CE8FC"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Restarted/Model/ArticleModel.swift"
+            filePath = "Restarted/ViewModel/StopwatchViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "12"
-            endingLineNumber = "12"
-            landmarkName = "Article"
-            landmarkType = "14">
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "sendElapsedTimeToPracticeManager(for:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7FD1821B-1E68-4872-AF34-1685B38CE8FC - 61b0a9001662b4a6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Restarted.StopwatchViewModel.sendElapsedTimeToPracticeManager(for: Swift.String) async -&gt; ()"
+                  moduleName = "Restarted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/ViewModel/StopwatchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88">
+               </Location>
+               <Location
+                  uuid = "7FD1821B-1E68-4872-AF34-1685B38CE8FC - f9ca8f26a85cc9e7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for Restarted.StopwatchViewModel.sendElapsedTimeToPracticeManager(for: Swift.String) async -&gt; ()"
+                  moduleName = "Restarted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/ViewModel/StopwatchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88">
+               </Location>
+               <Location
+                  uuid = "7FD1821B-1E68-4872-AF34-1685B38CE8FC - 3289ebbb0ad138c0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Restarted.StopwatchViewModel.sendElapsedTimeToPracticeManager(for: Swift.String) async -&gt; ()"
+                  moduleName = "Restarted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/ViewModel/StopwatchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88">
+               </Location>
+               <Location
+                  uuid = "7FD1821B-1E68-4872-AF34-1685B38CE8FC - 9cfd8a8f88867af1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Restarted.StopwatchViewModel.sendElapsedTimeToPracticeManager(for: Swift.String) async -&gt; ()"
+                  moduleName = "Restarted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/ViewModel/StopwatchViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D5D2E760-9D81-48C2-AEC3-17D086DF13A7"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Restarted/ViewModel/GameViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "editGame(gameId:title:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D5D2E760-9D81-48C2-AEC3-17D086DF13A7 - 8c7394dbbabb0a42"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Restarted.GameViewModel.editGame(gameId: Swift.String, title: Swift.String) async throws -&gt; ()"
+                  moduleName = "Restarted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/ViewModel/GameViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102">
+               </Location>
+               <Location
+                  uuid = "D5D2E760-9D81-48C2-AEC3-17D086DF13A7 - 866673bd1e53524b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for Restarted.GameViewModel.editGame(gameId: Swift.String, title: Swift.String) async throws -&gt; ()"
+                  moduleName = "Restarted"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/metalwillhelpyou/Swift/projects/Restarted/Restarted/ViewModel/GameViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

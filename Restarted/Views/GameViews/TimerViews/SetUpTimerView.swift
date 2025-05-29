@@ -59,13 +59,10 @@ struct SetUpTimerView: View {
 }
 
 extension SetUpTimerView {
-    // MARK: - Computed Properties
-    
+
     private var gameTitle: String {
         game?.title ?? "Unknown Game"
     }
-    
-    // MARK: - Subviews
     
     private var timePickers: some View {
         HStack(spacing: 20) {

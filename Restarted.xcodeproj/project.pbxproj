@@ -28,6 +28,9 @@
 		9B397CA92D2C452F005CBBD1 /* StatisticsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */; };
 		9B3AD9082C0F60F000230004 /* ThemeChanger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3AD9072C0F60F000230004 /* ThemeChanger.swift */; };
 		9B3D81962D1883870079A072 /* ChangeNameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */; };
+		9B406D032DE850EB00034F18 /* AddGameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D022DE850EB00034F18 /* AddGameSheetView.swift */; };
+		9B406D052DE8514200034F18 /* EditGameSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D042DE8514200034F18 /* EditGameSheetView.swift */; };
+		9B406D072DE8517900034F18 /* EditPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B406D062DE8517900034F18 /* EditPracticeView.swift */; };
 		9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */; };
 		9B42AE3B2C8A50F800343433 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */; };
 		9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B568F882C00B29C00B6D645 /* SettingsView.swift */; };
@@ -109,6 +112,9 @@
 		9B397CA82D2C452F005CBBD1 /* StatisticsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewModel.swift; sourceTree = "<group>"; };
 		9B3AD9072C0F60F000230004 /* ThemeChanger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeChanger.swift; sourceTree = "<group>"; };
 		9B3D81952D1883870079A072 /* ChangeNameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeNameSheetView.swift; sourceTree = "<group>"; };
+		9B406D022DE850EB00034F18 /* AddGameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameSheetView.swift; sourceTree = "<group>"; };
+		9B406D042DE8514200034F18 /* EditGameSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditGameSheetView.swift; sourceTree = "<group>"; };
+		9B406D062DE8517900034F18 /* EditPracticeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPracticeView.swift; sourceTree = "<group>"; };
 		9B4084AA2C1C9E8B002FBDB7 /* LanguageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageView.swift; sourceTree = "<group>"; };
 		9B42AE3A2C8A50F800343433 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		9B568F882C00B29C00B6D645 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -280,6 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				9B2AFD702C009A0D00E908F5 /* GameMainScreenView.swift */,
+				9B406D022DE850EB00034F18 /* AddGameSheetView.swift */,
+				9B406D042DE8514200034F18 /* EditGameSheetView.swift */,
 				9BD812A12C72104E005A6085 /* TimerViews */,
 			);
 			path = GameViews;
@@ -333,6 +341,7 @@
 			children = (
 				9BA8CC062C8EE09E005AF647 /* PracticeMainScreenView.swift */,
 				9BDE50472C0A02F400910F23 /* AddPracticeView.swift */,
+				9B406D062DE8517900034F18 /* EditPracticeView.swift */,
 				9BFA14F02D356C000073D4C4 /* StopwatchView.swift */,
 			);
 			path = PracticeViews;
@@ -557,6 +566,7 @@
 				9BD812A32C721067005A6085 /* SetUpTimerView.swift in Sources */,
 				9BD812A52C74F044005A6085 /* TimerView.swift in Sources */,
 				9BFE388F2CB7F4CA00325173 /* QGTestsView.swift in Sources */,
+				9B406D032DE850EB00034F18 /* AddGameSheetView.swift in Sources */,
 				9B397CA92D2C452F005CBBD1 /* StatisticsViewModel.swift in Sources */,
 				9B2525B62CF0D2A40012E9B2 /* IGDTestInfoView.swift in Sources */,
 				9B3872A52C8CE48E00C76784 /* PracticeViewModel.swift in Sources */,
@@ -577,6 +587,7 @@
 				9B568F892C00B29C00B6D645 /* SettingsView.swift in Sources */,
 				9B6E6C412CDE4BBB002D3042 /* SignInGoogleHelper.swift in Sources */,
 				9B0139D62CB9730500365128 /* LocalNotificationManager.swift in Sources */,
+				9B406D052DE8514200034F18 /* EditGameSheetView.swift in Sources */,
 				9B2525B82CF0E3D10012E9B2 /* ShortTestViewModel.swift in Sources */,
 				9B4084AB2C1C9E8B002FBDB7 /* LanguageView.swift in Sources */,
 				9BE572B82D15ED1000A4D45E /* ProfileInfoLinkView.swift in Sources */,
@@ -590,6 +601,7 @@
 				9BBE00552D43FDCF001BE1DA /* LanguageManager.swift in Sources */,
 				9B0EA5642C106F3D00E8291C /* ThemeChangerView.swift in Sources */,
 				9B7528B62C2753D000657E8A /* CustomTabBar.swift in Sources */,
+				9B406D072DE8517900034F18 /* EditPracticeView.swift in Sources */,
 				9BFC14552D2D637200D8E2DF /* PracticeModel.swift in Sources */,
 				9B2AFD7F2C009A0D00E908F5 /* ProfileMainScreenView.swift in Sources */,
 				9B2AFD7B2C009A0D00E908F5 /* StatisticsView.swift in Sources */,

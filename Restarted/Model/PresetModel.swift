@@ -9,24 +9,29 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+// Firestore representation of a single timer preset
 struct TimePresetFirestore: Codable, Identifiable, Equatable {
     let id: String
     let seconds: Int
     
+    // Designated initializer
     init(id: String = UUID().uuidString, seconds: Int) {
         self.id = id
         self.seconds = seconds
     }
     
+    // Maps Swift properties to Firestore field names
     enum CodingKeys: String, CodingKey {
         case id = "preset_id"
         case seconds = "preset_seconds"
     }
 }
 
-
+// Provides real‑time sync and CRUD operations for presets of a specific game
 final class GamePresetManager {
+    // Singleton instance
     static let shared = GamePresetManager()
+    // Reactive cache powering the UI
     @Published var gamePresets: [TimePresetFirestore] = []
     
     private var listener: ListenerRegistration?
@@ -34,11 +39,7 @@ final class GamePresetManager {
     
     private init() { }
     
-    private func presetDocument(forGameId gameId: String, presetId: String) -> DocumentReference? {
-        guard let presetCollection = presetCollection(forGameId: gameId) else { return nil }
-        return presetCollection.document(presetId)
-    }
-    
+    // Firestore path helpers
     private func presetCollection(forGameId gameId: String) -> CollectionReference? {
         guard let userId = Auth.auth().currentUser?.uid else {
             print("Error: The user is not authenticated.")
@@ -47,6 +48,13 @@ final class GamePresetManager {
         return db.collection("users").document(userId).collection("games").document(gameId).collection("presets")
     }
     
+    // Returns reference to a single preset document
+    private func presetDocument(forGameId gameId: String, presetId: String) -> DocumentReference? {
+        guard let collection = presetCollection(forGameId: gameId) else { return nil }
+        return collection.document(presetId)
+    }
+    
+    // Real‑time updates
     func startListeningToPresets(forGameId gameId: String) {
         guard let collection = presetCollection(forGameId: gameId) else {
             print("Error: Invalid game ID or user is not authenticated.")
@@ -72,11 +80,13 @@ final class GamePresetManager {
         }
     }
     
+    // Detaches the listener
     func stopListeningToPresets() {
         listener?.remove()
         listener = nil
     }
     
+    // Safely converts Firestore data into a `TimePresetFirestore` instance
     private func parsePreset(from data: [String: Any]) -> TimePresetFirestore? {
         guard
             let id = data[TimePresetFirestore.CodingKeys.id.rawValue] as? String,
@@ -88,8 +98,17 @@ final class GamePresetManager {
         return TimePresetFirestore(id: id, seconds: seconds)
     }
     
+    // Converts a preset into a Firestore dictionary
+    private func createPresetData(from preset: TimePresetFirestore) -> [String: Any] {
+        [
+            TimePresetFirestore.CodingKeys.id.rawValue: preset.id,
+            TimePresetFirestore.CodingKeys.seconds.rawValue: preset.seconds
+        ]
+    }
+    
+    // CRUD
     func addPreset(forGameId gameId: String, seconds: Int) async throws {
-        guard let presetCollection = presetCollection(forGameId: gameId) else {
+        guard let collection = presetCollection(forGameId: gameId) else {
             throw NSError(domain: "GamePresetManager", code: 1, userInfo: [NSLocalizedDescriptionKey: "Invalid game ID or user is not authenticated."])
         }
         
@@ -97,18 +116,17 @@ final class GamePresetManager {
         let presetData = createPresetData(from: newPreset)
         
         do {
-            let snapshot = try await presetCollection.getDocuments()
+            let snapshot = try await collection.getDocuments()
             let existingPresets = snapshot.documents.compactMap { doc -> TimePresetFirestore? in
-                let data = doc.data()
-                return parsePreset(from: data)
+                parsePreset(from: doc.data())
             }
-
+            
             if existingPresets.contains(where: { $0.seconds == seconds }) {
                 print("Preset with \(seconds) seconds already exists for game \(gameId).")
                 return
             }
             
-            try await presetCollection.document(newPreset.id).setData(presetData)
+            try await collection.document(newPreset.id).setData(presetData)
             print("Preset successfully added with ID: \(newPreset.id)")
         } catch {
             print("Error adding preset: \(error)")
@@ -116,6 +134,7 @@ final class GamePresetManager {
         }
     }
     
+    // Deletes a preset document
     func deletePreset(forGameId gameId: String, presetId: String) async throws {
         guard let presetDoc = presetDocument(forGameId: gameId, presetId: presetId) else {
             throw NSError(domain: "GamePresetManager", code: 2, userInfo: [NSLocalizedDescriptionKey: "Invalid preset document reference."])
@@ -128,12 +147,5 @@ final class GamePresetManager {
             print("Error deleting preset: \(error)")
             throw error
         }
-    }
-    
-    private func createPresetData(from preset: TimePresetFirestore) -> [String: Any] {
-        [
-            TimePresetFirestore.CodingKeys.id.rawValue: preset.id,
-            TimePresetFirestore.CodingKeys.seconds.rawValue: preset.seconds
-        ]
     }
 }
